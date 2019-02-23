@@ -7,6 +7,6 @@ We are Group #9 in [CMPE 352](https://www.cmpe.boun.edu.tr/courses/cmpe352) cour
 - [Egemen Göl](https://github.com/egemengol)
 - [Emirhan Yasin Çetin](https://github.com/emirhanyasin)
 - [Gamze Gülbahar](https://github.com/bounswe/bounswe2019group9/wiki/Gamze-Gülbahar) 
-- [Halit Özsoy](https://github.com/corupta)
+- [Halit Özsoy](https://github.com/bounswe/bounswe2019group9/wiki/Halit-%C3%96zsoy)
 - [Ahmet Gedemenli](https://github.com/afgedemenli)
 - [Ali Ramazan Mert](https://github.com/aliramazanmert)
