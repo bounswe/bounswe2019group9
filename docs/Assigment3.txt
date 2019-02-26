@@ -1,0 +1,25 @@
+Requirements Elicitation (Continued)
+
+
+A. Scenarios:
+
+Write three scenarios for your project by clearly describing:
+
+1) The user and their persona (role)
+2) Preconditions -- if any (such as: the user that has already logged in).
+3) Specific actions to achieve a desired goal (what the user wants to do).  Describe each step until the scenario is completed. Steps must be enumerated.
+
+4) Acceptance criteria (the conditions that describe a successful outcome for the action)
+
+IMPORTANT: Your user scenarios must be based on realistic user and content. Do not use sign up or login as scenarios.
+
+
+B. Mockups:
+
+Create mock-ups for the user scenarios (from end to end) that you described in PART A.
+Your mockups must present concrete examples as discussed in class.
+Remember that, the goal is to get into the mindset of the customer as much as possible. Thus, creating mockups that will foster a shared context with the user will be most effective.
+
+You may draw a wireframe or use any drawing application to produce the scenarios.
+
+All material will be shared on your project repository.
