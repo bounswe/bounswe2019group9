@@ -16,6 +16,18 @@ List and status of deliverables
 ```
 Maybe a table summing up deliverables? 
 
+| Deliverable        |             | Created   | Is Up To Date |
+| :---------         | :----:      | -----:    | --            |
+| Project Repository |             |           |               |
+|                    | Sub element | 13.2.2019 | &#x2705;      |
+|                    |             |           | &#x274C;      |
+| Project Documents  |             |           |               |
+| Issue Management   |             |           |               |
+| Requirements       |             |           |               |
+| Mockups            |             |           |               |
+| Design Documents   |             |           |               |
+|                    |             |           |               |
+
 ## 3. Evalutation of Deliverables
 
 ```
