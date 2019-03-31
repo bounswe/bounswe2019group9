@@ -64,7 +64,10 @@ Maybe a table summing up deliverables?
  3.6.1.2. Our use case diagram will be very helpful during the actual coding of the project. It helps seeing the requirements better. With the help of use case diagram, we can see what is expected from our project in a very easy way. I think it will prevent us from implemeting unrequired parts.  
 
 #### 3.6.2. Class Diagram
+ 3.6.2.1. There were some mistakes and some some points that were missed in the draft of the class diagram. Also, interactions were shown in quite a complicated manner and there were too many classes. A much better class diagram has been created as a result of the corrections that were made in the light of the feedback received. Now the relations between the classes are clear and intelligible. A compacter diagram has been created by reducing the number of classes. Contents of the classes have become adequate owing to the methods that were added.
 
+3.6.2.2. Our class diagram will be very useful for the project implementation part. We will easily see the classes that we will create and their attributes and methods. Naturally, methods in the class diagram will not be sufficient, we will add some other methods and attributes but at this stage our class diagram is enough to understand the general overview of the schematics of our project.
+ 
 #### 3.6.3. Sequence Diagrams
 
 ## 4. Work Done by Team Members
