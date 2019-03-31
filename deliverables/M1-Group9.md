@@ -86,7 +86,13 @@ Maybe a table summing up deliverables?
 |İrem Uğuz| Opened the Efforts Document so the team members will be able to write their personal efforts.|
 |İrem Uğuz| Wrote an evaluation about the use case diagram to Milestones Report.|
 |İrem Uğuz| Added deliverables to milestone report.|
-
+|Gamze Gülbahar| A wiki page has been created in a format suitable for the requirements that were decided in the meeting.|
+|Gamze Gülbahar| Questions about the non-functional parts of the requirements have been asked and the team members were informed of the answers.|
+|Gamze Gülbahar| A web mock-up has been created.|
+|Gamze Gülbahar| A use case diagram have been created.|
+|Gamze Gülbahar| The use case diagram has been updated after the reviews of the group members.|
+|Gamze Gülbahar| The use case diagram has been updated after the feedback that we received.|
+|Gamze Gülbahar| A class diagram evaluation has been made for the milestone repor.|
 
 ## 5. Communication Plan
 ### Plan
