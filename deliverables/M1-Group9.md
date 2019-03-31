@@ -68,9 +68,22 @@ Maybe a table summing up deliverables?
 #### 3.6.3. Sequence Diagrams
 
 ## 4. Work Done by Team Members
-```
-A summary of work done by each team member (in tabular format)
-```
+| Team Member | Effort |
+|:--------:|:------------:|
+|İrem Uğuz| Been selected as team communicator. As a communicator, tried to reach other group members and reported the active members to TAs and instructor. Also, asked about unclear parts of the assignments in Piazza. |
+|İrem Uğuz| Found two GitHub repos that are well designed and added those repos to the sidebar.|
+|İrem Uğuz| Prepared the Communication Plan page. |
+|İrem Uğuz| Wrote the agenda for Meeting 3 and Meeting 4. |
+|İrem Uğuz| Attended the Ps 2 and shared its contents with the group members.|
+|İrem Uğuz| Added little icons next to headers in the sidebar so the wiki page looks more colourful.|
+|İrem Uğuz| Created user persona Aslı Bulut and wrote the step by step scenario for that user persona. After the feedback we received about making the scenarios atomic, split the scenario to three so each scenario is atomic and easier to understand.|
+|İrem Uğuz| Prepared the class diagram for the project with Emirhan. Emirhan created the classes and I added arguments and return variables, added a few classes and methods and draw the diagram with suitable arrows and numbers.|
+|İrem Uğuz| After getting the feedback, redesigned the class diagram and created a new diagram for it.|
+|İrem Uğuz| Attended the ps 6 and told about its content to group members.|
+|İrem Uğuz| Opened the Efforts Document so the team members will be able to write their personal efforts.|
+|İrem Uğuz| Wrote an evaluation about the use case diagram to Milestones Report.|
+|İrem Uğuz| Added deliverables to milestone report.|
+
 
 ## 5. Communication Plan
 ### Plan
