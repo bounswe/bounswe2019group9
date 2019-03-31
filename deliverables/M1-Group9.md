@@ -54,7 +54,18 @@ Maybe a table summing up deliverables?
 
 ### 3.4. Requirements
 
+ #### 3.4.1. Ali:
+ 
+ 3.4.1.1. Administration capabilities are so limited.They can/should be explained further, maybe add some more unique actions for this type of user.
+ 3.4.1.2. Overall requirements and glossary part are greatly partitioned and ordered.Nothing is unclear in considerable amount.
+
 ### 3.5. Mockups
+
+ #### 3.5.1. Ali:
+ 
+ 3.5.1.1. In scenario 1.2 at the last image there may be included an option for seeing which questions are answered correct and which are not.
+ 3.5.1.2 There are some typos and mentions about expert type of user which is overstated that should not exist.
+ 
 
 ### 3.6. Design Documents
 
