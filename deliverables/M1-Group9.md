@@ -93,6 +93,14 @@ Maybe a table summing up deliverables?
 |Gamze Gülbahar| The use case diagram has been updated after the reviews of the group members.|
 |Gamze Gülbahar| The use case diagram has been updated after the feedback that we received.|
 |Gamze Gülbahar| A class diagram evaluation has been made for the milestone repor.|
+|Ali Ramazan Mert| Set up a doodle for meeting times in first meeting.|
+|Ali Ramazan Mert| Added my father's github repo documentation to the wiki|
+|Ali Ramazan Mert| Made the issue labels by searching for some tips about them.|
+|Ali Ramazan Mert| Arranged and assigned most of the issues, made the necessary changes when needed and seperated most of the work precisely.|
+|Ali Ramazan Mert| Made my personal wiki page.|
+|Ali Ramazan Mert| Added the glossary part in requirements with Halit.|
+|Ali Ramazan Mert| Made a sequence diagram and helped my workmates doing it.|
+|Ali Ramazan Mert| Added a photo to my personal wiki page and issued week 7's all work to the decided people.|
 
 ## 5. Communication Plan
 ### Plan
