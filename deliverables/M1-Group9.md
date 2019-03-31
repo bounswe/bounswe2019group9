@@ -92,7 +92,10 @@ Maybe a table summing up deliverables?
 3.6.2.2. Our class diagram will be very useful for the project implementation part. We will easily see the classes that we will create and their attributes and methods. Naturally, methods in the class diagram will not be sufficient, we will add some other methods and attributes but at this stage our class diagram is enough to understand the general overview of the schematics of our project.
  
 #### 3.6.3. Sequence Diagrams
+3.6.3.1. First draft of the sequence diagrams were not satisfactory because of the timing problems. We give the most time to use case and then the class diagrams. So the first draft of the sequence diagrams were designed in a very short time. Despite to these facts, first draft of the sequence diagrams were good with respect to given time.
 
+3.6.3.2. After feedbacks came from TAs, and the conversations about sequence diagrams in the class, our team put our best effort to design the sequence diagrams better. The number of diagrams tripled and the quality of the design became significant. Sequence diagrams will be our basis for the further development of our project.
+ 
 ## 4. Work Done by Team Members
 | Team Member | Effort |
 |:--------:|:------------:|
