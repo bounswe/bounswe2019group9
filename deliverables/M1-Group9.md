@@ -114,6 +114,17 @@ Maybe a table summing up deliverables?
 |Ali Ramazan Mert| Added the glossary part in requirements with Halit.|
 |Ali Ramazan Mert| Made a sequence diagram and helped my workmates doing it.|
 |Ali Ramazan Mert| Added a photo to my personal wiki page and issued week 7's all work to the decided people.|
+|İbrahim Can Kaplan|Updated the README.md, added team members’ personal wiki pages to README.md. |
+|İbrahim Can Kaplan|Wrote the draft version of requirements as notetaker. |
+|İbrahim Can Kaplan|Created personal wiki page and uploaded photo. |
+|İbrahim Can Kaplan|Attended the first Customer Meeting, took notes about meeting and informed the other team members about customer’s requests |
+|İbrahim Can Kaplan|Rewrote the requirements after customer meeting, reorganized the overall structure. |
+|İbrahim Can Kaplan|Updated the non-functional part of requirements with respect to given feedback from TAs. |
+|İbrahim Can Kaplan|Created use case diagrams. |
+|İbrahim Can Kaplan|Updated use case diagrams with respect to given feedback from other team members. |
+|İbrahim Can Kaplan|Updated use case diagrams with respect to given feedback from TAs. |
+|İbrahim Can Kaplan|Wrote ‘Moving Forward’ - which is in the executive summary - part of the Milestone Project. |
+
 
 ## 5. Communication Plan
 ### Plan
