@@ -8,6 +8,16 @@ The description for the task can be viewed from [here](https://github.com/bounsw
 Summary of project status and any changes that are
  planned for moving forward.
 ```
+#### Moving Forward 
+* In our last meeting, we decided to change our perspective to issues.Issues will be created after the meeting, so the person who opens issues will add more detailed information to issue’s description. The person who opens the issue will be the next person to the person who is writing the meeting notes at that week. We decided this because we were creating issues at the end of the meeting , so they were lack of important information because we were creating so many issues in a few minutes. The responsible person will take care of them and this will help to solve our problem we thought.
+
+* The class and PS content will be analyzed in weekly meetings more thoroughly. So every person in the group will have the same amount of knowledge about what is going on in that week. We decided this because some people felt lack of knowledge about what was going on the project, we thought that this will solve this issue.
+
+* As discussed in the classes, works will be divided into smaller parts after this week. So people can feel more responsible to other group members, generally it will increase the performance of each team member.We did this because when so many people assigned to same work, people did not feel responsible for the work, so some work completed late.
+
+* Issues with dependencies will be given lower priority. For example mockups were depended on scenarios. We will assign more people to scenarios than mockups, so it will finish in shorter time. So the people which are creating mockups will work in reasonable time. We decided this because use case diagram and class diagram spend most of the time of the week so sequence diagram team couldn’t start the work which they did. They had very limited time so they put too much effort than other people. 
+
+
 
 ## 2. Deliverables
 
