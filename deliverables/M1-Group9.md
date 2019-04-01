@@ -61,6 +61,10 @@ Maybe a table summing up deliverables?
  #### 3.3.1. Burhan:
  
  3.3.1.1. Issue labels are not updated according to progress made. There are issues with "Not Started Yet" tag that are completed and closed.
+ 
+#### 3.3.2. Arda:
+ 
+ 3.3.2.1. Due dates other than weekly milestones are specified in meeting notes, but not in the issues. We specify weekly milestones in issues but there are different due dates for tasks which are prerequisites of each other
 
 ### 3.4. Requirements
 
