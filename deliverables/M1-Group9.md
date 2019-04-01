@@ -150,6 +150,7 @@ Maybe a table summing up deliverables?
 |Arda Barış Budak|Created first version of sequence diagrams with Burhan and Ali.|
 |Arda Barış Budak|Attended the customer meeting and asked questions about the requirements, then shared the answers with the team.|
 |Arda Barış Budak|Helped in creating the final version of sequence diagrams.|
+|Halit Özsoy| Opened up a Slack workspace, added GitHub and Poll bots, created a new bot for Piazza & Slack integration. <hr> Created the first versions of these wiki pages: Meeting Notes, Communication Plan, Sidebar. <hr> Wrote wiki page, *Meeting Notes 1* <hr> Documented 2 GitHub repos, *KoaJS* and *microservices-demo* for the first assignment. <hr> Wrote the *Glossary* section of the *Requirements* page with Ali. <hr> Created an Android Mock-Up for the persona, *Gülkız Kızıltuğ* <hr> Attended PS-4 and shared its contents with the group members. <hr> Reviewed the first draft of the Use-Case Diagram over Slack. <hr> Reviewed the draft of the Class Diagram. <hr> Redesigned schemes, structures and patterns of the class diagram. <hr> Completed the last version of the class diagram and explained it to *Sequence Diagram Team* <hr> Reviewed the last versions of the sequence diagrams in person. <hr> Created the initial template version of the Milestone Report.<br><br>|
 
 
 ## 5. Communication Plan
