@@ -141,6 +141,15 @@ Maybe a table summing up deliverables?
 |İbrahim Can Kaplan|Updated use case diagrams with respect to given feedback from other team members. |
 |İbrahim Can Kaplan|Updated use case diagrams with respect to given feedback from TAs. |
 |İbrahim Can Kaplan|Wrote ‘Moving Forward’ - which is in the executive summary - part of the Milestone Project. |
+|Arda Barış Budak|Found a github Repo I like and wrote about it on the wiki.|
+|Arda Barış Budak|Created a wiki page describing myself.|
+|Arda Barış Budak|Attended the customer meeting, took notes and make explanations about them to the team in meeting.|
+|Arda Barış Budak|Created a mockup for Emirhan's scenario.|
+|Arda Barış Budak|Attended the PS about diagrams and make explanations about them to the team in the meeting.|
+|Arda Barış Budak|Attended the PS about diagrams and make explanations about them to the team in the meeting.|
+|Arda Barış Budak|Created first version of sequence diagrams with Burhan and Ali.|
+|Arda Barış Budak|Attended the customer meeting and asked questions about the requirements, then shared the answers with the team.|
+|Arda Barış Budak|Helped in creating the final version of sequence diagrams.|
 
 
 ## 5. Communication Plan
