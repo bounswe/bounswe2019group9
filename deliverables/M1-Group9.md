@@ -562,16 +562,14 @@ Francisco is a 37-year-old guitar player living in Cordoba. He is native in Span
 
 ![log in](https://raw.githubusercontent.com/bounswe/bounswe2019group9/master/docs/assets/mockup-3-images/6.png)
 ***
-5. After 30 minutes, Francisco and the expert finishes the conversation.
-6. An evaluation panel opens up in front of both of them.
-7. They give each other feedback and evaluate themselves. Francisco likes the talk and give the expert 3 stars.
+5. After 30 minutes, Francisco and the expert finishes the conversation. An evaluation panel opens up in front of both of them. They give each other feedback and evaluate themselves. Francisco likes the talk and give the expert 3 stars.
 
 
 ![log in](https://raw.githubusercontent.com/bounswe/bounswe2019group9/master/docs/assets/mockup-3-images/7.png)
 ***
 ## Scenario 3.3 Grading essays
 ### Steps and Mock-ups
-8. After his speaking practice in English, he opens his Spanish page. He sees a writing exercise of a Spanish learner wating to be graded.
+6. In his Spanish page, he sees a writing exercise of a Spanish learner waiting to be reviewed.
 
 
 ![log in](https://raw.githubusercontent.com/bounswe/bounswe2019group9/master/docs/assets/mockup-3-images/8.png)
@@ -579,15 +577,14 @@ Francisco is a 37-year-old guitar player living in Cordoba. He is native in Span
 
 ![log in](https://raw.githubusercontent.com/bounswe/bounswe2019group9/master/docs/assets/mockup-3-images/9.png)
 ***
-9. He reads the essay, corrects the mistakes, give feedback and a grade.
-10. After that, he uploads the corrected and graded essay for the learner.
+7. He reads the essay, corrects the mistakes, give feedback and a grade. After that, he uploads the corrected and graded essay for the learner.
 
 ![log in](https://raw.githubusercontent.com/bounswe/bounswe2019group9/master/docs/assets/mockup-3-images/10.png)
 ***
 
 ![log in](https://raw.githubusercontent.com/bounswe/bounswe2019group9/master/docs/assets/mockup-3-images/11.png)
 ***
-11. He thinks he is done for today, he clicks exit and closes the application.
+8. He thinks he is done for today, he clicks exit and closes the application.
 
 ![log in](https://raw.githubusercontent.com/bounswe/bounswe2019group9/master/docs/assets/mockup-3-images/12.png)
 ***
