@@ -397,13 +397,10 @@ Francisco is a 37-year-old guitar player living in Cordoba. He is native in Span
 2. Requirements 1.1.2.1 and 1.1.2.1.1 
 3. Requirement 1.1.3.2.1
 4. Requirements 1.1.1.1.2.3 and 1.2.2.1 and 1.2.2.3
-5. Requirements 1.1.1.1.2.3 and 1.2.2.1 and 1.2.2.3
-6. Requirement 1.2.8.1
-7. Requirement 1.2.8.1.2
-8. Requirement 1.2.9.1
-9. Requirements 1.2.1.1 and 1.2.1.1
-10. Requirements 1.2.1.1 and 1.2.1.1
-11. Requirements 1.1.1.1.2.6
+5. Requirements 1.1.1.1.2.3 and 1.2.2.1 and 1.2.2.3 and 1.2.8.1 and 1.2.8.1.2 
+6. Requirement 1.2.9.1
+7. Requirements 1.2.1.1 and 1.2.1.1
+8. Requirements 1.1.1.1.2.6
 
 ### 7.2. Scenarios And Mockups
 | Table of Contents  |
