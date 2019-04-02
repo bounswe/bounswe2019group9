@@ -4,10 +4,12 @@ The description for the task can be viewed from [here](https://github.com/bounsw
 
 ## 1. Executive Summary
 
-```
-Summary of project status and any changes that are
- planned for moving forward.
-```
+ We are designing a product, which will be used to teach, learn and make exercises on languages. Mainly, it is a language learning platform. This project is assigned to us by the instructor of the course CmpE 352 in Spring 2019. Our project mainly consists of two parts: designing the project on an abstract level and implementation.
+ 
+ Our team has ten members: Irem, Ibrahim, Arda, Burhan, Egemen, Emirhan, Gamze, Halit, Ahmet and Ali. We are all bunch of friends taking that course simutaneously.
+ 
+ So far, we are only designing the project and trying to shape our ideas on the product by helding customer meetings, coming together and discussing the ideas and requirements and making research on internet. The main problems we have faced until now are the general abstraction problems, deciding the structure of diagrams mainly. To solve them, we first did some research and used some design patterns. 
+
 #### Moving Forward 
 * In our last meeting, we decided to change our perspective to issues.Issues will be created after the meeting, so the person who opens issues will add more detailed information to issue’s description. The person who opens the issue will be the next person to the person who is writing the meeting notes at that week. We decided this because we were creating issues at the end of the meeting , so they were lack of important information because we were creating so many issues in a few minutes. The responsible person will take care of them and this will help to solve our problem we thought.
 
