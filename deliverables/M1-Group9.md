@@ -76,7 +76,7 @@ Maybe a table summing up deliverables?
  
  3.4.1.2. Overall requirements and glossary part are greatly partitioned and ordered.Nothing is unclear in considerable amount.
  
- ### 3.4.2. Emirhan:
+ #### 3.4.2. Emirhan:
 
  3.4.2.1. Requirements about the scalability of the processes should be added to the non-functional requirements part.
  
@@ -90,7 +90,7 @@ Maybe a table summing up deliverables?
  
  3.5.1.2. There are some typos and mentions about expert type of user which is overstated that should not exist.
  
- ### 3.5.2. Emirhan:
+ #### 3.5.2. Emirhan:
  
  3.5.2.1. Scenarios and mock-ups are detailed enough, not less and not too complicated. Typos can be corrected and maybe some color can be added to make distinct parts more clear.
 
