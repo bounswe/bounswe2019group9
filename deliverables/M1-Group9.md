@@ -93,6 +93,10 @@ Maybe a table summing up deliverables?
  #### 3.5.2. Emirhan:
  
  3.5.2.1. Scenarios and mock-ups are detailed enough, not less and not too complicated. Typos can be corrected and maybe some color can be added to make distinct parts more clear.
+ 
+#### 3.5.3. Ahmet:
+ 
+ 3.5.3.1. Mock-ups should have indicated the user activities clearly.
 
 ### 3.6. Design Documents
 
