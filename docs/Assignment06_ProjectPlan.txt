@@ -1,0 +1,27 @@
+
+First version of Project Plan
+   
+
+You have already been doing some work related to planning and tracking. 
+For example you have prepared a a communication plan and have been using the issue system to distribute and track your work.
+Also you have been conducting team status meetings.
+
+Now, it is time to create a high level project plan that outlines the major activities and milestones of your project
+Like every artifact in software development the project plan is subject to change. 
+
+Throughout your project development, you will be expected to track your progress in accorance with your plan as well as keep your plan up to date. The goal of the plan is to organize the work by estimating the effort and resources needed complete the tasks and to compare the execution (real life progress). This way you are able to assess how you are progressing.
+
+Recall that planning helps us to reflect on:
+
+	According to the plan, where should we be in your project now? What is our expected progress?
+	Where, in fact are we? What is the true progress?
+	What is the difference between the expected and actual progress? 
+	How do we plan to make up the difference? What do we plan to do?
+
+This plan will be a high level plan at this point.
+The point is to get familiar with  project planning software and the essential elements of a project plan, such as milestones, tasks, and resources.
+
+Please use: https://www.projectlibre.com/ for your projects. You may choose any strategy for milestones. We will discuss your choices to discuss their viability.
+
+
+
