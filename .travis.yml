@@ -1,0 +1,20 @@
+dist: xenial
+
+language: python
+
+python:
+  - "3.7"
+
+virtualenv:
+  system_site_packages: true
+
+deploy:
+  - provider: script
+    script: curl bounswe.tanzen.ml/ass7
+    on:
+      repo: bounswe/bounswe2019group9
+      branch: master
+
+script:
+  - cd practice-app
+  - python manage.py test
