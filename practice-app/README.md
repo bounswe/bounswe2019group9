@@ -1,5 +1,7 @@
 # Practice-App
 
+Will be live at [ass7.bounswe2019group9.tk](ass7.bounswe2019group9.tk)
+
 This folder is devoted to the [Assignment 7, Practice API](https://github.com/bounswe/bounswe2019group9/wiki/Assignment-7)
 
 ## Project Folder Structure
