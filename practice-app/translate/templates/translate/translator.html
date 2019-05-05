@@ -23,38 +23,38 @@
     {%  csrf_token %}
     <label for="from">From Language:</label>
     <select id="from" name="from">
-        <option disabled {% if not from_lang %} selected{% endif %}>
+        <option disabled {% if not from %} selected{% endif %}>
             Select Language
         </option>
         </option>
         {% for language in languages %}
             <option value="{{ language.code }}"
-                    {% if from_lang == language %} selected {% endif %}>
+                    {% if from == language %} selected {% endif %}>
                 {{ language.name }}
             </option>
         {% endfor %}
     </select>
     <label for="to">To Language:</label>
     <select id="to" name="to">
-        <option disabled {% if not to_lang %} selected{% endif %}>
+        <option disabled {% if not to %} selected{% endif %}>
             Select Language
         </option>
         {% for language in languages %}
             <option value="{{ language.code }}"
-                    {% if to_lang == language %} selected {% endif %}>
+                    {% if to == language %} selected {% endif %}>
                 {{ language.name }}
             </option>
         {% endfor %}
     </select>
-    <textarea form="translate_form" id="source" name="source"
-              placeholder="Enter the text to translate.">{{ source_text }}</textarea>
+    <textarea form="translate_form" id="source" name="source" placeholder="Enter the text to translate."
+        >{% if source %}{{ source }}{% endif %}</textarea>
     <input type="submit"/>
 </form>
 
-{% if translated_text %}
-    <div class="translated">
+{% if translation %}
+    <div class="translation">
         <p>
-            {{ translated_text }}
+            {{ translation }}
         </p>
     </div>
 {% endif %}

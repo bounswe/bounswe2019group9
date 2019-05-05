@@ -12,5 +12,8 @@ class Language(models.Model):
     def __eq__(self, other):
         return self and other and self.code == other.code
 
+    def toJSON(self):
+        return self.code
+
     def translate(self, from_language, text):
         return text  # TODO USE GOOGLE API HERE
