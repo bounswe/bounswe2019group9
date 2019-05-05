@@ -76,7 +76,7 @@ own server you should prepare a `secret.json` file that contains below fields:
 
 ### Adding a new App
 
-* To do so, run `python manage.py createapp your_app_name`
+* To do so, run `python manage.py startapp your_app_name`
 * Create or change the file `your_app_name/apps.py` to
 ```python
 from django.apps import AppConfig
