@@ -20,5 +20,4 @@ deploy:
       branch: practice-app-skeleton
 
 script:
-  - cd practice-app
   - python manage.py test
