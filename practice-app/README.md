@@ -111,3 +111,37 @@ urlpatterns = [
 ```
 * Rest of all you do will most probably be within your app, however, if you require or use a new python library make sure that you add it to requirements.txt
 (In production server, both libraries in prod_requirements.txt and requirements.txt will be loaded, so adding your new library only to requirements.txt would suffice)
+
+
+## Adding Secrets
+
+* Create a file `secret.json` such as
+```json
+{
+  "GOOGLE_API_KEY": "ABCD123",
+  "YAHOO_SEARCH_KEY": "1234zzz"
+}
+```
+(Do not commit this file to GitHub, it is already in .gitignore so it won't be by default)
+* To the end of `practice_app/base_settings.py` add
+```python
+GOOGLE_API_KEY = get_secret("GOOGLE_API_KEY")
+YAHOO_SEARCH_KEY = get_secret("YAHOO_SEARCH_KEY")
+``` 
+* Now you can access these parameters in any of your apps via Django Settings module as in below:
+
+```python
+# yourfile.py
+
+from django.conf import settings
+
+print(settings.GOOGLE_API_KEY)
+
+import search from yahoo # not a real python module but madeup
+
+search(key=settings.YAHOO_SEARCH_KEY, query="Hello World")
+```
+
+* Then, send these keys to your fellow developers privately, so that they can add them to their own `secret.json` file
+
+* Make sure that your DevOps developer added the new secret keys you sent, to the production server before merging a pull request !!!
