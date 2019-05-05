@@ -20,7 +20,7 @@ deploy:
     skip_cleanup: true
     on: &2
       repo: bounswe/bounswe2019group9
-      branch: travis-deploy-fix
+      branch: master
     bucket: bounswe-ass7-bucket
     region: eu-central-1
   - provider: codedeploy
@@ -35,11 +35,11 @@ deploy:
     on: *2
 
 script:
-  - python manage.py test
   - zip -r latest *
   - mkdir -p dpl_cd_upload
   - mv latest.zip dpl_cd_upload/latest.zip
+  - python manage.py test
 
 branches:
   only:
-    - travis-deploy-fix
+    - master
