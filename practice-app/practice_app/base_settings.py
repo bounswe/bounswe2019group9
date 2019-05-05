@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls.apps.PollsConfig'
+    'polls.apps.PollsConfig',
+    'detect'
 ]
 
 MIDDLEWARE = [
@@ -113,3 +114,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+DETECT_API_KEY = get_secret("DETECT_API_KEY")
+
+DETECT_API_URL = 'http://apilayer.net/api/detect'
