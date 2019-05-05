@@ -22,7 +22,7 @@ SECRET_KEY = get_secret('SECRET_KEY')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["ass7.bounswe2019group9.tk", "127.0.0.1"]
+ALLOWED_HOSTS = ["ass7.bounswe2019group9.tk", "127.0.0.1", "localhost"]
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
