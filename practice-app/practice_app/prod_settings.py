@@ -23,3 +23,5 @@ DATABASES = {
 }
 
 STATIC_ROOT = get_secret("STATIC_ROOT")
+
+DETECT_API_KEY = get_secret("DETECT_API_KEY")
