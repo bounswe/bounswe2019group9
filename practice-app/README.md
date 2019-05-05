@@ -144,4 +144,6 @@ search(key=settings.YAHOO_SEARCH_KEY, query="Hello World")
 
 * Then, send these keys to your fellow developers privately, so that they can add them to their own `secret.json` file
 
-* Make sure that your DevOps developer added the new secret keys you sent, to the production server before merging a pull request !!!
+* Make sure that your DevOps developer added the new secret keys you sent, to the production server and Travis Environment before merging a pull request !!!
+
+* Before adding those keys to Travis Environment, Travis builds will fail naturally.

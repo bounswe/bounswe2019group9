@@ -20,8 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 secrets = None
 
-
 def get_secret(name):
+    # environmental variables are prioritized over secret.json
+    env_secret = os.environ.get(name)
+    if env_secret:
+        return env_secret
     global secrets
     if not secrets:
         with open(os.path.join(BASE_DIR, 'secret.json')) as f:
