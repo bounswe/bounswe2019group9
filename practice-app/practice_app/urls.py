@@ -23,5 +23,6 @@ urlpatterns = [
     path('translate/', include('translate.urls')),
     path('detect/', include('detect.urls')),
     path('rec/', include('arda.urls')),
+    path('obj/', include('obj.urls')),
     path('wordoftheday/', include('wordoftheday.urls')),
 ]

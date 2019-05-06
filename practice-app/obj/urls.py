@@ -3,5 +3,5 @@ from . import views
 
 app_name = 'obj'
 urlpatterns = [
-	path('obj/<path:picture_url>/', views.object_detection)
+	path('<path:picture_url>/', views.object_detection)
 	]
