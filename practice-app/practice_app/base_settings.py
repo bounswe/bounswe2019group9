@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 secrets = None
 
+
 def get_secret(name):
     # environmental variables are prioritized over secret.json
     env_secret = os.environ.get(name)
@@ -46,8 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
-    'detect',
-    'obj.apps.ObjConfig'
+    'detect.apps.ApiConfig',
+    'obj.apps.ObjConfig',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,5 @@ STATIC_URL = '/static/'
 DETECT_API_KEY = get_secret("DETECT_API_KEY")
 
 DETECT_API_URL = 'http://apilayer.net/api/detect'
+
+IBM_API_KEY = get_secret("IBM_API_KEY")
