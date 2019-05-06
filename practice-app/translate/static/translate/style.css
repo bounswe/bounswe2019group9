@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+h1 {
+
+}
+p.error {
+    margin: 4px;
+    background: #fdd;
+    padding: 4px 8px;
+    border-radius: 12px;
+    border: #800 1px solid;
+}
+form {
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+}
+form select {
+    margin: 4px 0px 8px;
+}
+form textarea {
+    resize: none;
+    height: 80px;
+    margin: 8px 0px;
+}
+div.translation {
+    width: 300px;
+    margin: 4px;
+    background: #dfa;
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: #060 1px solid;
+}

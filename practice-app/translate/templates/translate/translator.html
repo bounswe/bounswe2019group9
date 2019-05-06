@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Translator</title>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'translate/style.css' %}"/>
+</head>
+<body>
+<h1>
+    Text Translator
+</h1>
+{% for error in errors %}
+    <p class="error">
+        <strong>
+            {{ error }}
+        </strong>
+    </p>
+{% endfor %}
+<form id="translate_form" action="{% url 'translate:index' %}" method="post">
+    {%  csrf_token %}
+    <label for="from">From Language:</label>
+    <select id="from" name="from">
+        <option disabled {% if not from %} selected{% endif %}>
+            Select Language
+        </option>
+        {% for language in languages %}
+            <option value="{{ language.code }}"
+                    {% if from == language %} selected {% endif %}>
+                {{ language.name }}
+            </option>
+        {% endfor %}
+    </select>
+    <label for="to">To Language:</label>
+    <select id="to" name="to">
+        <option disabled {% if not to %} selected{% endif %}>
+            Select Language
+        </option>
+        {% for language in languages %}
+            <option value="{{ language.code }}"
+                    {% if to == language %} selected {% endif %}>
+                {{ language.name }}
+            </option>
+        {% endfor %}
+    </select>
+    <textarea form="translate_form" id="source" name="source" placeholder="Enter the text to translate."
+        >{% if source %}{{ source }}{% endif %}</textarea>
+    <input type="submit"/>
+</form>
+
+{% if translation %}
+    <div class="translation">
+        <p>
+            {{ translation }}
+        </p>
+    </div>
+{% endif %}
+
+</body>
+</html>

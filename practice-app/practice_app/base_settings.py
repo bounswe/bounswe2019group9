@@ -48,6 +48,11 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'detect'
     'obj.apps.ObjConfig'
+    'translate.apps.TranslateConfig',
+    'detect',
+    'arda.apps.YourAppNameConfig',
+    'wordoftheday.apps.WordofthedayConfig',
+    'home.apps.HomeConfig'
 ]
 
 MIDDLEWARE = [
@@ -116,6 +121,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AZURE_TRANSLATOR_API_KEY = get_secret("AZURE_TRANSLATOR_API_KEY")
+AZURE_TRANSLATOR_REGION = get_secret("AZURE_TRANSLATOR_REGION")
 DETECT_API_KEY = get_secret("DETECT_API_KEY")
 
 DETECT_API_URL = 'http://apilayer.net/api/detect'
+
+OMDB_KEY = get_secret("OMDB_KEY")

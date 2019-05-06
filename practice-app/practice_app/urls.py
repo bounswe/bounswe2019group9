@@ -17,7 +17,11 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    path('', include('home.urls')),
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
+    path('translate/', include('translate.urls')),
     path('detect/', include('detect.urls')),
+    path('rec/', include('arda.urls')),
+    path('wordoftheday/', include('wordoftheday.urls')),
 ]
