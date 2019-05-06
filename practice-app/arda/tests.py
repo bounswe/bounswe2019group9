@@ -1,8 +1,9 @@
 from django.test import TestCase
+from django.url import reverse
 
 class Tests(TestCase):
     def test_en(self):
-        response = self.client.get('http://127.0.0.1:8000/rec/en')
+        response = self.client.get(reverse("arda:multimedia_recommendation", args=("en",)))
         year = response['movie_year']
         name = response['movie_name']
         self.assertEqual(response.status_code, 200)
@@ -10,8 +11,7 @@ class Tests(TestCase):
         self.assertIs(isinstance(name, basestring), True)
 
     def test_de(self):
-        response = self.client.get('http://127.0.0.1:8000/rec/de')
-        year = response['movie_year']
+        response = self.client.get(reverse("arda:multimedia_recommendation", args=("de",)))
         name = response['movie_name']
         self.assertEqual(response.status_code, 200)
         self.assertIs(1980<=int(year) and int(year)<=2019, True)
@@ -26,7 +26,7 @@ class Tests(TestCase):
         self.assertIs(isinstance(name, basestring), True)"""
 
     def test_undef(self):
-        response = self.client.get('http://127.0.0.1:8000/rec/lagaluga')
+        response = self.client.get(reverse("arda:multimedia_recommendation", args=("laga",)))
         self.assertEqual(response.status_code, 404)
 
 """from views.py import multimedia_recommendation
