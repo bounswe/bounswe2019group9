@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 secrets = None
 
+
 def get_secret(name):
     # environmental variables are prioritized over secret.json
     env_secret = os.environ.get(name)
@@ -46,8 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
-    'translate.apps.TranslateConfig',
     'detect',
+    'obj.apps.ObjConfig',
+    'translate.apps.TranslateConfig',
     'arda.apps.YourAppNameConfig',
     'wordoftheday.apps.WordofthedayConfig',
     'home.apps.HomeConfig'
@@ -126,3 +128,6 @@ DETECT_API_KEY = get_secret("DETECT_API_KEY")
 DETECT_API_URL = 'http://apilayer.net/api/detect'
 
 OMDB_KEY = get_secret("OMDB_KEY")
+
+IBM_API_KEY = get_secret("IBM_API_KEY")
+

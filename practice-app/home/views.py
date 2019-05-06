@@ -12,6 +12,16 @@ APP_LIST = [
         "href": "/translate/"
     },
     {
+        "name": "Obj",
+        "description": "An object detection app",
+        "href": "/obj/https%3A%2F%2Fwatson-developer-cloud.github.io%2Fdoc-tutorial-downloads%2Fvisual-recognition%2F640px-IBM_VGA_90X8941_on_PS55.jpg/"
+    },
+    {
+        "name": "WordOfTheDay",
+        "description": "An app for getting word of the day",
+        "href": "/wordoftheday/en"
+    },
+    {
         "name": "Rec",
         "description": "A movie recommendation app",
         "href": "/rec/en"
