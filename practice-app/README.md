@@ -147,3 +147,17 @@ search(key=settings.YAHOO_SEARCH_KEY, query="Hello World")
 * Make sure that your DevOps developer added the new secret keys you sent, to the production server and Travis Environment before merging a pull request !!!
 
 * Before adding those keys to Travis Environment, Travis builds will fail naturally.
+
+
+### Add a Sample Page to Home App
+* Go to `home/views.py` and add your app to the list `APP_LIST` so that a sample page of your app can be accessed from the home directory.
+* Example:
+```python
+APP_LIST = [
+    {
+        "name": "Polls",
+        "description": "A sample question / answer app",
+        "href": "/polls/",
+    }
+]
+```

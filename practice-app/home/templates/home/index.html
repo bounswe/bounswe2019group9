@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bounswe2019Group9</title>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'home/style.css' %}"/>
+</head>
+<body>
+<div class="container">
+    <h2>
+        Hi, we're
+        <a href="https://github.com/bounswe/bounswe2019group9" target="_blank" rel="noopener noreferrer">
+            bounswe2019group9
+        </a>
+        and this is our Assignment 7
+    </h2>
+
+    <h2> Below, are the different APIs, we were able to finish & deploy </h2>
+    <ul>
+        {% for app in apps %}
+            <li>
+                <a href="{{ app.href }}">
+                    <b>{{ app.name }}</b>
+                </a> - {{ app.description }}
+            </li>
+        {% endfor %}
+    </ul>
+
+<h3>
+    This list may not be up-to-date!
+</h3>
+</div>
+</body>
+</html>

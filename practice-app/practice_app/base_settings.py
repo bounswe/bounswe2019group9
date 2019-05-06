@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'detect',
     'arda.apps.YourAppNameConfig',
     'wordoftheday.apps.WordofthedayConfig',
+    'home.apps.HomeConfig'
 ]
 
 MIDDLEWARE = [
