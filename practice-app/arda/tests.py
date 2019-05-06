@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from six import string_types
 
 class Tests(TestCase):
     def test_en(self):
