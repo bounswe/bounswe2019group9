@@ -6,7 +6,7 @@ class Tests(TestCase):
         year = response['movie_year']
         name = response['movie_name']
         self.assertEqual(response.status_code, 200)
-        self.assertIs(1980<=int(year) && int(year)<=2019, True)
+        self.assertIs(1980<=int(year) and int(year)<=2019, True)
         self.assertIs(isinstance(name, basestring), True)
 
     def test_de(self):
@@ -14,7 +14,7 @@ class Tests(TestCase):
         year = response['movie_year']
         name = response['movie_name']
         self.assertEqual(response.status_code, 200)
-        self.assertIs(1980<=int(year) && int(year)<=2019, True)
+        self.assertIs(1980<=int(year) and int(year)<=2019, True)
         self.assertIs(isinstance(name, basestring), True)
 
     def test_tr(self):
@@ -22,13 +22,13 @@ class Tests(TestCase):
         year = response['movie_year']
         name = response['movie_name']
         self.assertEqual(response.status_code, 200)
-        self.assertIs(1980<=int(year) && int(year)<=2019, True)
+        self.assertIs(1980<=int(year) and int(year)<=2019, True)
         self.assertIs(isinstance(name, basestring), True)
 
     def test_undef(self):
         response = self.client.get('http://127.0.0.1:8000/rec/lagaluga')
         self.assertEqual(response.status_code, 404)
-    
+
 """from views.py import multimedia_recommendation
 
 # Create your tests here.
