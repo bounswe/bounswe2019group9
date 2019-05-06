@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
     'translate.apps.TranslateConfig',
+    'detect',
+    'wordoftheday.apps.WordofthedayConfig',
 ]
 
 MIDDLEWARE = [
@@ -117,3 +119,6 @@ STATIC_URL = '/static/'
 
 AZURE_TRANSLATOR_API_KEY = get_secret("AZURE_TRANSLATOR_API_KEY")
 AZURE_TRANSLATOR_REGION = get_secret("AZURE_TRANSLATOR_REGION")
+DETECT_API_KEY = get_secret("DETECT_API_KEY")
+
+DETECT_API_URL = 'http://apilayer.net/api/detect'

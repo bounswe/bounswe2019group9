@@ -13,13 +13,31 @@ install:
   - pip install -r requirements.txt
 
 deploy:
-  - provider: script
-    script: "curl -H 'commit: $TRAVIS_COMMIT' -H 'description: $TRAVIS_COMMIT_MESSAGE' bounswe.tanzen.ml/ass7"
-    on:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    local_dir: dpl_cd_upload
+    skip_cleanup: true
+    on: &2
       repo: bounswe/bounswe2019group9
       branch: master
+    bucket: bounswe-ass7-bucket
+    region: eu-central-1
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: bounswe-ass7-bucket
+    key: latest.zip
+    bundle_type: zip
+    application: bounsweAss7API
+    deployment_group: bounsweAss7APIDeploymentGroup
+    region: eu-central-1
+    on: *2
 
 script:
+  - zip -r latest *
+  - mkdir -p dpl_cd_upload
+  - mv latest.zip dpl_cd_upload/latest.zip
   - python manage.py test
 
 branches:

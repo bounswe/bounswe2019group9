@@ -23,3 +23,4 @@ DATABASES = {
 }
 
 STATIC_ROOT = get_secret("STATIC_ROOT")
+
