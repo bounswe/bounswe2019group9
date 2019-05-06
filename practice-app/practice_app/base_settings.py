@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
-    'detect'
+    'detect',
+    'arda.apps.YourAppNameConfig'
+    #'arda'
 ]
 
 MIDDLEWARE = [
@@ -118,3 +120,5 @@ STATIC_URL = '/static/'
 DETECT_API_KEY = get_secret("DETECT_API_KEY")
 
 DETECT_API_URL = 'http://apilayer.net/api/detect'
+
+OMDB_KEY = get_secret("OMDB_KEY")
