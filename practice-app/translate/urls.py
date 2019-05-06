@@ -5,7 +5,6 @@ from . import views
 app_name = 'translate'
 urlpatterns = [
     path('', views.post_helper, name='index'),
-    path('api/', views.tester, name='tester'),
     path('<slug:from_lang_code>/', views.translator, name='from'),
     path('-/<slug:to_lang_code>/', views.translator, name='to'),
     path('<slug:from_lang_code>/<slug:to_lang_code>/', views.translator, name='from-to')

@@ -13,8 +13,6 @@ def post_helper(request):
     if request.method == "POST":
         if request.content_type == 'application/json':
             request.POST = json.loads(request.body)
-            print(request.POST)
-            print(request.POST.get('from'))
     return translator(
         request,
         from_lang_code=request.POST.get('from', None),
@@ -22,15 +20,8 @@ def post_helper(request):
     )
 
 
-@csrf_exempt
-def tester(request):
-    print(request.body)
-    print(request.POST)
-    print(request.content_type)
-    return JsonResponse({"hello": "World"})
-
-
 def translator(request, from_lang_code=None, to_lang_code=None):
+    status = 200
     context = {
         "errors": [],
         "from": None,
@@ -44,7 +35,7 @@ def translator(request, from_lang_code=None, to_lang_code=None):
         except Language.DoesNotExist:
             context["errors"].append(
                 "No language for code, {}, exists. Defaulting from language to empty."
-                    .format(from_lang_code)
+                .format(from_lang_code)
             )
     if to_lang_code:
         try:
@@ -52,7 +43,7 @@ def translator(request, from_lang_code=None, to_lang_code=None):
         except Language.DoesNotExist:
             context["errors"].append(
                 "No language for code, {}, exists. Defaulting to language to empty."
-                    .format(to_lang_code)
+                .format(to_lang_code)
             )
     if request.method == "POST":
         context["source"] = request.POST.get('source', None)
@@ -83,8 +74,11 @@ def translator(request, from_lang_code=None, to_lang_code=None):
                     "Failed to translate the text for some unknown reason. \
                     Maybe try again later or contact the developer."
                 )
+                status = 500
+        else:
+            status = 400
     if request.content_type == 'application/json':
-        return JsonResponse(context, encoder=CustomJSONEncoder)
+        return JsonResponse(context, encoder=CustomJSONEncoder, status=status)
     else:
         context["languages"] = Language.objects.all()
-        return render(request, 'translate/translator.html', context)
+        return render(request, 'translate/translator.html', context, status=status)

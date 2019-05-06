@@ -114,3 +114,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AZURE_TRANSLATOR_API_KEY = get_secret("AZURE_TRANSLATOR_API_KEY")
+AZURE_TRANSLATOR_REGION = get_secret("AZURE_TRANSLATOR_REGION")
