@@ -20,7 +20,7 @@ deploy:
     skip_cleanup: true
     on: &2
       repo: bounswe/bounswe2019group9
-      branch: travis-deploy-fix
+      branch: master
     bucket: bounswe-ass7-bucket
     region: eu-central-1
   - provider: codedeploy
@@ -42,4 +42,4 @@ script:
 
 branches:
   only:
-    - travis-deploy-fix
+    - master
