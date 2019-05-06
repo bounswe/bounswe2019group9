@@ -21,4 +21,5 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('detect/', include('detect.urls')),
     path('rec/', include('arda.urls')),
+    path('wordoftheday/', include('wordoftheday.urls')),
 ]

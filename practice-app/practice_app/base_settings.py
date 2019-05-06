@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
     'detect',
-    'arda.apps.YourAppNameConfig'
-    #'arda'
+    'arda.apps.YourAppNameConfig',
+    'wordoftheday.apps.WordofthedayConfig',
 ]
 
 MIDDLEWARE = [
