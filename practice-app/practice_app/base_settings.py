@@ -132,3 +132,4 @@ OMDB_KEY = get_secret("OMDB_KEY")
 
 IBM_API_KEY = get_secret("IBM_API_KEY")
 
+TTS_API_KEY = get_secret("TTS_API_KEY")
