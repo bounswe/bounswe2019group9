@@ -125,7 +125,7 @@ AZURE_TRANSLATOR_API_KEY = get_secret("AZURE_TRANSLATOR_API_KEY")
 AZURE_TRANSLATOR_REGION = get_secret("AZURE_TRANSLATOR_REGION")
 DETECT_API_KEY = get_secret("DETECT_API_KEY")
 
-DETECT_API_URL = 'http://apilayer.net/api/detect'
+DETECT_API_URL = 'http://api.languagelayer.com/detect'
 
 OMDB_KEY = get_secret("OMDB_KEY")
 
