@@ -1,6 +1,6 @@
 # texttospeech
 
-This is an app that returns a audio file and downloads it when the text to be converted is given.
+This is an app that returns an audio file and downloads it when the text to be converted is given.
 
 ## Usage
 
