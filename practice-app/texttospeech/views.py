@@ -4,9 +4,6 @@ from django.http import HttpResponse, JsonResponse
 
 from django.conf import settings
 
-import webbrowser
-import winsound
-import platform
 
 import json
 import requests
