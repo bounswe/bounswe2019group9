@@ -5,7 +5,6 @@ Usage :
 
 ~~~
 /detect/I like apples and oranges.
-
 ~~~
 
 Output :
