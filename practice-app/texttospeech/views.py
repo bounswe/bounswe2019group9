@@ -4,7 +4,9 @@ from django.http import HttpResponse, JsonResponse
 
 from django.conf import settings
 
-
+import webbrowser
+import winsound
+import platform
 
 import json
 import requests
@@ -18,10 +20,16 @@ def texttospeech(request, lang, text):
         elif lang == 'es':
             language = 'es-es'
         else:
-            #content = {'UNDEFINED LANGUAGE': 'UNDEFINED LANGUAGE'}
             return JsonResponse({'status':'false','message':'UNDEFINED LANGUAGE'}, status=404)
-        
-        return JsonResponse({'audioUrl':'http://api.voicerss.org/?key='+settings.TTS_API_KEY+'&hl='+language+'&src='+text})
+
+
+        doc = requests.get('http://api.voicerss.org/?key='+settings.TTS_API_KEY+'&hl='+language+'&src='+text)
+        with open('speech.wav', 'wb') as f:
+            f.write(doc.content)
+    
+        response = HttpResponse(doc.content,content_type='audio/wav')
+        return response
         
     except:
         return JsonResponse({'status':'false','message':'UNDEFINED ERROR'}, status=404)
+
