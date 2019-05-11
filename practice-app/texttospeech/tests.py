@@ -7,19 +7,16 @@ from django.conf import settings
 class Tests(TestCase):
     def test_en(self):
         response = self.client.get(reverse('texttospeech:texttospeech', args=("en","Hello")))
-        result = response.json()
-        expectedUrl = 'http://api.voicerss.org/?key='+settings.TTS_API_KEY+'&hl=en-us&src=Hello'
-        self.assertEqual(result['audioUrl'], expectedUrl)
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(response['content-type'],'audio/wav')
         
 
     def test_fr(self):
         response = self.client.get(reverse('texttospeech:texttospeech', args=("fr","Bonjour")))
-        result = response.json()
-        expectedUrl = 'http://api.voicerss.org/?key='+settings.TTS_API_KEY+'&hl=fr-fr&src=Bonjour'
-        self.assertEqual(result['audioUrl'], expectedUrl)
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(response['content-type'],'audio/wav')
 
     def test_esp(self):
         response = self.client.get(reverse('texttospeech:texttospeech', args=("es","Hola")))
-        result = response.json()
-        expectedUrl = 'http://api.voicerss.org/?key='+settings.TTS_API_KEY+'&hl=es-es&src=Hola'
-        self.assertEqual(result['audioUrl'], expectedUrl)
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(response['content-type'],'audio/wav')
