@@ -36,6 +36,11 @@ APP_LIST = [
         "name": "Texttospeech",
         "description": "Text to speech converting app",
         "href": "/texttospeech/en/texttobeconverted",
+    },
+    {
+        "name": "Music Suggester",
+        "description": "Adding music for learners of the language",
+        "href": "/music/v1/songs",
     }
 ]
 

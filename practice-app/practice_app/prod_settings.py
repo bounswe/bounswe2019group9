@@ -3,6 +3,9 @@
 from .base_settings import *
 
 SECRET_KEY = get_secret('SECRET_KEY')
+JWT_AUTH['JWT_SECRET_KEY'] = SECRET_KEY
+                    
+
 
 DEBUG = False
 

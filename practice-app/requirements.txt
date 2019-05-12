@@ -2,3 +2,7 @@ Django~=2.2.1
 requests~=2.21.0
 djangorestframework==3.7.7
 ibm-watson >= 3.0.3 
+djangorestframework-jwt==1.11.0
+gunicorn==19.7.1
+PyJWT==1.6.1
+pytz==2018.3
