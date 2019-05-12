@@ -36,14 +36,20 @@ def multimedia_recommendation(request, language):
             response = requests.get('http://www.omdbapi.com/?apikey='+settings.OMDB_KEY+'&s='+str_to_search+'&page=1')
             search_result = response.json()
             page_number = int(search_result['totalResults'])//10
-            response = requests.get('http://www.omdbapi.com/?apikey='+settings.OMDB_KEY+'&s='+str_to_search+'&page='+str(random.randint(1,page_number)))
-            search_result = response.json()
-            for j in range(1,11):
-                imdb_id = search_result['Search'][random.randint(1,10)]['imdbID']
-                response = requests.get('http://www.omdbapi.com/?i='+imdb_id+'&apikey='+settings.OMDB_KEY)
-                movie_data = response.json()
-                if language_long in movie_data['Language']:
+            flag=0
+            for k in range(1,page_number+1):
+                if flag==1:
                     break
+                random_page=random.randint(1,page_number)
+                response = requests.get('http://www.omdbapi.com/?apikey='+settings.OMDB_KEY+'&s='+str_to_search+'&page='+str(random_page))
+                search_result = response.json()
+                for j in range(1,11):
+                    imdb_id = search_result['Search'][random.randint(1,10)]['imdbID']
+                    response = requests.get('http://www.omdbapi.com/?i='+imdb_id+'&apikey='+settings.OMDB_KEY)
+                    movie_data = response.json()
+                    if language_long in movie_data['Language']:
+                        flag=1
+                        break
 
         return JsonResponse({'movie_name': movie_data['Title'],'movie_year': movie_data['Year'], 'movie_plot': movie_data['Plot']})
 
