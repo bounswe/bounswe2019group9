@@ -120,6 +120,7 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
+virtenv
 myenv
 myvenv
 .env

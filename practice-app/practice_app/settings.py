@@ -17,6 +17,7 @@ DATABASES = {
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'vg4_$@(+z)vr53fcdw$^fi06t*isibphb=zqg=$(a*n396ssf^'
+JWT_AUTH['JWT_SECRET_KEY'] = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
