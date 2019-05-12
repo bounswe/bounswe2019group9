@@ -76,9 +76,19 @@ More info on [Evaluation of deliverables by Ibrahim](https://github.com/bounswe/
 ## 3.2. Evalutation of Deliverables II
 > Created by [Gamze Gulbahar](https://github.com/bounswe/bounswe2019group9/wiki/Gamze-G%C3%BClbahar)
 
-> Reviewed and edited by [Halit Ozsoy](https://github.com/bounswe/bounswe2019group9/wiki/Halit-%C3%96zsoy) 
-
 > Available on [here](https://github.com/bounswe/bounswe2019group9/wiki/Evaluation-of-deliverables-II---continued)
+
+#### Project Plan 
+
+* During the process, we're substantially assisted by the project plan. To better see the general going of our work.
+* The work flow seems good. 
+* After feedback, missing tasks are added. 
+
+#### API Implementation 
+
+* Functionalities of the API are very good. We can use these functionalities in the future during the implementation phase of the project. 
+
+* The good think about the APIs is that they enable us to make use of such functionalities that normally would be very difficult for us to create so perfectly in quite a short time.
 
 ## 4. Evaluation of Tools
 > Created by [Burhan Can Akkus](https://github.com/bounswe/bounswe2019group9/wiki/Burhan-Can-Akku%C5%9F)
@@ -182,6 +192,8 @@ More info on [Evaluation of deliverables by Ibrahim](https://github.com/bounswe/
 | Gamze | Updated project plan according to feedback. | Project Plan | 
 | Gamze | Added works of the milestone reports and project plan to project plan. | Project Plan |
 | Gamze | Contributed to Ibrahim's evaluation of the project plan for second Milestone report. |Milestone Report |
+| Gamze | Wrote the evaluation of the project plan  and API implementation for second Milestone report. |Milestone Report |
+| Gamze | Research on the RESTful API's. |API Implementation |
 
 ## 6. API with Documentation and URL
 > Created with the contributions of all team. 
