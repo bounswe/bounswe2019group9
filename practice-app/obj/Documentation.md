@@ -31,6 +31,8 @@ This API takes a picture and recognizes the objects in that picture with the cor
 } 
 ```
 ---
+  
+  Class means basically the name of the object in the picture, score is how confident the object detection is about the classification. Also the api doesn't return any classification that has a score that is less than 0.5. Type hierarych is the bigger classes that the class of the object belongs to. For example a dog is an animal too. Custom classes papameter will always be 0 for our api as we use the classes that are built-in in the watson-object-detection api which is the api that I am using for this case. Images processed will be one as we are giving single image to the api. Source url and resolved will be the same as well.
 
 ### Example
 * Picture:
