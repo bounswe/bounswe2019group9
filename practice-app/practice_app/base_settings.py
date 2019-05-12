@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'arda.apps.YourAppNameConfig',
     'wordoftheday.apps.WordofthedayConfig',
     'home.apps.HomeConfig',
-    'texttospeech.apps.TexttospeechConfig',
+	'burhan.apps.YourAppNameConfig'
 ]
 
 MIDDLEWARE = [
@@ -132,4 +132,4 @@ OMDB_KEY = get_secret("OMDB_KEY")
 
 IBM_API_KEY = get_secret("IBM_API_KEY")
 
-TTS_API_KEY = get_secret("TTS_API_KEY")
+burhan_API_KEY=get_secret("burhan_API_KEY")
