@@ -25,5 +25,5 @@ urlpatterns = [
     path('rec/', include('arda.urls')),
     path('obj/', include('obj.urls')),
     path('wordoftheday/', include('wordoftheday.urls')),
-	path('burhan/', include('texttospeech.urls')),
+	path('burhan/', include('burhan.urls')),
 ]

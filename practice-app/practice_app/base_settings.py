@@ -57,7 +57,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -132,4 +132,4 @@ OMDB_KEY = get_secret("OMDB_KEY")
 
 IBM_API_KEY = get_secret("IBM_API_KEY")
 
-burhan_API_KEY=get_secret("burhan_API_KEY")
+BURHAN_API_KEY = get_secret("BURHAN_API_KEY")
