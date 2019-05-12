@@ -31,11 +31,18 @@ APP_LIST = [
         "description": "A sample question / answer app",
         "href": "/polls/",
     },
-	{
-		"name": "burhan",
-		"description": " Gives predicted language of given IP",
-		"href":"/burhan/",
-	},
+	  {
+		    "name": "burhan",
+	    	"description": " Gives predicted language of given IP",
+		    "href":"/burhan/",
+	  },
+
+    },
+    {
+        "name": "Texttospeech",
+        "description": "Text to speech converting app",
+        "href": "/texttospeech/en/texttobeconverted",
+    }
 ]
 
 
