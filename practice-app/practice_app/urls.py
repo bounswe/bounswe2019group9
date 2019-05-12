@@ -28,5 +28,6 @@ urlpatterns = [
     path('wordoftheday/', include('wordoftheday.urls')),
     path('texttospeech/', include('texttospeech.urls')),
     path('api-token-auth/', obtain_jwt_token, name='create-token'),
-    re_path('music/(?P<version>(v1|v2))/', include('music.urls'))
+    re_path('music/(?P<version>(v1|v2))/', include('music.urls')),
+    path('burhan/', include('burhan.urls'))
 ]

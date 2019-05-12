@@ -56,11 +56,12 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'texttospeech.apps.TexttospeechConfig',
     'rest_framework',
-    'music'
+    'music',
+    'burhan.apps.YourAppNameConfig'
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,16 +126,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 AZURE_TRANSLATOR_API_KEY = get_secret("AZURE_TRANSLATOR_API_KEY")
 AZURE_TRANSLATOR_REGION = get_secret("AZURE_TRANSLATOR_REGION")
 DETECT_API_KEY = get_secret("DETECT_API_KEY")
-
 DETECT_API_URL = 'http://api.languagelayer.com/detect'
-
 OMDB_KEY = get_secret("OMDB_KEY")
-
+BURHAN_API_KEY = get_secret("BURHAN_API_KEY")
 IBM_API_KEY = get_secret("IBM_API_KEY")
-
 TTS_API_KEY = get_secret("TTS_API_KEY")
 
 REST_FRAMEWORK = {
