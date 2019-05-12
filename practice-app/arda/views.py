@@ -48,4 +48,4 @@ def multimedia_recommendation(request, language):
         return JsonResponse({'movie_name': movie_data['Title'],'movie_year': movie_data['Year'], 'movie_plot': movie_data['Plot']})
 
     except:
-        return JsonResponse({'status':'false','message':'UNDEFINED ERROR'}, status=404)
+        return JsonResponse({'movie_name': 'ERROR','movie_year': 'ERROR', 'movie_plot': 'ERROR'}, status=404)
