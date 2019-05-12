@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.shortcuts import render
 
 from rest_framework import generics
 from rest_framework import permissions
@@ -9,12 +10,35 @@ from rest_framework_jwt.settings import api_settings
 
 from .decorators import validate_request_data
 from .models import Songs
-from .serializers import SongsSerializer, TokenSerializer, UserSerializer
+from .serializers import SongsSerializer, TokenSerializer, RegisterSerializer, LoginSerializer
+
+links = {'links':[
+    {
+	"href": "songs/",
+        "name": "list of songs",
+	"description": "lists all suggested songs"
+    },
+    {
+	"href": "auth/login/",
+        "name": "login",
+	"description": "login for registered users"
+    },
+    {
+	"href": "auth/register/",
+        "name": "register",
+	"description": "register option for unregistered users"
+    }
+                 ]
+
+}
+
 
 # Get the JWT settings
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
+def index(request, version):
+    return render(request, 'music/index.html', links)
 
 class ListCreateSongsView(generics.ListCreateAPIView):
     """
@@ -95,7 +119,7 @@ class LoginView(generics.CreateAPIView):
     # This permission class will over ride the global permission
     # class setting
     permission_classes = (permissions.AllowAny,)
-
+    serializer_class = LoginSerializer
     queryset = User.objects.all()
 
     def post(self, request, *args, **kwargs):
@@ -121,7 +145,7 @@ class RegisterUsers(generics.CreateAPIView):
     POST auth/register/
     """
     permission_classes = (permissions.AllowAny,)
-
+    serializer_class = RegisterSerializer
     def post(self, request, *args, **kwargs):
         username = request.data.get("username", "")
         password = request.data.get("password", "")
@@ -137,6 +161,6 @@ class RegisterUsers(generics.CreateAPIView):
             username=username, password=password, email=email
         )
         return Response(
-            data=UserSerializer(new_user).data,
+            data=RegisterSerializer(new_user).data,
             status=status.HTTP_201_CREATED
         )

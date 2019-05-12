@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Suggester</title>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'music/style.css' %}"/>
+</head>
+<body>
+<div class="container">
+    <h2>
+        Music Suggester
+    </h2>
+
+    <h2> Below, are the endpoints of this API </h2>
+    <ul>
+        {% for link in links %}
+            <li>
+                <a href="{{ link.href }}">
+                    <b>{{ link.name }}</b>
+                </a> - {{ link.description }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>

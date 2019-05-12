@@ -44,7 +44,7 @@ APP_LIST = [
     {
         "name": "Music Suggester",
         "description": "Adding music for learners of the language",
-        "href": "/music/v1/songs",
+        "href": "/music/v1/",
     }
 ]
 

@@ -23,7 +23,12 @@ class TokenSerializer(serializers.Serializer):
     token = serializers.CharField(max_length=255)
 
 
-class UserSerializer(serializers.ModelSerializer):
+class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("username", "email")
+        fields = ("username", "email", "password")
+
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("username", "password")
