@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'arda.apps.YourAppNameConfig',
     'wordoftheday.apps.WordofthedayConfig',
     'home.apps.HomeConfig',
-    #'texttospeech.apps.TexttospeechConfig',
+    'texttospeech.apps.TexttospeechConfig',
 ]
 
 MIDDLEWARE = [
