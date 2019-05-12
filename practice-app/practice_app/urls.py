@@ -26,4 +26,5 @@ urlpatterns = [
     path('obj/', include('obj.urls')),
     path('wordoftheday/', include('wordoftheday.urls')),
     path('texttospeech/', include('texttospeech.urls')),
+    path('burhan/', include('burhan.urls')),
 ]
