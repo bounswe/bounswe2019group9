@@ -34,10 +34,8 @@ APP_LIST = [
 	  {
 		    "name": "burhan",
 	    	"description": " Gives predicted language of given IP",
-		    "href":"/burhan/",
+		    "href":"/burhan/check",
 	  },
-
-    },
     {
         "name": "Texttospeech",
         "description": "Text to speech converting app",

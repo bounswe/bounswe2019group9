@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'arda.apps.YourAppNameConfig',
     'wordoftheday.apps.WordofthedayConfig',
     'home.apps.HomeConfig',
-	'burhan.apps.YourAppNameConfig'
+    'texttospeech.apps.TexttospeechConfig',
+    'burhan.apps.YourAppNameConfig'
 ]
 
 MIDDLEWARE = [
@@ -122,14 +123,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 AZURE_TRANSLATOR_API_KEY = get_secret("AZURE_TRANSLATOR_API_KEY")
 AZURE_TRANSLATOR_REGION = get_secret("AZURE_TRANSLATOR_REGION")
 DETECT_API_KEY = get_secret("DETECT_API_KEY")
-
 DETECT_API_URL = 'http://api.languagelayer.com/detect'
-
 OMDB_KEY = get_secret("OMDB_KEY")
 
 IBM_API_KEY = get_secret("IBM_API_KEY")
 
+TTS_API_KEY = get_secret("TTS_API_KEY")
 BURHAN_API_KEY = get_secret("BURHAN_API_KEY")
