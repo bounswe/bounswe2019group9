@@ -30,6 +30,7 @@ APP_LIST = [
         "name": "Polls",
         "description": "A sample question / answer app",
         "href": "/polls/",
+
     },
     {
         "name": "Texttospeech",
