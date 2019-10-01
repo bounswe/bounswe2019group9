@@ -10,3 +10,11 @@ We are Group #9 in [CMPE 352](https://www.cmpe.boun.edu.tr/courses/cmpe352) cour
 - [Halit Özsoy](https://github.com/bounswe/bounswe2019group9/wiki/Halit-%C3%96zsoy)
 - [Ahmet Gedemenli](https://github.com/bounswe/bounswe2019group9/wiki/Ahmet-Gedemenli)
 - [Ali Ramazan Mert](https://github.com/bounswe/bounswe2019group9/wiki/Ali-Ramazan-Mert)
+
+### Folder Hierarchy 
+> ... place non-source code material and not deliverables onto documentation branch.
+> 
+> in documentation branch docs folder should contain project/assignment pdfs (documents)
+> assets folder should contain our assets (eg: images) for our wiki pages and such.
+> please, keep the assets folder clean as it is. [#49](https://github.com/bounswe/bounswe2019group9/issues/49#issuecomment-486808117)
+Please, reopen that issue if you'd prefer another hierarchy or have questions about it.
