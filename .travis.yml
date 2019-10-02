@@ -47,7 +47,7 @@ matrix:
         - mv server-conf/appspec.yml appspec.yml
         - mv server-conf/spring-boot-ec2.conf spring-boot-ec2.conf
         - zip -r latest appspec.yml language-learning-platform.jar spring-boot-ec2.conf server-conf
-        - mkdir -p dpl_cl_upload
+        - mkdir -p dpl_cd_upload
         - mv latest.zip dpl_cd_upload/latest.zip
       deploy:
         - provider: s3
