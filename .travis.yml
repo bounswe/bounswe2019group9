@@ -38,3 +38,38 @@ matrix:
       branches:
         only:
           - master
+    - language: java
+      dist: xenial
+      jdk: oraclejdk8
+      install:
+        - cd backend
+        - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      script:
+        - ./mvnw clean install -B
+        - mv target/language-learning-platform-*.jar language-learning-platform.jar
+        - mv server-conf/appspec.yml appspec.yml
+        - zip -r latest appspec.yml language-learning-platform.jar
+        - mkdir -p dpl_cl_upload
+        - mv latest.zip dpl_cd_upload/latest.zip
+      deploy:
+        - provider: s3
+          access_key_id: $BACKEND_AWS_ACCESS_KEY
+          secret_access_key: $BACKEND_AWS_SECRET_KEY
+          local_dir: dpl_cd_upload
+          skip_cleanup: true
+          on: &2
+            repo: bounswe/bounswe2019group9
+            branch: master
+          bucket: bounswe-backend-bucket
+          region: eu-central-1
+        - provider: codedeploy
+          access_key_id: $BACKEND_AWS_ACCESS_KEY
+          secret_access_key: $BACKEND_AWS_SECRET_KEY
+          bucket: bounswe-backend-bucket
+          key: latest.zip
+          bundle_type: zip
+          application: bounsweBackend
+          deployment_group: bounsweBackendDeploymentGroup
+          region: eu-central-1
+          on: *2
+
