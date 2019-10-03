@@ -1,4 +1,4 @@
-package actor;
+package app.actor;
 
 public class LoginService {
 

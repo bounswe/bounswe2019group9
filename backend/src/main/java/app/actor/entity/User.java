@@ -1,10 +1,11 @@
-package actor.entity;
+package app.actor.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
+@Table(name = "users")
 public class User {
 
   @Id
@@ -26,10 +28,23 @@ public class User {
   @NotNull
   private String password;
 
-  public User(Long id, String email, String password) {
-    this.id = id;
+  @Column
+  @NotNull
+  private String firstName;
+
+  @Column
+  @NotNull
+  private String lastName;
+
+  public User() {
+  }
+
+  public User(@NotNull String email, @NotNull String password,
+              @NotNull String firstName, @NotNull String lastName) {
     this.email = email;
     this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   public Long getId() {
@@ -56,12 +71,30 @@ public class User {
     this.password = password;
   }
 
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
   @Override
   public String toString() {
     return "User{" +
            "id=" + id +
            ", email='" + email + '\'' +
            ", password='" + password + '\'' +
+           ", firstName='" + firstName + '\'' +
+           ", lastName='" + lastName + '\'' +
            '}';
   }
 }
