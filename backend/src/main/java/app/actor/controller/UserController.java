@@ -1,5 +1,8 @@
-package app.actor;
+package app.actor.controller;
 
+import app.actor.RegisterRequest;
+import app.actor.service.RegisterService;
+import app.actor.repository.UserRepository;
 import app.actor.entity.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

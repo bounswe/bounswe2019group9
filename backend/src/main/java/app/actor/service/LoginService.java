@@ -1,4 +1,4 @@
-package app.actor;
+package app.actor.service;
 
 public class LoginService {
 
