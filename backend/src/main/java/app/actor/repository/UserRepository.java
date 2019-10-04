@@ -1,4 +1,4 @@
-package app.actor;
+package app.actor.repository;
 
 import app.actor.entity.User;
 import javax.transaction.Transactional;
