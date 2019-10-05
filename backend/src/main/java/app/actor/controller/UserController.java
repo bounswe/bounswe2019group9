@@ -1,9 +1,12 @@
 package app.actor.controller;
 
+import app.Response;
+import app.actor.LoginRequest;
 import app.actor.RegisterRequest;
-import app.actor.service.RegisterService;
-import app.actor.repository.UserRepository;
 import app.actor.entity.User;
+import app.actor.repository.UserRepository;
+import app.actor.service.LoginService;
+import app.actor.service.RegisterService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,9 +26,13 @@ public class UserController {
 
   private final RegisterService registerService;
 
-  public UserController(UserRepository userRepository, RegisterService registerService) {
+  private final LoginService loginService;
+
+  public UserController(UserRepository userRepository, RegisterService registerService,
+                        LoginService loginService) {
     this.userRepository = userRepository;
     this.registerService = registerService;
+    this.loginService = loginService;
   }
 
   @GetMapping("/get")
@@ -34,9 +41,12 @@ public class UserController {
   }
 
   @PostMapping("/register")
-  public RegisterRequest register(@RequestBody RegisterRequest registerRequest) {
-    System.out.println(registerRequest);
-    registerService.register(registerRequest);
-    return registerRequest;
+  public Response<User> register(@RequestBody RegisterRequest registerRequest) {
+    return registerService.register(registerRequest);
+  }
+
+  @PostMapping("/login")
+  public Response<User> login(@RequestBody LoginRequest loginRequest) {
+    return loginService.login(loginRequest);
   }
 }
