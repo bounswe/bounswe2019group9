@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: ./
-    destination: /home/ec2-user/bounswe-backend
+    destination: /home/ec2-user
 hooks:
   AfterInstall:
     - location: server-conf/fix_permissions.sh
@@ -11,4 +11,4 @@ hooks:
   ApplicationStart:
     - location: server-conf/restart_application.sh
       timeout: 300
-      runas: ec2-user
+      runas: root

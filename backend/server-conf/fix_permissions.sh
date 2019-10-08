@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-cd /home/ec2-user/bounswe-backend
-sudo chown -R ec2-user:ec2-user .
-chmod 500 /home/ec2-user/bounswe-backend/language-learning-platform.jar
+sudo chmod 500 /home/ec2-user/language-learning-platform.jar
+sudo chown springboot:springboot /home/ec2-user/language-learning-platform.jar
+sudo mv /opt/spring-boot-ec2-demo/language-learning-platform.jar /opt/spring-boot-ec2-demo/language-learning-platform.jar.bkp
+sudo mv /home/ec2-user/language-learning-platform.jar /opt/spring-boot-ec2-demo/language-learning-platform.jar
