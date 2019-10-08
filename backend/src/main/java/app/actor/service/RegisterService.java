@@ -36,7 +36,7 @@ public class RegisterService {
     userRepository.addUser(registerRequest.getEmail(), EncryptionService.encrypt(registerRequest.getPassword()),
                            registerRequest.getFirstName(), registerRequest.getLastName());
     User user = userRepository.getUserByEmail(registerRequest.getEmail());
-    user.setPassword(registerRequest.getPassword() + "1asd");
+    user.setPassword(registerRequest.getPassword());
     return HttpResponses.from(user);
   }
 }
