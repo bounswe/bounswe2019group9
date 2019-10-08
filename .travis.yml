@@ -40,7 +40,7 @@ matrix:
       jdk: openjdk8
       install:
         - cd backend
-	- ./prepare-build.sh
+        - ./prepare-build.sh
         - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
       script:
         - ./mvnw clean install -B
