@@ -161,3 +161,29 @@ POST /users/login
   "data": null
 }
 ```
+# Content Endpoints
+## Get All Available Languages List
+
+**Request Content:**
+none
+
+**Response Content:**
+The list of available languages
+
+##### Example Request
+```
+GET /contents/languages
+```
+
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": [
+    "English",
+    "Turkish",
+    "Italian"
+  ]
+}
+```
