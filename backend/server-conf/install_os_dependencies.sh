@@ -1,4 +1,8 @@
  #!/bin/bash
+
+# run this script as sudo!!!
+
+
 # install updates
 yum update -y
 
@@ -42,3 +46,14 @@ service spring-boot-ec2-demo start
 # automatically start httpd and spring-boot-ec2-demo if this ec2 instance reboots
 chkconfig httpd on
 chkconfig spring-boot-ec2-demo on
+
+
+# Install CodeDeploy
+
+sudo yum install ruby -y
+cd /home/ec2-user
+wget https://aws-codedeploy-eu-central-1.s3.eu-central-1.amazonaws.com/latest/install
+chmod +x ./install
+./install auto
+chkconfig codedeploy-agent on
+rm install
