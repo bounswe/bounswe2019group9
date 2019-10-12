@@ -30,8 +30,6 @@ public class DisplayMessage extends AppCompatActivity {
 
         String url ="https://api.bounswe2019group9.tk/greeting?name=" + "Group9" ;
 
-        //String url2 ="http://api.openweathermap.org/data/2.5/weather?id=745044&APPID=ea1a1745f60c4b98c789f39c611dcf19&lang=tr";
-
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -40,10 +38,6 @@ public class DisplayMessage extends AppCompatActivity {
                         try {
 
                             String responseString = (String) response.get("content");
-
-                            //JSONObject main = (JSONObject) response.get("main");      this code block for getting
-                            //Double temp = (Double) main.get("temp");                  the json data inside a jsonObject
-                            //String responseString = String.valueOf(temp);
 
                             textView.setText(responseString);
                         } catch (JSONException e) {
@@ -56,7 +50,7 @@ public class DisplayMessage extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 textView.setText(error.toString());
-                //System.out.println("That didn't work!");
+
             }
         });
 
