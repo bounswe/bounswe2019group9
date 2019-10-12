@@ -8,4 +8,5 @@
     <string name="register_email">E-mail</string>
     <string name="register_password">Password</string>
     <string name="register_button">REGISTER</string>
+    <string name="select_language_text">Please, select a language...</string>
 </resources>
