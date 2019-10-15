@@ -282,15 +282,22 @@ GET /contents/prof?language=english
 ## Create exercise
 
 **Request Content:**
+
 languageId(1 for English, 2 for Turkish, 3 for Italian)
+
 typeId(1 for Grammar, 2 for vocabulary, 3 for reading, 4 for listening)
+
 imageUrl(not necessary for proficiency, just delete)
+
 soundUrl(not necessary for proficiency, just delete)
+
 questionBody(As it sounds)
+
 optionA, optionB, optionC, optionD(as it sounds)
+
 correctAnswer(1 for A, 2 for B etc)
 
-** Only image url and sound url can be null **
+**Only image url and sound url can be null**
 
 **Response Content:**
 Exercise itself
