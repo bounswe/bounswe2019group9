@@ -14,7 +14,7 @@ import static java.util.Objects.isNull;
 @Service
 public class ContentService {
 
-  private String LANGUAGE_NOT_FOUND = "Language not found.";
+  private static final String LANGUAGE_NOT_FOUND = "Language not found.";
 
   private LanguageService languageService;
 
