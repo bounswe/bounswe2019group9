@@ -279,3 +279,55 @@ GET /contents/prof?language=english
     "data": null
 }
 ```
+## Create exercise
+
+**Request Content:**
+languageId: 1 for English, 2 for Turkish, 3 for Italian..
+typeId: 1 for Grammar, 2 for vocabulary, 3 for reading, 4 for listening
+imageUrl: not necessary for proficiency, just leave blank
+soundUrl: not necessary for proficiency, just leave blank
+questionBody: As it sounds
+optionA, optionB, optionC, optionD: as it sounds
+correctAnswer: 1 for A, 2 for B...
+
+ONLY IMAGEURL AND SOUNDURL CAN BE NULL
+
+**Response Content:**
+Exercise itself
+
+##### Example Request
+```
+POST /contents/add
+```
+```json
+{
+  "correctAnswer": 4,
+  "languageId": 1,
+  "optionA": "Bean",
+  "optionB": "Potato",
+  "optionC": "Bread",
+  "optionD": "Apple",
+  "questionBody": "Which one of these is a fruit?",
+  "typeId": 2
+}
+```
+
+##### Example Response
+```json
+{
+    "status": 200,
+    "explanation": null,
+    "data": {
+        "correctAnswer": 4,
+        "imageUrl": null,
+        "languageId": 1,
+        "optionA": "Bean",
+        "optionB": "Potato",
+        "optionC": "Bread",
+        "optionD": "Apple",
+        "questionBody": "Which one of these is a fruit?",
+        "soundUrl": null,
+        "typeId": 2
+      }
+}
+```
