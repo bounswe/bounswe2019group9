@@ -21,4 +21,8 @@ public class LanguageService {
   public Response<List<String>> getAllLanguages() {
     return HttpResponses.from(languageRepository.getAllLanguages());
   }
+
+  public Integer getLanguageIdByName(String name) {
+    return languageRepository.getLanguageIdByName(name);
+  }
 }

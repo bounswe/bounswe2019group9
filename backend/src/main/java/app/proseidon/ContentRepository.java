@@ -3,6 +3,7 @@ package app.proseidon;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,4 +15,7 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
 
   @Query(value = "SELECT * FROM proseidon.exercises", nativeQuery = true)
   List<Exercise> getAllExercises();
+
+  @Query(value = "SELECT * FROM proseidon.exercises WHERE language_id=:languageId LIMIT 10", nativeQuery = true)
+  List<Exercise> getProficiencyExam(@Param("languageId") Integer languageId);
 }

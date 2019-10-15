@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegisterService {
 
-  private final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+  private static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 
-  private final String EMAIL_IN_USE = "This e-mail has already been registered";
+  private static final String EMAIL_IN_USE = "This e-mail has already been registered";
 
-  private final String INVALID_EMAIL = "Invalid email";
+  private static final String INVALID_EMAIL = "Invalid email";
 
   private final UserRepository userRepository;
 
