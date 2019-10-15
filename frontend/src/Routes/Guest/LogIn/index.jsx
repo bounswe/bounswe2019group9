@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, CardHeader, CardTitle, CardBody, CardFooter,
 Alert, Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 import { updateStore } from '../../../Store';
+import {Link} from "react-router-dom";
 
 class LogIn extends React.PureComponent {
   state = {
@@ -82,6 +83,8 @@ class LogIn extends React.PureComponent {
                   <Button type="submit" disabled={email === '' || password === '' || loading}>
                     { loading ? 'Logging in ...' : 'Log In' }
                   </Button>
+                  <p>Aren't you a user yet? <Button tag={Link} to={"/register"}>Go to Register Page</Button></p>
+                  <Button tag={Link} to={"/forgot"}>Forgot my password</Button>
                 </CardFooter>
               </Card>
             </Form>
