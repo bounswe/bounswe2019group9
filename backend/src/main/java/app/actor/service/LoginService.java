@@ -35,6 +35,7 @@ public class LoginService {
     if (!EncryptionService.encrypt(loginRequest.getPassword()).equals(user.getPassword())) {
       return HttpResponses.badRequest(WRONG_CREDENTIALS);
     }
+    user.setPassword(loginRequest.getPassword());
     return HttpResponses.from(user);
   }
 
