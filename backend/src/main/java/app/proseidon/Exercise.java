@@ -1,27 +1,49 @@
 package app.proseidon;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 /**
  * @author ahmet.gedemenli
  */
 
+@Entity
+@Table(name = "exercises")
 public class Exercise extends Content {
 
-  private String text;
+  @Column
+  @NotNull
+  private String question;
 
+  @Column(name = "option_a")
+  @NotNull
   private String optionA;
 
+  @Column(name = "option_b")
+  @NotNull
   private String optionB;
 
+  @Column(name = "option_c")
+  @NotNull
   private String optionC;
 
+  @Column(name = "option_d")
+  @NotNull
   private String optionD;
 
+  @Column(name = "correct_answer")
+  @NotNull
   private Integer correctAnswer;
 
-  public Exercise(Integer languageId, Integer typeId, String imageUrl, String soundUrl, String text, String optionA,
+  public Exercise() {
+  }
+
+  public Exercise(Integer languageId, Integer typeId, String imageUrl, String soundUrl, String question, String optionA,
                   String optionB, String optionC, String optionD, Integer correctAnswer) {
     super(languageId, typeId, imageUrl, soundUrl);
-    this.text = text;
+    this.question = question;
     this.optionA = optionA;
     this.optionB = optionB;
     this.optionC = optionC;
@@ -29,12 +51,12 @@ public class Exercise extends Content {
     this.correctAnswer = correctAnswer;
   }
 
-  public String getText() {
-    return text;
+  public String getQuestion() {
+    return question;
   }
 
-  public void setText(String text) {
-    this.text = text;
+  public void setQuestion(String text) {
+    this.question = question;
   }
 
   public String getOptionA() {
@@ -80,7 +102,7 @@ public class Exercise extends Content {
   @Override
   public String toString() {
     return "Exercise{" +
-           "text='" + text + '\'' +
+           "question='" + question + '\'' +
            ", optionA='" + optionA + '\'' +
            ", optionB='" + optionB + '\'' +
            ", optionC='" + optionC + '\'' +

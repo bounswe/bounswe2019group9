@@ -1,17 +1,34 @@
 package app.proseidon;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+
 /**
  * @author ahmet.gedemenli
  */
 
+@MappedSuperclass
 public class Content {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
+
+  @Column(name = "language_id")
+  @NotNull
   private Integer languageId;
 
+  @Column(name = "type_id")
   private Integer typeId;
 
+  @Column(name = "image_url")
   private String imageUrl;
 
+  @Column(name = "sound_url")
   private String soundUrl;
 
   public Content() {
