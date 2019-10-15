@@ -17,11 +17,11 @@ public class ContentController {
 
   private LanguageService languageService;
 
-  private ContentRepository contentRepository;
+  private ContentService contentService;
 
-  public ContentController(LanguageService languageService, ContentRepository contentRepository) {
+  public ContentController(LanguageService languageService, ContentService contentService) {
     this.languageService = languageService;
-    this.contentRepository = contentRepository;
+    this.contentService = contentService;
   }
 
   @GetMapping("/languages")
@@ -31,6 +31,6 @@ public class ContentController {
 
   @GetMapping("/all")
   public Response<List<Exercise>> getAllExercises() {
-    return HttpResponses.from(contentRepository.getAllExercises());
+    return contentService.getAllExercises();
   }
 }
