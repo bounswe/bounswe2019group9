@@ -13,9 +13,9 @@ import javax.validation.constraints.NotNull;
 @Table(name = "exercises")
 public class Exercise extends Content {
 
-  @Column
+  @Column(name = "question_body")
   @NotNull
-  private String question;
+  private String questionBody;
 
   @Column(name = "option_a")
   @NotNull
@@ -40,10 +40,12 @@ public class Exercise extends Content {
   public Exercise() {
   }
 
-  public Exercise(Integer languageId, Integer typeId, String imageUrl, String soundUrl, String question, String optionA,
-                  String optionB, String optionC, String optionD, Integer correctAnswer) {
+  public Exercise(Integer languageId, Integer typeId, String imageUrl, String soundUrl,
+                  @NotNull String questionBody, @NotNull String optionA,
+                  @NotNull String optionB, @NotNull String optionC,
+                  @NotNull String optionD, @NotNull Integer correctAnswer) {
     super(languageId, typeId, imageUrl, soundUrl);
-    this.question = question;
+    this.questionBody = questionBody;
     this.optionA = optionA;
     this.optionB = optionB;
     this.optionC = optionC;
@@ -51,12 +53,12 @@ public class Exercise extends Content {
     this.correctAnswer = correctAnswer;
   }
 
-  public String getQuestion() {
-    return question;
+  public String getQuestionBody() {
+    return questionBody;
   }
 
-  public void setQuestion(String text) {
-    this.question = question;
+  public void setQuestionBody(String questionBody) {
+    this.questionBody = questionBody;
   }
 
   public String getOptionA() {
@@ -102,7 +104,7 @@ public class Exercise extends Content {
   @Override
   public String toString() {
     return "Exercise{" +
-           "question='" + question + '\'' +
+           "questionBody='" + questionBody + '\'' +
            ", optionA='" + optionA + '\'' +
            ", optionB='" + optionB + '\'' +
            ", optionC='" + optionC + '\'' +

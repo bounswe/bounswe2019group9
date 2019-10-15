@@ -40,4 +40,12 @@ public class ContentService {
   public LanguageService getLanguageService() {
     return languageService;
   }
+
+  public Response<Exercise> addExercise(Exercise exercise) {
+    contentRepository.addExercise(exercise.getLanguageId(), exercise.getTypeId(), exercise.getImageUrl(),
+                                  exercise.getSoundUrl(), exercise.getQuestionBody(), exercise.getOptionA(),
+                                  exercise.getOptionB(), exercise.getOptionC(), exercise.getOptionD(),
+                                  exercise.getCorrectAnswer());
+    return HttpResponses.from(exercise);
+  }
 }
