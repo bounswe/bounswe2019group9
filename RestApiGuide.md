@@ -226,3 +226,56 @@ GET /contents/all
     ]
 }
 ```
+
+## Get Proficiency Exam
+
+**Request Content:**
+Language name as request parameter. Language names should be in English and capitalized.
+
+**Response Content:**
+10 questions from given language
+
+##### Example Request
+```
+GET /contents/prof?language=English
+```
+
+##### Example Response
+```json
+{
+    "status": 200,
+    "explanation": null,
+    "data": [
+        {
+            "languageId": 1,
+            "typeId": 1,
+            "imageUrl": null,
+            "soundUrl": null,
+            "question": "what is your name?",
+            "optionA": "my name is..",
+            "optionB": "your name is..",
+            "optionC": "his name is...",
+            "optionD": "her name is...",
+            "correctAnswer": 1
+        },
+        {
+          ...
+        },
+        
+        ...
+    ]
+}
+```
+##### Example Request
+```
+GET /contents/prof?language=english
+```
+
+##### Example Response
+```json
+{
+    "status": 400,
+    "explanation": "Language not found.",
+    "data": null
+}
+```
