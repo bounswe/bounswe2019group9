@@ -187,3 +187,42 @@ GET /contents/languages
   ]
 }
 ```
+## Get All Exercises List
+
+**Request Content:**
+none
+
+**Response Content:**
+The list of all exercises of all languages
+
+##### Example Request
+```
+GET /contents/all
+```
+
+##### Example Response
+```json
+{
+    "status": 200,
+    "explanation": null,
+    "data": [
+        {
+            "languageId": 1,
+            "typeId": 1,
+            "imageUrl": null,
+            "soundUrl": null,
+            "question": "what is your name?",
+            "optionA": "my name is..",
+            "optionB": "your name is..",
+            "optionC": "his name is...",
+            "optionD": "her name is...",
+            "correctAnswer": 1
+        },
+        {
+          ...
+        },
+        
+        ...
+    ]
+}
+```
