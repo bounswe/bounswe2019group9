@@ -6,21 +6,24 @@
 
     <TextView
         android:id="@+id/select_language_text"
-        android:layout_width="368dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="12dp"
         android:fontFamily="sans-serif"
-        android:paddingTop="32dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
         android:text="@string/select_language_text"
-        android:textSize="28dp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/login_email"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/recylerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"  >
 
     </androidx.recyclerview.widget.RecyclerView>
 

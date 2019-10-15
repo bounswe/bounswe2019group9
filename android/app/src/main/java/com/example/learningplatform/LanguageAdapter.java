@@ -5,7 +5,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,11 +28,10 @@ import java.util.ArrayList;
 
 public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyViewHolder> {
 
-    ArrayList<Language> languageArrayList = new ArrayList<Language>();
-    LayoutInflater inflater;
+    ArrayList<Language> languageArrayList;
 
     public LanguageAdapter(Context context) {
-        inflater = LayoutInflater.from(context);
+        this.languageArrayList = new ArrayList<Language>();
         RequestQueue queue = Volley.newRequestQueue(context);
         String url ="https://api.bounswe2019group9.tk/contents/languages";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -39,15 +40,12 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-
                             JSONArray data = (JSONArray) response.get("data");
                             for(int i=0; i<data.length();i++){
                                 Language lang = new Language((String) data.get(i));
                                 languageArrayList.add(lang);
                                 Log.i("api", ""+lang.getLanguageName());
                             }
-
-                            //textView.setText(responseString);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -68,16 +66,15 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.languages, parent, false);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.languages, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Language selectedLanguage= languageArrayList.get(position);
-        holder.setData(selectedLanguage, position);
-
+        holder.languageName.setText(languageArrayList.get(position).getLanguageName());
     }
 
     @Override
@@ -88,24 +85,17 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView languageName;
+        public TextView languageName;
+        public RelativeLayout relativeLayout;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            languageName = (TextView) itemView.findViewById(R.id.language);
+            this.languageName = (TextView) itemView.findViewById(R.id.language);
+            this.relativeLayout = (RelativeLayout) itemView.findViewById(R.id.relativeLayout);
         }
-
-        public void setData(Language selectedLanguage, int position) {
-
-            this.languageName.setText(selectedLanguage.getLanguageName());
-
-
-        }
-
 
         @Override
         public void onClick(View v) {
-
 
         }
 
