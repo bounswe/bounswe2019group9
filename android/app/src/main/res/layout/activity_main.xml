@@ -42,7 +42,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
         android:text="@string/login_button_text"
-        android:onClick="buttonClick"
+        android:onClick="LoginButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_password" />
 
@@ -74,7 +74,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="8dp"
         android:text="@string/register_button"
-        android:onClick="buttonClick"
+        android:onClick="RegisterButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
