@@ -32,4 +32,9 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
                    @Param("questionBody") String questionBody, @Param("optionA") String optionA,
                    @Param("optionB") String optionB, @Param("optionC") String optionC,
                    @Param("optionD") String optionD, @Param("correctAnswer") Integer correctAnswer);
+
+  @Transactional
+  @Modifying
+  @Query(value = "DELETE FROM proseidon.exercises WHERE id=:id", nativeQuery = true)
+  void deleteExercise(@Param("id") Long id);
 }

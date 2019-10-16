@@ -48,4 +48,8 @@ public class ContentService {
                                   exercise.getCorrectAnswer());
     return HttpResponses.from(exercise);
   }
+
+  public void deleteExercise(Long id) {
+    contentRepository.deleteExercise(id);
+  }
 }
