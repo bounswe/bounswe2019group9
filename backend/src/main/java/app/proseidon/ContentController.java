@@ -1,5 +1,6 @@
 package app.proseidon;
 
+import app.HttpResponses;
 import app.Response;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
@@ -43,5 +44,11 @@ public class ContentController {
   @PostMapping("/add")
   public Response<Exercise> addExercise(@Validated @RequestBody Exercise exercise) {
     return contentService.addExercise(exercise);
+  }
+
+  @GetMapping("/delete")
+  public Response<Integer> deleteExercise(@RequestParam(value = "id") Long id) {
+    contentService.deleteExercise(id);
+    return HttpResponses.from(1);
   }
 }
