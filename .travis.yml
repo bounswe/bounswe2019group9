@@ -1,14 +1,13 @@
 matrix:
-  include:
+  fast_finish: true
+  allow_failures:
     - language: python
+      if: branch = master
       dist: xenial
       python:
         - "3.7"
       env:
         -DJANGO=2.2.1
-      branches:
-        only:
-          - master
       install:
         - cd practice-app
         - pip install -r requirements.txt
@@ -38,12 +37,11 @@ matrix:
         - mkdir -p dpl_cd_upload
         - mv latest.zip dpl_cd_upload/latest.zip
         - python manage.py test
+    include:
     - language: java
+      if: branch = master
       dist: xenial
       jdk: openjdk8
-      branches:
-        only:
-          - master
       install:
         - cd backend
         - ./server-conf/prepare-build.sh
@@ -78,12 +76,10 @@ matrix:
           region: eu-central-1
           on: *2
     - language: node_js
+      if: branch = master
       dist: xenial
       node_js:
         - "10"
-      branches:
-        only:
-          - master
       cache:
         yarn: true
         directories:
@@ -106,12 +102,10 @@ matrix:
           bucket: bounswe2019group9.tk
           region: eu-central-1
     - language: node_js
+      if: branch = frontend
       dist: xenial
       node_js:
         - "10"
-      branches:
-        only:
-          - frontend
       cache:
         yarn: true
         directories:
@@ -133,4 +127,7 @@ matrix:
             branch: master
           bucket: next.bounswe2019group9.tk
           region: eu-central-1
-
+branches:
+  only:
+    - master
+    - frontend
