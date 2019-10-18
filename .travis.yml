@@ -6,6 +6,9 @@ matrix:
         - "3.7"
       env:
         -DJANGO=2.2.1
+      branches:
+        only:
+          - master
       install:
         - cd practice-app
         - pip install -r requirements.txt
@@ -38,6 +41,9 @@ matrix:
     - language: java
       dist: xenial
       jdk: openjdk8
+      branches:
+        only:
+          - master
       install:
         - cd backend
         - ./server-conf/prepare-build.sh
@@ -75,6 +81,9 @@ matrix:
       dist: xenial
       node_js:
         - "10"
+      branches:
+        only:
+          - master
       cache:
         yarn: true
         directories:
@@ -96,7 +105,32 @@ matrix:
             branch: master
           bucket: bounswe2019group9.tk
           region: eu-central-1
+    - language: node_js
+      dist: xenial
+      node_js:
+        - "10"
+      branches:
+        only:
+          - frontend
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+      before_install:
+        - cd frontend
+      script:
+        - yarn test
+        - yarn build
+      deploy:
+        - provider: s3
+          access_key_id: $FRONTEND_AWS_ACCESS_KEY
+          secret_access_key: $FRONTEND_AWS_SECRET_KEY
+          local_dir: build
+          skip_cleanup: true
+          acl: public_read
+          on: &2
+            repo: bounswe/bounswe2019group9
+            branch: master
+          bucket: next.bounswe2019group9.tk
+          region: eu-central-1
 
-branches:
-  only:
-    - master
