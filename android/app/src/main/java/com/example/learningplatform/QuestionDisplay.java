@@ -71,12 +71,21 @@ public class QuestionDisplay extends AppCompatActivity {
     public void NextQuestion(View v){
         TextView t = (TextView) v;
         t.getText().toString();
-        questionText.setText(questionList.get(questionCount));
-        answer1.setText(choices.get(4*questionCount));
-        answer2.setText(choices.get(4*questionCount+1));
-        answer3.setText(choices.get(4*questionCount+2));
-        answer4.setText(choices.get(4*questionCount+3));
-        questionCount++;
+
+
+        if(questionCount==questionList.size()){
+            Intent intent = new Intent(this,GradeView.class);
+            intent.putExtra("grade","A1");
+            this.startActivity(intent);
+
+        }else {
+            questionText.setText(questionList.get(questionCount));
+            answer1.setText(choices.get(4 * questionCount));
+            answer2.setText(choices.get(4 * questionCount + 1));
+            answer3.setText(choices.get(4 * questionCount + 2));
+            answer4.setText(choices.get(4 * questionCount + 3));
+            questionCount++;
+        }
     }
 
 
