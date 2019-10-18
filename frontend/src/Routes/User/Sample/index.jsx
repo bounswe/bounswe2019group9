@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form, FormGroup, Input, Label, Jumbotron, Button, } from "reactstrap";
 import axios from 'axios';
+import {getGreeting} from '../../../Api/Greeting';
 
 class Sample extends React.PureComponent {
   state = {
@@ -15,16 +16,17 @@ class Sample extends React.PureComponent {
   };
   handleSubmit = async (e) => {
     e.preventDefault();
-    let res = axios.get("https://api.bounswe2019group9.tk/greeting", {
-      params: {
-        name: this.state.name,
-      }
-    });
-    console.log(res.data);
-    let { content } = res.data;
-    this.setState({
-      greeting: content,
-    });
+
+    const { name } = this.state;
+    try {
+      const res = await getGreeting({name});
+      const { content } = res.data;
+      this.setState({
+        greeting: content
+      });
+    } catch (e) {
+      console.error(e);
+    }
   };
   render() {
     const { name, greeting } = this.state;

@@ -16,33 +16,44 @@ import {
 
 import { updateStore } from '../../../Store';
 import {Link} from "react-router-dom";
+import {register} from '../../../Api/User';
 
 class Register extends React.PureComponent {
   state = {
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     loading: false,
     error: '',
   };
   handleSubmit = (e) => {
+    const { firstName, lastName, email, password, loading } = this.state;
     e.preventDefault();
-    this.setState({
-      loading: true
-    }, () => {
-      setTimeout(() => {
-        if (Math.random() < 0.5) {
-          this.setState({
-            loading: false,
-            error: 'Sample Error Occured!'
-          });
-        } else {
+    if (!loading) {
+      this.setState({
+        loading: true
+      }, () => {
+        register({
+          firstName,
+          lastName,
+          email,
+          password
+        }).then((response) => {
+          const { data } = response.data || {};
+          const { id: userId } = data || {};
           updateStore({
-            token: 'abc123'
+            token: 'abc123',
+            userId
           });
-
-        }
-      }, Math.random() * 2000);
-    });
+        }).catch(({message}) => {
+          this.setState({
+            error: message,
+            loading: false
+          });
+        });
+      });
+    }
   };
   handleChange = (e) => {
     const { value, name } = e.target;
@@ -51,7 +62,7 @@ class Register extends React.PureComponent {
     });
   };
   render() {
-    const { loading, email, password, error } = this.state;
+    const { loading, firstName, lastName, email, password, error } = this.state;
     return (
         <Container fluid className="h-100">
           <Row className="h-100 justify-content-center">
@@ -67,6 +78,30 @@ class Register extends React.PureComponent {
                     <Alert color="danger" isOpen={!loading && error !== ''}>
                       { error }
                     </Alert>
+                    <FormGroup>
+                      <Label for="firstName">First Name</Label>
+                      <Input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        value={firstName}
+                        placeholder="Please enter your first name."
+                        onChange={this.handleChange}
+                        valid={firstName !== ''}
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <Label for="lastName">Last Name</Label>
+                      <Input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        value={lastName}
+                        placeholder="Please enter your last name."
+                        onChange={this.handleChange}
+                        valid={lastName !== ''}
+                      />
+                    </FormGroup>
                     <FormGroup>
                       <Label for="email">E-Mail</Label>
                       <Input
