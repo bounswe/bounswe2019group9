@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.min.css';
+import './Lib/Toaster';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 const subscriptions = new Set();
 
@@ -27,6 +28,8 @@ export const updateStore = (nextStore) => {
     ...store,
     ...nextStore
   };
+  axios.defaults.headers.Authorization = store.token;
+
   localStorage.setItem(localStorageKey, JSON.stringify(store));
   subscriptions.forEach((subscription) => subscription(store));
 };
