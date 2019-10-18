@@ -1,6 +1,7 @@
 package com.example.learningplatform;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,16 +24,24 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyViewHolder> {
 
     ArrayList<Language> languageArrayList;
+    Context context;
+    ArrayList<String> questionList;
+    ArrayList<String> choices;
 
     public LanguageAdapter(final Context context) {
+        this.context = context;
         this.languageArrayList = new ArrayList<>();
+
+        questionList = new ArrayList<>();
+        choices = new ArrayList<>();
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -68,6 +78,101 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
                 queue.add(jsonObjectRequest);
             }
         });
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                RequestQueue queue = Volley.newRequestQueue(context);
+                String url ="https://api.bounswe2019group9.tk/contents/prof?language=English";
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+
+                                    if(response.has("data")) {
+                                        JSONArray data = (JSONArray) response.get("data");
+                                        if (data.getJSONObject(0).has("questionBody")) {
+
+
+                                            //for (int i = 0; i < data.length(); i++) {
+                                            String question = (String) data.getJSONObject(0).get("questionBody");
+                                            Log.i("questionlist", question);
+                                            questionList.add(question);
+                                            //}
+                                        }
+
+                                    }
+
+                                } catch (JSONException e) {
+                                    Log.i("catch","ctachhh");
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+                        , new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("question_list", "Error on request to get question list");
+
+                    }
+                });
+
+                queue.add(jsonObjectRequest);
+
+
+            }
+        });
+
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                final RequestQueue choiceQueue = Volley.newRequestQueue(context);
+                String url ="https://api.bounswe2019group9.tk/contents/prof?language=English";
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    JSONArray data = (JSONArray) response.get("data");
+
+                                    for (int i = 0; i < data.length(); i++) {
+                                        String option1 = data.getJSONObject(i).getString("optionA");
+                                        String option2 = data.getJSONObject(i).getString("optionB");
+                                        String option3 = data.getJSONObject(i).getString("optionC");
+                                        String option4 = data.getJSONObject(i).getString("optionD");
+
+                                        choices.add(option1);
+                                        choices.add(option2);
+                                        choices.add(option3);
+                                        choices.add(option4);
+
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+                        , new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("question_list", "Error on request to get question list");
+
+                    }
+                });
+
+                choiceQueue.add(jsonObjectRequest);
+            }
+        });
+
     }
 
 
@@ -80,8 +185,20 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
+
         holder.languageName.setText(languageArrayList.get(position).getLanguageName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("entered","mylanguage");
+                Intent intent = new Intent(holder.itemView.getContext(),QuestionDisplay.class);
+                intent.putStringArrayListExtra("questions",questionList);
+                intent.putStringArrayListExtra("choices",choices);
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -103,6 +220,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
 
         @Override
         public void onClick(View v) {
+
 
         }
     }

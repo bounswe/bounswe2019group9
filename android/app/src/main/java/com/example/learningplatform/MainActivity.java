@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-
-
     public void LoginButton(final View v){
 
         username = findViewById(R.id.login_email);
