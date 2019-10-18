@@ -1,13 +1,13 @@
 package com.example.learningplatform;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,37 +30,44 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
 
     ArrayList<Language> languageArrayList;
 
-    public LanguageAdapter(Context context) {
-        this.languageArrayList = new ArrayList<Language>();
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url ="https://api.bounswe2019group9.tk/contents/languages";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+    public LanguageAdapter(final Context context) {
+        this.languageArrayList = new ArrayList<>();
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                //TODO your background code
+                RequestQueue queue = Volley.newRequestQueue(context);
+                String url ="https://api.bounswe2019group9.tk/contents/languages";
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    JSONArray data = (JSONArray) response.get("data");
+                                    for(int i=0; i<data.length();i++){
+                                        Language lang = new Language((String) data.get(i));
+                                        languageArrayList.add(lang);
+                                        Log.i("lang_list_api", ""+lang.getLanguageName());
+                                    }
+                                    notifyDataSetChanged();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+                        , new Response.ErrorListener() {
 
                     @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray data = (JSONArray) response.get("data");
-                            for(int i=0; i<data.length();i++){
-                                Language lang = new Language((String) data.get(i));
-                                languageArrayList.add(lang);
-                                Log.i("api", ""+lang.getLanguageName());
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("language_selection", "Error on request to get language list");
 
                     }
-                }
-                , new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("language_selection", "Error on request to get language list");
-
+                });
+                queue.add(jsonObjectRequest);
             }
         });
-        queue.add(jsonObjectRequest);
     }
 
 
@@ -90,8 +97,8 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            this.languageName = (TextView) itemView.findViewById(R.id.language);
-            this.relativeLayout = (RelativeLayout) itemView.findViewById(R.id.relativeLayout);
+            this.languageName = itemView.findViewById(R.id.language);
+            this.relativeLayout = itemView.findViewById(R.id.relativeLayout);
         }
 
         @Override

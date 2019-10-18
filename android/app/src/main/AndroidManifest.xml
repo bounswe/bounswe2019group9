@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayMessage">
+        <activity android:name=".LanguageListDisplay">
             <intent-filter>
                 <action android:name="com.example.learningplatform.DisplayMessage" />
 
