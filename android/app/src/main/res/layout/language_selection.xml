@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/app_color_light">
 
     <TextView
         android:id="@+id/select_language_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="12dp"
-        android:paddingVertical="12dp"
+        android:paddingVertical="16dp"
         android:fontFamily="sans-serif"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
         android:text="@string/select_language_text"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/login_email"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/app_color_dark"
+        android:background="@color/app_color_light"/>
 
 
 
@@ -27,8 +27,8 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:background="@color/app_color_light">
     </androidx.recyclerview.widget.RecyclerView>
 
 

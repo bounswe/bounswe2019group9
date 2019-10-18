@@ -39,71 +39,52 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/login_email_view"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
-            android:elevation="1dp"
-            android:ems="10"
-            android:importantForAutofill="no"
-            android:textColor="@color/app_color_dark"
-            android:inputType="textEmailAddress" />
+            style="@style/WelcomePageEditTextStyle"
+            android:inputType="textEmailAddress"/>
 
         <EditText
             android:id="@+id/login_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/WelcomePageEditTextStyle"
             android:layout_below="@+id/login_pass_text"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
-            android:elevation="1dp"
-            android:ems="10"
-            android:importantForAutofill="no"
-            android:textColor="@color/app_color_dark"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"/>
 
         <Button
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/login_password"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="@color/app_color_light"
             android:onClick="LoginButton"
             android:text="@string/login_button_text"
-            android:textColor="@color/app_color_dark" />
+            style="@style/WelcomePageButton"/>
 
         <TextView
             android:id="@+id/login_email_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/app_icon"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="12dp"
+            style="@style/WelcomePageTextView"
             android:text="@string/login_mail_text"
-            android:textColor="@color/app_color_dark"/>
+            />
 
         <TextView
             android:id="@+id/login_pass_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/login_email"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="12dp"
             android:text="@string/login_password_text"
-            android:textColor="@color/app_color_dark" />
+            style="@style/WelcomePageTextView"/>
 
         <Button
             android:id="@+id/register_now_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/login_button"
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="@color/app_color_light"
+            style="@style/WelcomePageButton"
             android:onClick="RegisterButton"
             android:text="@string/register_button"
-            android:textColor="@color/app_color_dark" />
+            />
     </RelativeLayout>
 
 </RelativeLayout>
