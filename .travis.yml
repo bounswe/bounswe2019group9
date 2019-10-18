@@ -124,7 +124,7 @@ matrix:
           acl: public_read
           on: &2
             repo: bounswe/bounswe2019group9
-            branch: master
+            branch: frontend
           bucket: next.bounswe2019group9.tk
           region: eu-central-1
 branches:
