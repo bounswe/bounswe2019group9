@@ -105,7 +105,5 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
         public void onClick(View v) {
 
         }
-
-
     }
 }
