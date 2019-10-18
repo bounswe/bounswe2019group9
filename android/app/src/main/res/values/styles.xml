@@ -8,4 +8,35 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    @TargetApi(21)
+    <style name="WelcomePageEditTextStyle">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:importantForAutofill">no</item>
+        <item name="android:textColor">@color/app_color_dark</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="WelcomePageTextView">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:backgroundTint">@color/app_color_light</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:textColor">@color/app_color_dark</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="WelcomePageButton">
+        <item name="android:elevation">1dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:backgroundTint">@color/app_color_light</item>
+        <item name="android:textColor">@color/app_color_dark</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
 </resources>
