@@ -18,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+// App main light color is RGB: 140 198 68
 public class MainActivity extends AppCompatActivity {
     private static EditText username;
     private static EditText password;
