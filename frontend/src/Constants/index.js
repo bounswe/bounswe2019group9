@@ -1,1 +1,1 @@
-export const API_URL = "https://api.bounswe2019group9.tk";
+export const API_URL = "https://api.bounswe2019group9.tk/";

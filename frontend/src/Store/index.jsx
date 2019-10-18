@@ -11,9 +11,9 @@ store = store ? JSON.parse(store) : {
   token: ''
 };
 
-export const storeType = {
+export const storeType = PropTypes.shape({
   token: PropTypes.string.isRequired
-};
+}).isRequired;
 
 const subscribeStore = (subscription) => {
   subscriptions.add(subscription);
