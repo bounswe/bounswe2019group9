@@ -15,7 +15,7 @@ import {getRequest} from '../base';
  *  ]
  * }
  */
-export const getLanguages = (extras) => getRequest('contents/laguages', {}, extras);
+export const getLanguages = (extras) => getRequest('contents/languages', {}, extras);
 
 /**
  * @function getProfExam
