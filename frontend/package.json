@@ -36,5 +36,6 @@
   },
   "engines": {
     "node": "10.x"
-  }
+  },
+  "proxy": "https://api.bounswe2019group9.tk"
 }
