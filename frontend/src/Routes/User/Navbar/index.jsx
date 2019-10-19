@@ -7,7 +7,8 @@ import { updateStore } from '../../../Store';
 const logOut = (e) => {
   e.preventDefault();
   updateStore({
-    token: ''
+    token: '',
+    userId: ''
   });
 };
 

@@ -8,11 +8,13 @@ const localStorageKey = 'bounswe_store';
 
 let store = localStorage.getItem(localStorageKey);
 store = store ? JSON.parse(store) : {
-  token: ''
+  token: '',
+  userId: '',
 };
 
 export const storeType = PropTypes.shape({
-  token: PropTypes.string.isRequired
+  token: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
 }).isRequired;
 
 const subscribeStore = (subscription) => {

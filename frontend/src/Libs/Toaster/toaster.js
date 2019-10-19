@@ -43,7 +43,7 @@ if (!initialized) {
       if (error.response.status === 401 || error.response.status === 403) {
         errorMessage = "Unauthorized, please login again. Your token may have been expired.";
         updateStore({
-          token: ''
+          token: '', userId: ''
         });
       } else if (typeof error.response.data === 'string') {
         errorMessage = error.response.data;
@@ -72,7 +72,7 @@ if (!initialized) {
       if (status === 401 || status === 403) {
         toast.error("Unauthorized, please login again. Your token may have been expired.");
         updateStore({
-          token: ''
+          token: '', userId: ''
         });
       } else if (status && (status < 200 || status >= 300)) {
         const errorMessage = explanation || 'Oops something went wrong!';
