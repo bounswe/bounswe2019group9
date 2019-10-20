@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -24,10 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyViewHolder> {
 
@@ -165,7 +161,6 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
                                         }else if(answer ==4){
                                             solutions.add(option4);
                                         }
-
 
                                     }
 

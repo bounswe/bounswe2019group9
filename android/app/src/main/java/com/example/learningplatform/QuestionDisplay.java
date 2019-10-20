@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,7 +36,7 @@ public class QuestionDisplay extends AppCompatActivity {
     ArrayList<String> answers;
     ArrayList<String> solutions;
     int questionCount;
-
+    int userID=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +109,45 @@ public class QuestionDisplay extends AppCompatActivity {
                 letterGradeOfStudent = "A1";
             }
 
+            JSONObject grade_data = new JSONObject();
+            try {
+                grade_data.put("grade",gradeOfStudent);
+                grade_data.put("languageId",1);
+                grade_data.put("userId",userID);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            RequestQueue queue = Volley.newRequestQueue(v.getContext());
+            String url = "https://api.bounswe2019group9.tk//grades/add";
+            JsonObjectRequest gradeJsonReq = new JsonObjectRequest(Request.Method.POST, url,grade_data,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                int statusCode =  response.getInt("status");
+                                if(statusCode == 200){
+                                    Toast.makeText(QuestionDisplay.this,"Your grade is calculated successfully",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(QuestionDisplay.this,"An error occurred while calculating your grade",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            System.out.println("That didn't work!");
+                        }
+                    });
+
+            //queue.add(gradeJsonReq);
 
             Intent intent = new Intent(this,GradeView.class);
             intent.putExtra("grade",letterGradeOfStudent);
