@@ -13,6 +13,7 @@ class UserRoutes extends React.PureComponent {
       <>
         <UserNavbar />
         <Switch>
+          <Redirect from="/(login|register|forgot)" to="/" />
           <Route exact path="/language-select" component={LanguageSelect} />
           <Route exact path="/sample" component={SamplePage} />
           <Route exact path="/home" component={Dashboard} />
