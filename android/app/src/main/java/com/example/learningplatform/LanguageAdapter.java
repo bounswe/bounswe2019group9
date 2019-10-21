@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -24,10 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyViewHolder> {
 
@@ -35,6 +31,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
     Context context;
     ArrayList<String> questionList;
     ArrayList<String> choices;
+    ArrayList<String> solutions;
 
     public LanguageAdapter(final Context context) {
         this.context = context;
@@ -42,6 +39,8 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
 
         questionList = new ArrayList<>();
         choices = new ArrayList<>();
+        solutions = new ArrayList<>();
+
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -95,12 +94,10 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
                                         JSONArray data = (JSONArray) response.get("data");
                                         if (data.getJSONObject(0).has("questionBody")) {
 
-
-                                            //for (int i = 0; i < data.length(); i++) {
                                             String question = (String) data.getJSONObject(0).get("questionBody");
                                             Log.i("questionlist", question);
                                             questionList.add(question);
-                                            //}
+
                                         }
 
                                     }
@@ -142,6 +139,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
                                     JSONArray data = (JSONArray) response.get("data");
 
                                     for (int i = 0; i < data.length(); i++) {
+
                                         String option1 = data.getJSONObject(i).getString("optionA");
                                         String option2 = data.getJSONObject(i).getString("optionB");
                                         String option3 = data.getJSONObject(i).getString("optionC");
@@ -151,6 +149,18 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
                                         choices.add(option2);
                                         choices.add(option3);
                                         choices.add(option4);
+
+                                        int answer = data.getJSONObject(i).getInt("correctAnswer");
+
+                                        if(answer == 1){
+                                            solutions.add(option1);
+                                        }else if(answer == 2){
+                                            solutions.add(option2);
+                                        }else if(answer == 3){
+                                            solutions.add(option3);
+                                        }else if(answer ==4){
+                                            solutions.add(option4);
+                                        }
 
                                     }
 
@@ -192,11 +202,14 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("entered","mylanguage");
-                Intent intent = new Intent(holder.itemView.getContext(),QuestionDisplay.class);
-                intent.putStringArrayListExtra("questions",questionList);
-                intent.putStringArrayListExtra("choices",choices);
+
+                Log.i("entered", "mylanguage");
+                Intent intent = new Intent(holder.itemView.getContext(), QuestionDisplay.class);
+                intent.putStringArrayListExtra("questions", questionList);
+                intent.putStringArrayListExtra("choices", choices);
+                intent.putStringArrayListExtra("solutions",solutions);
                 holder.itemView.getContext().startActivity(intent);
+
             }
         });
     }
