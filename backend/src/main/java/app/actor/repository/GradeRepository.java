@@ -20,6 +20,6 @@ public interface GradeRepository extends JpaRepository<Grade, Long> {
   @Query(value = "INSERT INTO grades(user_id, language_id, grade) values(:userId, :languageId, :grade)", nativeQuery = true)
   void addGrade(@Param("userId") Long userId, @Param("languageId") Integer languageId, @Param("grade") Integer grade);
 
-  @Query(value = "SELECT * FROM grades WHERE user_id=:userId AND language_id=:languageId LIMIT 1", nativeQuery = true)
+  @Query(value = "SELECT * FROM grades WHERE user_id=:userId AND language_id=:languageId ORDER BY id DESC LIMIT 1", nativeQuery = true)
   Grade getGradeByUserIdAndLanguageId(@Param("userId") Long userId, @Param("languageId") Integer languageId);
 }
