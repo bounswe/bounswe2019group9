@@ -71,8 +71,8 @@ class ProfExam extends React.PureComponent {
       num_grade = 2
       str_grade = "A2"
     } else {
-      num_grade = 6
-      str_grade = "C2"
+      num_grade = 1
+      str_grade = "A1"
     }
 
     return { num_grade, str_grade }
@@ -81,19 +81,18 @@ class ProfExam extends React.PureComponent {
   nextQuestion = (increment = 1) => {
     const { currentQuestion, questions, languageId, currentGrade } = this.state;
     if (currentQuestion + increment === questions.length) {
-      // TODO, do submit grade (exam is finished)
-      /*
+      const { num_grade, str_grade } = this.getGrade(currentGrade, questions.length);
       addGrade({
         userId: store.userId,
         languageId,
-        grade: currentGrade
+        grade: num_grade
       }).then((response) => {
+        toast.info(`Congrats, you got ${currentGrade} correct answers out of ${questions.length} questions.\nYour grade is ${str_grade}`);
+        const { match: { params: { language } }, history } = this.props;
+        history.push(`/${language}`);
         console.log(response);
         // what to do next?
       }).catch(console.error);
-     */
-      const { num_grade, str_grade } = this.getGrade(currentGrade, questions.length)
-      toast.info(`Congrats, you got ${currentGrade} correct answers out of ${questions.length} questions.\nYour grade is ${str_grade}`);
     } else {
       this.setState({
         currentQuestion: Math.max(0, Math.min(questions.length - 1, currentQuestion + increment))
@@ -119,7 +118,7 @@ class ProfExam extends React.PureComponent {
               Your Score: { currentGrade }
             </CardSubtitle>
           </CardHeader>
-          <CardBody>
+          <CardBody className="d-flex justify-content-between">
             {
               options.map((option, optionIndex) => (
                 <Button
@@ -133,7 +132,7 @@ class ProfExam extends React.PureComponent {
               ))
             }
           </CardBody>
-          <CardFooter>
+          <CardFooter className="d-flex justify-content-between">
             <Button
               color="secondary"
               onClick={() => this.nextQuestion(-1)}
