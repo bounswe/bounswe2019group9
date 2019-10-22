@@ -92,14 +92,12 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
 
                                     if(response.has("data")) {
                                         JSONArray data = (JSONArray) response.get("data");
-                                        for(int i=0; i<data.length();i++) {
-                                            if (data.getJSONObject(i).has("questionBody")) {
+                                        if (data.getJSONObject(0).has("questionBody")) {
 
-                                                String question = (String) data.getJSONObject(i).get("questionBody");
-                                                Log.i("questionlist", question);
-                                                questionList.add(question);
+                                            String question = (String) data.getJSONObject(0).get("questionBody");
+                                            Log.i("questionlist", question);
+                                            questionList.add(question);
 
-                                            }
                                         }
 
                                     }

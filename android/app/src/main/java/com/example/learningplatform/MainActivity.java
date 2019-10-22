@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this,"Username and password is correct",
                                         Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(v.getContext(), LanguageListDisplay.class);
+                                JSONObject userData =  response.getJSONObject("data");
+                                int userId = userData.getInt("id");
+                                intent.putExtra("userId",userId);
                                 v.getContext().startActivity(intent);
                             }
                             else{
