@@ -84,7 +84,7 @@ public class QuestionDisplay extends AppCompatActivity {
                 if (answers.get(i).equals(solutions.get(i)))
                     correctAnswers++;
             }
-            double successRate = 100 * (correctAnswers / nofQuestions);
+            double successRate = 100 * (1.0*correctAnswers / nofQuestions);
             int gradeOfStudent;
             String letterGradeOfStudent;
 
