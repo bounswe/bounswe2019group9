@@ -45,6 +45,39 @@ class ProfExam extends React.PureComponent {
     }
   };
 
+  getGrade = (correct, total) => {
+    let percent = 0
+    let str_grade = "A1";
+    let num_grade = 1
+    if (total <= 0 || correct < 0 || correct > total) {
+      return null;
+    } else {
+      percent = correct / total
+    }
+
+    if (percent > 90) {
+      num_grade = 6
+      str_grade = "C2"
+    } else if (percent > 85) {
+      num_grade = 5
+      str_grade = "C1"
+    } else if (percent > 75) {
+      num_grade = 4
+      str_grade = "B2"
+    } else if (percent > 60) {
+      num_grade = 3
+      str_grade = "B1"
+    } else if (percent > 40) {
+      num_grade = 2
+      str_grade = "A2"
+    } else {
+      num_grade = 6
+      str_grade = "C2"
+    }
+
+    return { num_grade, str_grade }
+  }
+
   nextQuestion = (increment = 1) => {
     const { currentQuestion, questions, languageId, currentGrade } = this.state;
     if (currentQuestion + increment === questions.length) {
@@ -59,7 +92,8 @@ class ProfExam extends React.PureComponent {
         // what to do next?
       }).catch(console.error);
      */
-      toast.info(`Congrats, you got ${currentGrade} correct answers out of ${questions.length} questions`);
+      const { num_grade, str_grade } = this.getGrade(currentGrade, questions.length)
+      toast.info(`Congrats, you got ${currentGrade} correct answers out of ${questions.length} questions.\nYour grade is ${str_grade}`);
     } else {
       this.setState({
         currentQuestion: Math.max(0, Math.min(questions.length - 1, currentQuestion + increment))
