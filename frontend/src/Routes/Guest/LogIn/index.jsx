@@ -4,6 +4,7 @@ Alert, Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 import { updateStore } from '../../../Store';
 import {Link} from "react-router-dom";
+import {login} from '../../../Api/User';
 
 class LogIn extends React.PureComponent {
   state = {
@@ -13,23 +14,29 @@ class LogIn extends React.PureComponent {
     error: ''
   };
   handleSubmit = (e) => {
+    const { email, password, loading } = this.state;
     e.preventDefault();
-    this.setState({
-      loading: true
-    }, () => {
-      setTimeout(() => {
-        if (Math.random() < 0.5) {
-          this.setState({
-            loading: false,
-            error: 'Sample Error Occured!'
+    if (!loading) {
+      this.setState({
+        loading: true
+      }, () => {
+        login({email, password}, {successMessage: 'Successfully Logged In'})
+          .then((response) => {
+            const { data } = response.data || {};
+            const { id: userId } = data || {};
+            updateStore({
+              token: 'abc123',
+              userId
+            });
+          })
+          .catch(({ message }) => {
+            this.setState({
+              loading: false,
+              error: message
+            })
           });
-        } else {
-          updateStore({
-            token: 'abc123'
-          });
-        }
-      }, Math.random() * 2000);
-    });
+      });
+    }
   };
   handleChange = (e) => {
     const { value, name } = e.target;

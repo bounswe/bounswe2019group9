@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 const subscriptions = new Set();
 
@@ -7,12 +8,14 @@ const localStorageKey = 'bounswe_store';
 
 let store = localStorage.getItem(localStorageKey);
 store = store ? JSON.parse(store) : {
-  token: ''
+  token: '',
+  userId: '',
 };
 
-export const storeType = {
-  token: PropTypes.string.isRequired
-};
+export const storeType = PropTypes.shape({
+  token: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
+}).isRequired;
 
 const subscribeStore = (subscription) => {
   subscriptions.add(subscription);
@@ -27,6 +30,8 @@ export const updateStore = (nextStore) => {
     ...store,
     ...nextStore
   };
+  axios.defaults.headers.Authorization = store.token;
+
   localStorage.setItem(localStorageKey, JSON.stringify(store));
   subscriptions.forEach((subscription) => subscription(store));
 };

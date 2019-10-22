@@ -7,15 +7,16 @@ import { updateStore } from '../../../Store';
 const logOut = (e) => {
   e.preventDefault();
   updateStore({
-    token: ''
+    token: '',
+    userId: ''
   });
 };
 
 function UserNavbar(props) {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
-    <Navbar color="light" light expand="md">
-      <NavbarBrand tag={Link} to="/">
+    <Navbar color="light" light expand="md" className="shadow">
+      <NavbarBrand tag={Link} to="/home">
         Home
       </NavbarBrand>
       <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
@@ -29,6 +30,16 @@ function UserNavbar(props) {
               activeClassName="active"
             >
               Sample Page
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              tag={Link}
+              exact
+              to="/language-select"
+              activeClassName="active"
+            >
+              Change Language
             </NavLink>
           </NavItem>
           <NavItem>
