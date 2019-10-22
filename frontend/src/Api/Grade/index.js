@@ -1,4 +1,4 @@
-import {postRequest} from '../base';
+import {getRequest, postRequest} from '../base';
 
 /**
  * @function addGrade
@@ -16,3 +16,11 @@ import {postRequest} from '../base';
  * }
  */
 export const addGrade = (data, extras) => postRequest('grades/add', data, extras);
+
+/**
+ * @function getGrade
+ * @param data ({ languageId, userId })
+ * @param extras
+ * @return {Promise<AxiosResponse<T>>}
+ */
+export const getGrade = (data, extras) => getRequest('grades/get', data, extras);
