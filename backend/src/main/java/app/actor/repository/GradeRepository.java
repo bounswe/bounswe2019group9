@@ -1,5 +1,6 @@
 package app.actor.repository;
 
+import app.Response;
 import app.actor.entity.Grade;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,4 +20,7 @@ public interface GradeRepository extends JpaRepository<Grade, Long> {
   @Modifying
   @Query(value = "INSERT INTO grades(user_id, language_id, grade) values(:userId, :languageId, :grade)", nativeQuery = true)
   void addGrade(@Param("userId") Long userId, @Param("languageId") Integer languageId, @Param("grade") Integer grade);
+
+  @Query(value = "SELECT * FROM grades WHERE user_id=:userId AND language_id=:languageId", nativeQuery = true)
+  Grade getGradeByUserIdAndLanguageId(@Param("userId") Long userId, @Param("languageId") Integer languageId);
 }

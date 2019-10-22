@@ -24,4 +24,8 @@ public class GradeService {
     gradeRepository.addGrade(request.getUserId(), request.getLanguageId(), request.getGrade());
     return HttpResponses.from(request);
   }
+
+  public Response<Grade> getGradeByUserIdAndLanguageId(Long userId, Integer languageId) {
+    return HttpResponses.from(gradeRepository.getGradeByUserIdAndLanguageId(userId, languageId));
+  }
 }
