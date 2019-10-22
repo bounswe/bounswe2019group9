@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Learning Platform</string>
+    <string name="login_button_text">LOGIN</string>
+    <string name="login_mail_text">E-mail</string>
+    <string name="login_password_text">Password</string>
+    <string name="register_name_text">Name</string>
+    <string name="register_surname_text">Surname</string>
+    <string name="register_email">E-mail</string>
+    <string name="register_password">Password</string>
+    <string name="register_button">REGISTER</string>
+    <string name="select_language_text">Please, select a language...</string>
+</resources>
