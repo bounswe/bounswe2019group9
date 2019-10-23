@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import {getGrade} from '../../../../Api/Grade';
-import store from '../../../../Store';
+import { connect, storeType } from '../../../../Store';
+import {GradesHelper} from '../../../../Helpers';
 
-const Sidebar = () => {
+const Sidebar = ({ store }) => {
   const {language} = useParams();
 
   const languageId = language === 'English' ? 1 : language === 'Turkish' ? 2 : language === 'Italian' ? 3 : 0;
@@ -20,28 +21,8 @@ const Sidebar = () => {
     }
   }, [language, languageId]);
 
-  let str_grade = '';
-  switch (grade) {
-    case 1:
-      str_grade = 'A1';
-      break;
-    case 2:
-      str_grade = 'A2';
-      break;
-    case 3:
-      str_grade = 'B1';
-      break;
-    case 4:
-      str_grade = 'B2';
-      break;
-    case 5:
-      str_grade = 'C1';
-      break;
-    case 6:
-      str_grade = 'C2';
-      break;
-    default:
-  }
+  let str_grade = GradesHelper.numGradeToStrGrade(grade);
+
   return (
     <div className="m-3">
       <h4>{language}</h4>
@@ -52,4 +33,8 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+Sidebar.propTypes = {
+  store: storeType
+};
+
+export default connect(Sidebar);

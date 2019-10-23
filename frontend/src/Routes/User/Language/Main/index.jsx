@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { useParams, Link } from 'react-router-dom';
 
-import store from '../../../../Store';
+import {connect, storeType} from '../../../../Store';
 import {getGrade} from '../../../../Api/Grade';
+import {GradesHelper} from '../../../../Helpers';
 
-const Main = () => {
+const Main = ({ store }) => {
 
   const { language } = useParams();
 
@@ -24,7 +25,7 @@ const Main = () => {
         setLoading(false);
       })
     }
-  }, [language, languageId]);
+  }, [language, languageId, store.userId]);
 
   if (languageId === 0) {
     return (
@@ -34,28 +35,7 @@ const Main = () => {
     )
   };
 
-  let str_grade = '';
-  switch (grade) {
-    case 1:
-     str_grade = 'A1';
-     break;
-    case 2:
-      str_grade = 'A2';
-      break;
-    case 3:
-      str_grade = 'B1';
-      break;
-    case 4:
-      str_grade = 'B2';
-      break;
-    case 5:
-      str_grade = 'C1';
-      break;
-    case 6:
-      str_grade = 'C2';
-      break;
-    default:
-  }
+  let str_grade = GradesHelper.numGradeToStrGrade(grade);
 
   return (
     <Container>
@@ -78,4 +58,8 @@ const Main = () => {
   )
 };
 
-export default Main;
+Main.propTypes = {
+  store: storeType
+};
+
+export default connect(Main);

@@ -55,4 +55,4 @@ export const connect = (ChildComponent) => {
   }
 };
 
-export default store;
+// export default store;
