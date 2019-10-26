@@ -338,3 +338,25 @@ POST /contents/add
       }
 }
 ```
+## Delete exercise
+
+**Request Content:**
+
+Exercise id
+
+**Response Content:**
+none
+
+##### Example Request
+```
+GET /contents/delete?id=3
+```
+
+##### Example Response
+```json
+{
+    "status": 200,
+    "explanation": null,
+    "data": null
+}
+```
