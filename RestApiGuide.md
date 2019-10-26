@@ -360,3 +360,62 @@ GET /contents/delete?id=3
     "data": null
 }
 ```
+# Grade Endpoints
+## Get Grade by UserId and LanguageId
+
+**Request Content:**
+User id and language id
+
+**Response Content:**
+Grade
+
+##### Example Request
+```
+GET /grades/get?userId=3&languageId=1
+```
+
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": {
+    "id": 10,
+    "userId": 12,
+    "languageId": 1,
+    "grade": 1
+  }
+}
+```
+## Add Grade
+
+**Request Content:**
+UserId, languageId, grade
+
+**Response Content:**
+Grade itself
+
+##### Example Request
+```
+POST /grades/add
+```
+```json
+{
+  "grade": 4,
+  "languageId": 1,
+  "userId": 4
+}
+```
+
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": {
+    "userId": 4,
+    "languageId": 1,
+    "grade": 4
+  }
+}
+```
