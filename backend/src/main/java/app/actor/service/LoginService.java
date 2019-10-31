@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService {
 
-  private static final String USER_NOT_FOUND_MESSAGE = "No user with email: ";
+  public static final String USER_NOT_FOUND_MESSAGE = "No user with email: ";
 
   private static final String WRONG_CREDENTIALS = "Wrong credentials";
 
