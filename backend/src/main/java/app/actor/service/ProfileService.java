@@ -17,6 +17,8 @@ import static java.util.Objects.isNull;
 @Service
 public class ProfileService {
 
+  private static final String USER_NOT_FOUND_MESSAGE = "User not found with id: ";
+
   private UserService userService;
 
   private GradeService gradeService;
@@ -32,7 +34,7 @@ public class ProfileService {
   public ProfileInfo getProfileInfoByUserId(Long userId) throws UserNotFoundException {
     User user = userService.getUserById(userId).getData();
     if (isNull(user)) {
-      throw new UserNotFoundException(LoginService.USER_NOT_FOUND_MESSAGE);
+      throw new UserNotFoundException(USER_NOT_FOUND_MESSAGE + userId);
     }
     ProfileInfo profileInfo = new ProfileInfo(user.getFirstName(), user.getLastName(), user.getEmail());
     List<String> allLanguages = languageService.getAllLanguages().getData();
