@@ -1,5 +1,6 @@
 package app.actor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,8 @@ public class ProfileInfo {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
+    languages = new ArrayList<>();
+    grades = new ArrayList<>();
   }
 
   public String getFirstName() {
