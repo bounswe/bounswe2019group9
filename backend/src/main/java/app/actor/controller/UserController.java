@@ -1,11 +1,14 @@
 package app.actor.controller;
 
+import app.HttpResponses;
 import app.Response;
 import app.actor.LoginRequest;
+import app.actor.ProfileInfo;
 import app.actor.RegisterRequest;
+import app.actor.UserNotFoundException;
 import app.actor.entity.User;
-import app.actor.repository.UserRepository;
 import app.actor.service.LoginService;
+import app.actor.service.ProfileService;
 import app.actor.service.RegisterService;
 import app.actor.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,23 +26,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
 
-  private final UserService userService;
+  private UserService userService;
 
-  private final RegisterService registerService;
+  private RegisterService registerService;
 
-  private final LoginService loginService;
+  private LoginService loginService;
+
+  private ProfileService profileService;
 
   public UserController(UserService userService,
                         RegisterService registerService,
-                        LoginService loginService) {
+                        LoginService loginService,
+                        ProfileService profileService) {
     this.userService = userService;
     this.registerService = registerService;
     this.loginService = loginService;
+    this.profileService = profileService;
   }
 
   @GetMapping("/get")
   public Response<User> getUserById(@RequestParam Long id) {
     return userService.getUserById(id);
+  }
+
+  @GetMapping("/profile")
+  public Response<ProfileInfo> getProfileInfoByUserId(@RequestParam Long id) {
+    try {
+      return HttpResponses.from(profileService.getProfileInfoByUserId(id));
+    } catch (UserNotFoundException ex) {
+      return HttpResponses.notFound(ex.getMessage());
+    }
   }
 
   @PostMapping("/register")
