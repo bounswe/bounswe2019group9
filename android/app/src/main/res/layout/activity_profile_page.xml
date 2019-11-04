@@ -55,7 +55,7 @@ tools:context=".ProfilePageActivity">
         android:layout_height="wrap_content"
         android:layout_below="@id/user_email_view"
         android:layout_marginTop="20dp"
-        android:text="Grade"
+        android:text="Prof isn't taken"
         style="@style/WelcomePageTextView"/>
     <Button
         android:id="@+id/logout_button"

@@ -63,17 +63,17 @@ public class ProfilePageActivity extends AppCompatActivity {
 
                             JSONArray gradeOfUser = data.getJSONArray("grades");
                             int userGrade = gradeOfUser.getInt(0);
-                            if(userGrade ==1){
+                            if (userGrade == 1) {
                                 gradeDisplay.setText("A1");
-                            }else if(userGrade ==2){
+                            } else if (userGrade == 2) {
                                 gradeDisplay.setText("A2");
-                            }else if(userGrade ==3){
+                            } else if (userGrade == 3) {
                                 gradeDisplay.setText("B1");
-                            }else if(userGrade ==4){
+                            } else if (userGrade == 4) {
                                 gradeDisplay.setText("B2");
-                            }else if(userGrade ==5){
+                            } else if (userGrade == 5) {
                                 gradeDisplay.setText("C1");
-                            }else if(userGrade ==6){
+                            } else if (userGrade == 6) {
                                 gradeDisplay.setText("C2");
                             }
 
