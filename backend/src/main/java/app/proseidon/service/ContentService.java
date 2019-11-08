@@ -1,7 +1,9 @@
-package app.proseidon;
+package app.proseidon.service;
 
 import app.common.HttpResponses;
 import app.common.Response;
+import app.proseidon.repository.ContentRepository;
+import app.proseidon.entity.Exercise;
 import java.util.List;
 import org.springframework.stereotype.Service;
 

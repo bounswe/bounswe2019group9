@@ -1,5 +1,6 @@
-package app.proseidon;
+package app.proseidon.repository;
 
+import app.proseidon.entity.Language;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

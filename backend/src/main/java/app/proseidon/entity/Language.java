@@ -1,4 +1,4 @@
-package app.proseidon;
+package app.proseidon.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
