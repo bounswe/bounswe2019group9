@@ -1,8 +1,8 @@
 package app.actor.service;
 
-import app.HttpResponses;
-import app.Response;
-import app.actor.GradeRequest;
+import app.common.HttpResponses;
+import app.common.Response;
+import app.actor.bean.GradeRequest;
 import app.actor.entity.Grade;
 import app.actor.repository.GradeRepository;
 import org.springframework.stereotype.Service;

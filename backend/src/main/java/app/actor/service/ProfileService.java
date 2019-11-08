@@ -1,6 +1,6 @@
 package app.actor.service;
 
-import app.actor.ProfileInfo;
+import app.actor.bean.ProfileInfo;
 import app.actor.UserNotFoundException;
 import app.actor.entity.Grade;
 import app.actor.entity.User;
