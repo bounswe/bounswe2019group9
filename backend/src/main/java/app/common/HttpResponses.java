@@ -1,4 +1,4 @@
-package app;
+package app.common;
 
 /**
  * @author ahmet.gedemenli

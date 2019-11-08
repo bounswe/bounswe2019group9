@@ -1,7 +1,7 @@
 package app.actor.controller;
 
-import app.Response;
-import app.actor.GradeRequest;
+import app.common.Response;
+import app.actor.bean.GradeRequest;
 import app.actor.entity.Grade;
 import app.actor.service.GradeService;
 import org.springframework.web.bind.annotation.GetMapping;

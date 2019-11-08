@@ -1,7 +1,7 @@
 package app.proseidon;
 
-import app.HttpResponses;
-import app.Response;
+import app.common.HttpResponses;
+import app.common.Response;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;

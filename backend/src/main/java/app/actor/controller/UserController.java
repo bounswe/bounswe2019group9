@@ -1,10 +1,10 @@
 package app.actor.controller;
 
-import app.HttpResponses;
-import app.Response;
-import app.actor.LoginRequest;
-import app.actor.ProfileInfo;
-import app.actor.RegisterRequest;
+import app.common.HttpResponses;
+import app.common.Response;
+import app.actor.bean.LoginRequest;
+import app.actor.bean.ProfileInfo;
+import app.actor.bean.RegisterRequest;
 import app.actor.UserNotFoundException;
 import app.actor.entity.User;
 import app.actor.service.LoginService;
