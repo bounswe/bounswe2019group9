@@ -1,7 +1,9 @@
-package app.proseidon;
+package app.proseidon.controller;
 
 import app.common.HttpResponses;
 import app.common.Response;
+import app.proseidon.service.ContentService;
+import app.proseidon.entity.Exercise;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;

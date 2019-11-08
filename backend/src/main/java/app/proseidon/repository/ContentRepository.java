@@ -1,5 +1,7 @@
-package app.proseidon;
+package app.proseidon.repository;
 
+import app.proseidon.entity.Content;
+import app.proseidon.entity.Exercise;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;

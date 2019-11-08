@@ -4,7 +4,7 @@ import app.actor.bean.ProfileInfo;
 import app.actor.UserNotFoundException;
 import app.actor.entity.Grade;
 import app.actor.entity.User;
-import app.proseidon.LanguageService;
+import app.proseidon.service.LanguageService;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
