@@ -13,7 +13,7 @@ public class Response<T> {
   private final T data;
 
   Response(T data) {
-    this(200, null, data);
+    this(HttpResponses.SUCCESSFUL, null, data);
   }
 
   public Response(Integer status, String explanation, T data) {
