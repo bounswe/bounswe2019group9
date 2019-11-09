@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessageService {
 
+  private static final String USER_NOT_FOUND_MESSAGE = "User not found.";
+
   private final UserService userService;
 
   private final MessageRepository messageRepository;
@@ -31,7 +33,7 @@ public class MessageService {
   public Response<List<Message>> createMessage(CreateMessageRequest request) {
     if (userService.getUserById(request.getReceiverId()).getStatus() != HttpResponses.SUCCESSFUL
         || userService.getUserById(request.getSourceId()).getStatus() != HttpResponses.SUCCESSFUL) {
-      return HttpResponses.badRequest(LoginService.USER_NOT_FOUND_MESSAGE);
+      return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
     }
     messageRepository.createMessage(request.getSourceId(), request.getReceiverId(), request.getContent(), new Date());
     return HttpResponses.from(messageRepository.getMessagesByUserId(request.getSourceId()));
