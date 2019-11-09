@@ -4,6 +4,7 @@ import app.actor.service.LoginService;
 import app.actor.service.UserService;
 import app.common.HttpResponses;
 import app.common.Response;
+import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,15 @@ public class MessageService {
 
   private final UserService userService;
 
-  public MessageService(UserService userService) {
+  private final MessageRepository messageRepository;
+
+  public MessageService(UserService userService, MessageRepository messageRepository) {
     this.userService = userService;
+    this.messageRepository = messageRepository;
+  }
+
+  public Response<List<Message>> getMessagesByUserId(Long userId){
+    return HttpResponses.from(messageRepository.getMessagesByUserId(userId));
   }
 
   public Response<List<Message>> createMessage(CreateMessageRequest request) {
@@ -25,5 +33,7 @@ public class MessageService {
         || userService.getUserById(request.getSourceId()).getStatus() != HttpResponses.SUCCESSFUL) {
       return HttpResponses.badRequest(LoginService.USER_NOT_FOUND_MESSAGE);
     }
+    messageRepository.createMessage(request.getSourceId(), request.getReceiverId(), request.getContent(), new Date());
+    return HttpResponses.from(messageRepository.getMessagesByUserId(request.getSourceId()));
   }
 }
