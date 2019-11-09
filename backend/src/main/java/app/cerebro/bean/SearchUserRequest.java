@@ -1,4 +1,4 @@
-package app.cerebro;
+package app.cerebro.bean;
 
 /**
  * @author ahmet.gedemenli

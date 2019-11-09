@@ -1,10 +1,10 @@
-package app.cerebro;
+package app.cerebro.controller;
 
 import app.actor.bean.ProfileInfo;
-import app.common.HttpResponses;
+import app.cerebro.service.SearchOperatorService;
+import app.cerebro.bean.SearchUserRequest;
 import app.common.Response;
 import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package app.cerebro;
+package app.cerebro.service;
 
 /**
  * @author ahmet.gedemenli
@@ -10,6 +10,7 @@ import app.actor.entity.User;
 import app.actor.repository.GradeRepository;
 import app.actor.repository.UserRepository;
 import app.actor.service.ProfileService;
+import app.cerebro.bean.SearchUserRequest;
 import app.common.HttpResponses;
 import app.common.Response;
 import java.util.ArrayList;
