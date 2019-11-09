@@ -1,4 +1,4 @@
-package app.raven;
+package app.raven.bean;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

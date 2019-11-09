@@ -1,4 +1,4 @@
-package app.raven;
+package app.raven.entity;
 
 import java.util.Date;
 import javax.persistence.Column;
