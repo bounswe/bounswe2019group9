@@ -1,6 +1,5 @@
 package app.raven;
 
-import app.actor.service.LoginService;
 import app.actor.service.UserService;
 import app.common.HttpResponses;
 import app.common.Response;
@@ -26,16 +25,25 @@ public class MessageService {
     this.messageRepository = messageRepository;
   }
 
-  public Response<List<Message>> getMessagesByUserId(Long userId){
+  public Response<List<Message>> getMessagesByUserId(Long userId) {
+    if (!isIdValid(userId)) {
+      return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
+    }
     return HttpResponses.from(messageRepository.getMessagesByUserId(userId));
   }
 
   public Response<List<Message>> createMessage(CreateMessageRequest request) {
-    if (userService.getUserById(request.getReceiverId()).getStatus() != HttpResponses.SUCCESSFUL
-        || userService.getUserById(request.getSourceId()).getStatus() != HttpResponses.SUCCESSFUL) {
+    if (!isIdValid(request.getSourceId())) {
+      return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
+    }
+    if (!isIdValid(request.getReceiverId())) {
       return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
     }
     messageRepository.createMessage(request.getSourceId(), request.getReceiverId(), request.getContent(), new Date());
     return HttpResponses.from(messageRepository.getMessagesByUserId(request.getSourceId()));
+  }
+
+  private boolean isIdValid(Long userId) {
+    return userService.getUserById(userId).getStatus() == HttpResponses.SUCCESSFUL;
   }
 }
