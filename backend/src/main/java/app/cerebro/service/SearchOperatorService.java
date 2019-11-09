@@ -1,4 +1,4 @@
-package app.cerebro;
+package app.cerebro.service;
 
 import org.springframework.stereotype.Service;
 
