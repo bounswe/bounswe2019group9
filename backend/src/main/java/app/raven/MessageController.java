@@ -1,6 +1,5 @@
 package app.raven;
 
-import app.common.HttpResponses;
 import app.common.Response;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
@@ -27,7 +26,7 @@ public class MessageController {
 
   @GetMapping
   public Response<List<Message>> getMessagesByUserId(@RequestParam("userId") Long userId) {
-    return HttpResponses.from(null);
+    return messageService.getMessagesByUserId(userId);
   }
 
   @PostMapping
