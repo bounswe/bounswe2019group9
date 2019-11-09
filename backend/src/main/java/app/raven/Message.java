@@ -37,6 +37,9 @@ public class Message {
   @NotNull
   private Date createdAt;
 
+  public Message() {
+  }
+
   public Message(@NotNull Long sourceId, @NotNull Long receiverId,
                  @NotNull String content, @NotNull Date createdAt) {
     this.sourceId = sourceId;
