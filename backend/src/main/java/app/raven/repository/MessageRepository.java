@@ -1,5 +1,6 @@
-package app.raven;
+package app.raven.repository;
 
+import app.raven.entity.Message;
 import java.util.Date;
 import java.util.List;
 import javax.transaction.Transactional;

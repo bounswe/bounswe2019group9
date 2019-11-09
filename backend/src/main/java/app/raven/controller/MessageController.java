@@ -1,6 +1,9 @@
-package app.raven;
+package app.raven.controller;
 
 import app.common.Response;
+import app.raven.bean.CreateMessageRequest;
+import app.raven.entity.Message;
+import app.raven.service.MessageService;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
