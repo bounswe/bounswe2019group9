@@ -36,7 +36,7 @@ public class ProfileService {
     if (isNull(user)) {
       throw new UserNotFoundException(USER_NOT_FOUND_MESSAGE + userId);
     }
-    ProfileInfo profileInfo = new ProfileInfo(user.getFirstName(), user.getLastName(), user.getEmail());
+    ProfileInfo profileInfo = new ProfileInfo(userId, user.getFirstName(), user.getLastName(), user.getEmail());
     List<String> allLanguages = languageService.getAllLanguages().getData();
     for (String lang : allLanguages) {
       Integer langId = languageService.getLanguageIdByName(lang);

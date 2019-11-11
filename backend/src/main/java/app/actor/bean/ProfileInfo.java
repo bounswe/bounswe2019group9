@@ -9,6 +9,8 @@ import java.util.List;
 
 public class ProfileInfo {
 
+  private Long userId;
+
   private String firstName;
 
   private String lastName;
@@ -19,12 +21,21 @@ public class ProfileInfo {
 
   private List<Integer> grades;
 
-  public ProfileInfo(String firstName, String lastName, String email) {
+  public ProfileInfo(Long userId, String firstName, String lastName, String email) {
+    this.userId = userId;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     languages = new ArrayList<>();
     grades = new ArrayList<>();
+  }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 
   public String getFirstName() {
@@ -70,7 +81,8 @@ public class ProfileInfo {
   @Override
   public String toString() {
     return "ProfileInfo{" +
-           "firstName='" + firstName + '\'' +
+           "userId=" + userId +
+           ", firstName='" + firstName + '\'' +
            ", lastName='" + lastName + '\'' +
            ", email='" + email + '\'' +
            ", languages=" + languages +
