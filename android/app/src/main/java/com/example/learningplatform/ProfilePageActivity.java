@@ -1,5 +1,6 @@
 package com.example.learningplatform;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -7,9 +8,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -94,6 +96,29 @@ public class ProfilePageActivity extends AppCompatActivity {
         });
         queue.add(jsonObjectRequest);
 
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intentx;
+                switch (item.getItemId()) {
+                    case R.id.nav_bar_excercise:
+                        intentx = new Intent(ProfilePageActivity.this, ExerciseListDisplay.class);
+                        startActivity(intentx);
+                        return true;
+                    case R.id.nav_bar_message:
+                        return true;
+                    case R.id.nav_bar_profile:
+                        return true;
+                    case R.id.nav_bar_search:
+                        intentx = new Intent(ProfilePageActivity.this, SearchActivity.class);
+                        startActivity(intentx);
+                        return true;
+                }
+                return true;
+            }
+        });
+
     }
     public void Logout(View v){
         SharedPreferences sharedpreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
@@ -109,5 +134,17 @@ public class ProfilePageActivity extends AppCompatActivity {
     public void GoProf(View v){
         Intent intent = new Intent(v.getContext(), LanguageListDisplay.class);
         v.getContext().startActivity(intent);
+    }
+
+
+    public void SelectExercise(View v) {
+        String s = v.getContext().toString();
+        Intent intent = new Intent(v.getContext(), ExerciseListDisplay.class);
+        v.getContext().startActivity(intent);
+    }
+    public void searchButton(View v){
+        Intent intent = new Intent(v.getContext(), SearchActivity.class);
+        v.getContext().startActivity(intent);
+        Log.i("searchButton","buttonClicked");
     }
 }

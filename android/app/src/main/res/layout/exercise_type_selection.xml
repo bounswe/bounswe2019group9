@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/app_color_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/select_exercise_type_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="16dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/select_exercise_type_text"
+        android:textSize="22sp"
+        android:textColor="@color/app_color_dark"
+        android:background="@color/app_color_light"/>
+
+    <LinearLayout
+        android:id="@+id/listening"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/app_color_light"
+        android:onClick="SelectExerciseType">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/listening" />
+
+        <TextView
+            android:layout_width="274dp"
+            android:layout_height="52dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="12dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:text="@string/listening"
+            android:textColor="@color/app_color_dark"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reading"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/app_color_light"
+        android:onClick="SelectExerciseType">
+
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/reading" />
+
+        <TextView
+            android:layout_width="274dp"
+            android:layout_height="52dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="12dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:text="@string/reading"
+            android:textColor="@color/app_color_dark"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/writing"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/app_color_light"
+        android:onClick="SelectExerciseType">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/writing" />
+
+        <TextView
+            android:layout_width="274dp"
+            android:layout_height="52dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="12dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:text="@string/writing"
+            android:textColor="@color/app_color_dark"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/vocabulary"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/app_color_light"
+        android:onClick="SelectExerciseType">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/vocab" />
+
+        <TextView
+            android:layout_width="274dp"
+            android:layout_height="52dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="12dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:text="@string/vocabulary"
+            android:textColor="@color/app_color_dark"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/grammar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/app_color_light"
+        android:onClick="SelectExerciseType"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/grammar" />
+
+        <TextView
+            android:layout_width="274dp"
+            android:layout_height="52dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="12dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:text="@string/grammar"
+            android:textColor="@color/app_color_dark"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:background="@color/app_color_dark"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/bottom_navigation_menu" />
+</RelativeLayout>
