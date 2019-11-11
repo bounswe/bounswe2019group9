@@ -110,4 +110,11 @@ public class ProfilePageActivity extends AppCompatActivity {
         Intent intent = new Intent(v.getContext(), LanguageListDisplay.class);
         v.getContext().startActivity(intent);
     }
+
+    public void SelectExercise(View v){
+       String s = v.getContext().toString();
+
+        Intent intent = new Intent(v.getContext(), ExerciseListDisplay.class);
+        v.getContext().startActivity(intent);
+    }
 }

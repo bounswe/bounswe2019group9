@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".ProfilePageActivity"></activity>
+        <activity android:name=".ExerciseListDisplay"></activity>
         <activity android:name=".GradeView" />
         <activity android:name=".QuestionDisplay" />
         <activity android:name=".RegisterActivity" />
