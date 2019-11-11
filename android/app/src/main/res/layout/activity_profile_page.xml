@@ -79,6 +79,18 @@ tools:context=".ProfilePageActivity">
         android:text="assesment"
         />
 
+    <Button
+        android:id="@+id/search_button"
+        style="@style/WelcomePageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/prof_button"
+        android:layout_marginTop="15dp"
+        android:onClick="searchButton"
+        android:text="Search"
+        />
+
+
 </RelativeLayout>
 
 
