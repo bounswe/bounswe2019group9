@@ -19,6 +19,8 @@ public class MessageService {
 
   private static final String USER_NOT_FOUND_MESSAGE = "User not found.";
 
+  private static final String SENDER_AND_RECEIVER_CANNOT_BE_SAME_MESSAGE = "Sender and receiver can't be same the user";
+
   private final UserService userService;
 
   private final MessageRepository messageRepository;
@@ -35,12 +37,19 @@ public class MessageService {
     return HttpResponses.from(messageRepository.getMessagesByUserId(userId));
   }
 
-  public Response<List<Message>> createMessage(CreateMessageRequest request) {
-    if (!isIdValid(request.getSourceId())) {
+  public Response<List<Message>> getChatContent(Long userId1, Long userId2) {
+    if (!isIdValid(userId1) || !isIdValid(userId2)) {
       return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
     }
-    if (!isIdValid(request.getReceiverId())) {
+    return HttpResponses.from(messageRepository.getChatContent(userId1, userId2));
+  }
+
+  public Response<List<Message>> createMessage(CreateMessageRequest request) {
+    if (!isIdValid(request.getSourceId()) || !isIdValid(request.getReceiverId())) {
       return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
+    }
+    if (request.getReceiverId() == request.getSourceId()) {
+      return HttpResponses.badRequest(SENDER_AND_RECEIVER_CANNOT_BE_SAME_MESSAGE);
     }
     messageRepository.createMessage(request.getSourceId(), request.getReceiverId(), request.getContent(), new Date());
     return HttpResponses.from(messageRepository.getMessagesByUserId(request.getSourceId()));
