@@ -78,6 +78,16 @@ tools:context=".ProfilePageActivity">
         android:onClick="GoProf"
         android:text="assesment"
         />
+    <Button
+        android:id="@+id/exercise_type_button"
+        style="@style/WelcomePageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/prof_button"
+        android:layout_marginTop="15dp"
+        android:onClick="SelectExercise"
+        android:text="Exercises"
+        />
 
 
 </RelativeLayout>
