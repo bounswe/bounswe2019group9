@@ -32,8 +32,14 @@ public class MessageController {
     return messageService.getMessagesByUserId(userId);
   }
 
+  @GetMapping("/chat")
+  public Response<List<Message>> getConversationContent(@RequestParam("userId1") Long userId1,
+                                                        @RequestParam("userId2") Long userId2) {
+    return messageService.getChatContent(userId1, userId2);
+  }
+
   @PostMapping
-  public Response<List<Message>> createMessage(@Validated @RequestBody CreateMessageRequest request){
+  public Response<List<Message>> createMessage(@Validated @RequestBody CreateMessageRequest request) {
     return messageService.createMessage(request);
   }
 }
