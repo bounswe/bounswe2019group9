@@ -86,5 +86,4 @@
             android:text="@string/register_button"
             />
     </RelativeLayout>
-
 </RelativeLayout>

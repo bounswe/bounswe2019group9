@@ -197,21 +197,21 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
         holder.languageName.setText(languageArrayList.get(position).getLanguageName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Log.i("entered", "mylanguage");
-                Intent intent = new Intent(holder.itemView.getContext(), QuestionDisplay.class);
-                intent.putStringArrayListExtra("questions", questionList);
-                intent.putStringArrayListExtra("choices", choices);
-                intent.putStringArrayListExtra("solutions",solutions);
-                holder.itemView.getContext().startActivity(intent);
-
+                if (position == 0) {
+                    Log.i("entered", "mylanguage");
+                    Intent intent = new Intent(holder.itemView.getContext(), QuestionDisplay.class);
+                    intent.putStringArrayListExtra("questions", questionList);
+                    intent.putStringArrayListExtra("choices", choices);
+                    intent.putStringArrayListExtra("solutions", solutions);
+                    holder.itemView.getContext().startActivity(intent);
+                }
             }
         });
     }
