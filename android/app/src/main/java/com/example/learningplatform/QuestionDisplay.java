@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ import java.util.Random;
 
 public class QuestionDisplay extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
     Button answer1,answer2,answer3,answer4;
     TextView questionText;
     ArrayList<String> questionList;
@@ -36,7 +38,7 @@ public class QuestionDisplay extends AppCompatActivity {
     ArrayList<String> answers;
     ArrayList<String> solutions;
     int questionCount;
-    int userID=0;
+    int userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +111,11 @@ public class QuestionDisplay extends AppCompatActivity {
                 letterGradeOfStudent = "A1";
             }
 
+
+            sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+            int id = sharedPreferences.getInt("Id",0);
+            userID=id;
+
             JSONObject grade_data = new JSONObject();
             try {
                 grade_data.put("grade",gradeOfStudent);
@@ -119,7 +126,7 @@ public class QuestionDisplay extends AppCompatActivity {
             }
 
             RequestQueue queue = Volley.newRequestQueue(v.getContext());
-            String url = "https://api.bounswe2019group9.tk//grades/add";
+            String url = "https://api.bounswe2019group9.tk/grades/add";
             JsonObjectRequest gradeJsonReq = new JsonObjectRequest(Request.Method.POST, url,grade_data,
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -147,7 +154,7 @@ public class QuestionDisplay extends AppCompatActivity {
                         }
                     });
 
-            //queue.add(gradeJsonReq);
+            queue.add(gradeJsonReq);
 
             Intent intent = new Intent(this,GradeView.class);
             intent.putExtra("grade",letterGradeOfStudent);

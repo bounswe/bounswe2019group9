@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/app_color_light"
+tools:context=".ProfilePageActivity">
+
+<RelativeLayout
+    android:id="@+id/relativeLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_marginLeft="48dp"
+    android:layout_marginTop="32dp"
+    android:layout_marginRight="48dp"
+    android:layout_marginBottom="32dp"
+    android:background="@color/white"
+    android:elevation="5dp"
+    android:gravity="center_horizontal"
+    android:outlineAmbientShadowColor="@color/cardview_dark_background"
+    android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
+    android:paddingHorizontal="70dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="32dp">
+
+    <TextView
+        android:id="@+id/user_name_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/WelcomePageTextView"
+        android:text="Name"
+        />
+
+    <TextView
+        android:id="@+id/user_surname_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name_view"
+        android:layout_marginTop="20dp"
+        android:text="Surname"
+        style="@style/WelcomePageTextView"/>
+    <TextView
+        android:id="@+id/user_email_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_surname_view"
+        android:layout_marginTop="20dp"
+        android:text="Email"
+        style="@style/WelcomePageTextView"/>
+    <TextView
+        android:id="@+id/user_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_email_view"
+        android:layout_marginTop="20dp"
+        android:text="Prof isn't taken"
+        style="@style/WelcomePageTextView"/>
+    <Button
+        android:id="@+id/logout_button"
+        style="@style/WelcomePageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_grade"
+        android:layout_marginTop="40dp"
+        android:onClick="Logout"
+        android:text="LOGOUT"
+        />
+
+    <Button
+        android:id="@+id/prof_button"
+        style="@style/WelcomePageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logout_button"
+        android:layout_marginTop="15dp"
+        android:onClick="GoProf"
+        android:text="assesment"
+        />
+
+</RelativeLayout>
+
+
+</RelativeLayout>
