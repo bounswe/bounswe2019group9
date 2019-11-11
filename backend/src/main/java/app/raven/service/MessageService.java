@@ -35,6 +35,13 @@ public class MessageService {
     return HttpResponses.from(messageRepository.getMessagesByUserId(userId));
   }
 
+  public Response<List<Message>> getChatContent(Long userId1, Long userId2) {
+    if (!isIdValid(userId1) || !isIdValid(userId2)) {
+      return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
+    }
+    return HttpResponses.from(messageRepository.getChatContent(userId1, userId2));
+  }
+
   public Response<List<Message>> createMessage(CreateMessageRequest request) {
     if (!isIdValid(request.getSourceId())) {
       return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
