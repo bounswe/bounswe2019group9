@@ -100,17 +100,19 @@ public class ProfilePageActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent;
+                Intent intentx;
                 switch (item.getItemId()) {
                     case R.id.nav_bar_excercise:
+                        intentx = new Intent(ProfilePageActivity.this, ExerciseListDisplay.class);
+                        startActivity(intentx);
                         return true;
                     case R.id.nav_bar_message:
                         return true;
                     case R.id.nav_bar_profile:
                         return true;
                     case R.id.nav_bar_search:
-                        intent = new Intent(ProfilePageActivity.this, SearchActivity.class);
-                        startActivity(intent);
+                        intentx = new Intent(ProfilePageActivity.this, SearchActivity.class);
+                        startActivity(intentx);
                         return true;
                 }
                 return true;
@@ -135,11 +137,11 @@ public class ProfilePageActivity extends AppCompatActivity {
     }
 
 
-    public void SelectExercise(View v){
-       String s = v.getContext().toString();
+    public void SelectExercise(View v) {
+        String s = v.getContext().toString();
         Intent intent = new Intent(v.getContext(), ExerciseListDisplay.class);
         v.getContext().startActivity(intent);
-
+    }
     public void searchButton(View v){
         Intent intent = new Intent(v.getContext(), SearchActivity.class);
         v.getContext().startActivity(intent);

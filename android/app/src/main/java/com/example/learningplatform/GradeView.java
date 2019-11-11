@@ -30,6 +30,8 @@ public class GradeView extends AppCompatActivity {
                 Intent intent;
                 switch (item.getItemId()) {
                     case R.id.nav_bar_excercise:
+                        intent = new Intent(GradeView.this, ExerciseListDisplay.class);
+                        startActivity(intent);
                         return true;
                     case R.id.nav_bar_message:
                         return true;

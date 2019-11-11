@@ -28,6 +28,8 @@ public class LanguageListDisplay extends AppCompatActivity {
                 Intent intent;
                 switch (item.getItemId()) {
                     case R.id.nav_bar_excercise:
+                        intent = new Intent(LanguageListDisplay.this, ExerciseListDisplay.class);
+                        startActivity(intent);
                         return true;
                     case R.id.nav_bar_message:
                         return true;
