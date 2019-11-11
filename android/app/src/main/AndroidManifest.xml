@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProfilePageActivity"></activity>
+        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".ProfilePageActivity" />
         <activity android:name=".GradeView" />
         <activity android:name=".QuestionDisplay" />
         <activity android:name=".RegisterActivity" />
