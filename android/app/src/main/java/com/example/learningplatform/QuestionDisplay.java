@@ -73,16 +73,19 @@ public class QuestionDisplay extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
                 switch (item.getItemId()) {
                     case R.id.nav_bar_excercise:
                         return true;
                     case R.id.nav_bar_message:
                         return true;
                     case R.id.nav_bar_profile:
-                        Intent intent = new Intent(QuestionDisplay.this, ProfilePageActivity.class);
+                        intent = new Intent(QuestionDisplay.this, ProfilePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_bar_search:
+                        intent = new Intent(QuestionDisplay.this, SearchActivity.class);
+                        startActivity(intent);
                         return true;
                 }
                 return true;

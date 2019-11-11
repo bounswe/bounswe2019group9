@@ -1,9 +1,11 @@
 package com.example.learningplatform;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -136,6 +139,27 @@ public class SearchActivity extends AppCompatActivity {
                 int selectedID = selectedUser.userID;
                 String person = selectedUser.firstName;
                 Toast.makeText(SearchActivity.this,"yeeey clicked well on "+person+" with ID "+ selectedID,Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_bar_excercise:
+                        return true;
+                    case R.id.nav_bar_message:
+                        return true;
+                    case R.id.nav_bar_profile:
+                        Intent intent = new Intent(SearchActivity.this, ProfilePageActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_bar_search:
+                        return true;
+                }
+                return true;
             }
         });
 

@@ -100,6 +100,7 @@ public class ProfilePageActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
                 switch (item.getItemId()) {
                     case R.id.nav_bar_excercise:
                         return true;
@@ -108,6 +109,8 @@ public class ProfilePageActivity extends AppCompatActivity {
                     case R.id.nav_bar_profile:
                         return true;
                     case R.id.nav_bar_search:
+                        intent = new Intent(ProfilePageActivity.this, SearchActivity.class);
+                        startActivity(intent);
                         return true;
                 }
                 return true;
