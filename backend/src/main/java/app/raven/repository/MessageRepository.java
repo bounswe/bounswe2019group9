@@ -22,4 +22,7 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 
   @Query(value = "SELECT * FROM raven.messages WHERE source_id=:userId OR receiver_id=:userId", nativeQuery = true)
   List<Message> getMessagesByUserId(@Param("userId") Long userId);
+
+  @Query(value = "SELECT * FROM raven.messages WHERE (source_id=:userId1 OR source_id=:userId2) AND (receiver_id=:userId1 OR receiver_id=:userId2)", nativeQuery = true)
+  List<Message> getChatContent(@Param("userId1") Long userId1, @Param("userId2") Long userId2);
 }
