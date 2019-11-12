@@ -43,6 +43,10 @@ public class ContentService {
     return languageService;
   }
 
+  public Exercise getExerciseById(Long id){
+    return contentRepository.getExerciseById(id);
+  }
+
   public Response<Exercise> addExercise(Exercise exercise) {
     contentRepository.addExercise(exercise.getLanguageId(), exercise.getTypeId(), exercise.getImageUrl(),
                                   exercise.getSoundUrl(), exercise.getQuestionBody(), exercise.getOptionA(),

@@ -12,8 +12,14 @@ public final class HttpResponses {
 
   public static final Integer NOT_FOUND = 404;
 
+  public static final String SUCCESSFUL_MESSAGE = "Successful";
+
   public static <T> Response<T> from(T data) {
     return new Response<>(data);
+  }
+
+  public static <T> Response<T> successful() {
+    return new Response<>(SUCCESSFUL, SUCCESSFUL_MESSAGE, null);
   }
 
   public static <T> Response<T> badRequest(String message) {
