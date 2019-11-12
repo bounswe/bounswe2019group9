@@ -21,6 +21,6 @@ public interface SolvedExercisesRepository extends JpaRepository<ExerciseSolvedI
 
   @Modifying
   @Transactional
-  @Query(value = "INSERT INTO solved_exercises(userd_id, exercise_id) VALUES(:userId, :exerciseId)", nativeQuery = true)
+  @Query(value = "INSERT INTO solved_exercises(user_id, exercise_id) VALUES(:userId, :exerciseId)", nativeQuery = true)
   void createExerciseSolvedInfo(@Param("userId") Long userId, @Param("exerciseId") Long exerciseId);
 }
