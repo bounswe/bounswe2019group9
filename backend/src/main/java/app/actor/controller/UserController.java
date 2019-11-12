@@ -1,5 +1,7 @@
 package app.actor.controller;
 
+import app.actor.bean.ExerciseSolvedRequest;
+import app.actor.entity.ExerciseSolvedInfo;
 import app.common.HttpResponses;
 import app.common.Response;
 import app.actor.bean.LoginRequest;
@@ -66,5 +68,10 @@ public class UserController {
   @PostMapping("/login")
   public Response<User> login(@RequestBody LoginRequest loginRequest) {
     return loginService.login(loginRequest);
+  }
+
+  @PostMapping("/solved")
+  public Response<ExerciseSolvedInfo> createExerciseSolvedInfo(@RequestBody ExerciseSolvedRequest request) {
+    return userService.createExerciseSolvedInfo(request);
   }
 }
