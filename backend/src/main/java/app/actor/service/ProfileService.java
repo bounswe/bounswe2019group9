@@ -52,7 +52,7 @@ public class ProfileService {
       profileInfo.getLanguages().add(lang);
       profileInfo.getGrades().add(grade.getGrade());
       profileInfo.getProgressLevels()
-                 .add(userService.getNumberOfSolvedExercisesById(userId, langId, grade.getGrade())
+                 .add(100 * userService.getNumberOfSolvedExercisesById(userId, langId, grade.getGrade())
                       / contentService.getNumberOfExercisesByGrade(langId, grade.getGrade()));
     }
     return profileInfo;
