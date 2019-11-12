@@ -39,4 +39,10 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
   @Modifying
   @Query(value = "DELETE FROM proseidon.exercises WHERE id=:id", nativeQuery = true)
   void deleteExercise(@Param("id") Long id);
+
+  @Query(value = "SELECT * FROM proseidon.exercises WHERE id=:id", nativeQuery = true)
+  Exercise getExerciseById(@Param("id") Long id);
+
+  @Query(value = "SELECT count(*) FROM proseidon.exercises WHERE language_id=:langId AND grade=:grade", nativeQuery = true)
+  Integer getNumberOfExercisesByGrade(@Param("langId") Integer langId, @Param("grade") Integer grade);
 }
