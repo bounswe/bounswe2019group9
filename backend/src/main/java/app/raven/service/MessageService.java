@@ -3,12 +3,15 @@ package app.raven.service;
 import app.actor.service.UserService;
 import app.common.HttpResponses;
 import app.common.Response;
+import app.raven.repository.ConversationRepository;
 import app.raven.repository.MessageRepository;
 import app.raven.bean.CreateMessageRequest;
 import app.raven.entity.Message;
 import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Service;
+
+import static java.util.Objects.isNull;
 
 /**
  * @author ahmet.gedemenli
@@ -25,9 +28,13 @@ public class MessageService {
 
   private final MessageRepository messageRepository;
 
-  public MessageService(UserService userService, MessageRepository messageRepository) {
+  private final ConversationRepository conversationRepository;
+
+  public MessageService(UserService userService, MessageRepository messageRepository,
+                        ConversationRepository conversationRepository) {
     this.userService = userService;
     this.messageRepository = messageRepository;
+    this.conversationRepository = conversationRepository;
   }
 
   public Response<List<Message>> getMessagesByUserId(Long userId) {
@@ -51,7 +58,14 @@ public class MessageService {
     if (request.getReceiverId() == request.getSourceId()) {
       return HttpResponses.badRequest(SENDER_AND_RECEIVER_CANNOT_BE_SAME_MESSAGE);
     }
-    messageRepository.createMessage(request.getSourceId(), request.getReceiverId(), request.getContent(), new Date());
+    Date now = new Date();
+    messageRepository.createMessage(request.getSourceId(), request.getReceiverId(), request.getContent(), now);
+    if (isNull(conversationRepository.getConversationById(request.getSourceId(), request.getReceiverId()))) {
+      conversationRepository.createConversation(request.getSourceId(), request.getReceiverId(), now);
+    } else {
+      conversationRepository.updateConversationById(
+          conversationRepository.getConversationById(request.getSourceId(), request.getReceiverId()).getId(), now);
+    }
     return HttpResponses.from(messageRepository.getMessagesByUserId(request.getSourceId()));
   }
 
