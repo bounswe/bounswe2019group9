@@ -1,6 +1,5 @@
 package app.proseidon.entity;
 
-import app.proseidon.entity.Content;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -41,11 +40,11 @@ public class Exercise extends Content {
   public Exercise() {
   }
 
-  public Exercise(Integer languageId, Integer typeId, String imageUrl, String soundUrl,
+  public Exercise(Integer languageId, Integer grade, Integer typeId, String imageUrl, String soundUrl,
                   @NotNull String questionBody, @NotNull String optionA,
                   @NotNull String optionB, @NotNull String optionC,
                   @NotNull String optionD, @NotNull Integer correctAnswer) {
-    super(languageId, typeId, imageUrl, soundUrl);
+    super(languageId, grade, typeId, imageUrl, soundUrl);
     this.questionBody = questionBody;
     this.optionA = optionA;
     this.optionB = optionB;

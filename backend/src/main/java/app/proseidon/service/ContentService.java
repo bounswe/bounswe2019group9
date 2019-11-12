@@ -58,4 +58,8 @@ public class ContentService {
   public void deleteExercise(Long id) {
     contentRepository.deleteExercise(id);
   }
+
+  public Integer getNumberOfExercisesByGrade(Integer langId, Integer grade) {
+    return contentRepository.getNumberOfExercisesByGrade(langId, grade);
+  }
 }

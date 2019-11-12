@@ -22,6 +22,10 @@ public class Content {
   @NotNull
   private Integer languageId;
 
+  @Column(name = "grade")
+  @NotNull
+  private Integer grade;
+
   @Column(name = "type_id")
   private Integer typeId;
 
@@ -34,8 +38,9 @@ public class Content {
   public Content() {
   }
 
-  public Content(Integer languageId, Integer typeId, String imageUrl, String soundUrl) {
+  public Content(Integer languageId, Integer grade, Integer typeId, String imageUrl, String soundUrl) {
     this.languageId = languageId;
+    this.grade = grade;
     this.typeId = typeId;
     this.imageUrl = imageUrl;
     this.soundUrl = soundUrl;
@@ -47,6 +52,22 @@ public class Content {
 
   public void setLanguageId(Integer languageId) {
     this.languageId = languageId;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public Integer getGrade() {
+    return grade;
+  }
+
+  public void setGrade(Integer grade) {
+    this.grade = grade;
   }
 
   public Integer getTypeId() {
@@ -76,7 +97,9 @@ public class Content {
   @Override
   public String toString() {
     return "Content{" +
-           "languageId=" + languageId +
+           "id=" + id +
+           ", languageId=" + languageId +
+           ", grade=" + grade +
            ", typeId=" + typeId +
            ", imageUrl='" + imageUrl + '\'' +
            ", soundUrl='" + soundUrl + '\'' +

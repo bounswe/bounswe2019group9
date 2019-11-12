@@ -8,6 +8,8 @@ import app.common.Response;
 import app.actor.entity.User;
 import app.actor.repository.UserRepository;
 import app.proseidon.repository.ContentRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 import static java.util.Objects.isNull;
@@ -57,5 +59,18 @@ public class UserService {
     }
     solvedExercisesRepository.createExerciseSolvedInfo(request.getUserId(), request.getExerciseId());
     return HttpResponses.successful();
+  }
+
+  public Integer getNumberOfSolvedExercisesById(Long userId, Integer langId, Integer grade) {
+    List<ExerciseSolvedInfo> solveds = solvedExercisesRepository.getSolvedExercisesByUserId(userId);
+    Integer counter = 0;
+    for (ExerciseSolvedInfo solved : solveds) {
+      if (contentRepository.getExerciseById(solved.getExerciseId()).getGrade() != grade
+          || contentRepository.getExerciseById(solved.getExerciseId()).getLanguageId() != langId) {
+        continue;
+      }
+      counter++;
+    }
+    return counter;
   }
 }
