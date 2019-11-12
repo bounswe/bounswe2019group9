@@ -2,6 +2,7 @@ package app.raven.repository;
 
 import app.raven.entity.Conversation;
 import java.util.Date;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -31,4 +32,9 @@ public interface ConversationRepository extends JpaRepository<Conversation, Long
   @Transactional
   @Query(value = "UPDATE raven.conversations SET last_updated_at=:now WHERE id=:id", nativeQuery = true)
   void updateConversationById(@Param("id") Long id, @Param("now") Date now);
+
+  @Query(value = "SELECT * FROM raven.conversations WHERE user_id_one=:userId OR user_id_two=:userId"
+                 + " ORDER BY last_updated_at DESC",
+         nativeQuery = true)
+  List<Conversation> getConvesationsByUserId(@Param("userId") Long userId);
 }
