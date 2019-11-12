@@ -1,5 +1,7 @@
 package app.actor.service;
 
+import app.actor.bean.ExerciseSolvedRequest;
+import app.actor.entity.ExerciseSolvedInfo;
 import app.common.HttpResponses;
 import app.common.Response;
 import app.actor.entity.User;
@@ -27,5 +29,9 @@ public class UserService {
       return HttpResponses.notFound("User not found.");
     }
     return HttpResponses.from(user);
+  }
+
+  public Response<ExerciseSolvedInfo> createExerciseSolvedInfo(ExerciseSolvedRequest request) {
+    return null;
   }
 }
