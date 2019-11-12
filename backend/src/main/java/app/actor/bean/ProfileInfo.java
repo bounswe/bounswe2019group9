@@ -21,6 +21,8 @@ public class ProfileInfo {
 
   private List<Integer> grades;
 
+  private List<Integer> progressLevels;
+
   public ProfileInfo(Long userId, String firstName, String lastName, String email) {
     this.userId = userId;
     this.firstName = firstName;
@@ -28,6 +30,7 @@ public class ProfileInfo {
     this.email = email;
     languages = new ArrayList<>();
     grades = new ArrayList<>();
+    progressLevels = new ArrayList<>();
   }
 
   public Long getUserId() {
@@ -78,6 +81,14 @@ public class ProfileInfo {
     this.grades = grades;
   }
 
+  public List<Integer> getProgressLevels() {
+    return progressLevels;
+  }
+
+  public void setProgressLevels(List<Integer> progressLevels) {
+    this.progressLevels = progressLevels;
+  }
+
   @Override
   public String toString() {
     return "ProfileInfo{" +
@@ -87,6 +98,7 @@ public class ProfileInfo {
            ", email='" + email + '\'' +
            ", languages=" + languages +
            ", grades=" + grades +
+           ", progressLevels=" + progressLevels +
            '}';
   }
 }
