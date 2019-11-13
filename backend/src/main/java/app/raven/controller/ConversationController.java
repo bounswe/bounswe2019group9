@@ -1,7 +1,7 @@
 package app.raven.controller;
 
+import app.actor.bean.ProfileInfo;
 import app.common.Response;
-import app.raven.entity.Conversation;
 import app.raven.service.ConversationService;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ public class ConversationController {
   }
 
   @GetMapping
-  public Response<List<Conversation>> getConversationsByUserId(@RequestParam("id") Long userId){
-    return conversationService.getConversationsByUserId(userId);
+  public Response<List<ProfileInfo>> getConversationsByUserId(@RequestParam("id") Long userId){
+    return conversationService.getConversationProfileInfosByUserId(userId);
   }
 }
