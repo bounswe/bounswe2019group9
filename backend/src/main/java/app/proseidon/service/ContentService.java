@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 /**
  * @author ahmet.gedemenli
@@ -18,12 +19,16 @@ public class ContentService {
 
   private static final String LANGUAGE_NOT_FOUND = "Language not found.";
 
-  private LanguageService languageService;
+  private final LanguageService languageService;
 
-  private ContentRepository contentRepository;
+  private final TagService tagService;
 
-  public ContentService(LanguageService languageService, ContentRepository contentRepository) {
+  private final ContentRepository contentRepository;
+
+  public ContentService(LanguageService languageService, TagService tagService,
+                        ContentRepository contentRepository) {
     this.languageService = languageService;
+    this.tagService = tagService;
     this.contentRepository = contentRepository;
   }
 
@@ -43,8 +48,12 @@ public class ContentService {
     return languageService;
   }
 
-  public Exercise getExerciseById(Long id){
-    return contentRepository.getExerciseById(id);
+  public Exercise getExerciseById(Long id) {
+    Exercise exercise = contentRepository.getExerciseById(id);
+    if (nonNull(exercise)) {
+      exercise.setTags(tagService.getTagsByExerciseId(exercise.getId()));
+    }
+    return exercise;
   }
 
   public Response<Exercise> addExercise(Exercise exercise) {
@@ -57,6 +66,7 @@ public class ContentService {
 
   public void deleteExercise(Long id) {
     contentRepository.deleteExercise(id);
+    tagService.deleteTagsByExerciseId(id);
   }
 
   public Integer getNumberOfExercisesByGrade(Integer langId, Integer grade) {

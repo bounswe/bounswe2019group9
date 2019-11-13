@@ -22,6 +22,9 @@ public class Tag {
 
   private String tagText;
 
+  public Tag() {
+  }
+
   public Tag(Long exerciseId, String tagText) {
     this.exerciseId = exerciseId;
     this.tagText = tagText;

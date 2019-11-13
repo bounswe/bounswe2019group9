@@ -1,8 +1,11 @@
 package app.proseidon.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -37,6 +40,9 @@ public class Exercise extends Content {
   @NotNull
   private Integer correctAnswer;
 
+  @Transient
+  private List<Tag> tags;
+
   public Exercise() {
   }
 
@@ -51,6 +57,7 @@ public class Exercise extends Content {
     this.optionC = optionC;
     this.optionD = optionD;
     this.correctAnswer = correctAnswer;
+    this.tags = new ArrayList<>();
   }
 
   public String getQuestionBody() {
@@ -101,6 +108,14 @@ public class Exercise extends Content {
     this.correctAnswer = correctAnswer;
   }
 
+  public List<Tag> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<Tag> tags) {
+    this.tags = tags;
+  }
+
   @Override
   public String toString() {
     return "Exercise{" +
@@ -110,6 +125,7 @@ public class Exercise extends Content {
            ", optionC='" + optionC + '\'' +
            ", optionD='" + optionD + '\'' +
            ", correctAnswer=" + correctAnswer +
+           ", tags=" + tags +
            '}';
   }
 }

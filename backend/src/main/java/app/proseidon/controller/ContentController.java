@@ -2,8 +2,8 @@ package app.proseidon.controller;
 
 import app.common.HttpResponses;
 import app.common.Response;
-import app.proseidon.service.ContentService;
 import app.proseidon.entity.Exercise;
+import app.proseidon.service.ContentService;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import static java.util.Objects.isNull;
 
 /**
  * @author ahmet.gedemenli
@@ -25,6 +27,15 @@ public class ContentController {
 
   public ContentController(ContentService contentService) {
     this.contentService = contentService;
+  }
+
+  @GetMapping
+  public Response<Exercise> getExerciseById(@RequestParam(value = "id") Long id) {
+    Exercise exercise = contentService.getExerciseById(id);
+    if (isNull(exercise)) {
+      return HttpResponses.notFound("No exercise with this id.");
+    }
+    return HttpResponses.from(exercise);
   }
 
   @GetMapping("/languages")
