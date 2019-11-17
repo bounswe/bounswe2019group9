@@ -1,26 +1,29 @@
 import React from "react";
-import { Container, Row, Col, Card, CardHeader, CardTitle, CardBody, CardFooter,
-Alert, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Container, CardHeader, CardTitle, CardBody, CardFooter } from "reactstrap";
+import { Card, Row, Col, Form, Icon, Input, Button, Checkbox, Alert } from "antd";
 
 import { updateStore } from '../../../Store';
 import {Link} from "react-router-dom";
 import {login} from '../../../Api/User';
+import {CenterView} from '../../../Layouts';
+import {FormIcon} from '../../../Components';
 
 class LogIn extends React.PureComponent {
   state = {
-    email: '',
-    password: '',
     loading: false,
     error: ''
   };
   handleSubmit = (e) => {
-    const { email, password, loading } = this.state;
     e.preventDefault();
-    if (!loading) {
+    this.props.form.validateFields((err, values) => {
+      if (err) {
+        this.setState({ error: err.message });
+        return;
+      }
       this.setState({
         loading: true
       }, () => {
-        login({email, password}, {successMessage: 'Successfully Logged In'})
+        login(values, {successMessage: 'Successfully Logged In'})
           .then((response) => {
             const { data } = response.data || {};
             const { id: userId } = data || {};
@@ -35,8 +38,8 @@ class LogIn extends React.PureComponent {
               error: message
             })
           });
-      });
-    }
+      })
+    })
   };
   handleChange = (e) => {
     const { value, name } = e.target;
@@ -45,61 +48,66 @@ class LogIn extends React.PureComponent {
     });
   };
   render() {
+    const { getFieldDecorator } = this.props.form;
     const { loading, email, password, error } = this.state;
+
     return (
-      <Container fluid className="h-100">
-        <Row className="h-100 justify-content-center">
-          <Col sm="10" md="8" lg="7" xl="5" className="align-self-center">
-            <Form onSubmit={this.handleSubmit}>
-              <Card className="mb-5">
-                <CardHeader>
-                  <CardTitle tag="h3">
-                    Log In
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <Alert color="danger" isOpen={!loading && error !== ''}>
-                    { error }
-                  </Alert>
-                  <FormGroup>
-                    <Label for="email">E-Mail</Label>
+      <CenterView>
+        <Row type="flex" justify="center" align="center">
+          <Col xs={23} sm={19} md={15} lg={11} xl={9}>
+            <Card title={"Log In"} >
+              { error && (
+                <Alert type="error" message={error} showIcon />
+              )}
+              <Form
+                onSubmit={this.handleSubmit}
+                layout={'vertical'}
+              >
+                <Form.Item label="E-Mail">
+                  {getFieldDecorator('email', {
+                    rules: [{ required: true, message: 'Please enter your email.'}]
+                  })(
                     <Input
                       type="email"
-                      id="email"
                       name="email"
                       value={email}
                       placeholder="Please enter your email."
-                      onChange={this.handleChange}
-                      valid={email !== ''}
+                      prefix={<FormIcon type="mail" />}
                     />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label for="password">Password</Label>
+                  )}
+                </Form.Item>
+                <Form.Item label="Password">
+                  {getFieldDecorator('password', {
+                    rules: [{ required: true, message: 'Please enter your password.'}]
+                  })(
                     <Input
                       type="password"
                       id="password"
                       name="password"
                       value={password}
                       placeholder="Please enter your password."
-                      onChange={this.handleChange}
-                      valid={password !== ''}
+                      prefix={<FormIcon type="lock" />}
                     />
-                  </FormGroup>
-                </CardBody>
-                <CardFooter>
-                  <Button type="submit" disabled={email === '' || password === '' || loading}>
+                  )}
+                </Form.Item>
+                <Form.Item>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    loading={loading}
+                  >
                     { loading ? 'Logging in ...' : 'Log In' }
                   </Button>
                   <p>Aren't you a user yet? <Button tag={Link} to={"/register"}>Go to Register Page</Button></p>
                   <Button tag={Link} to={"/forgot"}>Forgot my password</Button>
-                </CardFooter>
-              </Card>
-            </Form>
+                </Form.Item>
+              </Form>
+            </Card>
           </Col>
         </Row>
-      </Container>
+      </CenterView>
     )
   }
 }
 
-export default LogIn;
+export default Form.create({ name: 'login_form' })(LogIn);
