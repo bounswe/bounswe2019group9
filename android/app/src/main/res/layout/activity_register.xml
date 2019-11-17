@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_color_light"
+    tools:context=".RegisterActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginBottom="32dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:gravity="center_horizontal"
+        android:outlineAmbientShadowColor="@color/cardview_dark_background"
+        android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
+        android:paddingHorizontal="70dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="32dp">
+
+        <EditText
+            android:id="@+id/register_name"
+            style="@style/WelcomePageEditTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView2"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/register_surname"
+            style="@style/WelcomePageEditTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView3"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/register_email"
+            style="@style/WelcomePageEditTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView4"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/register_password"
+            style="@style/WelcomePageEditTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView5"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/WelcomePageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="@string/register_name_text" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/WelcomePageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/register_name"
+            android:text="@string/register_surname_text" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/WelcomePageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/register_surname"
+            android:text="@string/register_email" />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/WelcomePageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/register_email"
+            android:text="@string/register_password" />
+
+        <Button
+            android:id="@+id/register_button"
+            style="@style/WelcomePageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/register_password"
+            android:text="@string/register_button" />
+    </RelativeLayout>
+
+</RelativeLayout>

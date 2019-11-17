@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_color_light"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginBottom="32dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:gravity="center_horizontal"
+        android:outlineAmbientShadowColor="@color/cardview_dark_background"
+        android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
+        android:paddingHorizontal="70dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="32dp">
+
+        <ImageView
+            android:id="@+id/app_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="#8CC644"
+            android:src="@drawable/app_icon" />
+
+        <EditText
+            android:id="@+id/login_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_email_view"
+            style="@style/WelcomePageEditTextStyle"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/WelcomePageEditTextStyle"
+            android:layout_below="@+id/login_pass_text"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_password"
+            android:onClick="LoginButton"
+            android:text="@string/login_button_text"
+            style="@style/WelcomePageButton"/>
+
+        <TextView
+            android:id="@+id/login_email_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/app_icon"
+            style="@style/WelcomePageTextView"
+            android:text="@string/login_mail_text"
+            />
+
+        <TextView
+            android:id="@+id/login_pass_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_email"
+            android:text="@string/login_password_text"
+            style="@style/WelcomePageTextView"/>
+
+        <Button
+            android:id="@+id/register_now_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_button"
+            style="@style/WelcomePageButton"
+            android:onClick="RegisterButton"
+            android:text="@string/register_button"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
