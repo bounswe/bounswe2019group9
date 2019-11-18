@@ -21,7 +21,6 @@ tools:context=".ProfilePageActivity">
     android:gravity="center_horizontal"
     android:outlineAmbientShadowColor="@color/cardview_dark_background"
     android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
-    android:paddingHorizontal="70dp"
     android:paddingTop="16dp"
     android:paddingBottom="32dp">
 
@@ -49,20 +48,44 @@ tools:context=".ProfilePageActivity">
         android:layout_marginTop="20dp"
         android:text="Email"
         style="@style/WelcomePageTextView"/>
-    <TextView
-        android:id="@+id/user_grade"
+    <TableLayout
+        android:id="@+id/profile_lang_table"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_email_view"
-        android:layout_marginTop="20dp"
-        android:text="Prof isn't taken"
-        style="@style/WelcomePageTextView"/>
+        android:scrollbars="vertical"
+        android:layout_below="@+id/user_email_view"
+        android:layout_margin="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        >
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:layout_width="68dp"
+               android:layout_height="wrap_content"
+                android:src="@drawable/linguistics"
+                android:gravity="center_horizontal"/>
+            <ImageView android:layout_width="68dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pie_chart"
+                android:gravity="center_horizontal"/>
+            <ImageView android:layout_width="68dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/exam"
+                android:gravity="center_horizontal"/>
+            <ImageView android:layout_width="68dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/star"
+                android:gravity="center_horizontal"/>
+        </TableRow>
+    </TableLayout>
     <Button
         android:id="@+id/logout_button"
         style="@style/WelcomePageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_grade"
+        android:layout_below="@id/profile_lang_table"
         android:layout_marginTop="40dp"
         android:onClick="Logout"
         android:text="LOGOUT"
@@ -77,16 +100,6 @@ tools:context=".ProfilePageActivity">
         android:layout_marginTop="15dp"
         android:onClick="GoProf"
         android:text="assesment"
-        />
-    <Button
-        android:id="@+id/exercise_type_button"
-        style="@style/WelcomePageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/prof_button"
-        android:layout_marginTop="15dp"
-        android:onClick="SelectExercise"
-        android:text="Exercises"
         />
 
 
