@@ -14,7 +14,7 @@ store = store ? JSON.parse(store) : {
 
 export const storeType = PropTypes.shape({
   token: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
+  userId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 }).isRequired;
 
 const subscribeStore = (subscription) => {

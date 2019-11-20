@@ -17,7 +17,7 @@ const Sidebar = ({ store }) => {
       getGrade({userId: store.userId, languageId}).then((response) => {
         const {data = {}} = response.data || {};
         setGrade(data.grade || 0);
-      })
+      }).catch(console.log)
     }
   }, [language, languageId]);
 

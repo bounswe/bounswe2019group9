@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Form, FormGroup, Input, Label, Jumbotron, Button, } from "reactstrap";
-import axios from 'axios';
+import { Card } from 'antd';
 import {getLanguages} from '../../../Api/Content';
+import {CenterView} from '../../../Layouts';
 
 class LanguageSelect extends React.PureComponent {
   state = {
@@ -27,18 +27,19 @@ class LanguageSelect extends React.PureComponent {
   render() {
     const { languages } = this.state;
     return (
-      <Jumbotron>
-        <h1 className="display-3">Select a Language!</h1>
-        <ul>
-          { languages.map((language) => (
-            <li key={language}>
-              <Link to={`/${language}/`}>
-                { language }
-              </Link>
-            </li>
-          )) }
-        </ul>
-      </Jumbotron>
+      <CenterView>
+        <Card title="Select a Language">
+          <ul>
+            { languages.map((language) => (
+              <li key={language}>
+                <Link to={`/${language}/`}>
+                  { language }
+                </Link>
+              </li>
+            )) }
+          </ul>
+        </Card>
+      </CenterView>
     )
   }
 }
