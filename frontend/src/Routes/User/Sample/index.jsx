@@ -1,12 +1,14 @@
 import React from 'react';
-import {Form, FormGroup, Input, Label, Jumbotron, Button, } from "reactstrap";
+import { Card, Form, Input, Button } from 'antd';
 import axios from 'axios';
 import {getGreeting} from '../../../Api/Greeting';
+import {CenterView} from '../../../Layouts';
 
 class Sample extends React.PureComponent {
   state = {
     name: '',
     greeting: '',
+    loading: false,
   };
   handleChange = (e) => {
     const { value, name } = e.target;
@@ -16,47 +18,64 @@ class Sample extends React.PureComponent {
   };
   handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { name } = this.state;
-    try {
-      const res = await getGreeting({name});
-      const { content } = res.data;
+    this.props.form.validateFields((err, values) => {
+      if (err) {
+        this.setState({ error: err.message });
+        return;
+      }
       this.setState({
-        greeting: content
+        loading: true
+      }, async () => {
+        try {
+          const res = await getGreeting(values);
+          const {content} = res.data || {};
+          this.setState({
+            greeting: content,
+            loading: false
+          });
+        } catch (e) {
+          console.error(e);
+        }
       });
-    } catch (e) {
-      console.error(e);
-    }
+    });
   };
   render() {
-    const { name, greeting } = this.state;
+    const { loading, greeting } = this.state;
+    const { getFieldDecorator } = this.props.form;
     return (
-      <div>
-        <Jumbotron>
+      <CenterView>
+        <Card>
           <h1 className="display-3">Welcome!</h1>
           <p className="lead">This is a simple endpoint tester, which we can use to test the api in a simple way.</p>
           <hr className="my-2" />
           <p>You can type your name in order for server to greet you :)</p>
-          <Form inline onSubmit={this.handleSubmit}>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-              <Label className="mr-sm-2">Your name: </Label>
-              <Input
+          <Form onSubmit={this.handleSubmit} layout={'inline'}>
+            <Form.Item label={'Your name:'}>
+              { getFieldDecorator('name', {
+                rules: [{ required: true, message: 'Please enter a name.'}]
+              })(
+                <Input
                   placeholder="Egemen"
-                  name="name"
-                  onChange={this.handleChange}
-                  valid={name !== ""}
-              />
-            </FormGroup>
-            <Button type="submit" disabled={name === ""} color="primary">Greet</Button>
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" loading={loading}>
+                Greet
+              </Button>
+            </Form.Item>
           </Form>
           { greeting ? <div>
             <hr className="my-2" />
             <p className="lead">{greeting}</p>
           </div> : null }
-        </Jumbotron>
-      </div>
+        </Card>
+      </CenterView>
     )
   }
 }
 
-export default Sample;
+const styles = {
+};
+
+export default Form.create({ name: 'sample_form' })(Sample);

@@ -16,10 +16,10 @@ CenterView.propTypes = {
 
 const styles = {
   layout: {
-    height: '100vh',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: '10vh'
+    paddingBottom: '10%'
   }
 };
 
