@@ -1,8 +1,7 @@
 import React from "react";
-import { Container, CardHeader, CardTitle, CardBody, CardFooter } from "reactstrap";
-import { Card, Row, Col, Form, Icon, Input, Button, Checkbox, Alert } from "antd";
+import {Card, Form, Input, Button, Alert} from "antd";
 
-import { updateStore } from '../../../Store';
+import {updateStore} from '../../../Store';
 import {Link} from "react-router-dom";
 import {login} from '../../../Api/User';
 import {CenterView} from '../../../Layouts';
@@ -17,7 +16,7 @@ class LogIn extends React.PureComponent {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (err) {
-        this.setState({ error: err.message });
+        this.setState({error: err.message});
         return;
       }
       this.setState({
@@ -25,14 +24,14 @@ class LogIn extends React.PureComponent {
       }, () => {
         login(values, {successMessage: 'Successfully Logged In'})
           .then((response) => {
-            const { data } = response.data || {};
-            const { id: userId } = data || {};
+            const {data} = response.data || {};
+            const {id: userId} = data || {};
             updateStore({
               token: 'abc123',
               userId
             });
           })
-          .catch(({ message }) => {
+          .catch(({message}) => {
             this.setState({
               loading: false,
               error: message
@@ -42,72 +41,89 @@ class LogIn extends React.PureComponent {
     })
   };
   handleChange = (e) => {
-    const { value, name } = e.target;
+    const {value, name} = e.target;
     this.setState({
       [name]: value
     });
   };
+
   render() {
-    const { getFieldDecorator } = this.props.form;
-    const { loading, email, password, error } = this.state;
+    const {getFieldDecorator} = this.props.form;
+    const {loading, error} = this.state;
 
     return (
       <CenterView>
-        <Row type="flex" justify="center" align="center">
-          <Col xs={23} sm={19} md={15} lg={11} xl={9}>
-            <Card title={"Log In"} >
-              { error && (
-                <Alert type="error" message={error} showIcon />
+        <Card title={"Log In"} style={styles.loginCard}>
+          {error && (
+            <Alert type="error" message={error} showIcon/>
+          )}
+          <Form
+            onSubmit={this.handleSubmit}
+            layout={'vertical'}
+          >
+            <Form.Item label="E-Mail">
+              {getFieldDecorator('email', {
+                rules: [
+                  {required: true, message: 'Please enter your email.'},
+                  {type: 'email', message: 'Please enter valid email'}
+                ]
+              })(
+                <Input
+                  placeholder="Please enter your email."
+                  prefix={<FormIcon type="mail"/>}
+                />
               )}
-              <Form
-                onSubmit={this.handleSubmit}
-                layout={'vertical'}
+            </Form.Item>
+            <Form.Item label="Password">
+              {getFieldDecorator('password', {
+                rules: [{required: true, message: 'Please enter your password.'}]
+              })(
+                <Input.Password
+                  placeholder="Please enter your password."
+                  prefix={<FormIcon type="lock"/>}
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              <div style={styles.loginLinks}>
+                <Link to={"/forgot"}>
+                  Forgot Password
+                </Link>
+                { ' | ' }
+                <Link to={"/register"}>
+                  Create Account
+                </Link>
+              </div>
+              <Button
+                style={styles.loginButton}
+                type="primary"
+                htmlType="submit"
+                loading={loading}
               >
-                <Form.Item label="E-Mail">
-                  {getFieldDecorator('email', {
-                    rules: [{ required: true, message: 'Please enter your email.'}]
-                  })(
-                    <Input
-                      type="email"
-                      name="email"
-                      value={email}
-                      placeholder="Please enter your email."
-                      prefix={<FormIcon type="mail" />}
-                    />
-                  )}
-                </Form.Item>
-                <Form.Item label="Password">
-                  {getFieldDecorator('password', {
-                    rules: [{ required: true, message: 'Please enter your password.'}]
-                  })(
-                    <Input
-                      type="password"
-                      id="password"
-                      name="password"
-                      value={password}
-                      placeholder="Please enter your password."
-                      prefix={<FormIcon type="lock" />}
-                    />
-                  )}
-                </Form.Item>
-                <Form.Item>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    loading={loading}
-                  >
-                    { loading ? 'Logging in ...' : 'Log In' }
-                  </Button>
-                  <p>Aren't you a user yet? <Button tag={Link} to={"/register"}>Go to Register Page</Button></p>
-                  <Button tag={Link} to={"/forgot"}>Forgot my password</Button>
-                </Form.Item>
-              </Form>
-            </Card>
-          </Col>
-        </Row>
+                {loading ? 'Logging in ...' : 'Log In'}
+              </Button>
+            </Form.Item>
+          </Form>
+        </Card>
       </CenterView>
     )
   }
 }
 
-export default Form.create({ name: 'login_form' })(LogIn);
+const styles = {
+  loginCard: {
+    maxWidth: 360,
+    width: '80%',
+    minWidth: 300
+  },
+  loginLinks: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: 12
+  },
+  loginButton: {
+    width: '100%'
+  }
+};
+
+export default Form.create({name: 'login_form'})(LogIn);
