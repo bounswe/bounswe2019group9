@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 import './Libs/Toaster/toaster';

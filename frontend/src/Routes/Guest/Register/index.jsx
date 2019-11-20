@@ -1,18 +1,4 @@
 import React from "react";
-/*import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardBody,
-  Alert,
-  FormGroup,
-  Label,
-  Input, CardFooter, Button
-} from "reactstrap";*/
 import {Card, Form, Input, Button, Alert} from 'antd';
 
 import { updateStore } from '../../../Store';

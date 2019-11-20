@@ -45,9 +45,9 @@ class Sample extends React.PureComponent {
     return (
       <CenterView>
         <Card>
-          <h1 className="display-3">Welcome!</h1>
-          <p className="lead">This is a simple endpoint tester, which we can use to test the api in a simple way.</p>
-          <hr className="my-2" />
+          <h1>Welcome!</h1>
+          <p>This is a simple endpoint tester, which we can use to test the api in a simple way.</p>
+          <hr/>
           <p>You can type your name in order for server to greet you :)</p>
           <Form onSubmit={this.handleSubmit} layout={'inline'}>
             <Form.Item label={'Your name:'}>
@@ -66,16 +66,13 @@ class Sample extends React.PureComponent {
             </Form.Item>
           </Form>
           { greeting ? <div>
-            <hr className="my-2" />
-            <p className="lead">{greeting}</p>
+            <hr/>
+            <p>{greeting}</p>
           </div> : null }
         </Card>
       </CenterView>
     )
   }
 }
-
-const styles = {
-};
 
 export default Form.create({ name: 'sample_form' })(Sample);

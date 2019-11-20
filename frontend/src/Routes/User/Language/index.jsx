@@ -22,7 +22,7 @@ const LanguageRoutes = () => {
         <Layout style={styles.layout}>
           <Breadcrumb style={styles.breadcrumb}>
             { paths.map((path, index) => (
-              <Breadcrumb.Item>
+              <Breadcrumb.Item key={path}>
                 <NavLink to={`/${paths.slice(0, index + 1).join('/')}`}>
                   { pathToLabel[path] || path }
                 </NavLink>
