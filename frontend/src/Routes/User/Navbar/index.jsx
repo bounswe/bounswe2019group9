@@ -1,56 +1,63 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import {Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink} from 'reactstrap';
+import {Menu} from 'antd';
 
 import { updateStore } from '../../../Store';
 
-const logOut = (e) => {
-  e.preventDefault();
+const logOut = () => {
   updateStore({
     token: '',
     userId: ''
   });
 };
 
+const routes = [
+  {
+    name: 'Home',
+    route: '/home'
+  },
+  {
+    name: 'Sample Page',
+    route: '/sample'
+  },
+  {
+    name: 'Change Language',
+    route: '/language-select'
+  }
+];
+
 function UserNavbar(props) {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { pathname } = useLocation();
   return (
-    <Navbar color="light" light expand="md" className="shadow">
-      <NavbarBrand tag={Link} to="/home">
-        Home
-      </NavbarBrand>
-      <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
-      <Collapse isOpen={isOpen} navbar>
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            <NavLink
-              tag={Link}
-              exact
-              to="/sample"
-              activeClassName="active"
-            >
-              Sample Page
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              tag={Link}
-              exact
-              to="/language-select"
-              activeClassName="active"
-            >
-              Change Language
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#" onClick={logOut}>
-              Log Out
-            </NavLink>
-          </NavItem>
-        </Nav>
-      </Collapse>
-    </Navbar>
+    <>
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        style={styles.menu}
+        defaultSelectedKeys={[pathname]}
+      >
+        {
+          routes.map(({ name, route }) => (
+            <Menu.Item key={route}>
+              { name }
+              <Link to={route} />
+            </Menu.Item>
+          ))
+        }
+        <Menu.Item onClick={logOut}>
+          Log Out
+        </Menu.Item>
+      </Menu>
+    </>
   );
 }
+
+const styles = {
+  menu: {
+    lineHeight: '64px'
+  }
+};
 
 export default UserNavbar;
