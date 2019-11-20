@@ -3,9 +3,13 @@ import {Card, CardTitle, CardSubtitle, CardBody, CardFooter, CardHeader, Button}
 import { toast } from 'react-toastify';
 import {getProfExam} from '../../../../Api/Content';
 import {addGrade} from '../../../../Api/Grade';
-import store from '../../../../Store';
+import { connect, storeType } from '../../../../Store';
+import {GradesHelper} from '../../../../Helpers';
 
 class ProfExam extends React.PureComponent {
+  static propTypes = {
+    store: storeType
+  };
   state = {
     questions: [],
     currentQuestion: 0,
@@ -45,55 +49,23 @@ class ProfExam extends React.PureComponent {
     }
   };
 
-  getGrade = (correct, total) => {
-    let percent = 0
-    let str_grade = "A1";
-    let num_grade = 1
-    if (total <= 0 || correct < 0 || correct > total) {
-      return null;
-    } else {
-      percent = correct / total
-    }
-
-    if (percent > 90) {
-      num_grade = 6
-      str_grade = "C2"
-    } else if (percent > 85) {
-      num_grade = 5
-      str_grade = "C1"
-    } else if (percent > 75) {
-      num_grade = 4
-      str_grade = "B2"
-    } else if (percent > 60) {
-      num_grade = 3
-      str_grade = "B1"
-    } else if (percent > 40) {
-      num_grade = 2
-      str_grade = "A2"
-    } else {
-      num_grade = 6
-      str_grade = "C2"
-    }
-
-    return { num_grade, str_grade }
-  }
 
   nextQuestion = (increment = 1) => {
+    const { store } = this.props;
     const { currentQuestion, questions, languageId, currentGrade } = this.state;
     if (currentQuestion + increment === questions.length) {
-      // TODO, do submit grade (exam is finished)
-      /*
+      const { num_grade, str_grade } = GradesHelper.calculateGrade(currentGrade, questions.length);
       addGrade({
         userId: store.userId,
         languageId,
-        grade: currentGrade
+        grade: num_grade
       }).then((response) => {
+        toast.info(`Congrats, you got ${currentGrade} correct answers out of ${questions.length} questions.\nYour grade is ${str_grade}`);
+        const { match: { params: { language } }, history } = this.props;
+        history.push(`/${language}`);
         console.log(response);
         // what to do next?
       }).catch(console.error);
-     */
-      const { num_grade, str_grade } = this.getGrade(currentGrade, questions.length)
-      toast.info(`Congrats, you got ${currentGrade} correct answers out of ${questions.length} questions.\nYour grade is ${str_grade}`);
     } else {
       this.setState({
         currentQuestion: Math.max(0, Math.min(questions.length - 1, currentQuestion + increment))
@@ -119,7 +91,7 @@ class ProfExam extends React.PureComponent {
               Your Score: { currentGrade }
             </CardSubtitle>
           </CardHeader>
-          <CardBody>
+          <CardBody className="d-flex justify-content-between">
             {
               options.map((option, optionIndex) => (
                 <Button
@@ -133,7 +105,7 @@ class ProfExam extends React.PureComponent {
               ))
             }
           </CardBody>
-          <CardFooter>
+          <CardFooter className="d-flex justify-content-between">
             <Button
               color="secondary"
               onClick={() => this.nextQuestion(-1)}
@@ -156,4 +128,4 @@ class ProfExam extends React.PureComponent {
   }
 }
 
-export default ProfExam;
+export default connect(ProfExam);
