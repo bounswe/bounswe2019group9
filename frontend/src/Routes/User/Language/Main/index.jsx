@@ -21,7 +21,7 @@ const Main = ({ store }) => {
       setLoading(true);
       getGrade({userId: store.userId, languageId}).then((response) => {
         const {data = {}} = response.data || {};
-        setGrade(data.grade || 0);
+        setGrade((data || {}).grade || 0);
         setLoading(false);
       })
     }
