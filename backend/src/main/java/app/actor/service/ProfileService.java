@@ -51,9 +51,15 @@ public class ProfileService {
       }
       profileInfo.getLanguages().add(lang);
       profileInfo.getGrades().add(grade.getGrade());
-      profileInfo.getProgressLevels()
-                 .add(100 * userService.getNumberOfSolvedExercisesById(userId, langId, grade.getGrade())
-                      / contentService.getNumberOfExercisesByGrade(langId, grade.getGrade()));
+      Integer numberOfSolvedExercises = userService.getNumberOfSolvedExercisesById(userId, langId, grade.getGrade());
+      Integer numberOfExercisesByGrade = contentService.getNumberOfExercisesByGrade(langId, grade.getGrade());
+      if (numberOfExercisesByGrade == 0) {
+        profileInfo.getProgressLevels().add(0);
+      } else {
+        profileInfo.getProgressLevels()
+                   .add(100 * numberOfSolvedExercises
+                        / numberOfExercisesByGrade);
+      }
     }
     return profileInfo;
   }
