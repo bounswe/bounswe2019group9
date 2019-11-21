@@ -26,26 +26,32 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.example.learningplatform.ProfilePageActivity;
 
-public class ProfilePageActivity extends AppCompatActivity {
+public class TargetUserActivity extends AppCompatActivity {
+
 
     SharedPreferences sharedPreferences;
+
     private static TextView nameDisplay;
     private static TextView surnameDisplay;
     private static TextView mailDisplay;
-    private static TextView gradeDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_page);
+        setContentView(R.layout.activity_target_user);
 
-        nameDisplay = findViewById(R.id.user_name_view);
-        surnameDisplay = findViewById(R.id.user_surname_view);
-        mailDisplay = findViewById(R.id.user_email_view);
+        nameDisplay = findViewById(R.id.target_user_name_view);
+        surnameDisplay = findViewById(R.id.target_user_surname_view);
+        mailDisplay = findViewById(R.id.target_user_email_view);
 
         sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-        final int id = sharedPreferences.getInt("Id",0);
+        final int Userid = sharedPreferences.getInt("Id",0);
+
+        Intent intent = getIntent();
+        final int TargetUserId = intent.getIntExtra("targetUserId",0);
+
         final TableLayout table = findViewById(R.id.profile_lang_table);
         final LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
@@ -53,7 +59,7 @@ public class ProfilePageActivity extends AppCompatActivity {
             @Override
             public void run() {
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                String url = "https://api.bounswe2019group9.tk/users/profile?id="+id;
+                String url = "https://api.bounswe2019group9.tk/users/profile?id="+TargetUserId;
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                         new Response.Listener<JSONObject>() {
 
@@ -81,7 +87,7 @@ public class ProfilePageActivity extends AppCompatActivity {
                                         TextView rowRating = row.findViewById(R.id.user_rating);
                                         rowLanguage.setText(languagesOfUser.getString(i));
                                         rowProgress.setText(Integer.toString(progressLevelsOfUser.getInt(i))+"%");
-                                        rowGrade.setText(getGradeFromInt(gradeOfUser.getInt(i)));
+                                        rowGrade.setText(ProfilePageActivity.getGradeFromInt(gradeOfUser.getInt(i)));
                                         rowRating.setText("3.5");
                                         table.addView(row,i+1);
                                     }
@@ -110,17 +116,19 @@ public class ProfilePageActivity extends AppCompatActivity {
                 Intent intentx;
                 switch (item.getItemId()) {
                     case R.id.nav_bar_excercise:
-                        intentx = new Intent(ProfilePageActivity.this, ExerciseListDisplay.class);
+                        intentx = new Intent(TargetUserActivity.this, ExerciseListDisplay.class);
                         startActivity(intentx);
                         return true;
                     case R.id.nav_bar_message:
-                        intentx = new Intent(ProfilePageActivity.this, ChatsListDisplay.class);
+                        intentx = new Intent(TargetUserActivity.this, ChatsListDisplay.class);
                         startActivity(intentx);
                         return true;
                     case R.id.nav_bar_profile:
+                        intentx = new Intent(TargetUserActivity.this, ProfilePageActivity.class);
+                        startActivity(intentx);
                         return true;
                     case R.id.nav_bar_search:
-                        intentx = new Intent(ProfilePageActivity.this, SearchActivity.class);
+                        intentx = new Intent(TargetUserActivity.this, SearchActivity.class);
                         startActivity(intentx);
                         return true;
                 }
@@ -128,38 +136,13 @@ public class ProfilePageActivity extends AppCompatActivity {
             }
         });
 
-    }
-    public void Logout(View v){
-        SharedPreferences sharedpreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.clear();
-        editor.commit();
-
-        Intent intent = new Intent(v.getContext(), MainActivity.class);
-        v.getContext().startActivity(intent);
 
     }
 
-    public void GoProf(View v){
-        Intent intent = new Intent(v.getContext(), LanguageListDisplay.class);
-        v.getContext().startActivity(intent);
-    }
+    public void SendRequest(View v){
 
-    public static String getGradeFromInt(int userGrade){
-        if (userGrade == 1) {
-           return "A1";
-        } else if (userGrade == 2) {
-            return "A2";
-        } else if (userGrade == 3) {
-            return "B1";
-        } else if (userGrade == 4) {
-            return "B2";
-        } else if (userGrade == 5) {
-            return "C1";
-        } else if (userGrade == 6) {
-            return "C2";
-        } else{
-            return "Please take exam.";
-        }
+
     }
 }
+
+
