@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +34,8 @@ public class ExerciseListDisplay extends AppCompatActivity {
                         case R.id.nav_bar_excercise:
                             return true;
                         case R.id.nav_bar_message:
+                            intent = new Intent(ExerciseListDisplay.this, ChatsListDisplay.class);
+                            startActivity(intent);
                             return true;
                         case R.id.nav_bar_profile:
                             intent = new Intent(ExerciseListDisplay.this, ProfilePageActivity.class);

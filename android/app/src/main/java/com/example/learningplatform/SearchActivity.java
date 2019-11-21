@@ -154,6 +154,8 @@ public class SearchActivity extends AppCompatActivity {
                         startActivity(intent);
                         return true;
                     case R.id.nav_bar_message:
+                        intent = new Intent(SearchActivity.this, ChatsListDisplay.class);
+                        startActivity(intent);
                         return true;
                     case R.id.nav_bar_profile:
                         intent = new Intent(SearchActivity.this, ProfilePageActivity.class);

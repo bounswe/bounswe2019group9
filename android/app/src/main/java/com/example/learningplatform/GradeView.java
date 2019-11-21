@@ -34,6 +34,8 @@ public class GradeView extends AppCompatActivity {
                         startActivity(intent);
                         return true;
                     case R.id.nav_bar_message:
+                        intent = new Intent(GradeView.this, ChatsListDisplay.class);
+                        startActivity(intent);
                         return true;
                     case R.id.nav_bar_profile:
                         intent = new Intent(GradeView.this, ProfilePageActivity.class);

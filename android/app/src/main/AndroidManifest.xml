@@ -17,6 +17,7 @@
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".GradeView" />
         <activity android:name=".QuestionDisplay" />
+        <activity android:name=".ChatsListDisplay" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -10,16 +10,14 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class LanguageListDisplay extends AppCompatActivity {
-    RecyclerView recyclerView;
+
+public class ChatsListDisplay extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.language_selection);
-        recyclerView = findViewById(R.id.recylerview);
-        LanguageAdapter languageAdapter = new LanguageAdapter(this);
-        recyclerView.setAdapter(languageAdapter);
+        setContentView(R.layout.chat_selection);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -28,19 +26,20 @@ public class LanguageListDisplay extends AppCompatActivity {
                 Intent intent;
                 switch (item.getItemId()) {
                     case R.id.nav_bar_excercise:
-                        intent = new Intent(LanguageListDisplay.this, ExerciseListDisplay.class);
+                        intent = new Intent(ChatsListDisplay.this, ExerciseListDisplay.class);
                         startActivity(intent);
                         return true;
-                    case R.id.nav_bar_message:
-                        intent = new Intent(LanguageListDisplay.this, ChatsListDisplay.class);
-                        startActivity(intent);
-                        return true;
+
                     case R.id.nav_bar_profile:
-                        intent = new Intent(LanguageListDisplay.this, ProfilePageActivity.class);
+                        intent = new Intent(ChatsListDisplay.this, ProfilePageActivity.class);
                         startActivity(intent);
                         return true;
+
+                    case R.id.nav_bar_message:
+                        return true;
+
                     case R.id.nav_bar_search:
-                        intent = new Intent(LanguageListDisplay.this, SearchActivity.class);
+                        intent = new Intent(ChatsListDisplay.this, SearchActivity.class);
                         startActivity(intent);
                         return true;
                 }
@@ -48,5 +47,6 @@ public class LanguageListDisplay extends AppCompatActivity {
             }
         });
     }
+
 
 }
