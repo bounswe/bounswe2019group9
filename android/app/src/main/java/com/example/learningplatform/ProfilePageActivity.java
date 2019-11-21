@@ -8,8 +8,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -40,61 +43,65 @@ public class ProfilePageActivity extends AppCompatActivity {
         nameDisplay = findViewById(R.id.user_name_view);
         surnameDisplay = findViewById(R.id.user_surname_view);
         mailDisplay = findViewById(R.id.user_email_view);
-        gradeDisplay = findViewById(R.id.user_grade);
 
         sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-        int id = sharedPreferences.getInt("Id",0);
+        final int id = sharedPreferences.getInt("Id",0);
+        final TableLayout table = findViewById(R.id.profile_lang_table);
+        final LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                String url = "https://api.bounswe2019group9.tk/users/profile?id="+id;
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.bounswe2019group9.tk/users/profile?id="+id;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    JSONObject data = response.getJSONObject("data");
+                                    String firstName = data.getString("firstName");
+                                    String lastName = data.getString("lastName");
+                                    String email = data.getString("email");
+                                    nameDisplay.setText(firstName);
+                                    surnameDisplay.setText(lastName);
+                                    mailDisplay.setText(email);
+                                    JSONArray gradeOfUser = data.getJSONArray("grades");
+                                    JSONArray languagesOfUser = data.getJSONArray("languages");
+                                    JSONArray progressLevelsOfUser = data.getJSONArray("progressLevels");
+                                    if(gradeOfUser.length()!= languagesOfUser.length() || gradeOfUser.length()!= progressLevelsOfUser.length()){
+                                        Log.e("Error", "The number of languages user has and the grades user has doesn't match");
+                                    }
+                                    for(int i = 0; i<gradeOfUser.length();i++){
+                                        LinearLayout row = (LinearLayout) layoutInflater.inflate(R.layout.profile_user_language_info,null);
+                                        TextView rowLanguage = row.findViewById(R.id.language_name);
+                                        TextView rowProgress = row.findViewById(R.id.progress_level);
+                                        TextView rowGrade = row.findViewById(R.id.user_language_grade);
+                                        TextView rowRating = row.findViewById(R.id.user_rating);
+                                        rowLanguage.setText(languagesOfUser.getString(i));
+                                        rowProgress.setText(Integer.toString(progressLevelsOfUser.getInt(i))+"%");
+                                        rowGrade.setText(getGradeFromInt(gradeOfUser.getInt(i)));
+                                        rowRating.setText("3.5");
+                                        table.addView(row,i+1);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+                        , new Response.ErrorListener() {
 
                     @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONObject data = response.getJSONObject("data");
-                            String firstName = data.getString("firstName");
-                            String lastName = data.getString("lastName");
-                            String email = data.getString("email");
-
-                            nameDisplay.setText(firstName);
-                            surnameDisplay.setText(lastName);
-                            mailDisplay.setText(email);
-
-
-                            JSONArray gradeOfUser = data.getJSONArray("grades");
-                            int userGrade = gradeOfUser.getInt(0);
-                            if (userGrade == 1) {
-                                gradeDisplay.setText("A1");
-                            } else if (userGrade == 2) {
-                                gradeDisplay.setText("A2");
-                            } else if (userGrade == 3) {
-                                gradeDisplay.setText("B1");
-                            } else if (userGrade == 4) {
-                                gradeDisplay.setText("B2");
-                            } else if (userGrade == 5) {
-                                gradeDisplay.setText("C1");
-                            } else if (userGrade == 6) {
-                                gradeDisplay.setText("C2");
-                            }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("profile_view", "Error on request to get profile details");
 
                     }
-                }
-                , new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("profile_view", "Error on request to get profile details");
-
+                });
+                queue.add(jsonObjectRequest);
             }
         });
-        queue.add(jsonObjectRequest);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -138,15 +145,21 @@ public class ProfilePageActivity extends AppCompatActivity {
         v.getContext().startActivity(intent);
     }
 
-
-    public void SelectExercise(View v) {
-        String s = v.getContext().toString();
-        Intent intent = new Intent(v.getContext(), ExerciseListDisplay.class);
-        v.getContext().startActivity(intent);
-    }
-    public void searchButton(View v){
-        Intent intent = new Intent(v.getContext(), SearchActivity.class);
-        v.getContext().startActivity(intent);
-        Log.i("searchButton","buttonClicked");
+    private String getGradeFromInt(int userGrade){
+        if (userGrade == 1) {
+           return "A1";
+        } else if (userGrade == 2) {
+            return "A2";
+        } else if (userGrade == 3) {
+            return "B1";
+        } else if (userGrade == 4) {
+            return "B2";
+        } else if (userGrade == 5) {
+            return "C1";
+        } else if (userGrade == 6) {
+            return "C2";
+        } else{
+            return "Please take exam.";
+        }
     }
 }
