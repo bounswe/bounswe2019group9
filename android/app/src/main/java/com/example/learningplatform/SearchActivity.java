@@ -139,6 +139,12 @@ public class SearchActivity extends AppCompatActivity {
                 int selectedID = selectedUser.userID;
                 String person = selectedUser.firstName;
                 Toast.makeText(SearchActivity.this,"yeeey clicked well on "+person+" with ID "+ selectedID,Toast.LENGTH_LONG).show();
+                Intent intent;
+
+                intent = new Intent(SearchActivity.this,TargetUserActivity.class);
+                intent.putExtra("targetUserId",selectedID);
+                startActivity(intent);
+
             }
         });
 

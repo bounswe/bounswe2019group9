@@ -145,7 +145,7 @@ public class ProfilePageActivity extends AppCompatActivity {
         v.getContext().startActivity(intent);
     }
 
-    private String getGradeFromInt(int userGrade){
+    public static String getGradeFromInt(int userGrade){
         if (userGrade == 1) {
            return "A1";
         } else if (userGrade == 2) {
