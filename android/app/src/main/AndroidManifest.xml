@@ -12,9 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProfilePageActivity"></activity>
-        <activity android:name=".ExerciseListDisplay"></activity>
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".TargetUserActivity"></activity>
+        <activity android:name=".ProfilePageActivity" />
+        <activity android:name=".ExerciseListDisplay" />
+        <activity android:name=".SearchActivity" />
         <activity android:name=".GradeView" />
         <activity android:name=".QuestionDisplay" />
         <activity android:name=".ChatsListDisplay" />
