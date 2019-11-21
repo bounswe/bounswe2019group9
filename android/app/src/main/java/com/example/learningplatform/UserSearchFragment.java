@@ -137,6 +137,10 @@ public class UserSearchFragment extends Fragment {
                 int selectedID = selectedUser.userID;
                 String person = selectedUser.firstName;
                 Toast.makeText(getContext(),"yeeey clicked well on "+person+" with ID "+ selectedID,Toast.LENGTH_LONG).show();
+                Intent intent;
+                intent = new Intent(view.getContext(),TargetUserActivity.class);
+                intent.putExtra("targetUserId",selectedID);
+                startActivity(intent);
             }
         });
 
