@@ -65,8 +65,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyView
                                 }
 
                             }
-                        }
-                        , new Response.ErrorListener() {
+                        }, new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {

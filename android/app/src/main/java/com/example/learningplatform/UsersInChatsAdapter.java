@@ -1,0 +1,124 @@
+package com.example.learningplatform;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.file.attribute.UserPrincipalLookupService;
+import java.util.ArrayList;
+
+public class UsersInChatsAdapter extends RecyclerView.Adapter<UsersInChatsAdapter.MyViewHolder>{
+
+    ArrayList<String> usersArrayList;
+    Context context;
+
+    public UsersInChatsAdapter(final Context context) {
+        this.context = context;
+        this.usersArrayList = new ArrayList<>();
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                //TODO your background code
+                RequestQueue queue = Volley.newRequestQueue(context);
+                String id = "1";
+                String url ="https://api.bounswe2019group9.tk/conversations?id=" + id;
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+
+                                    if(response.has("data")) {
+                                        JSONArray data = (JSONArray) response.get("data");
+                                        for(int i=0; i<data.length();i++) {
+                                            if (data.getJSONObject(i).has("firstName") & data.getJSONObject(i).has("lastName")) {
+                                                String nameOfUser = (String) data.getJSONObject(i).get("firstName") + " " +  (String) data.getJSONObject(i).get("lastName") ;
+                                                Log.i("nameofuser", nameOfUser);
+                                                usersArrayList.add(nameOfUser);
+                                            }
+                                        }
+                                        notifyDataSetChanged();
+
+                                    }
+
+                                } catch (JSONException e) {
+                                    Log.i("catch","ctachhh");
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+                        , new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("tag2", "here");
+
+                    }
+                });
+                queue.add(jsonObjectRequest);
+            }
+        });
+
+    }
+
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.chat_users, parent, false);
+        UsersInChatsAdapter.MyViewHolder holder = new UsersInChatsAdapter.MyViewHolder(view);
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(final UsersInChatsAdapter.MyViewHolder holder, final int position) {
+
+        holder.nameOfUser.setText(usersArrayList.get(position));
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return usersArrayList.size();
+    }
+
+
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        public TextView nameOfUser;
+        public RelativeLayout relativeLayout;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            this.nameOfUser = itemView.findViewById(R.id.language);
+            this.relativeLayout = itemView.findViewById(R.id.relativeLayout);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+
+        }
+    }
+}

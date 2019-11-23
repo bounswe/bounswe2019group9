@@ -12,12 +12,18 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class ChatsListDisplay extends AppCompatActivity {
+    RecyclerView recyclerView;
+    UsersInChatsAdapter usersInChatsAdapter = new UsersInChatsAdapter(this);
+    private RecyclerView.LayoutManager layoutManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_selection);
+        recyclerView = findViewById(R.id.recylerview2);
+
+        recyclerView.setAdapter(usersInChatsAdapter);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
