@@ -33,6 +33,6 @@ public class SearchController {
 
   @PostMapping("/exercises")
   public Response<List<Exercise>> searchExercise(@RequestBody SearchExerciseRequest request) {
-    return null;
+    return searchOperatorService.getSearchExerciseService().searchExercise(request);
   }
 }
