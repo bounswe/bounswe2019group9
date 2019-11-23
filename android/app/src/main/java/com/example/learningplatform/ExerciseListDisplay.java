@@ -55,6 +55,7 @@ public class ExerciseListDisplay extends AppCompatActivity {
 
         public void SelectExerciseType(View v){
             //Toast.makeText(ExerciseListDisplay.this,"clicked to listening",Toast.LENGTH_LONG);
+            Intent intent;
             switch (v.getId()) {
                 case R.id.listening:
                     Log.i("clickedTo","listening");
@@ -70,6 +71,9 @@ public class ExerciseListDisplay extends AppCompatActivity {
                     break;
                 case R.id.vocabulary:
                     Log.i("clickedTo","vocabulary");
+                    intent = new Intent(ExerciseListDisplay.this, ExerciseViewActivity.class);
+                    intent.putExtra("typeOfExercise","vocabulary");
+                    startActivity(intent);
                     break;
             }
 
