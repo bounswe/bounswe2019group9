@@ -15,7 +15,7 @@ import {getRequest, postRequest} from '../base';
  * }
  *
  */
-export const getUserById = (userId, extras) => getRequest()('users/get', { id: userId }, extras);
+export const getUserById = (userId, extras) => getRequest('users/get', { id: userId }, extras);
 
 /**
  * @function login

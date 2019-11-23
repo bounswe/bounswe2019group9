@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from 'reactstrap';
 import { useParams, Link } from 'react-router-dom';
 
 import {connect, storeType} from '../../../../Store';
@@ -21,7 +20,7 @@ const Main = ({ store }) => {
       setLoading(true);
       getGrade({userId: store.userId, languageId}).then((response) => {
         const {data = {}} = response.data || {};
-        setGrade(data.grade || 0);
+        setGrade((data || {}).grade || 0);
         setLoading(false);
       })
     }
@@ -38,23 +37,19 @@ const Main = ({ store }) => {
   let str_grade = GradesHelper.numGradeToStrGrade(grade);
 
   return (
-    <Container>
-      <Row className="mt-4">
-        <Col>
-          <h3>{ language }</h3>
-          { loading ? (
-            <h4>Loading your grade ...</h4>
-          ) : (
-            <>
-              <h4> { grade ? `Your grade is ${str_grade}` : "You don't have a grade in this language" } </h4>
-              <Link to={`/${language}/proficiency-exam`}>
-                { grade ? 'Click here to re-take proficiency exam' : 'Click here to take proficiency exam' }
-              </Link>
-            </>
-          )}
-        </Col>
-      </Row>
-    </Container>
+    <div>
+      <h3>{ language }</h3>
+      { loading ? (
+        <h4>Loading your grade ...</h4>
+      ) : (
+        <>
+          <h4> { grade ? `Your grade is ${str_grade}` : "You don't have a grade in this language" } </h4>
+          <Link to={`/${language}/proficiency-exam`}>
+            { grade ? 'Click here to re-take proficiency exam' : 'Click here to take proficiency exam' }
+          </Link>
+        </>
+      )}
+    </div>
   )
 };
 

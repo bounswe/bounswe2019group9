@@ -1,17 +1,17 @@
 export const numGradeToStrGrade = (num_grade) => {
   switch (num_grade) {
     case 1:
-      return 'A1';
+      return 'A1: Beginner';
     case 2:
-      return 'A2';
+      return 'A2: Elementary';
     case 3:
-      return 'B1';
+      return 'B1: Intermediate';
     case 4:
-      return 'B2';
+      return 'B2: Upper Intermediate';
     case 5:
-      return 'C1';
+      return 'C1: Advanced';
     case 6:
-      return 'C2';
+      return 'C2: Proficient';
     default:
       return 'UnknownGrade'
   }

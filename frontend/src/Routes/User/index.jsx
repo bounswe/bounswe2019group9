@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { Layout } from 'antd';
 
 import LanguageSelect from './LanguageSelect';
 import Language from './Language';
@@ -10,17 +11,21 @@ import SamplePage from './Sample';
 class UserRoutes extends React.PureComponent {
   render() {
     return (
-      <>
-        <UserNavbar />
-        <Switch>
-          <Redirect from="/(login|register|forgot)" to="/" />
-          <Route exact path="/language-select" component={LanguageSelect} />
-          <Route exact path="/sample" component={SamplePage} />
-          <Route exact path="/home" component={Dashboard} />
-          <Route path="/:language" component={Language} />
-          <Redirect to="/language-select" />
-        </Switch>
-      </>
+      <Layout className="layout">
+        <Layout.Header>
+          <UserNavbar />
+        </Layout.Header>
+        <Layout.Content>
+          <Switch>
+            <Redirect from="/(login|register|forgot)" to="/" />
+            <Route exact path="/language-select" component={LanguageSelect} />
+            <Route exact path="/sample" component={SamplePage} />
+            <Route exact path="/home" component={Dashboard} />
+            <Route path="/:language" component={Language} />
+            <Redirect to="/language-select" />
+          </Switch>
+        </Layout.Content>
+      </Layout>
     );
   }
 }
