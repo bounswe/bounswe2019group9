@@ -6,25 +6,54 @@
     android:layout_height="match_parent"
     android:backgroundTint="@color/app_color_light">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/chats" />
+
+            <TextView
+                android:id="@+id/chats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/app_color_light"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="16dp"
+                android:paddingLeft="41dp"
+                android:layout_centerInParent="true"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:text="@string/chats"
+                android:textColor="@color/app_color_dark"
+                android:textSize="22sp" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylerview2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/app_color_light"
-            android:fontFamily="sans-serif"
-            android:gravity="center_horizontal"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="16dp"
-            android:text="@string/chats"
-            android:textColor="@color/app_color_dark"
-            android:textSize="22sp" />
+            android:orientation="vertical"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
