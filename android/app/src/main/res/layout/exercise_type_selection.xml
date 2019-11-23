@@ -59,7 +59,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/app_color_light"
-        android:onClick="SelectExerciseType">
+        android:onClick="SelectExerciseType"
+        >
 
 
         <ImageView

@@ -2,6 +2,7 @@ package com.example.learningplatform;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,8 +31,9 @@ public class UsersInChatsAdapter extends RecyclerView.Adapter<UsersInChatsAdapte
 
     ArrayList<String> usersArrayList;
     Context context;
+    SharedPreferences sharedPreferences;
 
-    public UsersInChatsAdapter(final Context context) {
+    public UsersInChatsAdapter(final Context context, final int id) {
         this.context = context;
         this.usersArrayList = new ArrayList<>();
 
@@ -40,7 +42,7 @@ public class UsersInChatsAdapter extends RecyclerView.Adapter<UsersInChatsAdapte
             public void run() {
                 //TODO your background code
                 RequestQueue queue = Volley.newRequestQueue(context);
-                String id = "1";
+                Log.i("shared", "req atmadan önce");
                 String url ="https://api.bounswe2019group9.tk/conversations?id=" + id;
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                         new Response.Listener<JSONObject>() {
