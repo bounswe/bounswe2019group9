@@ -69,6 +69,15 @@ public class ExerciseViewActivity extends AppCompatActivity {
 
         solutions.add("sister");
 
+        exerciseList.add("Dog is a/an");
+
+        choices.add("plant");
+        choices.add("animal");
+        choices.add("bacteria");
+        choices.add("archea");
+
+        solutions.add("animal");
+
 
        // Bundle b = getIntent().getExtras();
        // exerciseList = b.getStringArrayList("questions");
@@ -125,7 +134,7 @@ public class ExerciseViewActivity extends AppCompatActivity {
 
 
         int indexForArrayList = questionCount -1 ;
-        if(answer.compareTo(solutions.get(0))==0){ //if the answer is true, set others as red
+        if(answer.compareTo(solutions.get(indexForArrayList))==0){ //if the answer is true, set others as red
             if(choices.get(4*indexForArrayList).compareTo(answer)==0){
                 answer2.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
                 answer3.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
