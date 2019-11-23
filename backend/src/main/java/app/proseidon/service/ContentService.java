@@ -33,7 +33,11 @@ public class ContentService {
   }
 
   public Response<List<Exercise>> getAllExercises() {
-    return HttpResponses.from(contentRepository.getAllExercises());
+    List<Exercise> allExercises = contentRepository.getAllExercises();
+    for (Exercise exercise : allExercises) {
+      exercise.setTags(tagService.getTagsByExerciseId(exercise.getId()));
+    }
+    return HttpResponses.from(allExercises);
   }
 
   public Response<List<Exercise>> getProficiencyExam(String language) {

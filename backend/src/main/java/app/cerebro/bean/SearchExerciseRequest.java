@@ -15,23 +15,16 @@ public class SearchExerciseRequest {
 
   private Integer typeId;
 
-  private List<String> tags;
+  private String tag;
 
   public SearchExerciseRequest() {
   }
 
-  public SearchExerciseRequest(Integer languageId, Integer grade, Integer typeId) {
+  public SearchExerciseRequest(Integer languageId, Integer grade, Integer typeId, String tag) {
     this.languageId = languageId;
     this.grade = grade;
     this.typeId = typeId;
-    this.tags = new ArrayList<>();
-  }
-
-  public SearchExerciseRequest(Integer languageId, Integer grade, Integer typeId, List<String> tags) {
-    this.languageId = languageId;
-    this.grade = grade;
-    this.typeId = typeId;
-    this.tags = tags;
+    this.tag = tag;
   }
 
   public Integer getLanguageId() {
@@ -58,12 +51,12 @@ public class SearchExerciseRequest {
     this.typeId = typeId;
   }
 
-  public List<String> getTags() {
-    return tags;
+  public String getTag() {
+    return tag;
   }
 
-  public void setTags(List<String> tags) {
-    this.tags = tags;
+  public void setTag(String tag) {
+    this.tag = tag;
   }
 
   @Override
@@ -72,7 +65,7 @@ public class SearchExerciseRequest {
            "languageId=" + languageId +
            ", grade=" + grade +
            ", typeId=" + typeId +
-           ", tags=" + tags +
+           ", tag='" + tag + '\'' +
            '}';
   }
 }
