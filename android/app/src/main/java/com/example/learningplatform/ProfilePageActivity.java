@@ -29,7 +29,7 @@ import org.json.JSONObject;
 
 public class ProfilePageActivity extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
+    SharedPreferences  sharedPreferences;
     private static TextView nameDisplay;
     private static TextView surnameDisplay;
     private static TextView mailDisplay;
@@ -80,6 +80,15 @@ public class ProfilePageActivity extends AppCompatActivity {
                                         TextView rowGrade = row.findViewById(R.id.user_language_grade);
                                         TextView rowRating = row.findViewById(R.id.user_rating);
                                         rowLanguage.setText(languagesOfUser.getString(i));
+
+                                        // adding language progress to sharedPreferences
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                        editor.putString("languageOfUser",languagesOfUser.getString(i));
+                                        editor.putInt("progressOfUser",progressLevelsOfUser.getInt(i));
+                                        editor.commit();
+
+
                                         rowProgress.setText(Integer.toString(progressLevelsOfUser.getInt(i))+"%");
                                         rowGrade.setText(getGradeFromInt(gradeOfUser.getInt(i)));
                                         rowRating.setText("3.5");

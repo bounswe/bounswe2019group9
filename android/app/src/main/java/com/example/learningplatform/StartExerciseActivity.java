@@ -2,8 +2,11 @@ package com.example.learningplatform;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,6 +29,8 @@ public class StartExerciseActivity extends AppCompatActivity {
     ArrayList<String> choices= new ArrayList<String>();
     ArrayList<String> answers= new ArrayList<String>();
     ArrayList<String> solutions= new ArrayList<String>();
+
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +46,16 @@ public class StartExerciseActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final int typeOfExercise = intent.getIntExtra("typeOfExercise",0);
         final int typeOfLang = 1;
+
+
+        sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        final String lang = sharedPreferences.getString("languageOfUser","");
+        final int progressForLang = sharedPreferences.getInt("progressOfUser",0);
+
+
+        Log.i("lang",lang);
+        Log.i("langPr",""+progressForLang);
+
 
 
         runOnUiThread(new Runnable() {
