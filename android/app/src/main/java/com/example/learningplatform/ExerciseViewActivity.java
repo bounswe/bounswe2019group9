@@ -12,21 +12,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -34,7 +24,7 @@ public class ExerciseViewActivity extends AppCompatActivity {
 
 
     SharedPreferences sharedPreferences;
-    Button answer1,answer2,answer3,answer4;
+    Button answer1,answer2,answer3,answer4, nextQuestion;
     TextView questionText;
 
     ArrayList<String> exerciseList = new ArrayList<String>();
@@ -59,8 +49,10 @@ public class ExerciseViewActivity extends AppCompatActivity {
         answer4 = findViewById(R.id.answer4);
         questionText = findViewById(R.id.questionText);
 
+        nextQuestion = findViewById(R.id.finish);
 
 
+        //nextQuestion.getBackground().setColorFilter(Color.BLUE,PorterDuff.Mode.MULTIPLY);
 
 
         Intent intent = getIntent();
@@ -148,21 +140,29 @@ public class ExerciseViewActivity extends AppCompatActivity {
         int indexForArrayList = questionCount -1 ;
         if(answer.compareTo(solutions.get(indexForArrayList))==0){ //if the answer is true, set others as red
             if(choices.get(4*indexForArrayList).compareTo(answer)==0){
+                answer1.getBackground().setColorFilter(Color.parseColor("#00574B"),PorterDuff.Mode.MULTIPLY);
+                answer1.setTextColor(Color.WHITE);
                 answer2.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
                 answer3.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
                 answer4.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
             }else if(choices.get(4*indexForArrayList + 1).compareTo(answer)==0){
                 answer1.getBackground().setColorFilter(Color.RED,PorterDuff.Mode.MULTIPLY);
+                answer2.getBackground().setColorFilter(Color.parseColor("#00574B"),PorterDuff.Mode.MULTIPLY);
+                answer2.setTextColor(Color.WHITE);
                 answer3.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
                 answer4.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
             } else if(choices.get(4*indexForArrayList + 2).compareTo(answer)==0){
                 answer1.getBackground().setColorFilter(Color.RED,PorterDuff.Mode.MULTIPLY);
                 answer2.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                answer3.getBackground().setColorFilter(Color.parseColor("#00574B"),PorterDuff.Mode.MULTIPLY);
+                answer3.setTextColor(Color.WHITE);
                 answer4.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
             }else{
                 answer1.getBackground().setColorFilter(Color.RED,PorterDuff.Mode.MULTIPLY);
                 answer2.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
                 answer3.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                answer4.getBackground().setColorFilter(Color.parseColor("#00574B"),PorterDuff.Mode.MULTIPLY);
+                answer4.setTextColor(Color.WHITE);
             }
         }else{ // if the answer is false
 
@@ -191,6 +191,24 @@ public class ExerciseViewActivity extends AppCompatActivity {
                 answer4.getBackground().setColorFilter(Color.RED,PorterDuff.Mode.MULTIPLY);
             }
 
+            //true answer as green
+            if(choices.get(4*indexForArrayList).compareTo(solutions.get(indexForArrayList))==0 && choices.get(4*indexForArrayList).compareTo(answer)!=0){
+                answer1.getBackground().setColorFilter(Color.parseColor("#00574B"),PorterDuff.Mode.MULTIPLY);
+                answer1.setTextColor(Color.WHITE);
+            } else if(choices.get(4*indexForArrayList+1).compareTo(solutions.get(indexForArrayList))==0 && choices.get(4*indexForArrayList+1).compareTo(answer)!=0){
+                answer2.getBackground().setColorFilter(Color.parseColor("#00574B"),PorterDuff.Mode.MULTIPLY);
+                answer2.setTextColor(Color.WHITE);
+            }else if(choices.get(4*indexForArrayList+2).compareTo(solutions.get(indexForArrayList))==0 && choices.get(4*indexForArrayList+2).compareTo(answer)!=0){
+                answer3.getBackground().setColorFilter(Color.parseColor("#00574B"),PorterDuff.Mode.MULTIPLY);
+                answer3.setTextColor(Color.WHITE);
+            } else if(choices.get(4*indexForArrayList+3).compareTo(solutions.get(indexForArrayList))==0 && choices.get(4*indexForArrayList+3).compareTo(answer)!=0){
+                answer4.getBackground().setColorFilter(Color.parseColor("#00574B"),PorterDuff.Mode.MULTIPLY);
+                answer4.setTextColor(Color.WHITE);
+            }
+
+
+
+
 
         }
 
@@ -208,10 +226,15 @@ public class ExerciseViewActivity extends AppCompatActivity {
         }
 
         choiceClicked =0;
+
         answer1.getBackground().clearColorFilter();
+        answer1.setTextColor(Color.parseColor("#FF0C360B"));
         answer2.getBackground().clearColorFilter();
+        answer2.setTextColor(Color.parseColor("#FF0C360B"));
         answer3.getBackground().clearColorFilter();
+        answer3.setTextColor(Color.parseColor("#FF0C360B"));
         answer4.getBackground().clearColorFilter();
+        answer4.setTextColor(Color.parseColor("#FF0C360B"));
 
 
         questionText.setText(exerciseList.get(questionCount));
