@@ -52,39 +52,12 @@ public class ExerciseViewActivity extends AppCompatActivity {
         nextQuestion = findViewById(R.id.finish);
 
 
-        //nextQuestion.getBackground().setColorFilter(Color.BLUE,PorterDuff.Mode.MULTIPLY);
-
 
         Intent intent = getIntent();
         exerciseList = intent.getStringArrayListExtra("exerciseList");
         choices = intent.getStringArrayListExtra("choices");
         solutions = intent.getStringArrayListExtra("solutions");
 
-/*
-        exerciseList.add("Aunt is my mother's ?");
-
-        choices.add("uncle");
-        choices.add("father");
-        choices.add("sister");
-        choices.add("friend");
-
-        solutions.add(3);
-
-        exerciseList.add("Dog is a/an");
-
-        choices.add("plant");
-        choices.add("animal");
-        choices.add("bacteria");
-        choices.add("archea");
-
-        solutions.add(2);
-
-*/
-
-       // Bundle b = getIntent().getExtras();
-       // exerciseList = b.getStringArrayList("questions");
-       // choices = b.getStringArrayList("choices");
-       // solutions = b.getStringArrayList("solutions");
 
         questionText.setText(exerciseList.get(questionCount));
         answer1.setText(choices.get(questionCount));
