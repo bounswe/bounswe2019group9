@@ -69,9 +69,9 @@ const UserNavbar = ({ store: { userId } }) => {
             </span>
           }
         >
-          <Menu.Item key={'/profile'}>
+          <Menu.Item key={`/users/${userId}`}>
             Profile
-            <Link to={'/profile'} />
+            <Link to={`/users/${userId}`} />
           </Menu.Item>
           <Menu.Item onClick={logOut}>
             Log Out

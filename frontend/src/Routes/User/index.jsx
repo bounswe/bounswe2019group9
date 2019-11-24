@@ -7,6 +7,7 @@ import Language from './Language';
 import Dashboard from './Dashboard';
 import UserNavbar from './Navbar';
 import SamplePage from './Sample';
+import UserProfile from './UserProfile';
 
 class UserRoutes extends React.PureComponent {
   render() {
@@ -21,6 +22,7 @@ class UserRoutes extends React.PureComponent {
             <Route exact path="/language-select" component={LanguageSelect} />
             <Route exact path="/sample" component={SamplePage} />
             <Route exact path="/home" component={Dashboard} />
+            <Route exact path="/users/:userId" component={UserProfile} />
             <Route path="/:language" component={Language} />
             <Redirect to="/language-select" />
           </Switch>
