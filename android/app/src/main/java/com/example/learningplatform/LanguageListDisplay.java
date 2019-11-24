@@ -20,7 +20,6 @@ public class LanguageListDisplay extends AppCompatActivity {
         recyclerView = findViewById(R.id.recylerview);
         LanguageAdapter languageAdapter = new LanguageAdapter(this);
         recyclerView.setAdapter(languageAdapter);
-
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

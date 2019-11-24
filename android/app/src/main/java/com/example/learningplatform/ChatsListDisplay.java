@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -13,16 +15,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ChatsListDisplay extends AppCompatActivity {
     RecyclerView recyclerView;
-    UsersInChatsAdapter usersInChatsAdapter = new UsersInChatsAdapter(this);
-    private RecyclerView.LayoutManager layoutManager;
 
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_selection);
         recyclerView = findViewById(R.id.recylerview2);
-
+        sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        final int id = sharedPreferences.getInt("Id",0);
+        UsersInChatsAdapter usersInChatsAdapter = new UsersInChatsAdapter(this,id);
         recyclerView.setAdapter(usersInChatsAdapter);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
