@@ -88,7 +88,7 @@
             android:layout_below="@id/profile_lang_table"
             android:layout_marginTop="40dp"
             android:onClick="SendRequest"
-            android:text="Send Message Request"
+            android:text="Send com.example.learningplatform.Message Request"
             />
 
 
