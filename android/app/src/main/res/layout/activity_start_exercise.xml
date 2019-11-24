@@ -21,9 +21,41 @@
         android:gravity="center_horizontal"
         android:outlineAmbientShadowColor="@color/cardview_dark_background"
         android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
-        android:paddingHorizontal="30dp"
+
         android:paddingTop="16dp"
         android:paddingBottom="32dp">
+
+
+
+        <TableLayout
+            android:id="@+id/profile_lang_table"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_below="@+id/user_email_view"
+            android:layout_margin="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            >
+            <TableRow
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/linguistics"
+                    android:gravity="center_horizontal"/>
+                <ImageView android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pie_chart"
+                    android:gravity="center_horizontal"/>
+                <ImageView android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/exam"
+                    android:gravity="center_horizontal"/>
+            </TableRow>
+        </TableLayout>
+
 
         <TextView
             android:id="@+id/questionText"
@@ -33,9 +65,8 @@
             style="@style/QuestionTextView"
             android:text="Start Activity"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"/>
-
+            android:layout_below="@+id/profile_lang_table"
+            android:layout_marginTop="40dp"/>
         <Button
             android:id="@+id/answer1"
             android:layout_width="wrap_content"

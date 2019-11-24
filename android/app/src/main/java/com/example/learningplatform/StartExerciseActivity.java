@@ -1,5 +1,6 @@
 package com.example.learningplatform;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -7,7 +8,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -16,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,11 +57,23 @@ public class StartExerciseActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         final String lang = sharedPreferences.getString("languageOfUser","");
-        final int progressForLang = sharedPreferences.getInt("progressOfUser",0);
+        final String progressForLang = sharedPreferences.getString("progressOfUser","");
+        final String grade = sharedPreferences.getString("grade","");
 
 
-        Log.i("lang",lang);
-        Log.i("langPr",""+progressForLang);
+        final TableLayout table = findViewById(R.id.profile_lang_table);
+        final LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
+
+        LinearLayout row = (LinearLayout) layoutInflater.inflate(R.layout.start_exercise_activity_info,null);
+        TextView rowLanguage = row.findViewById(R.id.language_name);
+        TextView rowProgress = row.findViewById(R.id.progress_level);
+        TextView rowGrade = row.findViewById(R.id.user_language_grade);
+
+        rowLanguage.setText(lang);
+        rowProgress.setText(progressForLang);
+        rowGrade.setText(grade);
+        table.addView(row,1);
 
 
 
@@ -136,6 +155,33 @@ public class StartExerciseActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.nav_bar_excercise:
+                        return true;
+                    case R.id.nav_bar_message:
+                        intent = new Intent(getApplicationContext(), ChatsListDisplay.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_bar_profile:
+                        intent = new Intent(getApplicationContext(), ProfilePageActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_bar_search:
+                        intent = new Intent(getApplicationContext(), SearchActivity.class);
+                        startActivity(intent);
+                        return true;
+                }
+                return true;
+            }
+        });
 
 
 

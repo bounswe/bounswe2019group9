@@ -85,7 +85,8 @@ public class ProfilePageActivity extends AppCompatActivity {
                                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
                                         editor.putString("languageOfUser",languagesOfUser.getString(i));
-                                        editor.putInt("progressOfUser",progressLevelsOfUser.getInt(i));
+                                        editor.putString("progressOfUser",Integer.toString(progressLevelsOfUser.getInt(i))+"%");
+                                        editor.putString("grade",getGradeFromInt(gradeOfUser.getInt(i)));
                                         editor.commit();
 
 

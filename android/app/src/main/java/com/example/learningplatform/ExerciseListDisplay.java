@@ -82,6 +82,7 @@ public class ExerciseListDisplay extends AppCompatActivity {
                     Log.i("clickedTo","vocabulary");
                     intent = new Intent(ExerciseListDisplay.this, StartExerciseActivity.class);
                     intent.putExtra("typeOfExercise",3);
+
                     startActivity(intent);
                     break;
             }
