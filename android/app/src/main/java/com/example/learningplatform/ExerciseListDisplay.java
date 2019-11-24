@@ -59,20 +59,29 @@ public class ExerciseListDisplay extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.listening:
                     Log.i("clickedTo","listening");
+                    intent = new Intent(ExerciseListDisplay.this, StartExerciseActivity.class);
+                    intent.putExtra("typeOfExercise",1);
+                    startActivity(intent);
                     break;
                 case R.id.reading:
                     Log.i("clickedTo","reading");
+                    intent = new Intent(ExerciseListDisplay.this, StartExerciseActivity.class);
+                    intent.putExtra("typeOfExercise",2);
+                    startActivity(intent);
                     break;
                 case R.id.writing:
                     Log.i("clickedTo","writing");
                     break;
                 case R.id.grammar:
                     Log.i("clickedTo","grammar");
+                    intent = new Intent(ExerciseListDisplay.this, StartExerciseActivity.class);
+                    intent.putExtra("typeOfExercise",4);
+                    startActivity(intent);
                     break;
                 case R.id.vocabulary:
                     Log.i("clickedTo","vocabulary");
-                    intent = new Intent(ExerciseListDisplay.this, ExerciseViewActivity.class);
-                    intent.putExtra("typeOfExercise","vocabulary");
+                    intent = new Intent(ExerciseListDisplay.this, StartExerciseActivity.class);
+                    intent.putExtra("typeOfExercise",3);
                     startActivity(intent);
                     break;
             }

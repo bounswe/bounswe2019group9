@@ -12,10 +12,21 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -25,6 +36,7 @@ public class ExerciseViewActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     Button answer1,answer2,answer3,answer4;
     TextView questionText;
+
     ArrayList<String> exerciseList = new ArrayList<String>();
     ArrayList<String> choices= new ArrayList<String>();
     ArrayList<String> answers= new ArrayList<String>();
@@ -47,19 +59,16 @@ public class ExerciseViewActivity extends AppCompatActivity {
         answer4 = findViewById(R.id.answer4);
         questionText = findViewById(R.id.questionText);
 
-        exerciseList = new ArrayList<>();
-        choices = new ArrayList<>();
-        answers = new ArrayList<>();
 
-        exerciseList.add("An apple is a ?");
 
-        choices.add("fruit");
-        choices.add("vegetable");
-        choices.add("tool");
-        choices.add("machine");
 
-        solutions.add("fruit");
 
+        Intent intent = getIntent();
+        exerciseList = intent.getStringArrayListExtra("exerciseList");
+        choices = intent.getStringArrayListExtra("choices");
+        solutions = intent.getStringArrayListExtra("solutions");
+
+/*
         exerciseList.add("Aunt is my mother's ?");
 
         choices.add("uncle");
@@ -67,7 +76,7 @@ public class ExerciseViewActivity extends AppCompatActivity {
         choices.add("sister");
         choices.add("friend");
 
-        solutions.add("sister");
+        solutions.add(3);
 
         exerciseList.add("Dog is a/an");
 
@@ -76,8 +85,9 @@ public class ExerciseViewActivity extends AppCompatActivity {
         choices.add("bacteria");
         choices.add("archea");
 
-        solutions.add("animal");
+        solutions.add(2);
 
+*/
 
        // Bundle b = getIntent().getExtras();
        // exerciseList = b.getStringArrayList("questions");
@@ -123,6 +133,7 @@ public class ExerciseViewActivity extends AppCompatActivity {
 
     public void ChoiceSelected(View v){
 
+
         if(choiceClicked !=0)
             return;
 
@@ -130,6 +141,7 @@ public class ExerciseViewActivity extends AppCompatActivity {
         TextView t = (TextView) v;
         String answer = t.getText().toString();
         Log.i("logofanswer",""+answer);
+
         answers.add(answer);
 
 

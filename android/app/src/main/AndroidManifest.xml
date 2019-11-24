@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ExerciseViewActivity"></activity>
+        <activity android:name=".StartExerciseActivity"></activity>
+        <activity android:name=".ExerciseViewActivity" />
         <activity android:name=".TargetUserActivity" />
         <activity android:name=".ProfilePageActivity" />
         <activity android:name=".ExerciseListDisplay" />
