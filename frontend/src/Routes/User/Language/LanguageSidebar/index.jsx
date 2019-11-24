@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {Link, useParams, useLocation} from 'react-router-dom';
 import {getGrade} from '../../../../Api/Grade';
 import { connect, storeType } from '../../../../Store';
-import {GradesHelper} from '../../../../Helpers';
-import {Menu, Tag, Descriptions, Skeleton} from 'antd';
+import {GradesHelper, ExercisesHelper} from '../../../../Helpers';
+import {Menu, Tag, Descriptions, Skeleton, Icon} from 'antd';
 
 const routes = [
   { route: 'main', name: 'Main' },
-  { route: 'proficiency-exam', name: 'Proficiency Exam' }
+  { route: 'proficiency-exam', name: 'Proficiency Exam' },
 ];
 
 const LanguageSidebar = ({ store }) => {
@@ -18,7 +18,7 @@ const LanguageSidebar = ({ store }) => {
 
   const [grade, setGrade] = useState();
 
-  const currentRoute = pathname.split('/')[2] || 'main';
+  const currentRoute = pathname.split('/').slice(2).filter((x) => x).join('/') || 'main';
 
   useEffect(() => {
     if (languageId) {
@@ -51,6 +51,22 @@ const LanguageSidebar = ({ store }) => {
             </Menu.Item>
           ))
         }
+        <Menu.SubMenu
+          key="exercises"
+          title={
+            <span>
+              <Icon type="reconciliation" />
+              <span>Exercises</span>
+            </span>
+          }
+        >
+          { ExercisesHelper.exerciseTypes.map(({ typeId, route, name }) => (
+            <Menu.Item key={route}>
+              { name }
+              <Link to={`/${language}/exercises/${route}`} />
+            </Menu.Item>
+          ))}
+        </Menu.SubMenu>
       </Menu>
     </div>
   );

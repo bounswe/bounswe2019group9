@@ -5,9 +5,13 @@ import {Switch, Route, Redirect, useParams, useLocation, NavLink} from 'react-ro
 import LanguageSidebar from './LanguageSidebar';
 import ProfExam from './ProfExam';
 import Main from './Main';
+import Exercises from './Exercises';
+import {ExercisesHelper} from '../../../Helpers';
 
 const pathToLabel = {
-  'proficiency-exam': 'Proficiency Exam'
+  'proficiency-exam': 'Proficiency Exam',
+  'exercises': 'Exercises',
+  ...ExercisesHelper.exerciseTypes.reduce((acc, { route, name }) => ({ [route]: name, ...acc }), {}),
 };
 
 const LanguageRoutes = () => {
@@ -32,6 +36,7 @@ const LanguageRoutes = () => {
           <Layout.Content style={styles.content}>
             <Switch>
               <Route exact path='/:language' component={Main} />
+              <Route exact path='/:language/exercises/:exerciseType' component={Exercises} />
               <Route path='/:language/proficiency-exam' component={ProfExam} />
               <Redirect to={`/${language}`}/>
             </Switch>
