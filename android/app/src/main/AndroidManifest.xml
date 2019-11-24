@@ -17,6 +17,7 @@
         <activity android:name=".ExerciseListDisplay" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".GradeView" />
+        <activity android:name=".MessageListActivity"/>
         <activity android:name=".QuestionDisplay" />
         <activity android:name=".ChatsListDisplay" />
         <activity android:name=".RegisterActivity" />
