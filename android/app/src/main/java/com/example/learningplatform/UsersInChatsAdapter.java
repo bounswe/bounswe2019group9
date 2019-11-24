@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class UsersInChatsAdapter extends RecyclerView.Adapter<UsersInChatsAdapter.MyViewHolder>{
 
-    ArrayList<String> usersArrayList;
+    ArrayList<User> usersArrayList;
     Context context;
     SharedPreferences sharedPreferences;
 
@@ -42,7 +42,6 @@ public class UsersInChatsAdapter extends RecyclerView.Adapter<UsersInChatsAdapte
             public void run() {
                 //TODO your background code
                 RequestQueue queue = Volley.newRequestQueue(context);
-                Log.i("shared", "req atmadan önce");
                 String url ="https://api.bounswe2019group9.tk/conversations?id=" + id;
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                         new Response.Listener<JSONObject>() {
@@ -56,8 +55,9 @@ public class UsersInChatsAdapter extends RecyclerView.Adapter<UsersInChatsAdapte
                                         for(int i=0; i<data.length();i++) {
                                             if (data.getJSONObject(i).has("firstName") & data.getJSONObject(i).has("lastName")) {
                                                 String nameOfUser = (String) data.getJSONObject(i).get("firstName") + " " +  (String) data.getJSONObject(i).get("lastName") ;
+                                                int id2 = data.getJSONObject(i).getInt("userId");
                                                 Log.i("nameofuser", nameOfUser);
-                                                usersArrayList.add(nameOfUser);
+                                                usersArrayList.add(new User(nameOfUser,id2));
                                             }
                                         }
                                         notifyDataSetChanged();
@@ -96,8 +96,17 @@ public class UsersInChatsAdapter extends RecyclerView.Adapter<UsersInChatsAdapte
     @Override
     public void onBindViewHolder(final UsersInChatsAdapter.MyViewHolder holder, final int position) {
 
-        holder.nameOfUser.setText(usersArrayList.get(position));
+        holder.nameOfUser.setText(usersArrayList.get(position).name);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, MessageListActivity.class);
+                intent.putExtra("userId2", usersArrayList.get(position).id );
+                intent.putExtra("name",usersArrayList.get(position).name);
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -119,8 +128,15 @@ public class UsersInChatsAdapter extends RecyclerView.Adapter<UsersInChatsAdapte
 
         @Override
         public void onClick(View v) {
-
-
         }
+    }
+}
+
+class User{
+    String name;
+    int id;
+    public  User(String name, int id){
+        this.name= name;
+        this.id = id;
     }
 }

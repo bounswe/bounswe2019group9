@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_color_light"
-    tools:context=".TargetUserActivity">
+    tools:context=".StartExerciseActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -21,39 +21,18 @@
         android:gravity="center_horizontal"
         android:outlineAmbientShadowColor="@color/cardview_dark_background"
         android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
+
         android:paddingTop="16dp"
         android:paddingBottom="32dp">
 
-        <TextView
-            android:id="@+id/target_user_name_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/WelcomePageTextView"
-            android:text="Name"
-            />
 
-        <TextView
-            android:id="@+id/target_user_surname_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/target_user_name_view"
-            android:layout_marginTop="20dp"
-            android:text="Surname"
-            style="@style/WelcomePageTextView"/>
-        <TextView
-            android:id="@+id/target_user_email_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/target_user_surname_view"
-            android:layout_marginTop="20dp"
-            android:text="Email"
-            style="@style/WelcomePageTextView"/>
+
         <TableLayout
             android:id="@+id/profile_lang_table"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scrollbars="vertical"
-            android:layout_below="@+id/target_user_email_view"
+            android:layout_below="@+id/user_email_view"
             android:layout_margin="4dp"
             android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
@@ -74,22 +53,28 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/exam"
                     android:gravity="center_horizontal"/>
-                <ImageView android:layout_width="68dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/star"
-                    android:gravity="center_horizontal"/>
             </TableRow>
         </TableLayout>
+
+
+        <TextView
+            android:id="@+id/questionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            style="@style/QuestionTextView"
+            android:text="Start Activity"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_below="@+id/profile_lang_table"
+            android:layout_marginTop="40dp"/>
         <Button
-            android:id="@+id/send_request_button"
-            style="@style/WelcomePageButton"
+            android:id="@+id/answer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/profile_lang_table"
-            android:layout_marginTop="40dp"
-            android:onClick="SendRequest"
-            android:text="Send com.example.learningplatform.Message Request"
-            />
+            android:text="Start Now"
+            android:onClick="StartSelected"
+            style="@style/WelcomePageButton"
+            android:layout_below="@id/questionText"/>
 
 
 
@@ -105,4 +90,5 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:menu="@menu/bottom_navigation_menu" />
+
 </RelativeLayout>

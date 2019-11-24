@@ -29,11 +29,10 @@ import org.json.JSONObject;
 
 public class ProfilePageActivity extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
+    SharedPreferences  sharedPreferences;
     private static TextView nameDisplay;
     private static TextView surnameDisplay;
     private static TextView mailDisplay;
-    private static TextView gradeDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +44,7 @@ public class ProfilePageActivity extends AppCompatActivity {
         mailDisplay = findViewById(R.id.user_email_view);
 
         sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
         final int id = sharedPreferences.getInt("Id",0);
         final TableLayout table = findViewById(R.id.profile_lang_table);
         final LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService
@@ -74,12 +74,26 @@ public class ProfilePageActivity extends AppCompatActivity {
                                         Log.e("Error", "The number of languages user has and the grades user has doesn't match");
                                     }
                                     for(int i = 0; i<gradeOfUser.length();i++){
+                                        if(i == 0){
+                                            editor.putInt("currentLanguage",1);
+                                            editor.putInt("currentGrade", gradeOfUser.getInt(0));
+                                        }
                                         LinearLayout row = (LinearLayout) layoutInflater.inflate(R.layout.profile_user_language_info,null);
                                         TextView rowLanguage = row.findViewById(R.id.language_name);
                                         TextView rowProgress = row.findViewById(R.id.progress_level);
                                         TextView rowGrade = row.findViewById(R.id.user_language_grade);
                                         TextView rowRating = row.findViewById(R.id.user_rating);
                                         rowLanguage.setText(languagesOfUser.getString(i));
+
+                                        // adding language progress to sharedPreferences
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                        editor.putString("languageOfUser",languagesOfUser.getString(i));
+                                        editor.putString("progressOfUser",Integer.toString(progressLevelsOfUser.getInt(i))+"%");
+                                        editor.putString("grade",getGradeFromInt(gradeOfUser.getInt(i)));
+                                        editor.commit();
+
+
                                         rowProgress.setText(Integer.toString(progressLevelsOfUser.getInt(i))+"%");
                                         rowGrade.setText(getGradeFromInt(gradeOfUser.getInt(i)));
                                         rowRating.setText("3.5");
