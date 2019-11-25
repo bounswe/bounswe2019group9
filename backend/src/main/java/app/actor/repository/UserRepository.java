@@ -28,6 +28,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
   void addUser(@Param("email") String email, @Param("password") String password, @Param("firstName") String firstName,
            @Param("lastName") String lastName);
 
-  @Query(value = "SELECT * FROM users WHERE first_name LIKE %"+":firstName"+"% AND last_name LIKE %"+":lastName"+"%", nativeQuery = true)
+  @Query(value = "SELECT * FROM users WHERE LOWER(first_name) LIKE %"+":firstName"+"% AND LOWER(last_name) LIKE %"+":lastName"+"%", nativeQuery = true)
   List<User> getUsersByFirstNameAndLastName(@Param("firstName") String firstName, @Param("lastName") String lastName);
 }

@@ -43,7 +43,8 @@ public class SearchUserService {
     List<ProfileInfo> profiles = new ArrayList<>();
     request = getFirstNameNotNull(request);
     request = getLastNameNotNull(request);
-    users = userRepository.getUsersByFirstNameAndLastName(request.getFirstName(), request.getLastName());
+    users = userRepository.getUsersByFirstNameAndLastName(request.getFirstName().toLowerCase(),
+                                                          request.getLastName().toLowerCase());
     for (User user : users) {
       if (isNull(request.getLanguageId())) {
         profiles.add(profileService.getProfileInfoByUserId(user.getId()));
