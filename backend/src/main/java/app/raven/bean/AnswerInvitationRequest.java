@@ -8,52 +8,50 @@ import javax.validation.constraints.NotNull;
 
 public class AnswerInvitationRequest {
 
-    @NotNull
-    private Long sourceId; ////////////////////////// source of invitation, not of answer
+  @NotNull
+  private Long sourceId;
 
-    @NotNull
-    private Long receiverId;
+  @NotNull
+  private Long receiverId;
 
-    private boolean isApproved;
+  private boolean isApproved;
 
+  public AnswerInvitationRequest(@NotNull Long sourceId, @NotNull Long receiverId, boolean isApproved) {
+    this.sourceId = sourceId;
+    this.receiverId = receiverId;
+    this.isApproved = isApproved;
+  }
 
+  public Long getSourceId() {
+    return sourceId;
+  }
 
-    public AnswerInvitationRequest(@NotNull Long sourceId, @NotNull Long receiverId, boolean isApproved) {
-        this.sourceId = sourceId;
-        this.receiverId = receiverId;
-        this.isApproved = isApproved;
-    }
+  public void setSourceId(Long sourceId) {
+    this.sourceId = sourceId;
+  }
 
-    public Long getSourceId() {
-        return sourceId;
-    }
+  public Long getReceiverId() {
+    return receiverId;
+  }
 
-    public void setSourceId(Long sourceId) {
-        this.sourceId = sourceId;
-    }
+  public void setReceiverId(Long receiverId) {
+    this.receiverId = receiverId;
+  }
 
-    public Long getReceiverId() {
-        return receiverId;
-    }
+  public boolean isApproved() {
+    return isApproved;
+  }
 
-    public void setReceiverId(Long receiverId) {
-        this.receiverId = receiverId;
-    }
+  public void setApproved(boolean approved) {
+    isApproved = approved;
+  }
 
-    public boolean isApproved() {
-        return isApproved;
-    }
-
-    public void setApproved(boolean approved) {
-        isApproved = approved;
-    }
-
-    @Override
-    public String toString() {
-        return "CreateInvitationRequest{" +
-                "sourceId=" + sourceId +
-                ", receiverId=" + receiverId +
-                ", isApproved=" + isApproved +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "CreateInvitationRequest{" +
+           "sourceId=" + sourceId +
+           ", receiverId=" + receiverId +
+           ", isApproved=" + isApproved +
+           '}';
+  }
 }

@@ -25,30 +25,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/invitations")
 public class InvitationController {
 
-    private final InvitationService invitationService;
+  private final InvitationService invitationService;
 
-    public InvitationController(InvitationService invitationService) {
-        this.invitationService = invitationService;
-    }
+  public InvitationController(InvitationService invitationService) {
+    this.invitationService = invitationService;
+  }
 
-    @GetMapping("/byReceiverId")
-    public Response<List<ProfileInfo>> getInviterProfileInfosByReceiverId(@RequestParam("userId") Long userId) {
-        return invitationService.getInviterProfileInfosByReceiverId(userId);
-    }
+  @GetMapping("/byReceiverId")
+  public Response<List<ProfileInfo>> getInviterProfileInfosByReceiverId(@RequestParam("userId") Long userId) {
+    return invitationService.getInviterProfileInfosByReceiverId(userId);
+  }
 
-    @GetMapping("/state")
-    public Response<InvitationState> getInvitationState(@RequestParam("userId1") Long userId1,
-                                                          @RequestParam("userId2") Long userId2) {
-        return invitationService.getInvitationState(userId1, userId2);
-    }
+  @GetMapping("/state")
+  public Response<InvitationState> getInvitationState(@RequestParam("userId1") Long userId1,
+                                                      @RequestParam("userId2") Long userId2) {
+    return invitationService.getInvitationState(userId1, userId2);
+  }
 
-    @PostMapping("/add")
-    public Response<Invitation> createInvitation(@Validated @RequestBody CreateInvitationRequest request) {
-        return invitationService.createInvitation(request);
-    }
+  @PostMapping("/add")
+  public Response<Invitation> createInvitation(@Validated @RequestBody CreateInvitationRequest request) {
+    return invitationService.createInvitation(request);
+  }
 
-    @PostMapping("/answer")
-    public Response<Conversation> answerToInvitation(@Validated @RequestBody AnswerInvitationRequest request) {
-        return invitationService.answerToInvitation(request);
-    }
+  @PostMapping("/answer")
+  public Response<Conversation> answerToInvitation(@Validated @RequestBody AnswerInvitationRequest request) {
+    return invitationService.answerToInvitation(request);
+  }
 }

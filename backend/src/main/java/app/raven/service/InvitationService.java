@@ -25,150 +25,109 @@ import static java.util.Objects.isNull;
  */
 
 @Service
-public class InvitationService
-{
-    private static final String USER_NOT_FOUND_MESSAGE = "User not found.";
+public class InvitationService {
 
-    private static final String SENDER_AND_RECEIVER_CANNOT_BE_SAME_MESSAGE = "Sender and receiver can't be same.";
+  private static final String USER_NOT_FOUND_MESSAGE = "User not found.";
 
-    private static final String INVITATION_EXISTS_MESSAGE = "Invitation already exists";
+  private static final String SENDER_AND_RECEIVER_CANNOT_BE_SAME_MESSAGE = "Sender and receiver can't be same.";
 
-    private static final String CONVERSATION_EXISTS_MESSAGE = "Conversation already exists";
+  private static final String INVITATION_EXISTS_MESSAGE = "Invitation already exists";
 
-    private final InvitationRepository invitationRepository;
+  private static final String CONVERSATION_EXISTS_MESSAGE = "Conversation already exists";
 
-    private final ConversationRepository conversationRepository;
+  private final InvitationRepository invitationRepository;
 
-    private final UserService userService;
+  private final ConversationRepository conversationRepository;
 
-    private final ProfileService profileService;
+  private final UserService userService;
 
-    public InvitationService(InvitationRepository invitationRepository, ConversationRepository conversationRepository, UserService userService, ProfileService profileService) {
-        this.invitationRepository = invitationRepository;
-        this.conversationRepository = conversationRepository;
-        this.userService = userService;
-        this.profileService = profileService;
+  private final ProfileService profileService;
+
+  public InvitationService(InvitationRepository invitationRepository, ConversationRepository conversationRepository,
+                           UserService userService, ProfileService profileService) {
+    this.invitationRepository = invitationRepository;
+    this.conversationRepository = conversationRepository;
+    this.userService = userService;
+    this.profileService = profileService;
+  }
+
+  public Response<List<ProfileInfo>> getInviterProfileInfosByReceiverId(Long userId) {
+    List<Invitation> invitations = invitationRepository.getInvitationsByReceiverId(userId);
+
+    ArrayList<ProfileInfo> responseBody = new ArrayList<>();
+
+    for (Invitation invitation : invitations) {
+      responseBody.add(profileService.getProfileInfoByUserId(invitation.getSourceId()));
+    }
+    return HttpResponses.from(responseBody);
+  }
+
+  public Response<InvitationState> getInvitationState(Long userId1, Long userId2) {
+    if (!isIdValid(userId1) || !isIdValid(userId2)) {
+      return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
     }
 
-    /*public Response<List<Invitation>> getInvitationsByReceiverId(Long userId)
-    {
-        if (!isIdValid(userId))
-        {
-            return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
-        }
-        return HttpResponses.from(invitationRepository.getInvitationsByReceiverId(userId));
-    }*/
+    InvitationState invitationState = new InvitationState(
+        userId1,
+        userId2,
+        !isNull(invitationRepository.getInvitationFromAtoB(userId1, userId2)),
+        !isNull(invitationRepository.getInvitationFromAtoB(userId2, userId1)),
+        !isNull(conversationRepository.getConversationById(userId1, userId2))
+    );
 
-    public Response<List<ProfileInfo>> getInviterProfileInfosByReceiverId(Long userId)
-    {
-        List<Invitation> invitations = invitationRepository.getInvitationsByReceiverId(userId);
+    return HttpResponses.from(invitationState);
+  }
 
-        ArrayList<ProfileInfo> responseBody = new ArrayList<>();
-
-        for (Invitation invitation : invitations)
-        {
-            responseBody.add( profileService.getProfileInfoByUserId( invitation.getSourceId() ) );
-        }
-        return HttpResponses.from(responseBody);
-
+  public Response<Invitation> createInvitation(CreateInvitationRequest request) {
+    if (!isIdValid(request.getSourceId()) || !isIdValid(request.getReceiverId())) {
+      return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
     }
 
-
-
-    public Response<InvitationState> getInvitationState(Long userId1, Long userId2)
-    {
-        if (!isIdValid(userId1) || !isIdValid(userId2))
-        {
-            return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
-        }
-
-        InvitationState invitationState = new InvitationState(
-                userId1,
-                    userId2,
-                        !isNull(invitationRepository.getInvitationFromAtoB(userId1, userId2)),
-                            !isNull(invitationRepository.getInvitationFromAtoB(userId2, userId1)),
-                                !isNull(conversationRepository.getConversationById(userId1, userId2))
-        );
-
-        return HttpResponses.from(invitationState);
+    if (request.getReceiverId() == request.getSourceId()) {
+      return HttpResponses.badRequest(SENDER_AND_RECEIVER_CANNOT_BE_SAME_MESSAGE);
     }
 
+    Date now = new Date();
 
-
-    public Response<Invitation> createInvitation(CreateInvitationRequest request)
-    {
-        if (!isIdValid(request.getSourceId()) || !isIdValid(request.getReceiverId()))
-        {
-            return HttpResponses.badRequest(USER_NOT_FOUND_MESSAGE);
-        }
-
-
-        if (request.getReceiverId() == request.getSourceId())
-        {
-            return HttpResponses.badRequest(SENDER_AND_RECEIVER_CANNOT_BE_SAME_MESSAGE);
-        }
-
-
-        Date now = new Date();
-
-        if (    !isNull(invitationRepository.getInvitationFromAtoB(request.getSourceId(), request.getReceiverId()))
-                ||
-                !isNull(invitationRepository.getInvitationFromAtoB(request.getReceiverId(), request.getSourceId()))
-        )
-        {
-            return HttpResponses.badRequest(INVITATION_EXISTS_MESSAGE);
-        }
-
-        else if(
-                !isNull(conversationRepository.getConversationById(request.getSourceId(), request.getReceiverId()))
-        )
-        {
-            return HttpResponses.badRequest(CONVERSATION_EXISTS_MESSAGE);
-        }
-
-        else {
-            invitationRepository.createInvitation(request.getSourceId(), request.getReceiverId(), now);
-        }
-
-
-        return HttpResponses.from(invitationRepository.getInvitationFromAtoB(request.getSourceId(), request.getReceiverId()));
+    if (!isNull(invitationRepository.getInvitationFromAtoB(request.getSourceId(), request.getReceiverId()))
+        ||
+        !isNull(invitationRepository.getInvitationFromAtoB(request.getReceiverId(), request.getSourceId()))
+    ) {
+      return HttpResponses.badRequest(INVITATION_EXISTS_MESSAGE);
+    } else if (
+        !isNull(conversationRepository.getConversationById(request.getSourceId(), request.getReceiverId()))
+    ) {
+      return HttpResponses.badRequest(CONVERSATION_EXISTS_MESSAGE);
+    } else {
+      invitationRepository.createInvitation(request.getSourceId(), request.getReceiverId(), now);
     }
 
+    return HttpResponses.from(
+        invitationRepository.getInvitationFromAtoB(request.getSourceId(), request.getReceiverId()));
+  }
 
-    public Response<Conversation> answerToInvitation(AnswerInvitationRequest request)
-    {
-        //Response response = getInvitationState(request.getSourceId(), request.getReceiverId());
+  public Response<Conversation> answerToInvitation(AnswerInvitationRequest request) {
 
-        //InvitationState invitationState = response.getData();
+    if (request.isApproved()) {
+      invitationRepository.deleteInvitation(request.getSourceId(), request.getReceiverId());
 
-        //InvitationState invitationState = getInvitationState(request.getSourceId(), request.getReceiverId());
+      invitationRepository.deleteInvitation(request.getReceiverId(), request.getSourceId());
 
-        if(request.isApproved())
-        {
-            invitationRepository.deleteInvitation(request.getSourceId(), request.getReceiverId());
+      Date now = new Date();
+      conversationRepository.createConversation(request.getSourceId(), request.getReceiverId(), now);
 
-            invitationRepository.deleteInvitation(request.getReceiverId(), request.getSourceId());
+      return HttpResponses.from(
+          conversationRepository.getConversationById(request.getSourceId(), request.getReceiverId()));
+    } else {
+      invitationRepository.deleteInvitation(request.getSourceId(), request.getReceiverId());
 
-            Date now = new Date();
-            conversationRepository.createConversation(request.getSourceId(), request.getReceiverId(), now);
+      invitationRepository.deleteInvitation(request.getReceiverId(), request.getSourceId());
 
-            return HttpResponses.from(conversationRepository.getConversationById(request.getSourceId(), request.getReceiverId()));
-        }
-
-        else
-        {
-            invitationRepository.deleteInvitation(request.getSourceId(), request.getReceiverId());
-
-            invitationRepository.deleteInvitation(request.getReceiverId(), request.getSourceId());
-
-            return HttpResponses.successful();
-        }
-
+      return HttpResponses.successful();
     }
+  }
 
-
-    private boolean isIdValid(Long userId) {
-        return userService.getUserById(userId).getStatus() == HttpResponses.SUCCESSFUL;
-    }
-
+  private boolean isIdValid(Long userId) {
+    return userService.getUserById(userId).getStatus() == HttpResponses.SUCCESSFUL;
+  }
 }
