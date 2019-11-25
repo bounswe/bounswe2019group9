@@ -8,40 +8,38 @@ import javax.validation.constraints.NotNull;
 
 public class CreateInvitationRequest {
 
-    @NotNull
-    private Long sourceId;
+  @NotNull
+  private Long sourceId;
 
-    @NotNull
-    private Long receiverId;
+  @NotNull
+  private Long receiverId;
 
+  public CreateInvitationRequest(@NotNull Long sourceId, @NotNull Long receiverId) {
+    this.sourceId = sourceId;
+    this.receiverId = receiverId;
+  }
 
-    public CreateInvitationRequest(@NotNull Long sourceId, @NotNull Long receiverId) {
-        this.sourceId = sourceId;
-        this.receiverId = receiverId;
-    }
+  public Long getSourceId() {
+    return sourceId;
+  }
 
-    public Long getSourceId() {
-        return sourceId;
-    }
+  public void setSourceId(Long sourceId) {
+    this.sourceId = sourceId;
+  }
 
-    public void setSourceId(Long sourceId) {
-        this.sourceId = sourceId;
-    }
+  public Long getReceiverId() {
+    return receiverId;
+  }
 
-    public Long getReceiverId() {
-        return receiverId;
-    }
+  public void setReceiverId(Long receiverId) {
+    this.receiverId = receiverId;
+  }
 
-    public void setReceiverId(Long receiverId) {
-        this.receiverId = receiverId;
-    }
-
-
-    @Override
-    public String toString() {
-        return "CreateInvitationRequest{" +
-                "sourceId=" + sourceId +
-                ", receiverId=" + receiverId +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "CreateInvitationRequest{" +
+           "sourceId=" + sourceId +
+           ", receiverId=" + receiverId +
+           '}';
+  }
 }
