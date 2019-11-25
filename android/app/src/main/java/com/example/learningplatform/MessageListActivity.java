@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,6 +95,36 @@ public class MessageListActivity extends AppCompatActivity {
                     }
                 });
                 queue.add(jsonObjectRequest);
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.nav_bar_excercise:
+                        intent = new Intent(MessageListActivity.this, ExerciseListDisplay.class);
+                        startActivity(intent);
+                        return true;
+
+                    case R.id.nav_bar_profile:
+                        intent = new Intent(MessageListActivity.this, ProfilePageActivity.class);
+                        startActivity(intent);
+                        return true;
+
+                    case R.id.nav_bar_message:
+                        intent = new Intent(MessageListActivity.this, ChatsListDisplay.class);
+                        startActivity(intent);
+                        return true;
+
+                    case R.id.nav_bar_search:
+                        intent = new Intent(MessageListActivity.this, SearchActivity.class);
+                        startActivity(intent);
+                        return true;
+                }
+                return true;
             }
         });
 
