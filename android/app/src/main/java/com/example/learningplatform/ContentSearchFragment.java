@@ -30,7 +30,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ContentSearchFragment extends Fragment {
     SearchView searchView;
@@ -77,12 +79,18 @@ public class ContentSearchFragment extends Fragment {
                                         String question = data.getJSONObject(i).getString("questionBody");
                                         JSONArray tags = data.getJSONObject(i).getJSONArray("tags");
                                         int exerciseId = data.getJSONObject(i).getInt("id");
+                                        String[] options = new String[4];
+                                        options[0] = data.getJSONObject(i).getString("optionA");
+                                        options[1] = data.getJSONObject(i).getString("optionB");
+                                        options[2] = data.getJSONObject(i).getString("optionC");
+                                        options[3] = data.getJSONObject(i).getString("optionD");
+                                        int answer = data.getJSONObject(i).getInt("correctAnswer");
                                         String[] tagsArray = new String[tags.length()];
                                         for(int j = 0; j<tags.length(); j++){
                                             String tag = tags.getJSONObject(j).getString("tagText");
                                             tagsArray[j] = tag;
                                         }
-                                        ContentDataClass newContent = new ContentDataClass(exerciseId, question, tagsArray);
+                                        ContentDataClass newContent = new ContentDataClass(exerciseId, question, tagsArray, options, answer);
                                         list.add(newContent);
                                     }
 
@@ -119,20 +127,30 @@ public class ContentSearchFragment extends Fragment {
             }
         });
 
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //String person = String.valueOf(parent.getItemAtPosition(position));
-                ContentDataClass selectedUser = (ContentDataClass) parent.getItemAtPosition(position);
-                int selectedID = selectedUser.userID;
-                String person = selectedUser.firstName;
-                Toast.makeText(getContext(),"yeeey clicked well on "+person+" with ID "+ selectedID,Toast.LENGTH_LONG).show();
+                ContentDataClass selectedContent = (ContentDataClass) parent.getItemAtPosition(position);
+                int selectedID = selectedContent.exerciseID;
+                String[] options = selectedContent.options;
+                ArrayList<String> optionsArraylist = new ArrayList<>();
+                for(int i = 0;i<4;i++){
+                    optionsArraylist.add(options[i]);
+                }
+                ArrayList<String> questionList = new ArrayList<>();
+                questionList.add(selectedContent.exerciseBody);
+                ArrayList<String> answerList = new ArrayList<>();
+                answerList.add(selectedContent.answer);
+
                 Intent intent;
-                intent = new Intent(view.getContext(),TargetUserActivity.class);
-                intent.putExtra("targetUserId",selectedID);
+                intent = new Intent(view.getContext(),ExerciseViewActivity.class);
+                intent.putStringArrayListExtra("exerciseList", questionList);
+                intent.putStringArrayListExtra("choices",optionsArraylist);
+                intent.putStringArrayListExtra("solutions",answerList);
                 startActivity(intent);
             }
-        });*/
+        });
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) v.findViewById(R.id.bottom_navigation);
@@ -167,10 +185,24 @@ class ContentDataClass implements Serializable {
 
     public int exerciseID;
     public String firstCharactersOfExercise;
+    public String exerciseBody;
     public String tagList;
+    public String[] options;
+    public String answer;
 
-    public ContentDataClass(int id, String exercise, String[] tagList){
+    public ContentDataClass(int id, String exercise, String[] tagList, String[] options, int answer){
+        if(answer == 1){
+            this.answer = options[0];
+        }else if(answer == 2){
+            this.answer = options[1];
+        }else if(answer == 3){
+            this.answer = options[2];
+        }else if(answer ==4){
+            this.answer = options[3];
+        }
+        this.options = options;
         this.exerciseID = id;
+        this.exerciseBody = exercise;
         if(exercise.length()>100){
             exercise = exercise.substring(0,100);
         }
