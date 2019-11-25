@@ -1,13 +1,15 @@
 import React from 'react';
-import { Descriptions } from "antd";
+import { Descriptions, Button } from "antd";
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 import { numGradeToStrGrade } from '../../../Helpers/grades';
 
 
 const UserView = ({ 
-  email, firstName, grades, 
-  languages, lastName, progressLevels }) => {
+  email, firstName, grades, userId,
+  languages, lastName, progressLevels,
+  isButtonPresent = false }) => {
 
   const languagesTuple = languages.map((lang, i) => (
     [lang, grades[i], progressLevels[i]]
@@ -20,15 +22,23 @@ const UserView = ({
         {[firstName, lastName].join(' ')}
         </Descriptions.Item>
         <Descriptions.Item label="Email">{email}</Descriptions.Item>
+        {isButtonPresent ? 
+        <Descriptions.Item>
+          <Link to={`/users/${userId}`}>
+            <Button type="primary">Go to profile page!</Button>
+          </Link>
+        </Descriptions.Item>
+        : null}
+        
       </Descriptions>
       { languagesTuple.length ? languagesTuple.map( tuple => 
-        <Descriptions title={tuple[0]}>
-        <Descriptions.Item label="Grade">
-          {numGradeToStrGrade(tuple[1])}
-        </Descriptions.Item>
-        <Descriptions.Item label="Progress Level">
-          {tuple[2]}
-        </Descriptions.Item>
+        <Descriptions title={tuple[0]} key={tuple[0]}>
+          <Descriptions.Item label="Grade">
+            {numGradeToStrGrade(tuple[1])}
+          </Descriptions.Item>
+          <Descriptions.Item label="Progress Level">
+            {tuple[2]}
+          </Descriptions.Item>
         </Descriptions>
       ) : <p>No languages found.</p>}
     </>
@@ -43,6 +53,11 @@ UserView.propTypes = {
   languages: PropTypes.arrayOf(PropTypes.string).isRequired,
   grades: PropTypes.arrayOf(PropTypes.number).isRequired,
   progressLevels: PropTypes.arrayOf(PropTypes.number).isRequired,
+  isButtonPresent: PropTypes.bool
 };
+
+UserView.defaultProps = {
+  isButtonPresent: false,
+}
   
 export default UserView;

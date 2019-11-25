@@ -19,17 +19,27 @@ const Users = () => {
       .catch(console.log)
   }
   return (
-    <Row type="flex" align="middle">
-      <Col md={16}>
-        <InlineSearch onSubmit={handleSearch}/>
-        {users.map(user => (
-          <Card key={user.userId}>
-            <UserView {...user} />
-          </Card>
-        ))}
-      </Col>
-    </Row>
+    <Card style={styles.card} bodyStyle={styles.innerCard}>
+      <InlineSearch onSubmit={handleSearch}/>
+      {users.map(user => (
+        <Card key={user.userId}>
+          <UserView {...user} isButtonPresent />
+        </Card>
+      ))}
+    </Card>
   )
+}
+
+const styles = {
+  card: {
+    padding: 20,
+    margin: 20,
+    height: "calc(100% - 40px)",
+  },
+  innerCard: {
+    overflow: "auto",
+    maxHeight: "100%",
+  }
 }
 
 export default connect(Users);
