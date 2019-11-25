@@ -1,5 +1,6 @@
 package app.raven.controller;
 
+import app.actor.bean.ProfileInfo;
 import app.common.Response;
 import app.raven.bean.CreateInvitationRequest;
 import app.raven.bean.AnswerInvitationRequest;
@@ -31,8 +32,8 @@ public class InvitationController {
     }
 
     @GetMapping("/byReceiverId")
-    public Response<List<Invitation>> getInvitationsByReceiverId(@RequestParam("userId") Long userId) {
-        return invitationService.getInvitationsByReceiverId(userId);
+    public Response<List<ProfileInfo>> getInviterProfileInfosByReceiverId(@RequestParam("userId") Long userId) {
+        return invitationService.getInviterProfileInfosByReceiverId(userId);
     }
 
     @GetMapping("/state")
