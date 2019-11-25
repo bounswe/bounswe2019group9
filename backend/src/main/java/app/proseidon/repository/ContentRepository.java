@@ -25,11 +25,11 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
 
   @Transactional
   @Modifying
-  @Query(value = "INSERT INTO proseidon.exercises(language_id, type_id, image_url, sound_url," +
+  @Query(value = "INSERT INTO proseidon.exercises(language_id, type_id, grade, image_url, sound_url," +
                  " question_body, option_a, option_b, option_c, option_d, correct_answer)" +
-                 "VALUES(:languageId, :typeId, :imageUrl, :soundUrl, :questionBody, :optionA, :optionB," +
+                 "VALUES(:languageId, :typeId, :grade, :imageUrl, :soundUrl, :questionBody, :optionA, :optionB," +
                  " :optionC, :optionD, :correctAnswer) ", nativeQuery = true)
-  void addExercise(@Param("languageId") Integer languageId, @Param("typeId") Integer typeId,
+  void addExercise(@Param("languageId") Integer languageId, @Param("typeId") Integer typeId, @Param("grade") Integer grade,
                    @Param("imageUrl") String imageUrl, @Param("soundUrl") String soundUrl,
                    @Param("questionBody") String questionBody, @Param("optionA") String optionA,
                    @Param("optionB") String optionB, @Param("optionC") String optionC,

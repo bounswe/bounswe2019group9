@@ -61,10 +61,10 @@ public class ContentService {
   }
 
   public Response<Exercise> addExercise(Exercise exercise) {
-    contentRepository.addExercise(exercise.getLanguageId(), exercise.getTypeId(), exercise.getImageUrl(),
-                                  exercise.getSoundUrl(), exercise.getQuestionBody(), exercise.getOptionA(),
-                                  exercise.getOptionB(), exercise.getOptionC(), exercise.getOptionD(),
-                                  exercise.getCorrectAnswer());
+    contentRepository.addExercise(exercise.getLanguageId(), exercise.getTypeId(), exercise.getGrade(),
+                                  exercise.getImageUrl(), exercise.getSoundUrl(), exercise.getQuestionBody(),
+                                  exercise.getOptionA(), exercise.getOptionB(), exercise.getOptionC(),
+                                  exercise.getOptionD(), exercise.getCorrectAnswer());
     return HttpResponses.from(exercise);
   }
 
