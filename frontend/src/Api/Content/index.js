@@ -49,4 +49,37 @@ export const getLanguages = (extras) => getRequest('contents/languages', {}, ext
  */
 export const getProfExam = (language, extras) => getRequest(`contents/prof`, {language}, extras);
 
+/**
+ * @function getExerciseById
+ * @param extras
+ * @return {Promise<AxiosResponse<T>>}
+ * Success Response
+ * {
+ *   "data": {
+ *     "correctAnswer": 0,
+ *     "grade": 0,
+ *     "id": 0,
+ *     "imageUrl": "string",
+ *     "languageId": 0,
+ *     "optionA": "string",
+ *     "optionB": "string",
+ *     "optionC": "string",
+ *     "optionD": "string",
+ *     "questionBody": "string",
+ *     "soundUrl": "string",
+ *     "tags": [
+ *       {
+ *         "exerciseId": 0,
+ *         "id": 0,
+ *         "tagText": "string"
+ *        }
+ *     ],
+ *     "typeId": 0
+ *   },
+ *   "explanation": "string",
+ *   "status": 0
+ * }
+ */
+export const getExerciseById = (id, extras) => getRequest('contents', { id }, extras);
+
 
