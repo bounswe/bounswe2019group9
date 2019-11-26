@@ -1,19 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Form, FormGroup, Input, Label, Jumbotron, Button, } from "reactstrap";
-import axios from 'axios';
+import {Card, Skeleton} from 'antd';
 import {getLanguages} from '../../../Api/Content';
+import {CenterView} from '../../../Layouts';
 
 class LanguageSelect extends React.PureComponent {
   state = {
-    languages: []
+    languages: [],
+    loading: true
   };
   componentDidMount() {
     getLanguages()
       .then((response) => {
         const { data = [] } = response.data || {};
         this.setState({
-          languages: data
+          languages: data,
+          loading: false
         });
       }).catch(console.error);
   }
@@ -25,22 +27,32 @@ class LanguageSelect extends React.PureComponent {
     });
   };
   render() {
-    const { languages } = this.state;
+    const { languages, loading } = this.state;
     return (
-      <Jumbotron>
-        <h1 className="display-3">Select a Language!</h1>
-        <ul>
-          { languages.map((language) => (
-            <li key={language}>
-              <Link to={`/${language}/`}>
-                { language }
-              </Link>
-            </li>
-          )) }
-        </ul>
-      </Jumbotron>
+      <CenterView>
+        <Card title="Select a Language" style={styles.card}>
+          <Skeleton loading={loading} title={false}>
+            <ul>
+              { languages.map((language) => (
+                <li key={language}>
+                  <Link to={`/${language}/`}>
+                    { language }
+                  </Link>
+                </li>
+              )) }
+            </ul>
+          </Skeleton>
+        </Card>
+      </CenterView>
     )
   }
 }
+
+const styles = {
+  card: {
+    marginBottom: 120,
+    width: 300
+  }
+};
 
 export default LanguageSelect;
