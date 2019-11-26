@@ -1,5 +1,8 @@
 package app.cerebro.service;
 
+import app.actor.entity.ExerciseSolvedInfo;
+import app.actor.repository.SolvedExercisesRepository;
+import app.actor.service.UserService;
 import app.cerebro.bean.DataMuseResponse;
 import app.cerebro.bean.SearchExerciseRequest;
 import app.common.HttpResponses;
@@ -28,9 +31,17 @@ import static java.util.Objects.isNull;
 @Service
 public class SearchExerciseService {
 
+  private final UserService userService;
+
+  private final SolvedExercisesRepository solvedExercisesRepository;
+
   private final ContentService contentService;
 
-  public SearchExerciseService(ContentService contentService) {
+  public SearchExerciseService(UserService userService,
+                               SolvedExercisesRepository solvedExercisesRepository,
+                               ContentService contentService) {
+    this.userService = userService;
+    this.solvedExercisesRepository = solvedExercisesRepository;
     this.contentService = contentService;
   }
 
@@ -40,7 +51,29 @@ public class SearchExerciseService {
     exercises = filterByGrade(exercises, request.getGrade());
     exercises = filterByType(exercises, request.getTypeId());
     exercises = filterByTags(exercises, request.getTag());
+    exercises = filterByUserId(exercises, request.getUserId());
     return HttpResponses.from(exercises);
+  }
+
+  private List<Exercise> filterByUserId(List<Exercise> exercises, Long userId) {
+    if (isNull(userId) || isNull(userService.getUserById(userId).getData())) {
+      return exercises;
+    }
+    List<Exercise> filtered = new ArrayList<>();
+    for (Exercise exercise : exercises) {
+      boolean flag = true;
+      List<ExerciseSolvedInfo> solvedInfos = solvedExercisesRepository.getSolvedExercisesByUserId(userId);
+      for (ExerciseSolvedInfo info : solvedInfos) {
+        if (info.getExerciseId() == exercise.getId()) {
+          flag = false;
+          break;
+        }
+      }
+      if (flag) {
+        filtered.add(exercise);
+      }
+    }
+    return filtered;
   }
 
   private List<Exercise> filterByType(List<Exercise> exercises, Integer typeId) {
@@ -101,7 +134,7 @@ public class SearchExerciseService {
         continue;
       }
       for (Tag exerciseTag : tags) {
-        if(exerciseTag.getTagText().equals(tag)){
+        if (exerciseTag.getTagText().equals(tag)) {
           filtered.add(exercise);
           break;
         }

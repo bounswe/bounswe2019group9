@@ -27,11 +27,11 @@ public class UserService {
 
   private static final String EXERCISE_NOT_FOUND = "Exercise not found.";
 
-  private UserRepository userRepository;
+  private final UserRepository userRepository;
 
-  private SolvedExercisesRepository solvedExercisesRepository;
+  private final SolvedExercisesRepository solvedExercisesRepository;
 
-  private ContentRepository contentRepository;
+  private final ContentRepository contentRepository;
 
   public UserService(UserRepository userRepository,
                      SolvedExercisesRepository solvedExercisesRepository,
