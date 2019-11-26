@@ -83,7 +83,6 @@ export const getProfExam = (language, extras) => getRequest(`contents/prof`, {la
  */
 export const getExerciseById = (exerciseId, extras) => getRequest('contents', { id: exerciseId }, extras);
 
-
 /**
  * @function searchExercises
  * @param params

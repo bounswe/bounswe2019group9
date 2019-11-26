@@ -25,7 +25,11 @@ const routes = [
   {
     name: 'Select Language',
     route: '/language-select'
-  }
+  },
+  {
+    name: 'User Search',
+    route: '/users',
+  },
 ];
 
 const UserNavbar = ({ store: { userId } }) => {

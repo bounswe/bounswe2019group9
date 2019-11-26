@@ -81,3 +81,29 @@ export const login = (data, extras) => postRequest(`users/login`, data, extras);
  * }
  */
 export const register = (data, extras) => postRequest(`users/register`, data, extras);
+
+/**
+ * @function search
+ * @param data ({ firstName, grade, languageId, lastName })
+ * @param extras object?
+ * @return {Promise<AxiosResponse<T>>}
+ * Success Response
+ * [
+ *  {
+ *    "email": "string",
+ *    "firstName": "string",
+ *    "grades": [
+ *      0
+ *    ],
+ *    "languages": [
+ *      "string"
+ *    ],
+ *    "lastName": "string",
+ *    "progressLevels": [
+ *      0
+ *    ],
+ *    "userId": 0
+ *  }
+ * ]
+ */
+export const search = (data, extras) => postRequest('search/users', data, extras);

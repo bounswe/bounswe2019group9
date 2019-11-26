@@ -19,7 +19,7 @@ export const numGradeToStrGrade = (num_grade) => {
 
 export const calculateGrade = (correct, total) => {
   let percent = 0
-  let str_grade = "UnknownGrade";
+  let str_grade = "Unknown Grade";
   let num_grade = -1
   if (total <= 0 || correct < 0 || correct > total) {
     return { num_grade, str_grade };
