@@ -61,6 +61,11 @@ const LanguageSidebar = ({ store }) => {
             </span>
           }
         >
+          <Menu.Item key={'exercises/search'}>
+            <Icon type='file-search' />
+            Search
+            <Link to={`/${languageName}/exercises/search`} />
+          </Menu.Item>
           { ExercisesHelper.exerciseTypes.map(({ typeId, route, name, icon }) => (
             <Menu.Item key={`exercises/${route}`}>
               <Icon type={icon} />
