@@ -26,7 +26,7 @@ class UserRoutes extends React.PureComponent {
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:userId" component={UserProfile} />
             <Route path="/:language" component={Language} />
-            <Redirect to="/language-select" />
+            <Redirect to="/home" />
           </Switch>
         </Layout.Content>
       </Layout>
