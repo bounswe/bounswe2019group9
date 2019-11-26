@@ -24,7 +24,7 @@ const LanguageSidebar = ({ store }) => {
     if (languageId) {
       getGrade({userId: store.userId, languageId}).then((response) => {
         const {data = {}} = (response.data || {});
-        setGrade((data || {}).grade || 0);
+        setGrade((data || {}).grade || null);
       }).catch(console.log)
     }
   }, [languageName]);
@@ -34,10 +34,10 @@ const LanguageSidebar = ({ store }) => {
   return (
     <div>
       <div style={styles.header}>
-        <Skeleton loading={!grade} title={false}>
+        <Skeleton loading={grade === undefined} title={false}>
           <Descriptions title={languageName}>
             <Descriptions.Item label={'Grade'}>
-              <Tag color={'#87d068'}>{str_grade}</Tag>
+              <Tag color={'#87d068'}>{grade === null ? 'Not Graded Yet' : str_grade}</Tag>
             </Descriptions.Item>
           </Descriptions>
         </Skeleton>
