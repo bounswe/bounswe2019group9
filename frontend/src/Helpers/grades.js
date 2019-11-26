@@ -1,21 +1,18 @@
-export const numGradeToStrGrade = (num_grade) => {
-  switch (num_grade) {
-    case 1:
-      return 'A1 - Beginner';
-    case 2:
-      return 'A2 - Elementary';
-    case 3:
-      return 'B1 - Intermediate';
-    case 4:
-      return 'B2 - Upper Intermediate';
-    case 5:
-      return 'C1 - Advanced';
-    case 6:
-      return 'C2 - Proficient';
-    default:
-      return 'Unknown Grade'
-  }
-};
+export const grades = [
+  { num_grade: 1, str_grade: 'A1 - Beginner' },
+  { num_grade: 2, str_grade: 'A2 - Elementary' },
+  { num_grade: 3, str_grade: 'B1 - Intermediate' },
+  { num_grade: 4, str_grade: 'B2 - Upper Intermediate' },
+  { num_grade: 5, str_grade: 'C1 - Advanced' },
+  { num_grade: 6, str_grade: 'C2 - Proficient' },
+];
+
+export const numGradeToGrade = (() => {
+  const numToGradeMap = grades.reduce((acc, grade) => ({...acc, [grade.num_grade]: grade}), {});
+  return (num_grade) => numToGradeMap[num_grade] || {num_grade: 0, str_grade: 'Unknown Grade'};
+})();
+
+export const numGradeToStrGrade = (num_grade) => numGradeToGrade(num_grade).str_grade;
 
 export const calculateGrade = (correct, total) => {
   let percent = 0
