@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
 import { numGradeToStrGrade } from '../../../Helpers/grades';
+import InvitationButton from './InvitationButton';
+import { connect } from './../../../Store';
 
 
-const UserView = ({ 
+const UserView = ({ store,
   email, firstName, grades, userId,
   languages, lastName, progressLevels,
   isButtonPresent = false }) => {
@@ -22,15 +24,19 @@ const UserView = ({
         {[firstName, lastName].join(' ')}
         </Descriptions.Item>
         <Descriptions.Item label="Email">{email}</Descriptions.Item>
+        <Descriptions.Item>
+          <Link to={`/users/${userId}`}>
+            <InvitationButton sourceId={store.userId} receiverId={userId}/>
+          </Link>
+        </Descriptions.Item>
         {isButtonPresent ? 
         <Descriptions.Item>
           <Link to={`/users/${userId}`}>
             <Button type="primary">Go to profile page!</Button>
           </Link>
-        </Descriptions.Item>
-        : null}
-        
+        </Descriptions.Item> : null }
       </Descriptions>
+
       { languagesTuple.length ? languagesTuple.map( tuple => 
         <Descriptions title={tuple[0]} key={tuple[0]}>
           <Descriptions.Item label="Grade">
@@ -40,7 +46,7 @@ const UserView = ({
             {tuple[2]}
           </Descriptions.Item>
         </Descriptions>
-      ) : <p>No languages found.</p>}
+      ) : <p>No languages found.</p> }
     </>
   );
 }
@@ -60,4 +66,4 @@ UserView.defaultProps = {
   isButtonPresent: false,
 }
   
-export default UserView;
+export default connect(UserView);
