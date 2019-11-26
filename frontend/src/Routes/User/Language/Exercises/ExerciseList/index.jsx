@@ -51,7 +51,6 @@ const ExerciseList = ({
     }
   };
 
-  console.log('curans', currentAnswer, 'corans', currentExercise.correctAnswer);
   return (
     <div>
       <PageHeader
@@ -62,7 +61,8 @@ const ExerciseList = ({
       />
       { tags.length ? (
         <div style={styles.tags}>
-          <b>{ 'Tags:  ' }</b>
+          <Icon type={'tags'} />
+          { '  '}
           {tags.map(({ tagText }) => (
             <Tag>
               { tagText }

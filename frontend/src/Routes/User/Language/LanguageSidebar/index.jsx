@@ -7,8 +7,8 @@ import {GradesHelper, ExercisesHelper, LanguagesHelper} from '../../../../Helper
 import {Menu, Tag, Descriptions, Skeleton, Icon} from 'antd';
 
 const routes = [
-  { route: 'main', name: 'Main' },
-  { route: 'proficiency-exam', name: 'Proficiency Exam' },
+  { route: 'main', name: 'Main', icon: 'project' },
+  { route: 'proficiency-exam', name: 'Proficiency Exam', icon: 'diff' },
 ];
 
 const LanguageSidebar = ({ store }) => {
@@ -44,8 +44,9 @@ const LanguageSidebar = ({ store }) => {
       </div>
       <Menu selectedKeys={[currentRoute]} mode="inline">
         {
-          routes.map(({ name, route }) => (
+          routes.map(({ name, route, icon }) => (
             <Menu.Item key={route}>
+              <Icon type={icon} />
               { name }
               <Link to={`/${languageName}/${route}`} />
             </Menu.Item>
@@ -60,13 +61,18 @@ const LanguageSidebar = ({ store }) => {
             </span>
           }
         >
-          { ExercisesHelper.exerciseTypes.map(({ typeId, route, name }) => (
-            <Menu.Item key={route}>
+          { ExercisesHelper.exerciseTypes.map(({ typeId, route, name, icon }) => (
+            <Menu.Item key={`exercises/${route}`}>
+              <Icon type={icon} />
               { name }
               <Link to={`/${languageName}/exercises/${route}`} />
             </Menu.Item>
           ))}
         </Menu.SubMenu>
+        <Menu.Item key={'writing'} disabled={true}>
+          <Icon type={'form'} />
+          Writing
+        </Menu.Item>
       </Menu>
     </div>
   );

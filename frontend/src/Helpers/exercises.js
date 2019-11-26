@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
 export const exerciseTypes = [
-  { typeId: 1, route: 'listening', name: 'Listening' },
-  { typeId: 2, route: 'reading', name: 'Reading' },
-  { typeId: 4, route: 'grammar', name: 'Grammar' },
-  { typeId: 3, route: 'vocabulary', name: 'Vocabulary' },
+  { typeId: 1, route: 'listening', name: 'Listening', icon: 'customer-service' },
+  { typeId: 2, route: 'reading', name: 'Reading', icon: 'read' },
+  { typeId: 4, route: 'grammar', name: 'Grammar', icon: 'file-text' },
+  { typeId: 3, route: 'vocabulary', name: 'Vocabulary', icon: 'book' },
 ];
 
 export const typeIdToType = (() => {
