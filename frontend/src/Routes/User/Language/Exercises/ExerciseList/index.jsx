@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, createRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import {Button, Card, Icon, PageHeader, Radio, Skeleton, Tag} from 'antd';
@@ -21,6 +21,7 @@ const ExerciseList = ({
   const { questionBody, tags = [], imageUrl, soundUrl,
     optionA, optionB, optionC, optionD } = currentExercise;
   const options = [optionA, optionB, optionC, optionD];
+  const audioRef = createRef();
   const nextExercise = (increment = 1) => {
     if (currentExerciseIndex + increment === exercises.length) {
       const correctAnswers = exercises
@@ -41,6 +42,17 @@ const ExerciseList = ({
       setCurrentExerciseIndex(currentExerciseIndex + increment);
     }
   };
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.load();
+        }
+      }, 100);
+    }
+  }, [soundUrl]);
+
   const answerExercise = (optionIndex) => {
     if (currentAnswer) {
       toast.error("You can't change your choice!");
@@ -103,7 +115,7 @@ const ExerciseList = ({
         {
           soundUrl && (
             <div style={styles.sound}>
-              <audio controls>
+              <audio controls ref={audioRef}>
                 <source src={soundUrl} />
               </audio>
             </div>
