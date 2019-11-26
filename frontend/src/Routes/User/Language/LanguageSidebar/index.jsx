@@ -3,22 +3,22 @@ import PropTypes from 'prop-types';
 import {Link, useParams, useLocation} from 'react-router-dom';
 import {getGrade} from '../../../../Api/Grade';
 import { connect, storeType } from '../../../../Store';
-import {GradesHelper} from '../../../../Helpers';
-import {Menu, Tag, Descriptions, Skeleton} from 'antd';
+import {GradesHelper, ExercisesHelper, LanguagesHelper} from '../../../../Helpers';
+import {Menu, Tag, Descriptions, Skeleton, Icon} from 'antd';
 
 const routes = [
-  { route: 'main', name: 'Main' },
-  { route: 'proficiency-exam', name: 'Proficiency Exam' }
+  { route: 'main', name: 'Main', icon: 'project' },
+  { route: 'proficiency-exam', name: 'Proficiency Exam', icon: 'diff' },
 ];
 
 const LanguageSidebar = ({ store }) => {
-  const {language} = useParams();
+  const {language: languageName} = useParams();
   const { pathname } = useLocation();
-  const languageId = language === 'English' ? 1 : language === 'Turkish' ? 2 : language === 'Italian' ? 3 : 0;
+  const { languageId } = LanguagesHelper.nameToLanguage(languageName);
 
   const [grade, setGrade] = useState();
 
-  const currentRoute = pathname.split('/')[2] || 'main';
+  const currentRoute = pathname.split('/').slice(2).filter((x) => x).join('/') || 'main';
 
   useEffect(() => {
     if (languageId) {
@@ -27,7 +27,7 @@ const LanguageSidebar = ({ store }) => {
         setGrade((data || {}).grade || 0);
       }).catch(console.log)
     }
-  }, [language, languageId]);
+  }, [languageName]);
 
   let str_grade = GradesHelper.numGradeToStrGrade(grade);
 
@@ -35,7 +35,7 @@ const LanguageSidebar = ({ store }) => {
     <div>
       <div style={styles.header}>
         <Skeleton loading={!grade} title={false}>
-          <Descriptions title={language}>
+          <Descriptions title={languageName}>
             <Descriptions.Item label={'Grade'}>
               <Tag color={'#87d068'}>{str_grade}</Tag>
             </Descriptions.Item>
@@ -44,13 +44,35 @@ const LanguageSidebar = ({ store }) => {
       </div>
       <Menu selectedKeys={[currentRoute]} mode="inline">
         {
-          routes.map(({ name, route }) => (
+          routes.map(({ name, route, icon }) => (
             <Menu.Item key={route}>
+              <Icon type={icon} />
               { name }
-              <Link to={`/${language}/${route}`} />
+              <Link to={`/${languageName}/${route}`} />
             </Menu.Item>
           ))
         }
+        <Menu.SubMenu
+          key="exercises"
+          title={
+            <span>
+              <Icon type="reconciliation" />
+              <span>Exercises</span>
+            </span>
+          }
+        >
+          { ExercisesHelper.exerciseTypes.map(({ typeId, route, name, icon }) => (
+            <Menu.Item key={`exercises/${route}`}>
+              <Icon type={icon} />
+              { name }
+              <Link to={`/${languageName}/exercises/${route}`} />
+            </Menu.Item>
+          ))}
+        </Menu.SubMenu>
+        <Menu.Item key={'writing'} disabled={true}>
+          <Icon type={'form'} />
+          Writing
+        </Menu.Item>
       </Menu>
     </div>
   );
