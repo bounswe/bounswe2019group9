@@ -136,7 +136,7 @@ public class UserSearchFragment extends Fragment {
                 UserDataClass selectedUser = (UserDataClass) parent.getItemAtPosition(position);
                 int selectedID = selectedUser.userID;
                 String person = selectedUser.firstName;
-                Toast.makeText(getContext(),"yeeey clicked well on "+person+" with ID "+ selectedID,Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),"yeeey clicked well on "+person+" with ID "+ selectedID,Toast.LENGTH_LONG).show();
                 Intent intent;
                 intent = new Intent(view.getContext(),TargetUserActivity.class);
                 intent.putExtra("targetUserId",selectedID);
