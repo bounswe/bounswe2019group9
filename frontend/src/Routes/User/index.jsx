@@ -9,12 +9,13 @@ import UserNavbar from './Navbar';
 import SamplePage from './Sample';
 import UserProfile from './UserProfile';
 import Users from './Users';
+import {ColorsHelper} from '../../Helpers';
 
 class UserRoutes extends React.PureComponent {
   render() {
     return (
       <Layout className="layout">
-        <Layout.Header>
+        <Layout.Header style={styles.header}>
           <UserNavbar />
         </Layout.Header>
         <Layout.Content>
@@ -26,12 +27,18 @@ class UserRoutes extends React.PureComponent {
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:userId" component={UserProfile} />
             <Route path="/:language" component={Language} />
-            <Redirect to="/language-select" />
+            <Redirect to="/home" />
           </Switch>
         </Layout.Content>
       </Layout>
     );
   }
 }
+
+const styles = {
+  header: {
+    backgroundColor: ColorsHelper.appColorDark
+  }
+};
 
 export default UserRoutes;
