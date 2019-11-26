@@ -1,13 +1,12 @@
 package app.cerebro.bean;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author ahmet.gedemenli
  */
 
 public class SearchExerciseRequest {
+
+  private Long userId;
 
   private Integer languageId;
 
@@ -20,11 +19,20 @@ public class SearchExerciseRequest {
   public SearchExerciseRequest() {
   }
 
-  public SearchExerciseRequest(Integer languageId, Integer grade, Integer typeId, String tag) {
+  public SearchExerciseRequest(Long userId, Integer languageId, Integer grade, Integer typeId, String tag) {
+    this.userId = userId;
     this.languageId = languageId;
     this.grade = grade;
     this.typeId = typeId;
     this.tag = tag;
+  }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 
   public Integer getLanguageId() {
@@ -62,7 +70,8 @@ public class SearchExerciseRequest {
   @Override
   public String toString() {
     return "SearchExerciseRequest{" +
-           "languageId=" + languageId +
+           "userId=" + userId +
+           ", languageId=" + languageId +
            ", grade=" + grade +
            ", typeId=" + typeId +
            ", tag='" + tag + '\'' +
