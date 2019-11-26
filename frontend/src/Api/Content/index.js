@@ -1,4 +1,4 @@
-import {getRequest} from '../base';
+import {getRequest, postRequest} from '../base';
 
 /**
  * @function getLanguages
@@ -49,4 +49,80 @@ export const getLanguages = (extras) => getRequest('contents/languages', {}, ext
  */
 export const getProfExam = (language, extras) => getRequest(`contents/prof`, {language}, extras);
 
+/**
+ * @function getExerciseById
+ * @param exerciseId
+ * @param extras
+ * @return {Promise<AxiosResponse<T>>}
+ * Success Response
+ * {
+ *  "data": {
+ *    "correctAnswer": 0,
+ *    "grade": 0,
+ *    "id": 0,
+ *    "imageUrl": "string",
+ *    "languageId": 0,
+ *    "optionA": "string",
+ *    "optionB": "string",
+ *    "optionC": "string",
+ *    "optionD": "string",
+ *    "questionBody": "string",
+ *    "soundUrl": "string",
+ *    "tags": [
+ *      {
+ *        "exerciseId": 0,
+ *        "id": 0,
+ *        "tagText": "string"
+ *      }
+ *    ],
+ *    "typeId": 0
+ *  },
+ *  "explanation": "string",
+ *  "status": 0
+ *}
+ */
+export const getExerciseById = (exerciseId, extras) => getRequest('contents', { id: exerciseId }, extras);
 
+
+/**
+ * @function searchExercises
+ * @param params
+ * @param extra
+ * @return {Promise<AxiosResponse<T>>}
+ *
+ * params: {
+ *   "grade": 0,
+ *   "languageId": 0,
+ *   "tag": "string",
+ *   "typeId": 0
+ * }
+ * success response
+ * {
+ *   "data": [
+ *     {
+ *       "correctAnswer": 0,
+ *       "grade": 0,
+ *       "id": 0,
+ *       "imageUrl": "string",
+ *       "languageId": 0,
+ *       "optionA": "string",
+ *       "optionB": "string",
+ *       "optionC": "string",
+ *       "optionD": "string",
+ *       "questionBody": "string",
+ *       "soundUrl": "string",
+ *       "tags": [
+ *         {
+ *           "exerciseId": 0,
+ *           "id": 0,
+ *           "tagText": "string"
+ *         }
+ *       ],
+ *       "typeId": 0
+ *     }
+ *   ],
+ *   "explanation": "string",
+ *   "status": 0
+ * }
+ */
+export const searchExercises = (data, extras) => postRequest('search/exercises', data, extras);

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import {getProfExam} from '../../../../Api/Content';
 import {addGrade} from '../../../../Api/Grade';
 import { connect, storeType } from '../../../../Store';
-import {GradesHelper} from '../../../../Helpers';
+import {GradesHelper, LanguagesHelper} from '../../../../Helpers';
 
 class ProfExam extends React.PureComponent {
   static propTypes = {
@@ -16,13 +16,12 @@ class ProfExam extends React.PureComponent {
     currentQuestion: 0,
     currentGrade: 0,
     lastAnswered: -1,
-    languageId: null,
     loading: true,
   };
 
   componentDidMount() {
-    const { language } = this.props.match.params;
-    getProfExam(language).then((response) => {
+    const { language: languageName } = this.props.match.params;
+    getProfExam(languageName).then((response) => {
       const { data } = response.data;
       if (data) {
         this.setState({
@@ -31,7 +30,6 @@ class ProfExam extends React.PureComponent {
             options: [ optionA, optionB, optionC, optionD ],
             correctAnswer: correctAnswer - 1
           })),
-          languageId: data[0].languageId,
           loading: false
         });
       }
@@ -58,15 +56,17 @@ class ProfExam extends React.PureComponent {
 
   nextQuestion = (increment = 1) => {
     const { store } = this.props;
-    const { currentQuestion, questions, answers, languageId, currentGrade } = this.state;
+    const { language: languageName } = this.props.match.params;
+    const language = LanguagesHelper.nameToLanguage(languageName);
+    const { currentQuestion, questions, answers, currentGrade } = this.state;
     if (currentQuestion + increment === questions.length) {
       const currentGrade = questions
         .reduce((grade, {correctAnswer}, questionIndex) =>
-          grade + (((answers[questionIndex] || 0) === (correctAnswer + 1)) ? 0 : 1), 0);
+          grade + (((answers[questionIndex] || 0) === correctAnswer) ? 0 : 1), 0);
       const { num_grade, str_grade } = GradesHelper.calculateGrade(currentGrade, questions.length);
       addGrade({
         userId: store.userId,
-        languageId,
+        languageId: language.languageId,
         grade: num_grade
       }).then((response) => {
         toast.info(`Congrats, you got ${currentGrade} correct answers out of ${questions.length} questions.\nYour grade is ${str_grade}`);

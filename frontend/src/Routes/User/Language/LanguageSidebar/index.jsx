@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link, useParams, useLocation} from 'react-router-dom';
 import {getGrade} from '../../../../Api/Grade';
 import { connect, storeType } from '../../../../Store';
-import {GradesHelper, ExercisesHelper} from '../../../../Helpers';
+import {GradesHelper, ExercisesHelper, LanguagesHelper} from '../../../../Helpers';
 import {Menu, Tag, Descriptions, Skeleton, Icon} from 'antd';
 
 const routes = [
@@ -12,9 +12,9 @@ const routes = [
 ];
 
 const LanguageSidebar = ({ store }) => {
-  const {language} = useParams();
+  const {language: languageName} = useParams();
   const { pathname } = useLocation();
-  const languageId = language === 'English' ? 1 : language === 'Turkish' ? 2 : language === 'Italian' ? 3 : 0;
+  const { languageId } = LanguagesHelper.nameToLanguage(languageName);
 
   const [grade, setGrade] = useState();
 
@@ -27,7 +27,7 @@ const LanguageSidebar = ({ store }) => {
         setGrade((data || {}).grade || 0);
       }).catch(console.log)
     }
-  }, [language, languageId]);
+  }, [languageName]);
 
   let str_grade = GradesHelper.numGradeToStrGrade(grade);
 
@@ -35,7 +35,7 @@ const LanguageSidebar = ({ store }) => {
     <div>
       <div style={styles.header}>
         <Skeleton loading={!grade} title={false}>
-          <Descriptions title={language}>
+          <Descriptions title={languageName}>
             <Descriptions.Item label={'Grade'}>
               <Tag color={'#87d068'}>{str_grade}</Tag>
             </Descriptions.Item>
@@ -47,7 +47,7 @@ const LanguageSidebar = ({ store }) => {
           routes.map(({ name, route }) => (
             <Menu.Item key={route}>
               { name }
-              <Link to={`/${language}/${route}`} />
+              <Link to={`/${languageName}/${route}`} />
             </Menu.Item>
           ))
         }
@@ -63,7 +63,7 @@ const LanguageSidebar = ({ store }) => {
           { ExercisesHelper.exerciseTypes.map(({ typeId, route, name }) => (
             <Menu.Item key={route}>
               { name }
-              <Link to={`/${language}/exercises/${route}`} />
+              <Link to={`/${languageName}/exercises/${route}`} />
             </Menu.Item>
           ))}
         </Menu.SubMenu>
