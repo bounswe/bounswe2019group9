@@ -36,6 +36,7 @@ public class StartExerciseActivity extends AppCompatActivity {
     ArrayList<String> choices= new ArrayList<String>();
     ArrayList<String> answers= new ArrayList<String>();
     ArrayList<String> solutions= new ArrayList<String>();
+    ArrayList<Integer> exerciseIdList = new ArrayList<>();
 
     SharedPreferences sharedPreferences;
     @Override
@@ -112,10 +113,15 @@ public class StartExerciseActivity extends AppCompatActivity {
                                             String option3 = exercise.getString("optionC");
                                             String option4 = exercise.getString("optionD");
 
+                                            int exerciseId = exercise.getInt("id");
+
+                                            exerciseIdList.add(exerciseId);
+
                                             int answer = exercise.getInt("correctAnswer");
 
 
                                             exerciseList.add(questionBody);
+
                                             choices.add(option1);
                                             choices.add(option2);
                                             choices.add(option3);
@@ -198,6 +204,7 @@ public class StartExerciseActivity extends AppCompatActivity {
         intent.putStringArrayListExtra("exerciseList",exerciseList);
         intent.putStringArrayListExtra("choices",choices);
         intent.putStringArrayListExtra("solutions",solutions);
+        intent.putIntegerArrayListExtra("exerciseIdList",exerciseIdList);
         startActivity(intent);
 
     }

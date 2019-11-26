@@ -3,6 +3,7 @@ package com.example.learningplatform;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -15,8 +16,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -31,8 +41,10 @@ public class ExerciseViewActivity extends AppCompatActivity {
     ArrayList<String> choices= new ArrayList<String>();
     ArrayList<String> answers= new ArrayList<String>();
     ArrayList<String> solutions= new ArrayList<String>();
+    ArrayList<Integer> exerciseIdList = new ArrayList<>();
     int questionCount;
     int userID;
+    int solvedExerciseCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +69,7 @@ public class ExerciseViewActivity extends AppCompatActivity {
         exerciseList = intent.getStringArrayListExtra("exerciseList");
         choices = intent.getStringArrayListExtra("choices");
         solutions = intent.getStringArrayListExtra("solutions");
+        exerciseIdList = intent.getIntegerArrayListExtra("exerciseIdList");
 
 
         questionText.setText(exerciseList.get(questionCount));
@@ -97,6 +110,52 @@ public class ExerciseViewActivity extends AppCompatActivity {
     int choiceClicked=0;
 
     public void ChoiceSelected(View v){
+
+
+
+
+        sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        final int id = sharedPreferences.getInt("Id",0);
+
+        JSONObject solved_data = new JSONObject();
+        try {
+            solved_data.put("exerciseId",exerciseIdList.get(solvedExerciseCount));
+            solved_data.put("userId",id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        RequestQueue queue = Volley.newRequestQueue(v.getContext());
+        String url = "https://api.bounswe2019group9.tk/users/solved";
+        JsonObjectRequest solvedJsonReq = new JsonObjectRequest(Request.Method.POST, url,solved_data,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            int statusCode =  response.getInt("status");
+                            if(statusCode == 200){
+
+                            }
+                            else{
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("That didn't work!");
+                    }
+                });
+
+        queue.add(solvedJsonReq);
+
+
 
 
         if(choiceClicked !=0)
@@ -186,6 +245,7 @@ public class ExerciseViewActivity extends AppCompatActivity {
         }
 
 
+        solvedExerciseCount++;
 
     }
 
