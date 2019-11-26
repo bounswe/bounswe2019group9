@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Link, useLocation} from 'react-router-dom';
-import {Menu, Icon} from 'antd';
+import {Typography, Menu, Icon} from 'antd';
 
 import {connect, storeType, updateStore} from '../../../Store';
 import {getUserById} from '../../../Api/User';
+import {ColorsHelper} from '../../../Helpers';
+
+import AppLogo from '../../../Images/app_icon_transparent.png';
 
 const logOut = () => {
   updateStore({
@@ -50,6 +53,12 @@ const UserNavbar = ({ store: { userId } }) => {
 
   return (
     <>
+      <div style={styles.logo}>
+        <img src={AppLogo} alt="kereviz-logo" style={styles.logoImage}/>
+        <Typography.Title level={3} style={styles.logoTitle}>
+          Kereviz
+        </Typography.Title>
+      </div>
       <Menu
         theme="dark"
         mode="horizontal"
@@ -91,8 +100,23 @@ UserNavbar.propTypes = {
 };
 
 const styles = {
+  logo: {
+    height: '100%',
+    float: 'left',
+    margin: '0 24px 0 -8px',
+    display: 'flex',
+    alignItems: 'center'
+  },
+  logoTitle: {
+    color: '#fff',
+    margin: '0 0 0 4px'
+  },
+  logoImage: {
+    height: 36
+  },
   menu: {
-    lineHeight: '64px'
+    lineHeight: '64px',
+    backgroundColor: ColorsHelper.appColorDark
   },
   profileSubmenu: {
     float: 'right'
