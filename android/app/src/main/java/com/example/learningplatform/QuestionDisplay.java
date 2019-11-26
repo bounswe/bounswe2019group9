@@ -1,12 +1,14 @@
 package com.example.learningplatform;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,17 +20,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class QuestionDisplay extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
     Button answer1,answer2,answer3,answer4;
     TextView questionText;
     ArrayList<String> questionList;
@@ -36,7 +37,7 @@ public class QuestionDisplay extends AppCompatActivity {
     ArrayList<String> answers;
     ArrayList<String> solutions;
     int questionCount;
-    int userID=0;
+    int userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,32 @@ public class QuestionDisplay extends AppCompatActivity {
         answer3.setText(choices.get(questionCount+2));
         answer4.setText(choices.get(questionCount+3));
         questionCount++;
+
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.nav_bar_excercise:
+                        intent = new Intent(QuestionDisplay.this, ExerciseListDisplay.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_bar_message:
+                        return true;
+                    case R.id.nav_bar_profile:
+                        intent = new Intent(QuestionDisplay.this, ProfilePageActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_bar_search:
+                        intent = new Intent(QuestionDisplay.this, SearchActivity.class);
+                        startActivity(intent);
+                        return true;
+                }
+                return true;
+            }
+        });
 
     }
 
@@ -109,6 +136,11 @@ public class QuestionDisplay extends AppCompatActivity {
                 letterGradeOfStudent = "A1";
             }
 
+
+            sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+            int id = sharedPreferences.getInt("Id",0);
+            userID=id;
+
             JSONObject grade_data = new JSONObject();
             try {
                 grade_data.put("grade",gradeOfStudent);
@@ -119,7 +151,7 @@ public class QuestionDisplay extends AppCompatActivity {
             }
 
             RequestQueue queue = Volley.newRequestQueue(v.getContext());
-            String url = "https://api.bounswe2019group9.tk//grades/add";
+            String url = "https://api.bounswe2019group9.tk/grades/add";
             JsonObjectRequest gradeJsonReq = new JsonObjectRequest(Request.Method.POST, url,grade_data,
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -147,7 +179,7 @@ public class QuestionDisplay extends AppCompatActivity {
                         }
                     });
 
-            //queue.add(gradeJsonReq);
+            queue.add(gradeJsonReq);
 
             Intent intent = new Intent(this,GradeView.class);
             intent.putExtra("grade",letterGradeOfStudent);
