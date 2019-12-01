@@ -688,3 +688,514 @@ POST /search/exercises
   ]
 }
 ```
+# Tag Endpoints
+## Add Tag
+
+**Request Content:**
+Exercise id, tag text
+
+**Response Content:**
+Tag itself
+
+##### Example Request
+```
+POST /tags
+```
+```json
+{
+  "exerciseId": 12,
+  "tagText": "test"
+}
+```
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": {
+    "id": 8,
+    "exerciseId": 12,
+    "tagText": "test"
+  }
+}
+```
+# Invitation Endpoints
+## Add Invitation
+
+**Request Content:**
+receiver id, source id
+
+**Response Content:**
+Invitation itself
+
+##### Example Request
+```
+POST /invitations
+```
+```json
+{
+  "receiverId": 1,
+  "sourceId": 5
+}
+```
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": {
+    "id": 15,
+    "sourceId": 5,
+    "receiverId": 1,
+    "createdAt": "2019-12-01T15:06:22.626+0000"
+  }
+}
+```
+## Answer Invitation
+
+**Request Content:**
+receiver id, source id, approved(boolean)
+
+**Response Content:**
+Conversation itself
+
+##### Example Request
+```
+POST /invitations/answer
+```
+```json
+{
+  "approved": true,
+  "receiverId": 1,
+  "sourceId": 5
+}
+```
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": {
+    "id": 11,
+    "userIdOne": 5,
+    "userIdTwo": 1,
+    "lastUpdatedAt": "2019-12-01T15:08:05.896+0000"
+  }
+}
+```
+##### Example Response(if conversation already exists)
+```json
+{
+  "status": 400,
+  "explanation": "Conversation already exists",
+  "data": null
+}
+```
+
+## Get Inviter Profile Infos
+
+**Request Content:**
+receiver user id
+
+**Response Content:**
+List of profile infos
+
+##### Example Request
+```
+GET /invitations/byReceiverId?userId=1
+```
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": [
+    {
+      "userId": 6,
+      "firstName": "testname",
+      "lastName": "testsurname",
+      "email": "test@test.com",
+      "languages": [
+        "English"
+      ],
+      "grades": [
+        5
+      ],
+      "progressLevels": [
+        0
+      ]
+    }
+  ]
+}
+```
+## Get Invitation State
+
+**Request Content:**
+userId1, userId2
+
+**Response Content:**
+Invitation state
+
+##### Example Request
+```
+GET /invitations/state?userId1=1&userId2=6
+```
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": {
+    "userId1": 1,
+    "userId2": 6,
+    "pendingRequestFromOneToTwo": false,
+    "pendingRequestFromTwoToOne": true,
+    "startedConversation": false
+  }
+}
+```
+# Conversation Endpoints
+## Get Conversation Profile Info
+
+**Request Content:**
+user id
+
+**Response Content:**
+List of profile infos of given user id
+
+##### Example Request
+```
+GET /conversations?id=1
+```
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": [
+    {
+      "userId": 5,
+      "firstName": "testname",
+      "lastName": "testtest",
+      "email": "test@fortest.com",
+      "languages": [],
+      "grades": [],
+      "progressLevels": []
+    },
+    {
+      "userId": 2,
+      "firstName": "ahmet",
+      "lastName": "test",
+      "email": "ahmettest@testtest.coam",
+      "languages": [],
+      "grades": [],
+      "progressLevels": []
+    },
+    {
+      "userId": 3,
+      "firstName": "ahmet",
+      "lastName": "test",
+      "email": "ahmettesttttt@testtest.coam",
+      "languages": [
+        "English"
+      ],
+      "grades": [
+        3
+      ],
+      "progressLevels": [
+        0
+      ]
+    },
+    {
+      "userId": 4,
+      "firstName": "ahmet",
+      "lastName": "test",
+      "email": "ahmettesttttttt@testtest.coam",
+      "languages": [
+        "English"
+      ],
+      "grades": [
+        1
+      ],
+      "progressLevels": [
+        25
+      ]
+    }
+  ]
+}
+```
+# Message Endpoints
+## Get Messages By User Id 
+
+**Request Content:**
+user id
+
+**Response Content:**
+List of Messages of the User
+
+##### Example Request
+```
+GET /messages?userId=9
+```
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": [
+    {
+      "id": 10,
+      "sourceId": 9,
+      "receiverId": 2,
+      "content": "selam",
+      "createdAt": "2019-11-24T14:49:07.090+0000"
+    },
+    {
+      "id": 11,
+      "sourceId": 2,
+      "receiverId": 9,
+      "content": "selam",
+      "createdAt": "2019-11-24T14:49:19.480+0000"
+    },
+    {
+      "id": 12,
+      "sourceId": 2,
+      "receiverId": 9,
+      "content": "nabber",
+      "createdAt": "2019-11-24T14:49:28.963+0000"
+    },
+    {
+      "id": 13,
+      "sourceId": 2,
+      "receiverId": 9,
+      "content": "nabber",
+      "createdAt": "2019-11-24T14:49:30.561+0000"
+    },
+    {
+      "id": 14,
+      "sourceId": 2,
+      "receiverId": 9,
+      "content": "nabber",
+      "createdAt": "2019-11-24T14:49:31.344+0000"
+    },
+    {
+      "id": 15,
+      "sourceId": 2,
+      "receiverId": 9,
+      "content": "nabber",
+      "createdAt": "2019-11-24T15:55:51.799+0000"
+    },
+    {
+      "id": 16,
+      "sourceId": 9,
+      "receiverId": 2,
+      "content": "asffghff",
+      "createdAt": "2019-11-24T16:01:23.690+0000"
+    },
+    {
+      "id": 17,
+      "sourceId": 9,
+      "receiverId": 2,
+      "content": "asdfghjkli",
+      "createdAt": "2019-11-24T16:01:34.912+0000"
+    },
+    {
+      "id": 18,
+      "sourceId": 9,
+      "receiverId": 2,
+      "content": "ibrahm",
+      "createdAt": "2019-11-24T16:01:46.860+0000"
+    },
+    {
+      "id": 19,
+      "sourceId": 9,
+      "receiverId": 2,
+      "content": "iyi",
+      "createdAt": "2019-11-24T16:18:16.600+0000"
+    },
+    {
+      "id": 20,
+      "sourceId": 9,
+      "receiverId": 2,
+      "content": "çok güzel mesajlaşma",
+      "createdAt": "2019-11-24T16:56:26.617+0000"
+    },
+    {
+      "id": 21,
+      "sourceId": 9,
+      "receiverId": 2,
+      "content": "yfgjomö",
+      "createdAt": "2019-11-24T17:02:18.924+0000"
+    },
+    {
+      "id": 22,
+      "sourceId": 9,
+      "receiverId": 2,
+      "content": "irem",
+      "createdAt": "2019-11-24T17:09:54.875+0000"
+    },
+    {
+      "id": 23,
+      "sourceId": 37,
+      "receiverId": 9,
+      "content": "Selam İremm ",
+      "createdAt": "2019-11-25T04:51:11.692+0000"
+    },
+    {
+      "id": 24,
+      "sourceId": 37,
+      "receiverId": 9,
+      "content": "Deneme yapıyorum :D ",
+      "createdAt": "2019-11-25T04:51:39.463+0000"
+    },
+    {
+      "id": 25,
+      "sourceId": 9,
+      "receiverId": 37,
+      "content": "selam ",
+      "createdAt": "2019-11-25T04:53:31.176+0000"
+    },
+    {
+      "id": 26,
+      "sourceId": 37,
+      "receiverId": 9,
+      "content": "Günaydın irem",
+      "createdAt": "2019-11-25T10:39:09.810+0000"
+    },
+    {
+      "id": 27,
+      "sourceId": 37,
+      "receiverId": 9,
+      "content": "Ben de ibrahim :D",
+      "createdAt": "2019-11-25T10:39:16.587+0000"
+    },
+    {
+      "id": 28,
+      "sourceId": 9,
+      "receiverId": 37,
+      "content": "Ben de game :D\n",
+      "createdAt": "2019-11-25T10:39:34.911+0000"
+    },
+    {
+      "id": 29,
+      "sourceId": 37,
+      "receiverId": 9,
+      "content": "Ama saat sıkıntılı :D",
+      "createdAt": "2019-11-25T10:40:12.159+0000"
+    },
+    {
+      "id": 30,
+      "sourceId": 37,
+      "receiverId": 9,
+      "content": "13 40 yazıyor",
+      "createdAt": "2019-11-25T10:40:24.313+0000"
+    },
+    {
+      "id": 31,
+      "sourceId": 9,
+      "receiverId": 8,
+      "content": "selam gg",
+      "createdAt": "2019-11-25T10:40:30.933+0000"
+    },
+    {
+      "id": 32,
+      "sourceId": 37,
+      "receiverId": 9,
+      "content": "Halbuki 16 40",
+      "createdAt": "2019-11-25T10:40:36.387+0000"
+    },
+    {
+      "id": 33,
+      "sourceId": 9,
+      "receiverId": 8,
+      "content": "deneme",
+      "createdAt": "2019-11-25T17:17:43.781+0000"
+    }
+  ]
+}
+```
+## Get Conversation Content 
+
+**Request Content:**
+user id1, user id2
+
+**Response Content:**
+List of Messages of the conversation
+
+##### Example Request
+```
+GET /messages/chat?userId1=9&userId2=8
+```
+##### Example Response
+```
+{
+  "status": 200,
+  "explanation": null,
+  "data": [
+    {
+      "id": 31,
+      "sourceId": 9,
+      "receiverId": 8,
+      "content": "selam gg",
+      "createdAt": "2019-11-25T10:40:30.933+0000"
+    },
+    {
+      "id": 33,
+      "sourceId": 9,
+      "receiverId": 8,
+      "content": "deneme",
+      "createdAt": "2019-11-25T17:17:43.781+0000"
+    }
+  ]
+}
+```
+
+## Create Message
+
+**Request Content:**
+sourceId, receiverId, content
+
+**Response Content:**
+Conversation content between two users
+
+##### Example Request
+```
+POST /messages
+```
+```
+{
+  "content": "this is a message",
+  "receiverId": 9,
+  "sourceId": 8
+}
+```
+##### Example Response
+```
+{
+  "status": 200,
+  "explanation": null,
+  "data": [
+    {
+      "id": 31,
+      "sourceId": 9,
+      "receiverId": 8,
+      "content": "selam gg",
+      "createdAt": "2019-11-25T10:40:30.933+0000"
+    },
+    {
+      "id": 33,
+      "sourceId": 9,
+      "receiverId": 8,
+      "content": "deneme",
+      "createdAt": "2019-11-25T17:17:43.781+0000"
+    },
+    {
+      "id": 42,
+      "sourceId": 8,
+      "receiverId": 9,
+      "content": "this is a message",
+      "createdAt": "2019-12-01T16:20:34.554+0000"
+    }
+  ]
+}
+```
