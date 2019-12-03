@@ -1,5 +1,9 @@
 package app.mahmuthoca;
 
+/**
+ * @author ahmet.gedemenli
+ */
+
 public class FileUploadRequest {
 
   private Long exerciseId;
