@@ -6,9 +6,6 @@ public class FileUploadRequest {
 
   private String base64Data;
 
-  public FileUploadRequest() {
-  }
-
   public FileUploadRequest(Long exerciseId, String base64Data) {
     this.exerciseId = exerciseId;
     this.base64Data = base64Data;
