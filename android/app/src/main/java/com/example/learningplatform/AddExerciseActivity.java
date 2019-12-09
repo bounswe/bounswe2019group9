@@ -34,22 +34,20 @@ public class AddExerciseActivity extends AppCompatActivity {
 
 
         Spinner dropdown = findViewById(R.id.gradeSpinner);
-//create a list of items for the spinner.
+
         String[] items = new String[]{"A1", "A2", "B1","B2","C1","C2"};
-//create an adapter to describe how the items are displayed, adapters are used in several places in android.
-//There are multiple variations of this, but this is the basic variant.
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-//set the spinners adapter to the previously created one.
+
         dropdown.setAdapter(adapter);
 
 
         Spinner answerDropdown = findViewById(R.id.correctAnswerSpinner);
-//create a list of items for the spinner.
+
         String[] answers = new String[]{"A", "B", "C","D"};
-//create an adapter to describe how the items are displayed, adapters are used in several places in android.
-//There are multiple variations of this, but this is the basic variant.
+
         ArrayAdapter<String> answerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, answers);
-//set the spinners adapter to the previously created one.
+
         answerDropdown.setAdapter(answerAdapter);
 
 
