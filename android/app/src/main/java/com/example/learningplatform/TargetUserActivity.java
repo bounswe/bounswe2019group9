@@ -284,6 +284,11 @@ public class TargetUserActivity extends AppCompatActivity {
         }
 
     }
+    public void GoComment(View v){
+        Intent intent = new Intent(v.getContext(), CommentRateActivity.class);
+        intent.putExtra("target", true);
+        v.getContext().startActivity(intent);
+    }
 }
 
 

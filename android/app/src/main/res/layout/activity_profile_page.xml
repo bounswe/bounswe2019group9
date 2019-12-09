@@ -102,6 +102,17 @@ tools:context=".ProfilePageActivity">
         android:text="assesment"
         />
 
+    <Button
+        android:id="@+id/profile_comment"
+        style="@style/WelcomePageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/prof_button"
+        android:layout_marginTop="15dp"
+        android:onClick="GoComment"
+        android:text="Comments/Ratıngs"
+        />
+
 
 </RelativeLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView

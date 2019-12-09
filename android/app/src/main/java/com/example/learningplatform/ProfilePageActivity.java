@@ -159,6 +159,12 @@ public class ProfilePageActivity extends AppCompatActivity {
         v.getContext().startActivity(intent);
     }
 
+    public void GoComment(View v){
+        Intent intent = new Intent(v.getContext(), CommentRateActivity.class);
+        intent.putExtra("target", false);
+        v.getContext().startActivity(intent);
+    }
+
     public static String getGradeFromInt(int userGrade){
         if (userGrade == 1) {
            return "A1";
