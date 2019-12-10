@@ -7,11 +7,13 @@ import ProfExam from './ProfExam';
 import Main from './Main';
 import Exercises from './Exercises';
 import {ExercisesHelper} from '../../../Helpers';
+import ExerciseSearch from './Exercises/ExerciseSearch';
 
 const pathToLabel = {
   'proficiency-exam': 'Proficiency Exam',
   'exercises': 'Exercises',
   ...ExercisesHelper.exerciseTypes.reduce((acc, { route, name }) => ({ [route]: name, ...acc }), {}),
+  'search': 'Search',
 };
 
 const LanguageRoutes = () => {
@@ -36,6 +38,7 @@ const LanguageRoutes = () => {
           <Layout.Content style={styles.content}>
             <Switch>
               <Route exact path='/:language' component={Main} />
+              <Route exact path='/:language/exercises/search' component={ExerciseSearch} />
               <Route exact path='/:language/exercises/:exerciseType' component={Exercises} />
               <Route path='/:language/proficiency-exam' component={ProfExam} />
               <Redirect to={`/${language}`}/>

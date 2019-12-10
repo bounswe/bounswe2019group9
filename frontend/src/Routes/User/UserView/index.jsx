@@ -19,16 +19,17 @@ const UserView = ({ store,
 
   return (
     <>
-      <Descriptions title="User Info">
+      <Descriptions title="User Info"  column={isButtonPresent ? 4 : undefined}>
         <Descriptions.Item label="Full Name" className={"capitalize-text"}>
         {[firstName, lastName].join(' ')}
         </Descriptions.Item>
         <Descriptions.Item label="Email">{email}</Descriptions.Item>
-        <Descriptions.Item>
-          <Link to={`/users/${userId}`}>
-            <InvitationButton sourceId={store.userId} receiverId={userId}/>
-          </Link>
-        </Descriptions.Item>
+        { store.userId !== userId ?
+          <Descriptions.Item>
+            <Link to={`/users/${userId}`}>
+              <InvitationButton sourceId={store.userId} receiverId={userId}/>
+            </Link>
+          </Descriptions.Item> : null }
         {isButtonPresent ? 
         <Descriptions.Item>
           <Link to={`/users/${userId}`}>
