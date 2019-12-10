@@ -4,6 +4,7 @@ import app.actor.bean.ProfileInfo;
 import app.actor.UserNotFoundException;
 import app.actor.entity.Grade;
 import app.actor.entity.User;
+import app.mahmuthoca.RatingService;
 import app.proseidon.service.ContentService;
 import app.proseidon.service.LanguageService;
 import java.util.List;
@@ -28,12 +29,15 @@ public class ProfileService {
 
   private ContentService contentService;
 
+  private RatingService ratingService;
+
   public ProfileService(UserService userService, GradeService gradeService, LanguageService languageService,
-                        ContentService contentService) {
+                        ContentService contentService, RatingService ratingService) {
     this.userService = userService;
     this.gradeService = gradeService;
     this.languageService = languageService;
     this.contentService = contentService;
+    this.ratingService = ratingService;
   }
 
   public ProfileInfo getProfileInfoByUserId(Long userId) throws UserNotFoundException {
@@ -41,7 +45,8 @@ public class ProfileService {
     if (isNull(user)) {
       throw new UserNotFoundException(USER_NOT_FOUND_MESSAGE + userId);
     }
-    ProfileInfo profileInfo = new ProfileInfo(userId, user.getFirstName(), user.getLastName(), user.getEmail());
+    ProfileInfo profileInfo = new ProfileInfo(userId, user.getFirstName(), user.getLastName(), user.getEmail(),
+                                              ratingService.getAverageRatingByUserId(userId));
     List<String> allLanguages = languageService.getAllLanguages().getData();
     for (String lang : allLanguages) {
       Integer langId = languageService.getLanguageIdByName(lang);

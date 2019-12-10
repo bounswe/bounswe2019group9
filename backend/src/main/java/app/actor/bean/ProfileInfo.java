@@ -17,17 +17,20 @@ public class ProfileInfo {
 
   private String email;
 
+  private Double rating;
+
   private List<String> languages;
 
   private List<Integer> grades;
 
   private List<Integer> progressLevels;
 
-  public ProfileInfo(Long userId, String firstName, String lastName, String email) {
+  public ProfileInfo(Long userId, String firstName, String lastName, String email, Double rating) {
     this.userId = userId;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
+    this.rating = rating;
     languages = new ArrayList<>();
     grades = new ArrayList<>();
     progressLevels = new ArrayList<>();
@@ -65,6 +68,14 @@ public class ProfileInfo {
     this.email = email;
   }
 
+  public Double getRating() {
+    return rating;
+  }
+
+  public void setRating(Double rating) {
+    this.rating = rating;
+  }
+
   public List<String> getLanguages() {
     return languages;
   }
@@ -96,6 +107,7 @@ public class ProfileInfo {
            ", firstName='" + firstName + '\'' +
            ", lastName='" + lastName + '\'' +
            ", email='" + email + '\'' +
+           ", rating=" + rating +
            ", languages=" + languages +
            ", grades=" + grades +
            ", progressLevels=" + progressLevels +
