@@ -52,10 +52,10 @@ public class UploadService {
       extension = getExtension(type);
       metadata.setCacheControl("public, max-age=31536000");
       this.amazonClient.getS3client()
-                       .putObject(BUCKET_NAME, "image/".concat(request.getExerciseId().toString().concat(extension)),
+                       .putObject(BUCKET_NAME, "image/exercise/".concat(request.getExerciseId().toString().concat(extension)),
                                   fis, metadata);
       this.amazonClient.getS3client()
-                       .setObjectAcl(BUCKET_NAME, "image/".concat(request.getExerciseId().toString().concat(extension)),
+                       .setObjectAcl(BUCKET_NAME, "image/exercise/".concat(request.getExerciseId().toString().concat(extension)),
                                      CannedAccessControlList.PublicRead);
     } catch (Exception e) {
       return null;
@@ -98,7 +98,11 @@ public class UploadService {
     } catch (Exception e) {
       return null;
     }
-    return IMAGE_FOLDER_URL.concat(request.getExerciseId().toString()).concat(extension);
+    return IMAGE_FOLDER_URL.concat("essay/")
+                           .concat(request.getExerciseId().toString())
+                           .concat("_")
+                           .concat(request.getAuthorId().toString())
+                           .concat(extension);
   }
 
   private String getExtension(String type) {
