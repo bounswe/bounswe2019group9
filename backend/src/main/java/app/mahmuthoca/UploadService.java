@@ -25,6 +25,8 @@ public class UploadService {
 
   private static final String MP3_TYPE = "audio/mpeg3";
 
+  private static final String MP2_TYPE = "audio/mpeg";
+
   private static final String MP3_EXTENSION = ".mp3";
 
   private static final String IMAGE_FOLDER_URL = "https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/";
@@ -124,7 +126,7 @@ public class UploadService {
       String type = base64Data.substring(base64Data.indexOf(":") + 1, base64Data.indexOf(";"));
       ObjectMetadata metadata = new ObjectMetadata();
       metadata.setContentLength(bI.length);
-      if (type.equals(MP3_TYPE)) {
+      if (type.equals(MP3_TYPE) || type.equals(MP2_TYPE)) {
         metadata.setContentType(type);
       } else {
         return null;
@@ -146,7 +148,7 @@ public class UploadService {
   }
 
   private String getExtension(String type) {
-    if(type.equals(MP3_TYPE)) {
+    if(type.equals(MP3_TYPE) || type.equals(MP2_TYPE)) {
       return MP3_EXTENSION;
     }
     return ".".concat(type.substring(type.indexOf("/") + 1));
