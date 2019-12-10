@@ -17,7 +17,7 @@ import static java.util.Objects.isNull;
 @RestController
 public class FileController {
 
-  private static final String IMAGE_NOT_CREATED = "Image not created.";
+  private static final String FILE_NOT_UPLOADED = "File not uploaded.";
 
   private final UploadService uploadService;
 
@@ -29,7 +29,7 @@ public class FileController {
   public Response<String> addImage(@RequestBody FileUploadRequest request) {
     String url = uploadService.uploadImage(request);
     if (isNull(url)) {
-      return HttpResponses.badRequest(IMAGE_NOT_CREATED);
+      return HttpResponses.badRequest(FILE_NOT_UPLOADED);
     }
     return HttpResponses.from(url);
   }
@@ -38,7 +38,16 @@ public class FileController {
   public Response<String> addEssayImage(@RequestBody FileUploadRequest request) {
     String url = uploadService.uploadEssayImage(request);
     if (isNull(url)) {
-      return HttpResponses.badRequest(IMAGE_NOT_CREATED);
+      return HttpResponses.badRequest(FILE_NOT_UPLOADED);
+    }
+    return HttpResponses.from(url);
+  }
+
+  @PostMapping("/sounds")
+  public Response<String> addSound(@RequestBody FileUploadRequest request) {
+    String url = uploadService.uploadSound(request);
+    if (isNull(url)) {
+      return HttpResponses.badRequest(FILE_NOT_UPLOADED);
     }
     return HttpResponses.from(url);
   }
