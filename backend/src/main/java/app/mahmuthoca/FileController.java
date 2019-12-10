@@ -28,7 +28,16 @@ public class FileController {
   @PostMapping("/images")
   public Response<String> addImage(@RequestBody FileUploadRequest request) {
     String url = uploadService.uploadImage(request);
-    if(isNull(url)){
+    if (isNull(url)) {
+      return HttpResponses.badRequest(IMAGE_NOT_CREATED);
+    }
+    return HttpResponses.from(url);
+  }
+
+  @PostMapping("/images/essay")
+  public Response<String> addEssayImage(@RequestBody FileUploadRequest request) {
+    String url = uploadService.uploadEssayImage(request);
+    if (isNull(url)) {
       return HttpResponses.badRequest(IMAGE_NOT_CREATED);
     }
     return HttpResponses.from(url);
