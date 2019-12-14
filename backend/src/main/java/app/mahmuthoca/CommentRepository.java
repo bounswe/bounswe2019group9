@@ -15,12 +15,12 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO comments(source_id, receiver_id, content, created_at)" +
+    @Query(value = "INSERT INTO mahmuthoca.comments(source_id, receiver_id, content, created_at)" +
             " VALUES(:sourceId, :receiverId, :content, :now)", nativeQuery = true)
     void createComment(@Param("sourceId") Long sourceId, @Param("receiverId") Long receiverId,
                        @Param("content") String content, @Param("now") Date now);
 
-    @Query(value = "SELECT * FROM comments WHERE receiver_id=:userId", nativeQuery = true)
+    @Query(value = "SELECT * FROM mahmuthoca.comments WHERE receiver_id=:userId", nativeQuery = true)
     List<Comment> getCommentsByReceiverId(@Param("userId") Long userId);
 
 }
