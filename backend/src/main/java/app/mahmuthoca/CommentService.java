@@ -39,10 +39,13 @@ public class CommentService {
     SourceAndComment sourceAndComment;
 
     for (Comment comment : comments) {
-      sourceAndComment = new SourceAndComment(userRepository.getUserById(comment.getSourceId()).getFirstName(),
-                                              userRepository.getUserById(comment.getSourceId()).getLastName(),
-                                              comment
-      );
+      try {
+        sourceAndComment = new SourceAndComment(userRepository.getUserById(comment.getSourceId()).getFirstName(),
+                                                userRepository.getUserById(comment.getSourceId()).getLastName(),
+                                                comment);
+      } catch (Exception e) {
+        sourceAndComment = new SourceAndComment("", "", comment);
+      }
       responseBody.add(sourceAndComment);
     }
     return HttpResponses.from(responseBody);
