@@ -27,6 +27,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 public class ProfilePageActivity extends AppCompatActivity {
 
     SharedPreferences  sharedPreferences;
@@ -34,6 +36,7 @@ public class ProfilePageActivity extends AppCompatActivity {
     private static TextView surnameDisplay;
     private static TextView mailDisplay;
     int id;
+    String rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,7 @@ public class ProfilePageActivity extends AppCompatActivity {
                                     JSONArray gradeOfUser = data.getJSONArray("grades");
                                     JSONArray languagesOfUser = data.getJSONArray("languages");
                                     JSONArray progressLevelsOfUser = data.getJSONArray("progressLevels");
+                                    double rating_double = data.getDouble("rating");
                                     if(gradeOfUser.length()!= languagesOfUser.length() || gradeOfUser.length()!= progressLevelsOfUser.length()){
                                         Log.e("Error", "The number of languages user has and the grades user has doesn't match");
                                     }
@@ -97,7 +101,8 @@ public class ProfilePageActivity extends AppCompatActivity {
 
                                         rowProgress.setText(Integer.toString(progressLevelsOfUser.getInt(i))+"%");
                                         rowGrade.setText(getGradeFromInt(gradeOfUser.getInt(i)));
-                                        rowRating.setText("3.5");
+                                        rating = String.format(Locale.getDefault(),"%.2f", rating_double);
+                                        rowRating.setText(rating);
                                         table.addView(row,i+1);
                                     }
                                 } catch (JSONException e) {
@@ -165,6 +170,7 @@ public class ProfilePageActivity extends AppCompatActivity {
         intent.putExtra("target", false);
         intent.putExtra("targetUserId", id);
         intent.putExtra("sourceUserId", -1);
+        intent.putExtra("rating", rating);
         v.getContext().startActivity(intent);
     }
 

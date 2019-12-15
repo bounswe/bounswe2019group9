@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,9 +40,13 @@ public class CommentRateActivity extends AppCompatActivity {
         target = b.getBoolean("target");
         targetUser = b.getInt("targetUserId");
         sourceUser = b.getInt("sourceUserId");
+        String rating_point = b.getString("rating");
         setContentView(R.layout.rating_comment_activity);
         LinearLayout rating = findViewById(R.id.rating_layout);
         LinearLayout commentButton = findViewById(R.id.comment_text_and_button);
+        TextView ratingText = findViewById(R.id.rating_text);
+        rating_point = rating_point + "/5";
+        ratingText.setText(rating_point);
         if(!target){
             rating.setVisibility(View.GONE);
             commentButton.setVisibility(View.GONE);

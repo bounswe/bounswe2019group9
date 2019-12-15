@@ -125,6 +125,7 @@
                     android:src="@drawable/star"/>
             </LinearLayout>
             <TextView
+                android:id="@+id/rating_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/app_color_dark"
