@@ -33,6 +33,7 @@ public class ProfilePageActivity extends AppCompatActivity {
     private static TextView nameDisplay;
     private static TextView surnameDisplay;
     private static TextView mailDisplay;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class ProfilePageActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
-        final int id = sharedPreferences.getInt("Id",0);
+        id = sharedPreferences.getInt("Id",0);
         final TableLayout table = findViewById(R.id.profile_lang_table);
         final LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
@@ -162,7 +163,7 @@ public class ProfilePageActivity extends AppCompatActivity {
     public void GoComment(View v){
         Intent intent = new Intent(v.getContext(), CommentRateActivity.class);
         intent.putExtra("target", false);
-        intent.putExtra("targetUserId", -1);
+        intent.putExtra("targetUserId", id);
         intent.putExtra("sourceUserId", -1);
         v.getContext().startActivity(intent);
     }

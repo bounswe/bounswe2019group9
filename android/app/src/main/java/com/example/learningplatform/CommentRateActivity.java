@@ -47,7 +47,7 @@ public class CommentRateActivity extends AppCompatActivity {
         }
         recyclerView = findViewById(R.id.recylerview_comment);
         editText = findViewById(R.id.comment_user);
-        CommentAdapter commentAdapter = new CommentAdapter(this);
+        CommentAdapter commentAdapter = new CommentAdapter(this, targetUser);
         recyclerView.setAdapter(commentAdapter);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
