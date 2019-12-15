@@ -32,7 +32,7 @@ public class UploadService {
 
   private static final String MP3_EXTENSION = ".mp3";
 
-  private static final String IMAGE_FOLDER_URL = "https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/";
+  private static final String IMAGE_FOLDER_URL = "https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/exercise/";
 
   private static final String ESSAY_FOLDER_URL = "https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/essay/";
 
