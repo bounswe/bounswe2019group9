@@ -1,5 +1,6 @@
 package com.example.learningplatform;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -79,17 +80,31 @@ public class CommentRateActivity extends AppCompatActivity {
 
     public void Rate(View v){
         int id = v.getId();
+        int rating = 0;
         if(id == R.id.rate_one){
-            Toast.makeText(v.getContext(),"Rated 1", Toast.LENGTH_SHORT).show();
+            rating = 1;
         } else if(id == R.id.rate_two){
-            Toast.makeText(v.getContext(),"Rated 2", Toast.LENGTH_SHORT).show();
+            rating = 2;
         } else if(id == R.id.rate_three){
-            Toast.makeText(v.getContext(),"Rated 3", Toast.LENGTH_SHORT).show();
+            rating = 3;
         } else if(id == R.id.rate_four){
-            Toast.makeText(v.getContext(),"Rated 4", Toast.LENGTH_SHORT).show();
+            rating = 4;
         } else if(id == R.id.rate_five){
-            Toast.makeText(v.getContext(),"Rated 5", Toast.LENGTH_SHORT).show();
+            rating = 5;
         }
+        JSONObject rate_data = new JSONObject();
+
+        try {
+            rate_data.put("rating",rating);
+            rate_data.put("receiverId", targetUser);
+            rate_data.put("senderId", sourceUser);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = "https://api.bounswe2019group9.tk/ratings";
+        String message = "rating successfully sent";
+        postRequest(rate_data,v.getContext(), url,message);
+
     }
 
     public void Comment(View v){
@@ -102,18 +117,23 @@ public class CommentRateActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        RequestQueue queue = Volley.newRequestQueue(v.getContext());
         String url = "https://api.bounswe2019group9.tk/comments";
+        String message = "comment successfully sent";
 
-        JsonObjectRequest registerJsonReq = new JsonObjectRequest(Request.Method.POST, url, comment_data,
+        postRequest(comment_data,v.getContext(), url,message);
+
+    }
+
+    public void postRequest(JSONObject data, Context context, String url, final String succesfulMessage){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        JsonObjectRequest registerJsonReq = new JsonObjectRequest(Request.Method.POST, url, data,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             int statusCode =  response.getInt("status");
                             if(statusCode == 200){
-                                Toast.makeText(CommentRateActivity.this,"Comment successfully sent.",
+                                Toast.makeText(CommentRateActivity.this,succesfulMessage,
                                         Toast.LENGTH_SHORT).show();
                             }
                             else{
