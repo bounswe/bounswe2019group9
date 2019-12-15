@@ -1,115 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@color/app_color_light"
-tools:context=".ProfilePageActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_color_light"
+    tools:context=".ProfilePageActivity">
 
-<RelativeLayout
-    android:id="@+id/relativeLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:layout_marginLeft="48dp"
-    android:layout_marginTop="32dp"
-    android:layout_marginRight="48dp"
-    android:layout_marginBottom="32dp"
-    android:background="@color/white"
-    android:elevation="5dp"
-    android:gravity="center_horizontal"
-    android:outlineAmbientShadowColor="@color/cardview_dark_background"
-    android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
-    android:paddingTop="16dp"
-    android:paddingBottom="32dp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginBottom="32dp"
+        android:elevation="20dp">
 
-    <TextView
-        android:id="@+id/user_name_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/WelcomePageTextView"
-        android:text="Name"
-        />
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            android:outlineAmbientShadowColor="@color/cardview_dark_background"
+            android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
+            android:paddingTop="16dp"
+            android:paddingBottom="32dp">
 
-    <TextView
-        android:id="@+id/user_surname_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/user_name_view"
-        android:layout_marginTop="20dp"
-        android:text="Surname"
-        style="@style/WelcomePageTextView"/>
-    <TextView
-        android:id="@+id/user_email_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/user_surname_view"
-        android:layout_marginTop="20dp"
-        android:text="Email"
-        style="@style/WelcomePageTextView"/>
-    <TableLayout
-        android:id="@+id/profile_lang_table"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:layout_below="@+id/user_email_view"
-        android:layout_margin="4dp"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
-        >
-        <TableRow
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView android:layout_width="68dp"
-               android:layout_height="wrap_content"
-                android:src="@drawable/linguistics"
-                android:gravity="center_horizontal"/>
-            <ImageView android:layout_width="68dp"
+            <TextView
+                android:id="@+id/user_name_view"
+                style="@style/WelcomePageTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pie_chart"
-                android:gravity="center_horizontal"/>
-            <ImageView android:layout_width="68dp"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/user_surname_view"
+                style="@style/WelcomePageTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/exam"
-                android:gravity="center_horizontal"/>
-            <ImageView android:layout_width="68dp"
+                android:layout_below="@id/user_name_view"
+                android:layout_marginTop="20dp"
+                android:text="Surname" />
+
+            <TextView
+                android:id="@+id/user_email_view"
+                style="@style/WelcomePageTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/star"
-                android:gravity="center_horizontal"/>
-        </TableRow>
-    </TableLayout>
-    <Button
-        android:id="@+id/logout_button"
-        style="@style/WelcomePageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profile_lang_table"
-        android:layout_marginTop="40dp"
-        android:onClick="Logout"
-        android:text="LOGOUT"
-        />
+                android:layout_below="@id/user_surname_view"
+                android:layout_marginTop="20dp"
+                android:text="Email" />
 
-    <Button
-        android:id="@+id/prof_button"
-        style="@style/WelcomePageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/logout_button"
-        android:layout_marginTop="15dp"
-        android:onClick="GoProf"
-        android:text="assesment"
-        />
+            <TableLayout
+                android:id="@+id/profile_lang_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_email_view"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="4dp"
+                android:layout_marginTop="16dp"
+                android:scrollbars="vertical">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="68dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:src="@drawable/linguistics" />
+
+                    <ImageView
+                        android:layout_width="68dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:src="@drawable/pie_chart" />
+
+                    <ImageView
+                        android:layout_width="68dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:src="@drawable/exam" />
+
+                    <ImageView
+                        android:layout_width="68dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:src="@drawable/star" />
+                </TableRow>
+            </TableLayout>
+
+            <Button
+                android:id="@+id/logout_button"
+                style="@style/WelcomePageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_lang_table"
+                android:layout_marginTop="40dp"
+                android:onClick="Logout"
+                android:text="LOGOUT" />
+
+            <Button
+                android:id="@+id/prof_button"
+                style="@style/WelcomePageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/logout_button"
+                android:layout_marginTop="15dp"
+                android:onClick="GoProf"
+                android:text="assesment" />
+
+            <Button
+                android:id="@+id/profile_comment"
+                style="@style/WelcomePageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/prof_button"
+                android:layout_marginTop="15dp"
+                android:onClick="GoComment"
+                android:text="Comments/Ratıngs" />
 
 
-</RelativeLayout>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
         android:background="@color/app_color_dark"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
