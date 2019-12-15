@@ -162,6 +162,8 @@ public class ProfilePageActivity extends AppCompatActivity {
     public void GoComment(View v){
         Intent intent = new Intent(v.getContext(), CommentRateActivity.class);
         intent.putExtra("target", false);
+        intent.putExtra("targetUserId", -1);
+        intent.putExtra("sourceUserId", -1);
         v.getContext().startActivity(intent);
     }
 

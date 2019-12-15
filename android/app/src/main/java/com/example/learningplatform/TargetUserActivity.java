@@ -287,6 +287,8 @@ public class TargetUserActivity extends AppCompatActivity {
     public void GoComment(View v){
         Intent intent = new Intent(v.getContext(), CommentRateActivity.class);
         intent.putExtra("target", true);
+        intent.putExtra("targetUserId", TargetUserId);
+        intent.putExtra("sourceUserId", Userid);
         v.getContext().startActivity(intent);
     }
 }
