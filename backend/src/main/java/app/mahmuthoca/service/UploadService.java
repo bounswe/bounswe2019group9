@@ -1,6 +1,9 @@
-package app.mahmuthoca;
+package app.mahmuthoca.service;
 
 import app.actor.service.UserService;
+import app.mahmuthoca.bean.AmazonClient;
+import app.mahmuthoca.bean.FileUploadRequest;
+import app.proseidon.repository.ContentRepository;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import java.io.ByteArrayInputStream;
@@ -29,7 +32,7 @@ public class UploadService {
 
   private static final String MP3_EXTENSION = ".mp3";
 
-  private static final String IMAGE_FOLDER_URL = "https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/";
+  private static final String IMAGE_FOLDER_URL = "https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/exercise/";
 
   private static final String ESSAY_FOLDER_URL = "https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/essay/";
 
@@ -39,9 +42,13 @@ public class UploadService {
 
   private final UserService userService;
 
-  public UploadService(AmazonClient amazonClient, UserService userService) {
+  private final ContentRepository contentRepository;
+
+  public UploadService(AmazonClient amazonClient, UserService userService,
+                       ContentRepository contentRepository) {
     this.amazonClient = amazonClient;
     this.userService = userService;
+    this.contentRepository = contentRepository;
   }
 
   public String uploadImage(FileUploadRequest request) {
@@ -72,7 +79,9 @@ public class UploadService {
     } catch (Exception e) {
       return null;
     }
-    return IMAGE_FOLDER_URL.concat(request.getExerciseId().toString()).concat(extension);
+    String url = IMAGE_FOLDER_URL.concat(request.getExerciseId().toString()).concat(extension);
+    contentRepository.upsertImageUrl(url, request.getExerciseId());
+    return url;
   }
 
   public String uploadEssayImage(FileUploadRequest request) {
@@ -144,11 +153,13 @@ public class UploadService {
     } catch (Exception e) {
       return null;
     }
-    return SOUND_FOLDER_URL.concat(request.getExerciseId().toString()).concat(extension);
+    String url = SOUND_FOLDER_URL.concat(request.getExerciseId().toString()).concat(extension);
+    contentRepository.upsertSoundUrl(url, request.getExerciseId());
+    return url;
   }
 
   private String getExtension(String type) {
-    if(type.equals(MP3_TYPE) || type.equals(MP2_TYPE)) {
+    if (type.equals(MP3_TYPE) || type.equals(MP2_TYPE)) {
       return MP3_EXTENSION;
     }
     return ".".concat(type.substring(type.indexOf("/") + 1));

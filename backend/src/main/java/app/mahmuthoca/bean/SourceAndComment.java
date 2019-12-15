@@ -1,4 +1,6 @@
-package app.mahmuthoca;
+package app.mahmuthoca.bean;
+
+import app.mahmuthoca.entity.Comment;
 
 public class SourceAndComment {
 

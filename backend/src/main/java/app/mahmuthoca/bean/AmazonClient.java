@@ -1,4 +1,4 @@
-package app.mahmuthoca;
+package app.mahmuthoca.bean;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

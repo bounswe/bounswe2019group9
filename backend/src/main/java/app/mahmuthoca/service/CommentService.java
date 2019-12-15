@@ -1,9 +1,13 @@
-package app.mahmuthoca;
+package app.mahmuthoca.service;
 
 import app.actor.repository.UserRepository;
 import app.actor.service.UserService;
 import app.common.HttpResponses;
 import app.common.Response;
+import app.mahmuthoca.entity.Comment;
+import app.mahmuthoca.repository.CommentRepository;
+import app.mahmuthoca.bean.CreateCommentRequest;
+import app.mahmuthoca.bean.SourceAndComment;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

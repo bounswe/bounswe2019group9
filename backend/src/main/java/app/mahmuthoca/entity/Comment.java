@@ -1,4 +1,4 @@
-package app.mahmuthoca;
+package app.mahmuthoca.entity;
 
 import java.util.Date;
 import javax.persistence.Column;
