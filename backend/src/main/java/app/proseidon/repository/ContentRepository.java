@@ -29,7 +29,8 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
                  " question_body, option_a, option_b, option_c, option_d, correct_answer)" +
                  "VALUES(:languageId, :typeId, :grade, :imageUrl, :soundUrl, :questionBody, :optionA, :optionB," +
                  " :optionC, :optionD, :correctAnswer) ", nativeQuery = true)
-  void addExercise(@Param("languageId") Integer languageId, @Param("typeId") Integer typeId, @Param("grade") Integer grade,
+  void addExercise(@Param("languageId") Integer languageId, @Param("typeId") Integer typeId,
+                   @Param("grade") Integer grade,
                    @Param("imageUrl") String imageUrl, @Param("soundUrl") String soundUrl,
                    @Param("questionBody") String questionBody, @Param("optionA") String optionA,
                    @Param("optionB") String optionB, @Param("optionC") String optionC,
@@ -43,6 +44,17 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
   @Query(value = "SELECT * FROM proseidon.exercises WHERE id=:id", nativeQuery = true)
   Exercise getExerciseById(@Param("id") Long id);
 
-  @Query(value = "SELECT count(*) FROM proseidon.exercises WHERE language_id=:langId AND grade=:grade", nativeQuery = true)
+  @Query(value = "SELECT count(*) FROM proseidon.exercises WHERE language_id=:langId AND grade=:grade",
+         nativeQuery = true)
   Integer getNumberOfExercisesByGrade(@Param("langId") Integer langId, @Param("grade") Integer grade);
+
+  @Transactional
+  @Modifying
+  @Query(value = "UPDATE proseidon.exercises SET image_url = :url WHERE id = :id", nativeQuery = true)
+  void upsertImageUrl(@Param("url") String url, @Param("id") Long id);
+
+  @Transactional
+  @Modifying
+  @Query(value = "UPDATE proseidon.exercises SET sound_url = :url WHERE id = :id", nativeQuery = true)
+  void upsertSoundUrl(@Param("url") String url, @Param("id") Long id);
 }
