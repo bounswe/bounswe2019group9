@@ -1,4 +1,4 @@
-package app.mahmuthoca;
+package app.mahmuthoca.bean;
 
 /**
  * @author ahmet.gedemenli

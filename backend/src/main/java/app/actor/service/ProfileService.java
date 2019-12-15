@@ -4,7 +4,7 @@ import app.actor.bean.ProfileInfo;
 import app.actor.UserNotFoundException;
 import app.actor.entity.Grade;
 import app.actor.entity.User;
-import app.mahmuthoca.RatingService;
+import app.mahmuthoca.service.RatingService;
 import app.proseidon.service.ContentService;
 import app.proseidon.service.LanguageService;
 import java.util.List;

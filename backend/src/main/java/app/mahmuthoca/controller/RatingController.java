@@ -1,6 +1,8 @@
-package app.mahmuthoca;
+package app.mahmuthoca.controller;
 
 import app.common.Response;
+import app.mahmuthoca.bean.CreateRatingRequest;
+import app.mahmuthoca.service.RatingService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

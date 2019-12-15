@@ -1,4 +1,4 @@
-package app.mahmuthoca;
+package app.mahmuthoca.bean;
 
 import javax.validation.constraints.NotNull;
 import org.springframework.lang.Nullable;

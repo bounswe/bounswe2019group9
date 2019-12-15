@@ -1,8 +1,11 @@
-package app.mahmuthoca;
+package app.mahmuthoca.service;
 
 import app.actor.service.UserService;
 import app.common.HttpResponses;
 import app.common.Response;
+import app.mahmuthoca.bean.CreateRatingRequest;
+import app.mahmuthoca.entity.Rating;
+import app.mahmuthoca.repository.RatingRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
 

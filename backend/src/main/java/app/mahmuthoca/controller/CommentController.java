@@ -1,6 +1,9 @@
-package app.mahmuthoca;
+package app.mahmuthoca.controller;
 
 import app.common.Response;
+import app.mahmuthoca.bean.CreateCommentRequest;
+import app.mahmuthoca.bean.SourceAndComment;
+import app.mahmuthoca.service.CommentService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

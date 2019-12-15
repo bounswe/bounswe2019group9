@@ -1,6 +1,8 @@
-package app.mahmuthoca;
+package app.mahmuthoca.service;
 
 import app.actor.service.UserService;
+import app.mahmuthoca.bean.AmazonClient;
+import app.mahmuthoca.bean.FileUploadRequest;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import java.io.ByteArrayInputStream;

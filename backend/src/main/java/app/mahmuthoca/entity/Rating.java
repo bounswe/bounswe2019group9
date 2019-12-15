@@ -1,4 +1,4 @@
-package app.mahmuthoca;
+package app.mahmuthoca.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
