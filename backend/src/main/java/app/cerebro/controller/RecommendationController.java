@@ -33,6 +33,7 @@ public class RecommendationController {
         searchUserService.searchUser(new SearchUserRequest(null, null, request.getLanguageId(), request.getGrade()))
                          .getData();
     Collections.sort(recommendations);
+    Collections.reverse(recommendations);
     return HttpResponses.from(recommendations);
   }
 }
