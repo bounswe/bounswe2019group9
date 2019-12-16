@@ -8,6 +8,7 @@ import app.common.HttpResponses;
 import app.common.Response;
 import java.util.Collections;
 import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ public class RecommendationController {
     this.searchUserService = searchUserService;
   }
 
+  @PostMapping
   public Response<List<ProfileInfo>> getRecommendations(@RequestBody RecommendationRequest request) {
     List<ProfileInfo> recommendations =
         searchUserService.searchUser(new SearchUserRequest(null, null, request.getLanguageId(), request.getGrade()))
