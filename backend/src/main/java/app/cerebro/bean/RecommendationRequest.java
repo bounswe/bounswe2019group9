@@ -1,11 +1,14 @@
 package app.cerebro.bean;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @author ahmet.gedemenli
  */
 
 public class RecommendationRequest {
 
+  @NotNull
   private Integer languageId;
 
   private Integer grade;
