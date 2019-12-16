@@ -7,7 +7,7 @@ import java.util.List;
  * @author ahmet.gedemenli
  */
 
-public class ProfileInfo {
+public class ProfileInfo implements Comparable<ProfileInfo> {
 
   private Long userId;
 
@@ -98,6 +98,14 @@ public class ProfileInfo {
 
   public void setProgressLevels(List<Integer> progressLevels) {
     this.progressLevels = progressLevels;
+  }
+
+  @Override
+  public int compareTo(ProfileInfo profileInfo) {
+    if (getRating() == null || profileInfo.getRating() == null) {
+      return 0;
+    }
+    return getRating().compareTo(profileInfo.getRating());
   }
 
   @Override
