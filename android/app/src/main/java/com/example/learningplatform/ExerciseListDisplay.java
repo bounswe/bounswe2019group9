@@ -71,6 +71,8 @@ public class ExerciseListDisplay extends AppCompatActivity {
                     break;
                 case R.id.writing:
                     Log.i("clickedTo","writing");
+                    intent = new Intent(ExerciseListDisplay.this,WritingExActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.grammar:
                     Log.i("clickedTo","grammar");
