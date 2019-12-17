@@ -55,7 +55,7 @@ public class EssayController {
     List<Essay> essays = essayService.getEssaysByUserId(id);
     List<AssignmentEssay> responseData = new ArrayList<>();
     for (Essay essay : essays) {
-      responseData.add(new AssignmentEssay(essay, assignmentService.getAssignmentById(essay.getAssignmentId())))
+      responseData.add(new AssignmentEssay(essay, assignmentService.getAssignmentById(essay.getAssignmentId())));
     }
     return HttpResponses.from(responseData);
   }
