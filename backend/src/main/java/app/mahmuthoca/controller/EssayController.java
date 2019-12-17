@@ -2,9 +2,12 @@ package app.mahmuthoca.controller;
 
 import app.common.HttpResponses;
 import app.common.Response;
+import app.mahmuthoca.bean.AssignmentEssay;
 import app.mahmuthoca.bean.CreateEssayRequest;
 import app.mahmuthoca.entity.Essay;
+import app.mahmuthoca.service.AssignmentService;
 import app.mahmuthoca.service.EssayService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +28,11 @@ public class EssayController {
 
   private final EssayService essayService;
 
-  public EssayController(EssayService essayService) {
+  private final AssignmentService assignmentService;
+
+  public EssayController(EssayService essayService, AssignmentService assignmentService) {
     this.essayService = essayService;
+    this.assignmentService = assignmentService;
   }
 
   @PostMapping
@@ -45,7 +51,12 @@ public class EssayController {
   }
 
   @GetMapping("/user")
-  public Response<List<Essay>> getEssaysByUserId(@RequestParam("id") Long id){
-    return HttpResponses.from(essayService.getEssaysByUserId(id));
+  public Response<List<AssignmentEssay>> getEssaysByUserId(@RequestParam("id") Long id) {
+    List<Essay> essays = essayService.getEssaysByUserId(id);
+    List<AssignmentEssay> responseData = new ArrayList<>();
+    for (Essay essay : essays) {
+      responseData.add(new AssignmentEssay(essay, assignmentService.getAssignmentById(essay.getAssignmentId())))
+    }
+    return HttpResponses.from(responseData);
   }
 }
