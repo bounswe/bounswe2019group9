@@ -1,6 +1,7 @@
 package app.mahmuthoca.repository;
 
 import app.mahmuthoca.entity.Assignment;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -23,4 +24,7 @@ public interface AssignmentRepository extends JpaRepository<Assignment, Long> {
 
   @Query(value = "SELECT * FROM mahmuthoca.assignments WHERE id = :id", nativeQuery = true)
   Assignment getAssignmentById(@Param("id") Long id);
+
+  @Query(value = "SELECT * FROM mahmuthoca.assignments WHERE language_id = :languageId", nativeQuery = true)
+  List<Assignment> getAssignmentsByLanguageId(@Param("languageId") Long languageId);
 }

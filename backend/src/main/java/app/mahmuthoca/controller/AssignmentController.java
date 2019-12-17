@@ -5,6 +5,7 @@ import app.common.Response;
 import app.mahmuthoca.bean.CreateAssignmentRequest;
 import app.mahmuthoca.entity.Assignment;
 import app.mahmuthoca.service.AssignmentService;
+import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,5 +41,10 @@ public class AssignmentController {
       return HttpResponses.notFound("No assignment with id: ".concat(id.toString()));
     }
     return HttpResponses.from(assignment);
+  }
+
+  @GetMapping("/language")
+  public Response<List<Assignment>> getAssignmentsByLanguage(@RequestParam("id") Long id) {
+    return assignmentService.getAssignmentsByLanguageId(id);
   }
 }
