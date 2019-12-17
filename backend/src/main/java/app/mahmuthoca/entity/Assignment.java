@@ -24,8 +24,12 @@ public class Assignment {
   @NotNull
   private String question;
 
-  public Assignment(@NotNull String question) {
+  @Column(name = "language_id")
+  private Long languageId;
+
+  public Assignment(@NotNull String question, Long languageId) {
     this.question = question;
+    this.languageId = languageId;
   }
 
   public Assignment() {
@@ -47,11 +51,20 @@ public class Assignment {
     this.question = question;
   }
 
+  public Long getLanguageId() {
+    return languageId;
+  }
+
+  public void setLanguageId(Long languageId) {
+    this.languageId = languageId;
+  }
+
   @Override
   public String toString() {
     return "Assignment{" +
            "id=" + id +
            ", question='" + question + '\'' +
+           ", languageId=" + languageId +
            '}';
   }
 }

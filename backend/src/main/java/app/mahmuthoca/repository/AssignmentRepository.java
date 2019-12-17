@@ -17,8 +17,9 @@ public interface AssignmentRepository extends JpaRepository<Assignment, Long> {
 
   @Transactional
   @Modifying
-  @Query(value = "INSERT INTO mahmuthoca.assignments(question) VALUES(:question)", nativeQuery = true)
-  void addAssignment(@Param("question") String question);
+  @Query(value = "INSERT INTO mahmuthoca.assignments(question, language_id) VALUES(:question, :languageId)",
+         nativeQuery = true)
+  void addAssignment(@Param("question") String question, @Param("languageId") Long languageId);
 
   @Query(value = "SELECT * FROM mahmuthoca.assignments WHERE id = :id", nativeQuery = true)
   Assignment getAssignmentById(@Param("id") Long id);
