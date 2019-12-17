@@ -21,4 +21,8 @@ public class AssignmentService {
   public void addAssignment(CreateAssignmentRequest request) {
     assignmentRepository.addAssignment(request.getText());
   }
+
+  public Assignment getAssignmentById(Long id) {
+    return assignmentRepository.getAssignmentById(id);
+  }
 }
