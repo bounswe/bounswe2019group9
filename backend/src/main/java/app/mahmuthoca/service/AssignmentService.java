@@ -19,7 +19,7 @@ public class AssignmentService {
   }
 
   public void addAssignment(CreateAssignmentRequest request) {
-    assignmentRepository.addAssignment(request.getText());
+    assignmentRepository.addAssignment(request.getText(), request.getLanguageId());
   }
 
   public Assignment getAssignmentById(Long id) {
