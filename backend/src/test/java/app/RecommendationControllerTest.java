@@ -28,8 +28,10 @@ public class RecommendationControllerTest {
   public void testSorted() throws Exception {
     RecommendationRequest request = new RecommendationRequest(1, 2);
     Response<List<ProfileInfo>> response = recommendationController.getRecommendations(request);
-    ProfileInfo first = response.getData().get(0);
-    ProfileInfo last = response.getData().get(response.getData().size() - 1);
-    assertTrue(first.getRating() >= last.getRating());
+    for (int i = 1; i < response.getData().size(); i++) {
+      ProfileInfo first = response.getData().get(i - 1);
+      ProfileInfo second = response.getData().get(i);
+      assertTrue(first.getRating() >= second.getRating());
+    }
   }
 }
