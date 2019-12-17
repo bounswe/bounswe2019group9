@@ -1,7 +1,6 @@
 package app.actor.service;
 
 import app.actor.bean.ExerciseSolvedRequest;
-import app.actor.bean.ProfileInfo;
 import app.actor.entity.ExerciseSolvedInfo;
 import app.actor.repository.GradeRepository;
 import app.actor.repository.SolvedExercisesRepository;
@@ -9,7 +8,9 @@ import app.common.HttpResponses;
 import app.common.Response;
 import app.actor.entity.User;
 import app.actor.repository.UserRepository;
+import app.proseidon.entity.Exercise;
 import app.proseidon.repository.ContentRepository;
+import app.proseidon.service.ContentService;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class UserService {
 
   private static final String EXERCISE_NOT_FOUND = "Exercise not found.";
 
-  private final ProfileService profileService;
+  private final ContentService contentService;
 
   private final GradeRepository gradeRepository;
 
@@ -38,11 +39,11 @@ public class UserService {
 
   private final ContentRepository contentRepository;
 
-  public UserService(ProfileService profileService, GradeRepository gradeRepository,
+  public UserService(ContentService contentService, GradeRepository gradeRepository,
                      UserRepository userRepository,
                      SolvedExercisesRepository solvedExercisesRepository,
                      ContentRepository contentRepository) {
-    this.profileService = profileService;
+    this.contentService = contentService;
     this.gradeRepository = gradeRepository;
     this.userRepository = userRepository;
     this.solvedExercisesRepository = solvedExercisesRepository;
@@ -66,12 +67,13 @@ public class UserService {
       return HttpResponses.badRequest(EXERCISE_NOT_FOUND);
     }
     solvedExercisesRepository.createExerciseSolvedInfo(request.getUserId(), request.getExerciseId());
-    ProfileInfo info = profileService.getProfileInfoByUserId(request.getUserId());
-    for (int i = 0; i < info.getProgressLevels().size(); i++) {
-      if (info.getLanguages().get(i).equals("English") && info.getProgressLevels().get(i) == 100) {
-        gradeRepository.addGrade(request.getUserId(), 1,
-                                 gradeRepository.getGradeByUserIdAndLanguageId(request.getUserId(), 1).getGrade() + 1);
-      }
+    Exercise exercise = contentRepository.getExerciseById(request.getExerciseId());
+    Integer numberOfSolvedExercises =
+        getNumberOfSolvedExercisesById(request.getUserId(), exercise.getLanguageId(), exercise.getGrade());
+    Integer numberOfExercisesByGrade =
+        contentService.getNumberOfExercisesByGrade(exercise.getLanguageId(), exercise.getGrade());
+    if (numberOfExercisesByGrade != 0 && numberOfSolvedExercises >= numberOfExercisesByGrade) {
+      gradeRepository.addGrade(request.getUserId(), exercise.getLanguageId(), exercise.getGrade() + 1);
     }
     return HttpResponses.successful();
   }
