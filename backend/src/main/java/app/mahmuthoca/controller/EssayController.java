@@ -5,6 +5,7 @@ import app.common.Response;
 import app.mahmuthoca.bean.CreateEssayRequest;
 import app.mahmuthoca.entity.Essay;
 import app.mahmuthoca.service.EssayService;
+import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,5 +42,10 @@ public class EssayController {
       return HttpResponses.notFound("No essay with id: ".concat(id.toString()));
     }
     return HttpResponses.from(essay);
+  }
+
+  @GetMapping("/user")
+  public Response<List<Essay>> getEssaysByUserId(@RequestParam("id") Long id){
+    return HttpResponses.from(essayService.getEssaysByUserId(id));
   }
 }

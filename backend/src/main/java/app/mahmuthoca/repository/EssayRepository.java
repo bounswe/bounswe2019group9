@@ -1,6 +1,7 @@
 package app.mahmuthoca.repository;
 
 import app.mahmuthoca.entity.Essay;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -24,4 +25,12 @@ public interface EssayRepository extends JpaRepository<Essay, Long> {
 
   @Query(value = "SELECT * FROM mahmuthoca.essays WHERE id = :essayId", nativeQuery = true)
   Essay getEssayById(@Param("essayId") Long essayId);
+
+  @Query(value = "SELECT * FROM mahmuthoca.essays WHERE author_id = :id", nativeQuery = true)
+  List<Essay> getEssaysByUserId(@Param("id") Long id);
+
+  @Transactional
+  @Modifying
+  @Query(value = "DELETE FROM mahmuthoca.essays WHERE author_id = :id", nativeQuery = true)
+  void deleteEssayById(@Param("id") Long id);
 }
