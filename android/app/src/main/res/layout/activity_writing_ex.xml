@@ -36,6 +36,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"/>
 
+
+
         <Button
             android:id="@+id/upload"
             android:layout_width="wrap_content"
@@ -71,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Save Image"
+            android:text="Save Answer"
             android:onClick="triggerImageUpload"
             style="@style/WelcomePageButton"
             android:layout_below="@id/essayAsText"/>

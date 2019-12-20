@@ -1,5 +1,6 @@
 package com.example.learningplatform;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -15,8 +16,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,29 +31,75 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 
 public class WritingExActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMAGE = 1;
-    String imgDecodableString;
+    static String imgDecodableString;
     ProgressDialog prgDialog;
-    String encodedString;
+     String encodedString;
     String imgPath, fileName;
     Bitmap bitmap;
     SharedPreferences sharedPreferences;
     int id;
     String textInput = null;
-
+    int questionCount;
     String uploadedImageUrl;
+    TextView questionText;
+
+
+    ArrayList<String> exerciseList = new ArrayList<String>();
+    ArrayList<Integer> exerciseIdList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_writing_ex);
+
+        questionCount = 1;
+        Intent intent = getIntent();
+        exerciseList = intent.getStringArrayListExtra("exerciseList");
+        exerciseIdList = intent.getIntegerArrayListExtra("exerciseIdList");
+
+        questionText = findViewById(R.id.questionText);
+        questionText.setText(exerciseList.get(questionCount));
+
+        sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        id = sharedPreferences.getInt("Id",0);
+
+
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.nav_bar_excercise:
+                        return true;
+                    case R.id.nav_bar_message:
+                        intent = new Intent(getApplicationContext(), ChatsListDisplay.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_bar_profile:
+                        intent = new Intent(getApplicationContext(), ProfilePageActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_bar_search:
+                        intent = new Intent(getApplicationContext(), SearchActivity.class);
+                        startActivity(intent);
+                        return true;
+                }
+                return true;
+            }
+        });
 
 
     }
@@ -58,13 +110,10 @@ public class WritingExActivity extends AppCompatActivity {
         try {
 
             // When an Image is picked
-
             if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK
                     && null != data) {
 
                 // Get the Image from data
-
-
                 Uri selectedImage = data.getData();
 
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
@@ -72,15 +121,12 @@ public class WritingExActivity extends AppCompatActivity {
 
 
                 // Get the cursor
-
                 Cursor cursor = getContentResolver().query(selectedImage,
 
                         filePathColumn, null, null, null);
 
                 // Move to first row
-
                 cursor.moveToFirst();
-
 
 
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -92,12 +138,8 @@ public class WritingExActivity extends AppCompatActivity {
                 ImageView imgView = findViewById(R.id.imgView);
 
                 //Set the Image in ImageView after decoding the String
-
                 imgView.setImageBitmap(BitmapFactory
                         .decodeFile(imgDecodableString));
-
-
-
 
 
 
@@ -119,23 +161,21 @@ public class WritingExActivity extends AppCompatActivity {
     }
     public void photoUpload(View v) {
 
+
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+              android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
 
-        startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+         startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
 
     }
 
     @Override
     protected void onDestroy() {
 
-        // TODO Auto-generated method stub
-
         super.onDestroy();
 
         // Dismiss the progress bar when application is closed
-
         if (prgDialog != null) {
             prgDialog.dismiss();
         }
@@ -144,74 +184,60 @@ public class WritingExActivity extends AppCompatActivity {
 
     public void encodeImagetoString() {
 
-        new AsyncTask<Void, Void, String>() {
 
-            protected void onPreExecute() {
+       // BitmapFactory.Options options = null;
+
+       // options = new BitmapFactory.Options();
+
+       // options.inSampleSize = 3;
+
+        Bitmap imgBitmap;
+        imgBitmap = BitmapFactory.decodeFile(imgDecodableString);
 
 
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-            };
+        // Must compress the Image to reduce image size to make upload easy
+        imgBitmap.compress(Bitmap.CompressFormat.PNG, 50, stream);
 
-            @Override
+        byte[] byte_arr = stream.toByteArray();
 
-            protected String doInBackground(Void... params) {
-
-                BitmapFactory.Options options = null;
-
-                options = new BitmapFactory.Options();
-
-                options.inSampleSize = 3;
-
-                bitmap = BitmapFactory.decodeFile(imgPath,
-                        options);
-
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-                // Must compress the Image to reduce image size to make upload easy
-
-                bitmap.compress(Bitmap.CompressFormat.PNG, 50, stream);
-
-                byte[] byte_arr = stream.toByteArray();
-
-                // Encode Image to String
-
-                encodedString = Base64.encodeToString(byte_arr, 0);
-
-                return "";
-
-            }
-
-            @Override
-            protected void onPostExecute(String msg) {
-
-                prgDialog.setMessage("Calling Upload");
-
-                //triggerImageUpload();
-
-            }
-
-        }.execute(null, null, null);
+        // Encode Image to String
+        encodedString = Base64.encodeToString(byte_arr, 0);
 
     }
 
     public void triggerImageUpload(View v) {
 
-        makeAPICall();
+        EditText essayAnswer= findViewById(R.id.essayAsText);
+        ImageView essayPhoto= findViewById(R.id.imgView);
+
+        String textAnswer = essayAnswer.getText().toString();
+
+        if(textAnswer.equals("")){
+            essayAnswer.setVisibility(View.GONE);
+            encodeImagetoString();
+            makeAPICall();
+        } else {
+            essayPhoto.setVisibility(View.GONE);
+            textInput = textAnswer;
+        }
 
     }
 
     public void makeAPICall(){
 
-
-        String base64data = "data:image/jpeg;base64," + encodedString;
+        String base64data = "data:image/jpeg;base64," + (String) encodedString;
         sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-        id = sharedPreferences.getInt("Id",0);
+
+
+        int currentExId = exerciseIdList.get(questionCount);
 
         JSONObject photo_data = new JSONObject();
         try {
             photo_data.put("authorId",id);
             photo_data.put("base64Data",base64data);
-            photo_data.put("exerciseId","");
+            photo_data.put("exerciseId",currentExId);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -250,20 +276,20 @@ public class WritingExActivity extends AppCompatActivity {
 
         queue.add(solvedJsonReq);
 
-
     }
 
     public void submit(View v){
 
 
         JSONObject essay_data = new JSONObject();
+        int currentExId = exerciseIdList.get(questionCount);
 
         if(textInput == null) {
             try {
                 essay_data.put("authorId",id);
                 essay_data.put("source",uploadedImageUrl);
-                essay_data.put("assignmentId","");
-                essay_data.put("sourceType",0);
+                essay_data.put("assignmentId",currentExId);
+                essay_data.put("sourceType",2);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -271,13 +297,12 @@ public class WritingExActivity extends AppCompatActivity {
             try {
                 essay_data.put("authorId",id);
                 essay_data.put("source",textInput);
-                essay_data.put("assignmentId","");
+                essay_data.put("assignmentId",currentExId);
                 essay_data.put("sourceType",1);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://api.bounswe2019group9.tk/essays";
@@ -311,10 +336,22 @@ public class WritingExActivity extends AppCompatActivity {
 
         queue.add(solvedJsonReq);
 
-
     }
 
     public void NextQuestion(View v){
+
+        questionCount++;
+        if(questionCount==exerciseList.size()){
+            Toast.makeText(v.getContext(),"Your exercise is finished !",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        questionText.setText(exerciseList.get(questionCount));
+        EditText essayAnswer= findViewById(R.id.essayAsText);
+        ImageView essayPhoto= findViewById(R.id.imgView);
+
+        essayPhoto.setVisibility(View.VISIBLE);
+        essayAnswer.setVisibility(View.VISIBLE);
 
     }
 }
