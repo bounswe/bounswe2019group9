@@ -36,6 +36,13 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"/>
 
+        <ImageView
+            android:id="@+id/questionImage"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:layout_below="@id/questionText"
+            android:layout_centerHorizontal="true"/>
+
         <Button
             android:id="@+id/answer1"
             android:layout_width="wrap_content"
@@ -43,7 +50,7 @@
             android:text="Button"
             android:onClick="ChoiceSelected"
             style="@style/WelcomePageButton"
-            android:layout_below="@id/questionText"/>
+            android:layout_below="@id/questionImage"/>
 
         <Button
             android:id="@+id/answer2"
