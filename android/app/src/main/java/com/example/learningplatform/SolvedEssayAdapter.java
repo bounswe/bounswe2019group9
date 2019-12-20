@@ -1,6 +1,7 @@
 package com.example.learningplatform;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class SolvedEssayAdapter extends RecyclerView.Adapter<SolvedEssayAdapter.MyViewHolder>{
@@ -47,8 +49,12 @@ public class SolvedEssayAdapter extends RecyclerView.Adapter<SolvedEssayAdapter.
                                     JSONArray data = (JSONArray) response.get("data");
                                     for(int i=0; i<data.length();i++){
                                         JSONObject assignment = data.getJSONObject(i).getJSONObject("assignment");
+                                        JSONObject essayObj = data.getJSONObject(i).getJSONObject("essay");
+                                        int sourceType = essayObj.getInt("sourceType");
+                                        String source = essayObj.getString("source");
+                                        int assignmentId = essayObj.getInt("assignmentId");
                                         String question = assignment.getString("question");
-                                        SolvedEssay essay = new SolvedEssay(question);
+                                        SolvedEssay essay = new SolvedEssay(question, sourceType, source, assignmentId);
                                         essayArrayList.add(essay);
                                     }
                                     notifyDataSetChanged();
@@ -82,6 +88,14 @@ public class SolvedEssayAdapter extends RecyclerView.Adapter<SolvedEssayAdapter.
     @Override
     public void onBindViewHolder(final SolvedEssayAdapter.MyViewHolder holder, final int position) {
         holder.essayQuestion.setText(essayArrayList.get(position).essayQuestion);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), SolvedEssayActivity.class);
+                intent.putExtra("SolvedEssay", essayArrayList.get(position));
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -106,12 +120,21 @@ public class SolvedEssayAdapter extends RecyclerView.Adapter<SolvedEssayAdapter.
 
 }
 
-class SolvedEssay{
+class SolvedEssay implements Serializable {
     String essayQuestion;
-    public SolvedEssay(String question){
+    String essayQuestionLong;
+    boolean imageUploaded;
+    String source;
+    int assignmentId;
+
+    public SolvedEssay(String question, int sourceType, String source, int id){
+        this.essayQuestionLong = question;
         if(question.length() > 150){
             question = question.substring(0,150);
         }
         this.essayQuestion = question;
+        this.imageUploaded = (sourceType == 2);
+        this.source = source;
+        this.assignmentId = id;
     }
 }
