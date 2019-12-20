@@ -191,9 +191,6 @@ public class StartExerciseActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
 

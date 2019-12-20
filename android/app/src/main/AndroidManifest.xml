@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".AddExerciseActivity"></activity>
+        <activity android:name=".RecommendationPageDisplay" />
         <activity android:name=".StartExerciseActivity" />
         <activity android:name=".ExerciseViewActivity" />
         <activity android:name=".CommentRateActivity" />
