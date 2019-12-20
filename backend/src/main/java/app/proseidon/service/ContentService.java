@@ -65,6 +65,7 @@ public class ContentService {
                                   exercise.getImageUrl(), exercise.getSoundUrl(), exercise.getQuestionBody(),
                                   exercise.getOptionA(), exercise.getOptionB(), exercise.getOptionC(),
                                   exercise.getOptionD(), exercise.getCorrectAnswer());
+    exercise.setId(contentRepository.getLastExerciseId());
     return HttpResponses.from(exercise);
   }
 

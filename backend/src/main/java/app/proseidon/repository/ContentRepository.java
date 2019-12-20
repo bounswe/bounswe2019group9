@@ -57,4 +57,7 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
   @Modifying
   @Query(value = "UPDATE proseidon.exercises SET sound_url = :url WHERE id = :id", nativeQuery = true)
   void upsertSoundUrl(@Param("url") String url, @Param("id") Long id);
+
+  @Query(value = "SELECT id FROM proseidon.exercises ORDER BY id DESC LIMIT 1",nativeQuery = true)
+  Long getLastExerciseId();
 }
