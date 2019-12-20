@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,4 +51,9 @@ public class SolvedEssayListPage extends AppCompatActivity {
             }
         });
     }
+
+    public void SolveNextEssay(View v){
+
+    }
+
 }
