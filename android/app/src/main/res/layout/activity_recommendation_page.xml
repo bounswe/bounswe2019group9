@@ -30,7 +30,7 @@
                 android:id="@+id/recommended_users"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/app_color_light"
+                android:background="@color/app_color_dark"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="16dp"
                 android:paddingLeft="41dp"
@@ -38,7 +38,7 @@
                 android:fontFamily="sans-serif"
                 android:gravity="center_horizontal"
                 android:text="Recommended Reviewers"
-                android:textColor="@color/app_color_dark"
+                android:textColor="@color/white"
                 android:textSize="22sp" />
         </RelativeLayout>
 

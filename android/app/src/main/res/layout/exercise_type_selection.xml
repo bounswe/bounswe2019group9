@@ -19,8 +19,8 @@
         android:fontFamily="sans-serif"
         android:text="@string/select_exercise_type_text"
         android:textSize="22sp"
-        android:textColor="@color/app_color_dark"
-        android:background="@color/app_color_light"/>
+        android:textColor="@color/white"
+        android:background="@color/app_color_dark"/>
 
     <LinearLayout
         android:id="@+id/listening"
