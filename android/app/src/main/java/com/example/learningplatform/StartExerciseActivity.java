@@ -60,6 +60,7 @@ public class StartExerciseActivity extends AppCompatActivity {
         final String lang = sharedPreferences.getString("languageOfUser","");
         final String progressForLang = sharedPreferences.getString("progressOfUser","");
         final String grade = sharedPreferences.getString("grade","");
+        final int userId = sharedPreferences.getInt("Id", 0);
 
 
         final TableLayout table = findViewById(R.id.profile_lang_table);
@@ -90,6 +91,7 @@ public class StartExerciseActivity extends AppCompatActivity {
                 try {
                     search_data.put("languageId",typeOfLang);
                     search_data.put("typeId",typeOfExercise);
+                    search_data.put("userId", userId);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
