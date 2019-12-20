@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -29,6 +30,7 @@ import org.json.JSONObject;
 
 import java.nio.file.attribute.UserPrincipalLookupService;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class RecommendedUsersAdapter extends RecyclerView.Adapter<RecommendedUsersAdapter.MyViewHolder>{
     ArrayList<recommendedUser> recommendedUsersArray;
@@ -57,12 +59,18 @@ public class RecommendedUsersAdapter extends RecyclerView.Adapter<RecommendedUse
                                         for(int i=0; i<data.length();i++) {
                                             if (data.getJSONObject(i).has("firstName") & data.getJSONObject(i).has("lastName")) {
                                                 String nameOfUser = (String) data.getJSONObject(i).get("firstName") + " " +  (String) data.getJSONObject(i).get("lastName") ;
+                                                JSONArray gradeOfUser = data.getJSONObject(i).getJSONArray("grades");
+                                                JSONArray languagesOfUser = data.getJSONObject(i).getJSONArray("languages");
                                                 int id = data.getJSONObject(i).getInt("userId");
                                                 int rating = data.getJSONObject(i).getInt("rating");
-                                                int grade = data.getJSONObject(i).getInt("grades");
-                                                String lang = data.getJSONObject(i).getString("languages");
+
+                                                for(int j = 0; j<gradeOfUser.length();j++){
+                                                    String lang = languagesOfUser.getString(j);
+                                                    int grade = gradeOfUser.getInt(j);
+                                                    recommendedUsersArray.add(new recommendedUser(nameOfUser, lang, id , rating, grade));
+                                                }
                                                 Log.i("nameofuser", nameOfUser);
-                                                recommendedUsersArray.add(new recommendedUser(nameOfUser,lang,id,rating,grade));
+
                                             }
                                         }
                                         notifyDataSetChanged();
@@ -89,6 +97,24 @@ public class RecommendedUsersAdapter extends RecyclerView.Adapter<RecommendedUse
         });
     }
 
+    public static String getGradeFromInt(int userGrade){
+        if (userGrade == 1) {
+            return "A1";
+        } else if (userGrade == 2) {
+            return "A2";
+        } else if (userGrade == 3) {
+            return "B1";
+        } else if (userGrade == 4) {
+            return "B2";
+        } else if (userGrade == 5) {
+            return "C1";
+        } else if (userGrade == 6) {
+            return "C2";
+        } else{
+            return "Please take exam.";
+        }
+    }
+
         @Override
         public RecommendedUsersAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -101,7 +127,9 @@ public class RecommendedUsersAdapter extends RecyclerView.Adapter<RecommendedUse
         public void onBindViewHolder(final RecommendedUsersAdapter.MyViewHolder holder, final int position) {
 
             holder.nameOfUser.setText(recommendedUsersArray.get(position).name);
-            holder.info.setText(recommendedUsersArray.get(position).lang + " " + recommendedUsersArray.get(position).grade + " " + recommendedUsersArray.get(position).rating);
+            holder.rating.setText(String.format(Locale.getDefault(), "Rate :%d ,  %s",
+                    recommendedUsersArray.get(position).rating,
+                    getGradeFromInt(recommendedUsersArray.get(position).grade)));
 
         }
 
@@ -112,15 +140,15 @@ public class RecommendedUsersAdapter extends RecyclerView.Adapter<RecommendedUse
 
         class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-            public TextView nameOfUser;
-            public TextView info;
-            public RelativeLayout relativeLayout;
+            TextView nameOfUser;
+            TextView rating;
+            ConstraintLayout constraintLayout;
 
-            public MyViewHolder(View itemView) {
+            MyViewHolder(View itemView) {
                 super(itemView);
                 this.nameOfUser = itemView.findViewById(R.id.recommended_user);
-                this.info = itemView.findViewById(R.id.info);
-                this.relativeLayout = itemView.findViewById(R.id.relativeLayout);
+                this.rating = itemView.findViewById(R.id.rating);
+                this.constraintLayout = itemView.findViewById(R.id.constraintLayout);
             }
 
             @Override
@@ -129,15 +157,20 @@ public class RecommendedUsersAdapter extends RecyclerView.Adapter<RecommendedUse
         }
 }
 class recommendedUser {
-    String name,lang;
+    String name, lang;
+    int grade;
     int id;
-    int rating, grade;
+    int rating;
 
-    public recommendedUser(String name,String lang, int id, int rating, int grade) {
+    public recommendedUser(String name, String lang, int id, int rating, int grade) {
         this.name = name;
         this.lang = lang;
         this.id = id;
         this.rating = rating;
         this.grade = grade;
+
+
+
     }
+
 }

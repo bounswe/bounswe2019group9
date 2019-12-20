@@ -28,7 +28,7 @@ public class RecommendationPageDisplay extends AppCompatActivity {
         setContentView(R.layout.activity_recommendation_page);
         recyclerView = findViewById(R.id.recylerview3);
         sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-        final int grade = sharedPreferences.getInt("grade",0);
+        final int grade = sharedPreferences.getInt("currentGrade",0);
         final int typeOfLang = 1;
         JSONObject req_data = new JSONObject();
         try {

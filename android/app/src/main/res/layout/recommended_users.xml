@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/relativeLayout"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/chats_border">
@@ -11,13 +11,13 @@
         android:id="@+id/recommended_user_image"
         android:layout_width="69dp"
         android:layout_height="67dp"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_margin="8dp"
-        android:src="@drawable/user"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_alignParentLeft="true"
+        android:src="@drawable/recommended_user"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintToptoTopOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/recommended_user"
@@ -27,24 +27,23 @@
         android:layout_margin="12dp"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical"
+        android:text="User"
         android:textColor="@color/app_color_dark"
         android:textSize="22sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/info"
         app:layout_constraintLeft_toRightOf="@id/recommended_user_image"
         app:layout_constraintRight_toLeftOf="@id/review_request_button"
-        android:text="User"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/info"
+        android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_margin="12dp"
+        android:layout_margin="8dp"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical"
         android:textColor="@color/app_color_dark"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:text="English, 4, 5"
         app:layout_constraintTop_toBottomOf="@id/recommended_user"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,13 +52,15 @@
 
     <Button
         android:id="@+id/review_request_button"
+        android:background="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_margin="8dp"
         android:onClick="ReviewRequest"
-        android:textColor="@color/app_color_dark"
-        android:text="Review Request" />
+        android:text="Send Review"
+        android:textColor="#f2f5df"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
