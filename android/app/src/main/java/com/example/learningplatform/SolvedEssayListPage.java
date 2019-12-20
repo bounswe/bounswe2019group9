@@ -53,7 +53,8 @@ public class SolvedEssayListPage extends AppCompatActivity {
     }
 
     public void SolveNextEssay(View v){
-
+        Intent intent = new Intent(SolvedEssayListPage.this, StartExerciseActivity.class);
+        intent.putExtra("typeOfExercise",5);
+        startActivity(intent);
     }
-
 }
