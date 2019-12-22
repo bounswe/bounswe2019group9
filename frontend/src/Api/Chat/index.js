@@ -16,7 +16,7 @@ import {getRequest, postRequest} from '../base';
  *  }
  * ]
  */
-export const getMessagesByUserId = (data, extras) => getRequest('/messages', data, extras);
+export const getMessagesByUserId = (userId, extras) => getRequest('messages', { userId }, extras);
 
 /**
  * @function createMessage
@@ -34,10 +34,10 @@ export const getMessagesByUserId = (data, extras) => getRequest('/messages', dat
  *  }
  * ]
  */
-export const createMessage = (data, extras) => postRequest('/messages', data, extras);
+export const createMessage = (data, extras) => postRequest('messages', data, extras);
 
 /**
- * @function getConversationContent
+ * @function getChatBetween
  * @param data ({ userId1, userId2 })
  * @param extras object?
  * @return {Promise<AxiosResponse<T>>}
@@ -52,4 +52,31 @@ export const createMessage = (data, extras) => postRequest('/messages', data, ex
  *  }
  * ]
  */
-export const getConversationContent = (data, extras) => getRequest('/messages/chat', data, extras);
+export const getChatBetween = (data, extras) => getRequest('messages/chat', data, extras);
+
+/**
+ * @function getConversationsOf
+ * @param data ({ userId })
+ * @param extras object?
+ * @return {Promise<AxiosResponse<T>>}
+ * Success Response
+ * [
+ *   {
+ *     "email": "string",
+ *     "firstName": "string",
+ *     "grades": [
+ *       0
+ *     ],
+ *     "languages": [
+ *       "string"
+ *     ],
+ *     "lastName": "string",
+ *     "progressLevels": [
+ *       0
+ *     ],
+ *     "rating": 0,
+ *     "userId": 0
+ *   }
+ * ],
+ */
+export const getConversationsOf = (userId, extras) => getRequest('conversations', {id: userId}, extras);

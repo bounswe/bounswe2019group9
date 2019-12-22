@@ -10,6 +10,7 @@ import SamplePage from './Sample';
 import UserProfile from './UserProfile';
 import Users from './Users';
 import {ColorsHelper} from '../../Helpers';
+import Chats from './Chats';
 
 class UserRoutes extends React.PureComponent {
   render() {
@@ -26,6 +27,7 @@ class UserRoutes extends React.PureComponent {
             <Route exact path="/home" component={Dashboard} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:userId" component={UserProfile} />
+            <Route exact path="/chat" component={Chats} />
             <Route path="/:language" component={Language} />
             <Redirect to="/home" />
           </Switch>
