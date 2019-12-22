@@ -43,7 +43,7 @@ public class AnnotationService {
         Long id = annotationEntity.getId();
 
         Integer index = annotation.indexOf("{");
-        return annotation.substring(0, index + 1) + " \"id\": \"http://api.bounswe2019group9.tk/annotations?id=" +
-                id.toString() + "\"," + annotation.substring(index + 1);
+        return annotation.substring(0, index + 1) + " 'id': 'http://api.bounswe2019group9.tk/annotations?id=" +
+                id.toString() + "'," + annotation.substring(index + 1);
     }
 }
