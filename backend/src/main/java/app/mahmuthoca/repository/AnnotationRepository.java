@@ -15,11 +15,11 @@ public interface AnnotationRepository extends JpaRepository<AnnotationEntity, Lo
 
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO mahmuthoca.annotations(annotation)" +
+    @Query(value = "INSERT INTO annotations(annotation)" +
             " VALUES(:annotation)", nativeQuery = true)
     void createAnnotation(@Param("annotation") String annotation);
 
-    @Query(value = "SELECT * FROM mahmuthoca.annotations WHERE annotation LIKE %" + ":targetId" + "%", nativeQuery = true)
+    @Query(value = "SELECT * FROM annotations WHERE annotation LIKE %" + ":targetId" + "%", nativeQuery = true)
     List<AnnotationEntity> getAnnotationsByTargetId(@Param("targetId") String targetId);
 
 }
