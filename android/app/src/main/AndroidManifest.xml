@@ -14,8 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <activity android:name=".RecommendationPageDisplay" />
+
         <activity android:name=".WritingExActivity"></activity>
         <activity android:name=".AddExerciseActivity" />
+
         <activity android:name=".StartExerciseActivity" />
         <activity android:name=".SolvedEssayActivity" />
         <activity android:name=".ExerciseViewActivity" />

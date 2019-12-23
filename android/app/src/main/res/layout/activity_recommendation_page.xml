@@ -27,7 +27,7 @@
                 android:src="@drawable/chats" />
 
             <TextView
-                android:id="@+id/chats"
+                android:id="@+id/recommended_users"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/app_color_dark"
@@ -37,13 +37,13 @@
                 android:layout_centerInParent="true"
                 android:fontFamily="sans-serif"
                 android:gravity="center_horizontal"
-                android:text="@string/chats"
+                android:text="Recommended Reviewers"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recylerview2"
+            android:id="@+id/recylerview3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/app_color_light"

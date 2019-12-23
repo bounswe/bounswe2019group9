@@ -61,6 +61,7 @@ public class StartExerciseActivity extends AppCompatActivity {
         final String lang = sharedPreferences.getString("languageOfUser","");
         final String progressForLang = sharedPreferences.getString("progressOfUser","");
         final String grade = sharedPreferences.getString("grade","");
+        final int userId = sharedPreferences.getInt("Id", 0);
 
 
         final TableLayout table = findViewById(R.id.profile_lang_table);
@@ -88,13 +89,17 @@ public class StartExerciseActivity extends AppCompatActivity {
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
 
-                    JSONObject search_data = new JSONObject();
-                    try {
-                        search_data.put("languageId", typeOfLang);
-                        search_data.put("typeId", typeOfExercise);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+
+                JSONObject search_data = new JSONObject();
+                try {
+                    search_data.put("languageId",typeOfLang);
+                    search_data.put("typeId",typeOfExercise);
+                    search_data.put("userId", userId);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+               
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, search_data,
                             new Response.Listener<JSONObject>() {
@@ -248,9 +253,6 @@ public class StartExerciseActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
 
     }
 
