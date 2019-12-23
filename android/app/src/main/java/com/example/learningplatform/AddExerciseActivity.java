@@ -229,7 +229,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.bounswe2019group9.tk/files/images/essay";
+        String url = "https://api.bounswe2019group9.tk/files/images/";
         JsonObjectRequest solvedJsonReq = new JsonObjectRequest(Request.Method.POST, url,photo_data,
                 new Response.Listener<JSONObject>() {
                     @Override

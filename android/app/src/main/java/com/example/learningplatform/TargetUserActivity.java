@@ -98,7 +98,7 @@ public class TargetUserActivity extends AppCompatActivity {
                                         rowLanguage.setText(languagesOfUser.getString(i));
                                         rowProgress.setText(Integer.toString(progressLevelsOfUser.getInt(i))+"%");
                                         rowGrade.setText(ProfilePageActivity.getGradeFromInt(gradeOfUser.getInt(i)));
-                                        rating = String.format(Locale.getDefault(),"%.2f", rating_double);
+                                        rating = String.format(Locale.getDefault(),"%.1f", rating_double);
                                         rowRating.setText(rating);
                                         table.addView(row,i+1);
                                     }

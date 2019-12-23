@@ -280,6 +280,14 @@ public class ExerciseViewActivity extends AppCompatActivity {
         answer2.setText(choices.get(4 * questionCount + 1));
         answer3.setText(choices.get(4 * questionCount + 2));
         answer4.setText(choices.get(4 * questionCount + 3));
+        String imageUrl = imageUrls.get(questionCount);
+        if(imageUrl.equals("")){
+            questionImage.setVisibility(View.GONE);
+        } else{
+            questionImage.setVisibility(View.VISIBLE);
+            new DownloadImageTask(questionImage)
+                    .execute(imageUrl);
+        }
         questionCount++;
     }
 
