@@ -313,11 +313,6 @@ public class AddExerciseActivity extends AppCompatActivity {
 
                 cursor.close();
 
-                ImageView imgView = findViewById(R.id.imgView);
-
-                //Set the Image in ImageView after decoding the String
-                imgView.setImageBitmap(BitmapFactory
-                        .decodeFile(imgDecodableString));
 
 
 
