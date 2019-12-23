@@ -17,6 +17,7 @@
         <activity android:name=".WritingExActivity"></activity>
         <activity android:name=".AddExerciseActivity" />
         <activity android:name=".StartExerciseActivity" />
+        <activity android:name=".SolvedEssayActivity" />
         <activity android:name=".ExerciseViewActivity" />
         <activity android:name=".CommentRateActivity" />
         <activity android:name=".SolvedEssayListPage" />

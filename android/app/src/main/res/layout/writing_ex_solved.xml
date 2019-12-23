@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_color_light"
-    tools:context=".ExerciseViewActivity">
+    tools:context=".WritingExActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -26,71 +26,57 @@
         android:paddingBottom="32dp">
 
         <TextView
-            android:id="@+id/questionText"
+            android:id="@+id/questionTextSolved"
+            style="@style/QuestionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="6dp"
-            style="@style/QuestionTextView"
-            android:text="TextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"/>
+            android:padding="6dp"
+            android:text="TextView"
+            android:textColor="@color/app_color_dark"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="22sp"/>
 
         <ImageView
-            android:id="@+id/questionImage"
-            android:layout_width="120dp"
-            android:layout_height="80dp"
-            android:layout_below="@id/questionText"
-            android:layout_centerHorizontal="true"/>
+            android:id="@+id/imgView"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_below="@id/questionTextSolved"
+            android:foregroundGravity="center_vertical"
+            android:layout_centerHorizontal="true"
+            />
 
-        <Button
-            android:id="@+id/answer1"
+        <TextView
+            android:id="@+id/essayAsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
-            android:onClick="ChoiceSelected"
-            style="@style/WelcomePageButton"
-            android:layout_below="@id/questionImage"/>
+            android:layout_below="@id/imgView"
+            android:layout_centerHorizontal="true"
+            android:text = "Essay here"
+            android:textColor="@color/app_color_dark"
+            android:fontFamily="sans-serif"
+            android:textSize="16sp"
+            />
 
-        <Button
-            android:id="@+id/answer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            style="@style/WelcomePageButton"
-            android:text="Button"
-            android:onClick="ChoiceSelected"
-            android:layout_below="@id/answer1"/>
-
-        <Button
-            android:id="@+id/answer3"
+       <Button
+            android:id="@+id/recommendedReviewers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Button"
-            android:onClick="ChoiceSelected"
+            android:text="Recommended Revıewers"
+           android:paddingHorizontal="12dp"
             style="@style/WelcomePageButton"
-            android:layout_below="@id/answer2"/>
+            android:layout_below="@id/essayAsText"/>
 
         <Button
-            android:id="@+id/answer4"
+            android:id="@+id/ongoing_reviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Button"
-            android:onClick="ChoiceSelected"
+            android:text="See Ongoıng Revıews"
             style="@style/WelcomePageButton"
-            android:layout_below="@id/answer3"/>
-
-        <Button
-            android:id="@+id/finish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="NEXT QUESTION"
-            android:onClick="NextQuestion"
-            style="@style/WelcomePageButton"
-            android:layout_below="@id/answer4"/>
+            android:layout_below="@id/recommendedReviewers"/>
 
 
     </RelativeLayout>

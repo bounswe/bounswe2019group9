@@ -42,7 +42,7 @@ import java.util.ArrayList;
 
 public class WritingExActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMAGE = 1;
-    static String imgDecodableString;
+    String imgDecodableString;
     ProgressDialog prgDialog;
      String encodedString;
     String imgPath, fileName;
@@ -184,12 +184,6 @@ public class WritingExActivity extends AppCompatActivity {
 
     public void encodeImagetoString() {
 
-
-       // BitmapFactory.Options options = null;
-
-       // options = new BitmapFactory.Options();
-
-       // options.inSampleSize = 3;
 
         Bitmap imgBitmap;
         imgBitmap = BitmapFactory.decodeFile(imgDecodableString);
