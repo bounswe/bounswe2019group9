@@ -28,4 +28,9 @@ public class AnnotationController {
     public Response<String> createAnnotation(@Validated @RequestBody CreateAnnotationRequest request) {
         return annotationService.createAnnotation(request);
     }
+
+    @GetMapping("/getById")
+    public String getById(@RequestParam("annotationId") Long annotationId) {
+        return annotationService.getById(annotationId);
+    }
 }
