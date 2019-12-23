@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_color_light"
-    tools:context=".ExerciseViewActivity">
+    tools:context=".WritingExActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -36,61 +36,67 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"/>
 
+
+
+        <Button
+            android:id="@+id/upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Photo"
+            android:onClick="photoUpload"
+            style="@style/WelcomePageButton"
+            android:layout_below="@id/questionText"/>
+
         <ImageView
-            android:id="@+id/questionImage"
-            android:layout_width="120dp"
-            android:layout_height="80dp"
-            android:layout_below="@id/questionText"
-            android:layout_centerHorizontal="true"/>
+        android:id="@+id/imgView"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+            android:layout_below="@id/upload"
+            android:foregroundGravity="center_vertical"
+            android:layout_centerHorizontal="true"
+            >
+
+        </ImageView>
+
+        <EditText
+            android:id="@+id/essayAsText"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/imgView"
+            android:layout_centerHorizontal="true"
+            ></EditText>
+
+
 
         <Button
-            android:id="@+id/answer1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:onClick="ChoiceSelected"
-            style="@style/WelcomePageButton"
-            android:layout_below="@id/questionImage"/>
-
-        <Button
-            android:id="@+id/answer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            style="@style/WelcomePageButton"
-            android:text="Button"
-            android:onClick="ChoiceSelected"
-            android:layout_below="@id/answer1"/>
-
-        <Button
-            android:id="@+id/answer3"
+            android:id="@+id/uploadPhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Button"
-            android:onClick="ChoiceSelected"
+            android:text="Save Answer"
+            android:onClick="triggerImageUpload"
             style="@style/WelcomePageButton"
-            android:layout_below="@id/answer2"/>
+            android:layout_below="@id/essayAsText"/>
 
         <Button
-            android:id="@+id/answer4"
+            android:id="@+id/sendEssay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Button"
-            android:onClick="ChoiceSelected"
+            android:text="Submit Essay"
+            android:onClick="submit"
             style="@style/WelcomePageButton"
-            android:layout_below="@id/answer3"/>
+            android:layout_below="@id/uploadPhoto"/>
 
         <Button
             android:id="@+id/finish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="10dp"
             android:text="NEXT QUESTION"
             android:onClick="NextQuestion"
             style="@style/WelcomePageButton"
-            android:layout_below="@id/answer4"/>
+            android:layout_below="@id/sendEssay"/>
 
 
     </RelativeLayout>

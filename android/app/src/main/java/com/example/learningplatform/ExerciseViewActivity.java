@@ -6,13 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +32,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class ExerciseViewActivity extends AppCompatActivity {
@@ -36,12 +41,14 @@ public class ExerciseViewActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     Button answer1,answer2,answer3,answer4, nextQuestion;
     TextView questionText;
+    ImageView questionImage;
 
     ArrayList<String> exerciseList = new ArrayList<String>();
     ArrayList<String> choices= new ArrayList<String>();
     ArrayList<String> answers= new ArrayList<String>();
     ArrayList<String> solutions= new ArrayList<String>();
     ArrayList<Integer> exerciseIdList = new ArrayList<>();
+    ArrayList<String> imageUrls = new ArrayList<>();
     int questionCount;
     int userID;
     int solvedExerciseCount = 0;
@@ -60,6 +67,7 @@ public class ExerciseViewActivity extends AppCompatActivity {
         answer3 = findViewById(R.id.answer3);
         answer4 = findViewById(R.id.answer4);
         questionText = findViewById(R.id.questionText);
+        questionImage = findViewById(R.id.questionImage);
 
         nextQuestion = findViewById(R.id.finish);
 
@@ -70,6 +78,7 @@ public class ExerciseViewActivity extends AppCompatActivity {
         choices = intent.getStringArrayListExtra("choices");
         solutions = intent.getStringArrayListExtra("solutions");
         exerciseIdList = intent.getIntegerArrayListExtra("exerciseIdList");
+        imageUrls = intent.getStringArrayListExtra("imageUrls");
 
 
         questionText.setText(exerciseList.get(questionCount));
@@ -78,6 +87,14 @@ public class ExerciseViewActivity extends AppCompatActivity {
         answer3.setText(choices.get(questionCount+2));
         answer4.setText(choices.get(questionCount+3));
         questionCount++;
+        String imageUrl = imageUrls.get(questionCount);
+        if(imageUrl.equals("")){
+            questionImage.setVisibility(View.GONE);
+        } else{
+            questionImage.setVisibility(View.VISIBLE);
+            new DownloadImageTask(questionImage)
+                    .execute(imageUrl);
+        }
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -110,10 +127,6 @@ public class ExerciseViewActivity extends AppCompatActivity {
     int choiceClicked=0;
 
     public void ChoiceSelected(View v){
-
-
-
-
         sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         final int id = sharedPreferences.getInt("Id",0);
 
@@ -237,16 +250,8 @@ public class ExerciseViewActivity extends AppCompatActivity {
                 answer4.getBackground().setColorFilter(Color.parseColor("#00574B"),PorterDuff.Mode.MULTIPLY);
                 answer4.setTextColor(Color.WHITE);
             }
-
-
-
-
-
         }
-
-
         solvedExerciseCount++;
-
     }
 
     public void NextQuestion(View v){

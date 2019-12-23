@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/Option2Text"
-                android:inputType="textPassword" />
+                android:inputType="textEmailAddress" />
 
             <EditText
                 android:id="@+id/option3"
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/Option4Text"
-                android:inputType="textPassword" />
+                android:inputType="textEmailAddress" />
 
 
             <Spinner
@@ -109,7 +109,6 @@
                 android:layout_below="@id/CorrectAnswerText"
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown"/>
-
 
 
 
@@ -145,14 +144,35 @@
                 android:layout_below="@id/option3"
                 android:text="Option D" />
 
+
             <Button
-                android:id="@+id/register_now_button"
+                android:id="@+id/submit_button"
                 style="@style/WelcomePageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/correctAnswerSpinner"
                 android:onClick="SubmitButton"
-                android:text="Submit" />
+                android:text="Save Exercise Data" />
+
+            <Button
+                android:id="@+id/photo_upload_button"
+                style="@style/WelcomePageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/submit_button"
+                android:onClick="photoUpload"
+                android:text="Select Photo" />
+
+            <Button
+                android:id="@+id/photo_save_button"
+                style="@style/WelcomePageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/photo_upload_button"
+                android:onClick="sendPhotoToServer"
+                android:text="SUBMIT" />
+
+
 
 
         </RelativeLayout>
