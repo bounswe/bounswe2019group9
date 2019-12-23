@@ -69,8 +69,9 @@ public class RecommendedUsersAdapter extends RecyclerView.Adapter<RecommendedUse
                                                     int grade = gradeOfUser.getInt(j);
                                                     recommendedUsersArray.add(new recommendedUser(nameOfUser, lang, id , rating, grade));
                                                 }
-                                                Log.i("nameofuser", nameOfUser);
 
+                                                Log.i("nameofuser", nameOfUser);
+                                                if(i==4) break;
                                             }
                                         }
                                         notifyDataSetChanged();
