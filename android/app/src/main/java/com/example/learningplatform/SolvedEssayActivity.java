@@ -1,5 +1,6 @@
 package com.example.learningplatform;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -32,6 +33,11 @@ public class SolvedEssayActivity extends AppCompatActivity {
             imageView.setVisibility(View.GONE);
             textView.setText(essay.source);
         }
+    }
+
+    public void SeeRecommended(View v){
+        Intent intent = new Intent(SolvedEssayActivity.this, RecommendationPageDisplay.class);
+        startActivity(intent);
     }
 }
 class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {

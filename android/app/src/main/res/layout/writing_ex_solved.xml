@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_color_light"
@@ -34,18 +34,17 @@
             android:layout_alignParentTop="true"
             android:padding="6dp"
             android:text="TextView"
-            android:textColor="@color/app_color_dark"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="22sp"/>
+            android:textColor="@color/app_color_dark"
+            android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/imgView"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_below="@id/questionTextSolved"
-            android:foregroundGravity="center_vertical"
             android:layout_centerHorizontal="true"
-            />
+            android:foregroundGravity="center_vertical" />
 
         <TextView
             android:id="@+id/essayAsText"
@@ -53,39 +52,40 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/imgView"
             android:layout_centerHorizontal="true"
-            android:text = "Essay here"
-            android:textColor="@color/app_color_dark"
             android:fontFamily="sans-serif"
-            android:textSize="16sp"
-            />
+            android:text="Essay here"
+            android:textColor="@color/app_color_dark"
+            android:textSize="16sp" />
 
-       <Button
+        <Button
             android:id="@+id/recommendedReviewers"
+            style="@style/WelcomePageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/essayAsText"
             android:layout_marginTop="24dp"
-            android:text="Recommended Revıewers"
-           android:paddingHorizontal="12dp"
-            style="@style/WelcomePageButton"
-            android:layout_below="@id/essayAsText"/>
+            android:onClick="SeeRecommended"
+            android:paddingHorizontal="12dp"
+            android:text="Recommended Revıewers" />
 
         <Button
             android:id="@+id/ongoing_reviews"
+            style="@style/WelcomePageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/recommendedReviewers"
             android:layout_marginTop="24dp"
-            android:text="See Ongoıng Revıews"
-            style="@style/WelcomePageButton"
-            android:layout_below="@id/recommendedReviewers"/>
+            android:text="See Ongoıng Revıews" />
 
 
     </RelativeLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
         android:background="@color/app_color_dark"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"

@@ -134,7 +134,7 @@ public class ProfilePageActivity extends AppCompatActivity {
                         startActivity(intentx);
                         return true;
                     case R.id.nav_bar_message:
-                        intentx = new Intent(ProfilePageActivity.this, RecommendationPageDisplay.class);
+                        intentx = new Intent(ProfilePageActivity.this, ChatsListDisplay.class);
                         startActivity(intentx);
                         return true;
                     case R.id.nav_bar_profile:
