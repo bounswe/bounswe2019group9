@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 @Service
 public class AnnotationService {
+
+    private static final String ANNOTATION_NOT_FOUND = "Annotation not found.";
 
     AnnotationRepository annotationRepository;
 
@@ -22,7 +26,9 @@ public class AnnotationService {
     public Response<String> createAnnotation(CreateAnnotationRequest request) {
         annotationRepository.createAnnotation(request.getAnnotation());
 
-        return HttpResponses.from(request.getAnnotation());
+
+        return HttpResponses.from(getAnnotationWithId(
+                annotationRepository.getAnnotationsByTargetId(request.getAnnotation()).get(0)));
     }
 
 
@@ -38,12 +44,22 @@ public class AnnotationService {
         return HttpResponses.from(responseBody);
     }
 
+    public String getById(Long annotationId) {
+        AnnotationEntity annotationEntity =
+                annotationRepository.getById(annotationId);
+        if (isNull(annotationEntity)) {
+            return ANNOTATION_NOT_FOUND;
+        }
+
+        return getAnnotationWithId(annotationEntity);
+    }
+
     public String getAnnotationWithId(AnnotationEntity annotationEntity) {
         String annotation = annotationEntity.getAnnotation();
         Long id = annotationEntity.getId();
 
         Integer index = annotation.indexOf("{");
-        return annotation.substring(0, index + 1) + " 'id': 'http://api.bounswe2019group9.tk/annotations?id=" +
-                id.toString() + "'," + annotation.substring(index + 1);
+        return annotation.substring(0, index + 1) + " \"id\": \"http://api.bounswe2019group9.tk/annotations?id=" +
+                id.toString() + "\"," + annotation.substring(index + 1);
     }
 }
