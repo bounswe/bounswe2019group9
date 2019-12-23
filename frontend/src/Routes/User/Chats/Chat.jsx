@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { MessageList, Input, Button } from 'react-chat-elements';
+import React, {createRef, useEffect, useState} from 'react';
+import { MessageList, Input } from 'react-chat-elements';
 import moment from 'moment';
-import { Layout } from 'antd';
+import { Layout, Button } from 'antd';
+import { scroller, Element, Events } from "react-scroll";
 
 import { connect, storeType } from '../../../Store';
 import { getChatBetween, createMessage } from '../../../Api/Chat';
@@ -21,6 +22,29 @@ const Chat = ({ store: { userId }, otherUserId }) => {
       text: msg.content,
       dateString: moment(msg.createdAt).fromNow(),
     })));
+
+    (new Promise((resolve, reject) => {
+
+      Events.scrollEvent.register('end', () => {
+        resolve();
+        Events.scrollEvent.remove('end');
+      });
+
+      scroller.scrollTo('contentScrollable', {
+        duration: 800,
+        delay: 0,
+        smooth: 'easeInOutQuart'
+      });
+
+    })).then(() => {
+      scroller.scrollTo("scroll-to-bottom", {
+        duration: 1500,
+        delay: 100,
+        smooth: true,
+        containerId: 'contentScrollable',
+        offset: 50, // Scrolls to element + 50 pixels down the page
+      });
+    });
   }
 
   useEffect(() => {
@@ -33,40 +57,53 @@ const Chat = ({ store: { userId }, otherUserId }) => {
       }
   }, [otherUserId, userId]);
 
+  const inputRef = createRef();
   const [input, setInput] = useState("");
-  const [inputDisabled, setInputDisabled] = useState("false");
+  const [inputDisabled, setInputDisabled] = useState(false);
   const handleChange = (e) => {
     setInput(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input !== "") {
-      setInputDisabled("true")
+    if (input !== "" && !inputDisabled) {
+      setInputDisabled(true)
+
+      if(inputRef.current) {
+        inputRef.current.clear();
+      }
       createMessage({
         content: input,
         receiverId: otherUserId,
         sourceId: userId,
       }).then(handleChatResponse)
       .then(() => {
-        setInputDisabled("false");
+        setInputDisabled(false);
         setInput("");
-        console.log("done");
-      }).catch(console.log);
+        // console.log("done");
+      }).catch(e => {
+        setInputDisabled(false);
+        if(inputRef.current) {
+          inputRef.current.onChange({ target: { value: input } });
+        }
+        console.log("error", e);
+      });
     }
   };
 
   return (
     <Layout style={{height: '100%'}}>
       { otherUserId && <>
-      <Layout.Content>
+      <Layout.Content id="contentScrollable" style={{ overflow: 'auto', position: 'relative' }}>
         <MessageList className='message-list'
           lockable={true}
           toBottomHeight={'100%'}
           dataSource={msgs} />
+        <Element id="scroll-to-bottom" />
       </Layout.Content>
-      <Layout.Footer>
+      <Layout.Footer >
         <form onSubmit={handleSubmit}>
-        <Input 
+        <Input
+          ref={(ref) => {if(ref)inputRef.current = ref}}
           autofocus="true"
           onChange={handleChange}
           placeholder="Type here..."
@@ -75,7 +112,8 @@ const Chat = ({ store: { userId }, otherUserId }) => {
                 disabled={inputDisabled}
                 color='white'
                 backgroundColor='black'
-                text='Send'/>} />
+                htmlType={"submit"}
+                >Send</Button>} />
         </form>
       </Layout.Footer></>
     }

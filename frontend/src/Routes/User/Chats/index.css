@@ -1,3 +1,6 @@
 .rce-citem-body--top-title {
     text-transform: capitalize;
 }
+.no-horizontal-scroll {
+    overflow-x: hidden;
+}

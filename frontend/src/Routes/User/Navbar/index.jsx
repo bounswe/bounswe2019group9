@@ -33,6 +33,10 @@ const routes = [
     name: 'User Search',
     route: '/users',
   },
+  {
+    name: 'Chat',
+    route: '/chat',
+  },
 ];
 
 const UserNavbar = ({ store: { userId } }) => {

@@ -4,6 +4,7 @@ bounswe2019group9.wiki
 # os & editor specific files
 .idea
 .DS_Store
+.vscode
 
 # secrets
 secret.json
