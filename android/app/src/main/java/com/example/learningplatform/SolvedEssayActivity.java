@@ -6,11 +6,15 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.InputStream;
 
@@ -33,6 +37,33 @@ public class SolvedEssayActivity extends AppCompatActivity {
             imageView.setVisibility(View.GONE);
             textView.setText(essay.source);
         }
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.nav_bar_excercise:
+                        intent = new Intent(SolvedEssayActivity.this, ExerciseListDisplay.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_bar_message:
+                        intent = new Intent(SolvedEssayActivity.this, ChatsListDisplay.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_bar_profile:
+                        intent = new Intent(SolvedEssayActivity.this, ProfilePageActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_bar_search:
+                        intent = new Intent(SolvedEssayActivity.this, SearchActivity.class);
+                        startActivity(intent);
+                        return true;
+                }
+                return true;
+            }
+        });
     }
 
     public void SeeRecommended(View v){
