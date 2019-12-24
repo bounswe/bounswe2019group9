@@ -3,6 +3,7 @@ package app.mahmuthoca.service;
 import app.common.HttpResponses;
 import app.common.Response;
 import app.mahmuthoca.bean.CreateAnnotationRequest;
+import app.mahmuthoca.bean.UpdateAnnotationRequest;
 import app.mahmuthoca.entity.AnnotationEntity;
 import app.mahmuthoca.repository.AnnotationRepository;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,15 @@ public class AnnotationService {
         }
 
         return getAnnotationWithId(annotationEntity);
+    }
+
+    public void delete(Long id) {
+        annotationRepository.delete(id);
+    }
+
+    public Response<String> updateAnnotation(UpdateAnnotationRequest request) {
+        annotationRepository.update(request.getId(), request.getAnnotation());
+        return HttpResponses.from(getById(request.getId()));
     }
 
     public String getAnnotationWithId(AnnotationEntity annotationEntity) {

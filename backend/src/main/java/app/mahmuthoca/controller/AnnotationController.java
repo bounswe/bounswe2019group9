@@ -1,8 +1,10 @@
 package app.mahmuthoca.controller;
 
+import app.common.HttpResponses;
 import app.common.Response;
-import app.mahmuthoca.service.AnnotationService;
 import app.mahmuthoca.bean.CreateAnnotationRequest;
+import app.mahmuthoca.bean.UpdateAnnotationRequest;
+import app.mahmuthoca.service.AnnotationService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +34,16 @@ public class AnnotationController {
     @GetMapping("/getById")
     public String getById(@RequestParam("annotationId") Long annotationId) {
         return annotationService.getById(annotationId);
+    }
+
+    @GetMapping("/deleteById")
+    public Response<Integer> deleteById(@RequestParam("annotationId") Long annotationId) {
+        annotationService.delete(annotationId);
+        return HttpResponses.from(1);
+    }
+
+    @PostMapping("/update")
+    public Response<String> updateAnnotation(@Validated @RequestBody UpdateAnnotationRequest request) {
+        return annotationService.updateAnnotation(request);
     }
 }
