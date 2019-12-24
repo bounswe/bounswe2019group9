@@ -54,3 +54,31 @@ export const getInvitationState = (data, extras) => getRequest('invitations/stat
  * }
  */
 export const answerToInvitation = (data, extras) => postRequest('invitations/answer', data, extras);
+
+
+/**
+ * @function getInvitationsOf
+ * @param data ({ userId })
+ * @param extras
+ * @return {Promise<AxiosResponse<T>>}
+ * {
+ *  "data": [
+    {
+      "email": "string",
+      "firstName": "string",
+      "grades": [
+        0
+      ],
+      "languages": [
+        "string"
+      ],
+      "lastName": "string",
+      "progressLevels": [
+        0
+      ],
+      "rating": 0,
+      "userId": 0
+    }
+  ],
+ */
+export const getInvitationsOf = (data, extras) => getRequest('invitations/byReceiverId', data, extras);

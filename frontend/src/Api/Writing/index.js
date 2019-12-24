@@ -1,4 +1,4 @@
-import {postRequest} from "../base";
+import {getRequest, postRequest} from "../base";
 
 //TODO backend call
 
@@ -17,4 +17,9 @@ import {postRequest} from "../base";
  *  "status": 0
  * }
  */
-export const addWriting = (data, extras) => postRequest('writings/add', data, extras);
+export const addWriting = (data, extras) => postRequest('essays', data, extras);
+
+
+export const getAssignmentsById = (languageId, extras) => getRequest('assignments/language', { id: languageId }, extras);
+
+export const uploadEssayPhoto = (data, extras) => postRequest('files/images/essay', data, extras);
