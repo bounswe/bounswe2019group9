@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_bar_profile"
+        android:enabled="true"
+        android:icon="@drawable/baseline_account_circle_white_24dp"
+        android:title=""
+        app:showAsAction="always"
+        android:menuCategory="system" />
+    <item
+        android:id="@+id/nav_bar_search"
+        android:enabled="true"
+        android:icon="@drawable/baseline_search_white_24dp"
+        android:title=""
+        app:showAsAction="always"
+        android:menuCategory="system"/>
+    <item
+        android:id="@+id/nav_bar_message"
+        android:enabled="true"
+        android:icon="@drawable/baseline_chat_white_24dp"
+        android:title=""
+        app:showAsAction="always"
+        android:menuCategory="system"/>
+    <item
+        android:id="@+id/nav_bar_excercise"
+        android:enabled="true"
+        android:icon="@drawable/baseline_assignment_white_24dp"
+        android:title=""
+        app:showAsAction="always"
+        android:menuCategory="system"/>
+</menu>

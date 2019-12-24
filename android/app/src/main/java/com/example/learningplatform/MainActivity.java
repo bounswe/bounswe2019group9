@@ -1,9 +1,13 @@
 package com.example.learningplatform;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,17 +29,27 @@ public class MainActivity extends AppCompatActivity {
     private static EditText username;
     private static EditText password;
 
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Intent intent = new Intent(MainActivity.this,ProfilePageActivity.class);
+        sharedpreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        if(sharedpreferences.contains("Name") && sharedpreferences.contains("Pass")){
+            startActivity(intent);
+        }
     }
 
     public void LoginButton(final View v){
 
         username = findViewById(R.id.login_email);
         password = findViewById(R.id.login_password);
+
+        sharedpreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
 
         JSONObject login_data = new JSONObject();
         try {
@@ -43,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
 
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
         String url = "https://api.bounswe2019group9.tk/users/login";
@@ -55,9 +71,20 @@ public class MainActivity extends AppCompatActivity {
                             if(statusCode == 200){
                                 Toast.makeText(MainActivity.this,"Username and password is correct",
                                         Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(v.getContext(), LanguageListDisplay.class);
+
+
                                 JSONObject userData =  response.getJSONObject("data");
                                 int userId = userData.getInt("id");
+
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                                editor.putString("Name", username.getText().toString());
+                                editor.putString("Pass", password.getText().toString());
+                                editor.putInt("Id",userId);
+                                editor.commit();
+
+                                Intent intent = new Intent(v.getContext(), ProfilePageActivity.class);
+
                                 intent.putExtra("userId",userId);
                                 v.getContext().startActivity(intent);
                             }
