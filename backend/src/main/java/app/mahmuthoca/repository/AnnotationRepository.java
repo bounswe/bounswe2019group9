@@ -1,6 +1,5 @@
 package app.mahmuthoca.repository;
 
-import app.actor.entity.User;
 import app.mahmuthoca.entity.AnnotationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,5 +24,15 @@ public interface AnnotationRepository extends JpaRepository<AnnotationEntity, Lo
 
     @Query(value = "SELECT * FROM annotations where id=:id", nativeQuery = true)
     AnnotationEntity getById(@Param("id") Long id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM annotations WHERE id=:id", nativeQuery = true)
+    void delete(@Param("id") Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE annotations SET annotation=:annotation WHERE id=:id", nativeQuery = true)
+    void update(@Param("id") Long id, @Param("annotation") String annotation);
 
 }
