@@ -42,7 +42,7 @@ const LanguageRoutes = () => {
               <Route exact path='/:language' component={Main} />
               <Route exact path='/:language/exercises/search' component={ExerciseSearch} />
 	      <Route path='/:language/suggest' component={Suggest} />
-	      <Route path='/:language/suggest' component={Writing} />
+	      <Route path='/:language/writing' component={Writing} />
               <Route exact path='/:language/exercises/:exerciseType' component={Exercises} />
               <Route path='/:language/proficiency-exam' component={ProfExam} />
               <Redirect to={`/${language}`}/>
