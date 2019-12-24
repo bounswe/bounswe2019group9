@@ -1,7 +1,7 @@
 const delay = (ms) =>
   new Promise((resolve, reject) =>
-    setTimeout(() => {
-      resolve();
-    }, ms));
+      setTimeout(() => {
+        resolve();
+      }, ms));
 
 export default delay;

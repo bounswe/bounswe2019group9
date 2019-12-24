@@ -59,9 +59,7 @@ const Chats = ({store: {userId}}) => {
   }, [userId]);
 
   const goPendingsPage = () => {
-    console.log("done");
     setFocusUser(null);
-    // setContactedUsers([]);
   };
 
   return (

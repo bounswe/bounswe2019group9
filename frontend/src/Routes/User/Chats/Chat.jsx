@@ -110,8 +110,7 @@ const Chat = ({ store: { userId }, otherUserId }) => {
           rightButtons={
               <Button
                 disabled={inputDisabled}
-                color='white'
-                backgroundColor='black'
+                type="primary"
                 htmlType={"submit"}
                 >Send</Button>} />
         </form>
