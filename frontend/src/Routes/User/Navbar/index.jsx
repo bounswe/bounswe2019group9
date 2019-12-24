@@ -41,6 +41,10 @@ const routes = [
     name: "My Essays",
     route: "/essays",
   },
+  {
+    name: "Essay Reviews",
+    route: "/reviews"
+  }
 ];
 
 const UserNavbar = ({ store: { userId } }) => {
