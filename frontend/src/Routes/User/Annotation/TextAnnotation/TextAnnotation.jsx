@@ -1,37 +1,41 @@
-import React, {useState} from 'react';
+import React, {createRef, useEffect, useState} from 'react';
 import {EditableAnnotation, SubjectCircle, ConnectorElbow, ConnectorEndDot, Note} from 'react-annotation';
 
 import { connect } from "../../../../Store";
 
 const TextAnnotation = ({ store: { userId }, annotation, setEditingAnnotation }) => {
 
-    const isOwner = userId === annotation.userId;
-
     const [location, setLocation] = useState({});
     const [isDragging, setIsDragging] = useState(false);
+
+    const isOwner = userId === annotation.userId;
 
     const title = annotation.displayTitle;
 
     const body = annotation.displayBody;
 
+    const handleDragEnd = (nextProps) => {
+        setTimeout(() => {
+            setIsDragging(false);
+        }, 10);
+        setLocation({ dx: nextProps.dx, dy: nextProps.dy });
+    };
+
     const handleToggle = (a,b,e) => {
-        if (!isOwner) {
-            console.log('not owner');
+        if (!isOwner || isDragging) {
             return;
         }
         setEditingAnnotation(annotation);
-        return false;
+    };
+
+    const handleDragStart = () => {
+        setIsDragging(true);
     };
 
     const catchMouseUp = (a, b, e) => {
-        e.persist();
-        e.preventDefault();
         e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
-        return false;
     };
 
-    console.log('title', title, 'label', body);
     return (
         <span style={styles.container}>
             <svg style={styles.svg} width={1} height={1}>
@@ -48,6 +52,9 @@ const TextAnnotation = ({ store: { userId }, annotation, setEditingAnnotation })
                         onClick: handleToggle,
                         onMouseUp: catchMouseUp
                     }}
+                    onDragStart={handleDragStart}
+                    onDragEnd={handleDragEnd}
+                    {...location}
                 >
                     <ConnectorElbow>
                         <ConnectorEndDot />

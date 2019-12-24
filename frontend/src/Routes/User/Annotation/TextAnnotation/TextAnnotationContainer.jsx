@@ -1,6 +1,5 @@
 import React, {useEffect, useReducer, useState} from 'react';
-import {TextAnnotator} from "react-text-annotate";
-import AnnotationDataFactory from "../AnnotationData/AnnotationDataFactory";
+import {TextAnnotator} from "react-text-annotate-ev";
 import TextAnnotation from './TextAnnotation';
 import TextAnnotationData from "../AnnotationData/TextAnnotationData";
 

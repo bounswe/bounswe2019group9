@@ -21,15 +21,12 @@ const ImageAnnotation = ({ annotation, isOwner, onSaveAnnotation, setEditingAnno
 
     const handleDragEnd = (nextProps) => {
         setTimeout(() => {
-            console.log('drend');
             setIsDragging(false);
         }, 10)
         const difference = [nextProps.x - (x-width), nextProps.y - (y-height), nextProps.width - width, nextProps.height - height]
             .map((x) => Math.abs(x))
             .reduce((a, b) => a + b);
-        console.log('difference', difference);
         if (difference > 0.1) {
-            console.log('anno', annotation);
             annotation.displayX = nextProps.x + nextProps.width;
             annotation.displayY = nextProps.y + nextProps.height;
             annotation.displayWidth = -nextProps.width;
@@ -46,9 +43,7 @@ const ImageAnnotation = ({ annotation, isOwner, onSaveAnnotation, setEditingAnno
     };
 
     const handleToggle = (...args) => {
-        console.log('event click', ...args);
         if (!isOwner || isDragging) {
-            console.log('dragging', isDragging)
             return;
         }
         setEditingAnnotation(annotation);
