@@ -43,6 +43,8 @@
   },
   "proxy": "https://api.bounswe2019group9.tk",
   "devDependencies": {
-    "react-cosmos-classic": "^4.8.4"
+    "react-cosmos-classic": "^4.8.4",
+    "react-cosmos-fetch-proxy": "^4.8.2",
+    "react-cosmos-xhr-proxy": "^4.8.2"
   }
 }

@@ -14,6 +14,7 @@ import './index.css';
 const AnnotationContainer = ({ essay, annotations: modelDatas, store: { userId } }) => {
     const [profile, setProfile] = useState();
     useEffect(() => {
+        console.log('userId', userId);
         if (userId) {
             getProfileInfoByUserId(userId)
                 .then((response) => {
@@ -38,6 +39,9 @@ const AnnotationContainer = ({ essay, annotations: modelDatas, store: { userId }
                 setEditingAnnotation(action.data[action.data.length - 1]);
                 return action.data;
             case 'removeAnnotation':
+                if (editingAnnotation === action.data) {
+                    setEditingAnnotation(null);
+                }
                 return prevState.filter((annotation) => annotation !== action.data);
             case 'updateAnnotation':
                 if (editingAnnotation === action.data.annotation) {
@@ -58,7 +62,11 @@ const AnnotationContainer = ({ essay, annotations: modelDatas, store: { userId }
         if (sourceType === 1) {
             initialAnnotations = initialAnnotations.map((annotation => {
                 annotation.tag = (
-                    <TextAnnotation annotation={annotation} onRemoveAnnotation={handleRemoveAnnotation} />
+                    <TextAnnotation
+                        annotation={annotation}
+                        onRemoveAnnotation={handleRemoveAnnotation}
+                        setEditingAnnotation={setEditingAnnotation}
+                    />
                 );
                 return annotation;
             }));
@@ -90,7 +98,7 @@ const AnnotationContainer = ({ essay, annotations: modelDatas, store: { userId }
                     source={source}
                     annotations={annotations}
                     dispatch={dispatch}
-                    user={profile}
+                    user={profile || {}}
                     targetUrl={targetUrl}
                     onSaveAnnotation={handleSaveAnnotation}
                     setEditingAnnotation={setEditingAnnotation}

@@ -26,9 +26,11 @@ const AnnotationModal = ({ annotation, form, setEditingAnnotation, onSaveAnnotat
 
 
     useEffect(() => {
-        dispatch({ type: 'reinitialize', data: annotation });
-        form.resetFields();
-    }, [annotation, form]);
+        if (annotation) {
+            dispatch({ type: 'reinitialize', data: annotation });
+            form.resetFields();
+        }
+    }, [annotation]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -60,22 +62,30 @@ const AnnotationModal = ({ annotation, form, setEditingAnnotation, onSaveAnnotat
 
     const handleCancel = (e) => {
         e.preventDefault();
-        setEditingAnnotation(null);
+        if (!state.loading) {
+            if (!annotation.id) {
+                onRemoveAnnotation(annotation);
+            } else {
+                setEditingAnnotation(null);
+            }
+        }
     };
 
     return (
 
       <Modal
+          title="Annotate Essay"
           visible={!!annotation}
           onOk={handleSubmit}
           onCancel={handleCancel}
           footer={[
               <Popconfirm
+                  key="delete"
                   title="Are you sure you want to delete this annotation？"
                   icon={<Icon type="question-circle-o" style={{ color: 'red' }} />}
                   onConfirm={handleDelete}
               >
-                  <Button key="delete" type="danger" disabled={state.loading}>
+                  <Button type="danger" disabled={state.loading}>
                       Delete
                   </Button>,
               </Popconfirm>,

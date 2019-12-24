@@ -4,7 +4,7 @@ module.exports = [
     "id": "http://example.org/anno1",
     "type": "Annotation",
     "creator": {
-      "id": "http://example.org/user1",
+      "id": "http://example.org/user12",
       "name": "John Russel",
       "email": "john@russel.com"
     },
@@ -32,7 +32,7 @@ module.exports = [
     "id": "http://api.bounswe2019group9.tk/annotation/find?id=2",
     "type": "Annotation",
     "creator": {
-      "id": "http://example.org/user1",
+      "id": "http://example.org/user12",
       "name": "John Russel",
       "email": "john@russel.com"
     },

@@ -25,7 +25,6 @@ const TextAnnotationContainer = ({ source, annotations, dispatch, user, targetUr
             <TextAnnotation
                 annotation={annotation}
                 onRemoveAnnotation={handleRemoveAnnotation}
-                isOwner={annotation.userId === user.userId}
                 setEditingAnnotation={setEditingAnnotation}
             />
         );

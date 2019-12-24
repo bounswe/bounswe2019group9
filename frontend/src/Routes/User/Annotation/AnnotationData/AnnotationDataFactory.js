@@ -20,7 +20,7 @@ class AnnotationDataFactory {
             throw new Error('Unknown annotation target type, must be "Image" or "Text"');
         }
         annotationData.id = (/(\d+)$/.exec(annotation.id) || [])[1];
-        annotationData.userId = (/(\d+)$/.exec(annotation.creator.id) || [])[1];
+        annotationData.userId = parseInt((/(\d+)$/.exec(annotation.creator.id) || [])[1], 10);
         annotationData.userName = annotation.creator.name;
         annotationData.userEmail = annotation.creator.email;
         annotationData.createdAt = new Date(annotation.created);

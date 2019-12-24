@@ -6,3 +6,19 @@
 .no-select {
     user-select: none;
 }
+
+.clickable .annotation-subject, .clickable .annotation-note {
+    cursor: pointer;
+}
+
+.annotation-subject .handle:nth-child(2), .annotation-note .handle {
+    cursor: move;
+}
+
+.annotation-subject .handle:nth-child(3) {
+    cursor: ew-resize;
+}
+
+.annotation-subject .handle:nth-child(4) {
+    cursor: ns-resize;
+}

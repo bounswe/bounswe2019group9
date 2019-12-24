@@ -1,15 +1,35 @@
 import React, {useState} from 'react';
 import {EditableAnnotation, SubjectCircle, ConnectorElbow, ConnectorEndDot, Note} from 'react-annotation';
 
-const TextAnnotation = ({ annotation }) => {
-    const [editing, setEditing] = useState(!annotation.id);
-    const [loading, setLoading] = useState(false);
+import { connect } from "../../../../Store";
 
-    const [location, setLocation] = useState({ dx: 40, dy: 20 });
+const TextAnnotation = ({ store: { userId }, annotation, setEditingAnnotation }) => {
+
+    const isOwner = userId === annotation.userId;
+
+    const [location, setLocation] = useState({});
+    const [isDragging, setIsDragging] = useState(false);
 
     const title = annotation.displayTitle;
 
     const body = annotation.displayBody;
+
+    const handleToggle = (a,b,e) => {
+        if (!isOwner) {
+            console.log('not owner');
+            return;
+        }
+        setEditingAnnotation(annotation);
+        return false;
+    };
+
+    const catchMouseUp = (a, b, e) => {
+        e.persist();
+        e.preventDefault();
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+        return false;
+    };
 
     console.log('title', title, 'label', body);
     return (
@@ -18,14 +38,15 @@ const TextAnnotation = ({ annotation }) => {
                 <EditableAnnotation
                     x={0}
                     y={10}
-                    dx={location.dx}
-                    dy={location.dy}
+                    dx={40}
+                    dy={20}
                     color={"#9610ff"}
                     title={title}
                     label={body}
-                    className="show-bg no-select"
+                    className="show-bg no-select clickable"
                     events={{
-                        onClick: (...args) => console.log('event click', ...args)
+                        onClick: handleToggle,
+                        onMouseUp: catchMouseUp
                     }}
                 >
                     <ConnectorElbow>
@@ -57,4 +78,4 @@ const styles = {
     }
 };
 
-export default TextAnnotation;
+export default connect(TextAnnotation);
