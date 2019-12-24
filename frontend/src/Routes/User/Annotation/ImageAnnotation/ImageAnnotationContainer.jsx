@@ -4,10 +4,8 @@ import ImageAnnotationData from "../AnnotationData/ImageAnnotationData";
 import AnnotationDataFactory from "../AnnotationData/AnnotationDataFactory";
 import ImageAnnotation from './ImageAnnotation';
 
-import './index.css';
-
 const ImageAnnotationContainer =
-    ({ measureRef, measure, contentRect, source, annotations: modelDatas, user, targetUrl }) => {
+    ({ measureRef, contentRect, source, annotations, dispatch, user, onSaveAnnotation, setEditingAnnotation }) => {
         const { width: realWidth, height: realHeight, left, top } = contentRect.bounds;
         ImageAnnotationData.realWidth = realWidth;
         ImageAnnotationData.realHeight = realHeight;
@@ -16,42 +14,24 @@ const ImageAnnotationContainer =
 
         const updateNaturalDimensions = (imageRef) => {
             if (imageRef) {
-                ImageAnnotationData.naturalWidth = imageRef.naturalWidth || realWidth;
-                ImageAnnotationData.naturalHeight = imageRef.naturalHeight || realHeight;
-                setImageReady(true);
+                const handleImageLoad = () => {
+                    ImageAnnotationData.naturalWidth = imageRef.naturalWidth || realWidth;
+                    ImageAnnotationData.naturalHeight = imageRef.naturalHeight || realHeight;
+                    imageRef.removeEventListener('load', handleImageLoad);
+                    setImageReady(true);
+                    console.log('hulog');
+                };
+                imageRef.addEventListener('load', handleImageLoad);
             }
-        };
-
-        const [annotations, dispatch] = useReducer((prevState, action) => {
-            switch (action.type) {
-                case 'initialize':
-                    return action.data;
-                case 'newAnnotation':
-                    return action.data.length > prevState.length ? action.data : prevState;
-                case 'removeAnnotation':
-                    return prevState.filter((annotation) => annotation !== action.data);
-                default:
-                    return prevState;
-            }
-        }, []);
-
-        const handleRemoveAnnotation = (annotation) => {
-            dispatch({ type: 'removeAnnotation', data: annotation });
         };
 
         const handleAddAnnotation = (e) => {
             const { clientX, clientY } = e;
             const annotation = new ImageAnnotationData({ displayX: clientX - left, displayY: clientY - top });
             annotation.setUser(user);
-            annotation.setTarget(targetUrl);
+            annotation.setTarget(source);
             dispatch({ type: 'newAnnotation', data: [...annotations, annotation] });
         };
-
-        // only run once
-        useEffect(() => {
-            const initialAnnotations = (modelDatas || []).map(AnnotationDataFactory.fromDataModel);
-            dispatch({ type: 'initialize', data: initialAnnotations });
-        }, [modelDatas]);
 
         return (
             <div ref={measureRef} style={styles.container}>
@@ -68,7 +48,9 @@ const ImageAnnotationContainer =
                             <ImageAnnotation
                                 key={annotation.id || `anno_${index}`}
                                 annotation={annotation}
-                                onRemoveAnnotation={handleRemoveAnnotation}
+                                isOwner={annotation.userId === user.userId}
+                                onSaveAnnotation={onSaveAnnotation}
+                                setEditingAnnotation={setEditingAnnotation}
                             />
                         )) }
                     </svg>

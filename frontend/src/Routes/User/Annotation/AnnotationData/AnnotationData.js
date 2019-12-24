@@ -77,7 +77,7 @@ class AnnotationData {
         this.id = id;
     };
 
-    toDataModel = () => {
+    toDataModel() {
         const result = {};
         result['@context'] = "http://www.w3.org/ns/anno.jsonld";
         if(this.id) {
@@ -100,7 +100,7 @@ class AnnotationData {
         result.target = {};
         return result;
     };
-    clone = () => {
+    clone() {
         const clonedData = new this.constructor();
         clonedData.id = this.id;
         clonedData.userId = this.userId;

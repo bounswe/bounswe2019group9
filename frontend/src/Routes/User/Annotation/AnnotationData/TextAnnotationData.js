@@ -7,7 +7,7 @@ class TextAnnotationData extends AnnotationData {
         this.start = start;
         this.end = end;
     }
-    toDataModel = () => {
+    toDataModel() {
         const result = super.toDataModel();
 
         result.target.id = this.targetUrl;
@@ -23,12 +23,12 @@ class TextAnnotationData extends AnnotationData {
             type: "FragmentSelector",
             conformsTo: "http://tools.ietf.org/rfc/rfc5147",
             value: `char=${
-                this.targetPosition.start},${
-                this.targetPosition.finish
+                this.start},${
+                this.finish
             }`
         };
     };
-    clone = () => {
+    clone() {
         const cloned = super.clone();
         cloned.start = this.start;
         cloned.end = this.end;

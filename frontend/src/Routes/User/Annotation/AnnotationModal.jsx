@@ -1,8 +1,8 @@
 import React, {useEffect, useReducer, useState} from 'react';
-import { Modal, Form, Input, Select } from "antd";
+import { Modal, Form, Input, Select, Button, Popconfirm, Icon } from "antd";
 import AnnotationData from "./AnnotationData/AnnotationData";
 
-const AnnotationModal = ({ annotation, form, onClose }) => {
+const AnnotationModal = ({ annotation, form, setEditingAnnotation, onSaveAnnotation, onRemoveAnnotation }) => {
     const [state, dispatch] = useReducer((prevState, action) => {
         switch (action.type) {
             case 'reinitialize':
@@ -41,10 +41,9 @@ const AnnotationModal = ({ annotation, form, onClose }) => {
             nextAnnotation.setMessage(message);
             nextAnnotation.setMotivation(motivation);
             dispatch({ type: 'loading' });
-            // call backend
-            (new Promise((resolve) => setTimeout(resolve, 1000)))
+            onSaveAnnotation(annotation, nextAnnotation)
             .then(() => {
-                onClose(nextAnnotation);
+                setEditingAnnotation(null);
             }).catch((err) => {
 
             }).finally(() => {
@@ -53,25 +52,40 @@ const AnnotationModal = ({ annotation, form, onClose }) => {
         })
     };
 
-    const handleDelete = () => {
+    const handleDelete = (e) => {
+        e.preventDefault();
+        onRemoveAnnotation(annotation);
 
     };
 
     const handleCancel = (e) => {
-
+        e.preventDefault();
+        setEditingAnnotation(null);
     };
 
     return (
 
       <Modal
           visible={!!annotation}
-          okButtonProps={{
-              loading: state.loading,
-              disabled: state.loading
-          }}
-          cancelButtonProps={{
-              disabled: state.loading
-          }}
+          onOk={handleSubmit}
+          onCancel={handleCancel}
+          footer={[
+              <Popconfirm
+                  title="Are you sure you want to delete this annotation？"
+                  icon={<Icon type="question-circle-o" style={{ color: 'red' }} />}
+                  onConfirm={handleDelete}
+              >
+                  <Button key="delete" type="danger" disabled={state.loading}>
+                      Delete
+                  </Button>,
+              </Popconfirm>,
+              <Button key="back" onClick={handleCancel} disabled={state.loading}>
+                  Close
+              </Button>,
+              <Button key="submit" onClick={handleSubmit} type="primary" loading={state.loading}>
+                  Save
+              </Button>
+          ]}
       >
         <Form layout='vertical' onSubmit={handleSubmit}>
             <Form.Item label="Motivation">

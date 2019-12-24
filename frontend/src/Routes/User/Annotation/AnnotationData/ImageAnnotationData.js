@@ -24,27 +24,27 @@ export default class ImageAnnotationData extends AnnotationData {
         return this.originalX * ImageAnnotationData.realWidth / ImageAnnotationData.naturalWidth;
     }
     set displayX(displayX) {
-        this.originalX = displayX * ImageAnnotationData.naturalWidth / ImageAnnotationData.realWidth;
+        this.originalX = Math.round(displayX * ImageAnnotationData.naturalWidth / ImageAnnotationData.realWidth);
     }
     get displayY() {
         return this.originalY * ImageAnnotationData.realHeight / ImageAnnotationData.naturalHeight;
     }
     set displayY(displayY) {
-        this.originalY = displayY * ImageAnnotationData.naturalHeight / ImageAnnotationData.realHeight;
+        this.originalY = Math.round(displayY * ImageAnnotationData.naturalHeight / ImageAnnotationData.realHeight);
     }
     get displayWidth() {
         return this.originalWidth * ImageAnnotationData.realWidth / ImageAnnotationData.naturalWidth;
     }
     set displayWidth(displayWidth) {
-        this.originalWidth = displayWidth * ImageAnnotationData.naturalWidth / ImageAnnotationData.realWidth;
+        this.originalWidth = Math.round(displayWidth * ImageAnnotationData.naturalWidth / ImageAnnotationData.realWidth);
     }
     get displayHeight() {
         return this.originalHeight * ImageAnnotationData.realHeight / ImageAnnotationData.naturalHeight;
     }
     set displayHeight(displayHeight) {
-        this.originalHeight = displayHeight * ImageAnnotationData.naturalHeight / ImageAnnotationData.realHeight;
+        this.originalHeight = Math.round(displayHeight * ImageAnnotationData.naturalHeight / ImageAnnotationData.realHeight);
     }
-    toDataModel = () => {
+    toDataModel() {
         const result = super.toDataModel();
         result.target.id = this.targetUrl;
         result.target.type = "Image";
@@ -70,7 +70,7 @@ export default class ImageAnnotationData extends AnnotationData {
         };
         return result;
     };
-    clone = () => {
+    clone() {
         const cloned = super.clone();
         cloned.originalX = this.originalX;
         cloned.originalY = this.originalY;

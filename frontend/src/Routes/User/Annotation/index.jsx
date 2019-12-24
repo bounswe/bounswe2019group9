@@ -1,45 +1,112 @@
-import React, {createRef} from 'react';
-import {withContentRect} from "react-measure";
-import {TextAnnotator} from "react-text-annotate";
+import React, {createRef, useEffect, useReducer, useState} from 'react';
+
+import ImageAnnotationContainer from "./ImageAnnotation/ImageAnnotationContainer";
+import TextAnnotationContainer from "./TextAnnotation/TextAnnotationContainer";
+
+import { connect } from "../../../Store";
+import {getProfileInfoByUserId} from "../../../Api/User";
+import AnnotationDataFactory from "./AnnotationData/AnnotationDataFactory";
+import AnnotationModal from "./AnnotationModal";
+import TextAnnotation from "./TextAnnotation/TextAnnotation";
+
+import './index.css';
+
+const AnnotationContainer = ({ essay, annotations: modelDatas, store: { userId } }) => {
+    const [profile, setProfile] = useState();
+    useEffect(() => {
+        if (userId) {
+            getProfileInfoByUserId(userId)
+                .then((response) => {
+                    const { data = {} } = response.data || {};
+                    setProfile(data);
+                })
+                .catch(console.log);
+        }
+    }, [userId]);
+
+    const { id: essayId, assignmentId, authorId, sourceType, source } =  essay;
+
+    const targetUrl = sourceType === 2 ? source : `https://api.bounswe2019group9.tk/essays/getSourceByEssayId?id=${essayId}`;
+
+    const [editingAnnotation, setEditingAnnotation] = useState(null);
+
+    const [annotations, dispatch] = useReducer((prevState, action) => {
+        switch (action.type) {
+            case 'initialize':
+                return action.data;
+            case 'newAnnotation':
+                setEditingAnnotation(action.data[action.data.length - 1]);
+                return action.data;
+            case 'removeAnnotation':
+                return prevState.filter((annotation) => annotation !== action.data);
+            case 'updateAnnotation':
+                if (editingAnnotation === action.data.annotation) {
+                    setEditingAnnotation(action.data.nextAnnotation);
+                }
+                return prevState.map((annotation) =>
+                    annotation === action.data.annotation ? action.data.nextAnnotation : annotation
+                );
+            default:
+                return prevState;
+        }
+    }, []);
 
 
-const ImageAnnotation = withContentRect('bounds')(
-    ({ measureRef, measure, contentRect, source, annotations }) => {
-        const imgRef = createRef();
-        const naturalWidth = (imgRef.current || {}).naturalWidth || 1;
-        const naturalHeight = (imgRef.current || {}).naturalHeight || 1;
-        return (
-            <div measureRef={measureRef} onClick={}>
-                <img src={source} ref={imgRef} title="Essay" alt="Essay" />
-                { annotations.map((annotation) => {
+    // only run once TODO run after API call
+    useEffect(() => {
+        let initialAnnotations = (modelDatas || []).map(AnnotationDataFactory.fromDataModel);
+        if (sourceType === 1) {
+            initialAnnotations = initialAnnotations.map((annotation => {
+                annotation.tag = (
+                    <TextAnnotation annotation={annotation} onRemoveAnnotation={handleRemoveAnnotation} />
+                );
+                return annotation;
+            }));
+        }
+        dispatch({ type: 'initialize', data: initialAnnotations });
+    }, []);
 
-                }) }
-            </div>
-        );
-    }
-);
+    const handleSaveAnnotation = (annotation, nextAnnotation) => {
+      const isNew = !annotation.id;
+      // TODO api call
+    };
 
-const TextAnnotation = ({ source, annotations }) => {
+    const handleRemoveAnnotation = (annotation) => {
+      const isNew = !annotation.id;
+      if (isNew) {
+         return dispatch({ type: 'removeAnnotation', data: annotation });
+      }
+      // TODO call api
+    };
+
+    const ChosenAnnotationContainer = sourceType == 2
+        ? ImageAnnotationContainer : sourceType == 1
+        ? TextAnnotationContainer : null;
+
     return (
-        <TextAnnotator
-
-        />
+        <div>
+            { ChosenAnnotationContainer && (
+                <ChosenAnnotationContainer
+                    source={source}
+                    annotations={annotations}
+                    dispatch={dispatch}
+                    user={profile}
+                    targetUrl={targetUrl}
+                    onSaveAnnotation={handleSaveAnnotation}
+                    setEditingAnnotation={setEditingAnnotation}
+                />
+            ) }
+            <AnnotationModal
+                annotation={editingAnnotation}
+                setEditingAnnotation={setEditingAnnotation}
+                onSaveAnnotation={handleSaveAnnotation}
+                onRemoveAnnotation={handleRemoveAnnotation}
+            />
+        </div>
     )
 };
 
-const AnnotationContainer = ({ essay: { sourceType, source }, annotations }) => {
-
-    if (sourceType == 2) {
-        return (
-            <ImageAnnotation source={source} annotations={annotations} />
-        );
-    } else if (sourceType == 1) {
-        return (
-            <TextAnnotation source={source} annotations={annotations} />
-        );
-    }
-    return null;
-}
+export default connect(AnnotationContainer)
 
 /*
 
