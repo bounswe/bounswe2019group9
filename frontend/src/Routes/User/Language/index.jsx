@@ -5,7 +5,7 @@ import {Switch, Route, Redirect, useParams, useLocation, NavLink} from 'react-ro
 import LanguageSidebar from './LanguageSidebar';
 import ProfExam from './ProfExam';
 import Suggest from "./Suggest";
-import Suggest from "./Writing";
+import Writing from "./Writing";
 import Main from './Main';
 import Exercises from './Exercises';
 import {ExercisesHelper} from '../../../Helpers';
