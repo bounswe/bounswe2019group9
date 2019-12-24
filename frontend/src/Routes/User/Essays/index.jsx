@@ -5,6 +5,8 @@ import {Button, Layout, Modal} from "antd";
 import EssaysSider from "./EssaysSider";
 import {getEssaysByUserId} from "../../../Api/Essay";
 import RequestReviewModal from "./RequestReview";
+import AnnotationContainer from "../Annotation";
+import EssayView from "./EssayView";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -49,11 +51,12 @@ const Essays = ({ store: { userId } }) => {
       <EssaysSider essays={menu_essays} onClick={handleClick} />
       <Layout>
         <Content style={styles.content}>
-            Now focused on {focusEssayId}
-            <Button onClick={() => setModalVisible(true)}>Request Review</Button>
-          <RequestReviewModal essayId={focusEssayId} visible={isModalVisible} languageId={focusLangId} onCancel={() => setModalVisible(false)}/>
+            <EssayView essayId={focusEssayId} />
         </Content>
-        <Footer> Footer! </Footer>
+        <Footer style={styles.footer}>
+          <Button onClick={() => setModalVisible(true)}>Request Review</Button>
+          <RequestReviewModal essayId={focusEssayId} visible={isModalVisible} languageId={focusLangId} onCancel={() => setModalVisible(false)}/>
+        </Footer>
       </Layout>
     </Layout>
   )
@@ -61,6 +64,12 @@ const Essays = ({ store: { userId } }) => {
 
 const styles = {
   content: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    overflow: 'auto'
+  },
+  footer: {
     width: "100%",
     display: "grid",
     justifyContent: "center",

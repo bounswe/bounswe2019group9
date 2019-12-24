@@ -8,10 +8,13 @@
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.1",
+    "react-annotation": "^2.2.1",
     "react-chat-elements": "^10.8.0",
     "react-dom": "^16.10.1",
+    "react-measure": "^2.3.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
+    "react-text-annotate-ev": "^0.2.2",
     "react-scroll": "^1.7.15",
     "react-toastify": "^5.4.0"
   },
@@ -20,8 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cosmos": "cosmos",
-    "cosmos:export": "cosmos-export"
+    "cosmos": "cosmos-classic",
+    "cosmos:export": "cosmos-classic-export"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,6 +46,8 @@
   },
   "proxy": "https://api.bounswe2019group9.tk",
   "devDependencies": {
-    "react-cosmos": "^5.0.0-rc.0"
+    "react-cosmos-classic": "^4.8.4",
+    "react-cosmos-fetch-proxy": "^4.8.2",
+    "react-cosmos-xhr-proxy": "^4.8.2"
   }
 }
