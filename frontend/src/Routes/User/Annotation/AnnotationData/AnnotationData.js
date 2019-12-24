@@ -51,6 +51,9 @@ class AnnotationData {
         }
         return body;
     }
+    setIdFromLink = (idLink) => {
+        this.id = (/(\d+)$/.exec(idLink) || [])[1];
+    };
     setModified = () => {
         this.modifiedAt = new Date();
     };

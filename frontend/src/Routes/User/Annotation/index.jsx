@@ -10,8 +10,9 @@ import AnnotationModal from "./AnnotationModal";
 import TextAnnotation from "./TextAnnotation/TextAnnotation";
 
 import './index.css';
+import {createAnnotation, deleteAnnotationById, searchAnnotations, updateAnnotation} from "../../../Api/Annotation";
 
-const AnnotationContainer = ({ essay, annotations: modelDatas, store: { userId } }) => {
+const AnnotationContainer = ({ essay, store: { userId } }) => {
     const [profile, setProfile] = useState();
     useEffect(() => {
         console.log('userId', userId);
@@ -55,36 +56,71 @@ const AnnotationContainer = ({ essay, annotations: modelDatas, store: { userId }
         }
     }, []);
 
-
-    // only run once TODO run after API call
     useEffect(() => {
-        let initialAnnotations = (modelDatas || []).map(AnnotationDataFactory.fromDataModel);
-        if (sourceType === 1) {
-            initialAnnotations = initialAnnotations.map((annotation => {
-                annotation.tag = (
-                    <TextAnnotation
-                        annotation={annotation}
-                        onRemoveAnnotation={handleRemoveAnnotation}
-                        setEditingAnnotation={setEditingAnnotation}
-                    />
-                );
-                return annotation;
-            }));
+        if (targetUrl) {
+            searchAnnotations(targetUrl)
+                .then((response) => {
+                    const { data = [] } = response.data || {};
+                    let initialAnnotations = (data || [])
+                        .map((x) => JSON.parse(x))
+                        .map(AnnotationDataFactory.fromDataModel);
+                    if (sourceType === 1) {
+                        initialAnnotations = initialAnnotations.map((annotation => {
+                            annotation.tag = (
+                                <TextAnnotation
+                                    annotation={annotation}
+                                    onRemoveAnnotation={handleRemoveAnnotation}
+                                    setEditingAnnotation={setEditingAnnotation}
+                                />
+                            );
+                            return annotation;
+                        }));
+                    }
+                    dispatch({ type: 'initialize', data: initialAnnotations });
+                }).catch(console.log);
         }
-        dispatch({ type: 'initialize', data: initialAnnotations });
-    }, []);
+    }, [targetUrl]);
 
     const handleSaveAnnotation = (annotation, nextAnnotation) => {
       const isNew = !annotation.id;
-      // TODO api call
+      let dataModel = nextAnnotation.toDataModel();
+      delete dataModel.id;
+      dataModel = JSON.stringify(dataModel);
+      let request;
+
+      if (isNew) {
+          request = createAnnotation({annotation: dataModel});
+      } else {
+          request = updateAnnotation({ id: annotation.id, annotation: dataModel });
+      }
+      request
+          .then((response) => {
+              let { data } = response.data;
+              data = JSON.parse(data);
+              nextAnnotation.setIdFromLink(data.id);
+              if (sourceType === 1) {
+                  nextAnnotation.tag = (
+                      <TextAnnotation
+                          annotation={nextAnnotation}
+                          onRemoveAnnotation={handleRemoveAnnotation}
+                          setEditingAnnotation={setEditingAnnotation}
+                      />
+                  );
+              }
+              dispatch({ type: 'updateAnnotation', data: { annotation, nextAnnotation }});
+          }).catch(console.log);
     };
 
     const handleRemoveAnnotation = (annotation) => {
       const isNew = !annotation.id;
       if (isNew) {
          return dispatch({ type: 'removeAnnotation', data: annotation });
+      } else {
+          deleteAnnotationById(annotation.id)
+              .then((response) => {
+                  dispatch({ type: 'removeAnnotation', data: annotation });
+              }).catch(console.log);
       }
-      // TODO call api
     };
 
     const ChosenAnnotationContainer = sourceType == 2
@@ -115,19 +151,3 @@ const AnnotationContainer = ({ essay, annotations: modelDatas, store: { userId }
 };
 
 export default connect(AnnotationContainer)
-
-/*
-
-const AnnotationContainer = ({ annotations }) => {
-    return (
-        <div style={{display: 'flex', justifyContent: 'space-around'}}>
-            { annotations.map((annot) => (
-                <pre key={annot.id}>
-                    {JSON.stringify(annot, null, 2)}
-                </pre>
-            ))}
-        </div>
-    )
-};
-
-export default AnnotationContainer;*/
