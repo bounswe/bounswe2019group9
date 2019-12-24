@@ -35,11 +35,10 @@ const PendingPage = ({ store: { userId } }) => {
             :
             <Card style={{
               margin: "auto",
-              height: "calc(50% - 40px)",
-              width: "calc(50% - 40px)",
-              display: "grid",
             }}>
-              <p style={{margin: "auto", display: "block"}}>No new chat invitations!</p>
+              <div style={{fontSize: 18}}>
+                <div>No new chat invitations!</div>
+              </div>
             </Card>
         )
         :

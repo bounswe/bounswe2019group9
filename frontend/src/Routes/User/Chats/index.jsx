@@ -8,6 +8,7 @@ import { getConversationsOf, getMessagesByUserId } from '../../../Api/Chat';
 import "./index.css";
 import Chat from "./Chat";
 import PendingPage from "./PendingPage"
+import {ColorsHelper} from "../../../Helpers";
 
 const { Sider, Content } = Layout;
 
@@ -16,7 +17,25 @@ const AVATAR_SIZE = 40;
 
 const ViewPendingsButton = ({ onClick}) => {
     return (
-        <Button onClick={onClick}>But</Button>
+      <div style={{
+        width: "100%",
+        height: 72,
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingRight: 20,
+        paddingLeft: 20,
+      }}>
+        <Button
+          onClick={onClick}
+          type="primary"
+          shape="round"
+          style={{
+            height: "100%",
+            width: "100%",
+            backgroundColor: ColorsHelper.appColorDark,
+          }}
+        >View Pendings!</Button>
+      </div>
     )
 };
 
