@@ -129,7 +129,7 @@ const AnnotationContainer = ({ essay, store: { userId } }) => {
         ? TextAnnotationContainer : null;
 
     return (
-        <div>
+        <div style={styles.container}>
             { ChosenAnnotationContainer && (
                 <ChosenAnnotationContainer
                     source={source}
@@ -149,6 +149,12 @@ const AnnotationContainer = ({ essay, store: { userId } }) => {
             />
         </div>
     )
+};
+
+const styles = {
+    container: {
+        minWidth: 300
+    }
 };
 
 export default connect(AnnotationContainer)

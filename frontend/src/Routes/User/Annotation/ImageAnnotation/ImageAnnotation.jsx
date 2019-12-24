@@ -56,8 +56,6 @@ const ImageAnnotation = ({ annotation, isOwner, onSaveAnnotation, setEditingAnno
             dx={40}
             dy={20 -height/2}
             color={"#9610ff"}
-            title={title}
-            label={body}
             className="show-bg no-select clickable"
             events={{
                 onClick: handleToggle
@@ -77,9 +75,13 @@ const ImageAnnotation = ({ annotation, isOwner, onSaveAnnotation, setEditingAnno
                 align={"middle"}
                 orientation={"topBottom"}
                 bgPadding={20}
+                wrap={240}
                 padding={15}
-                titleColor={"#59039c"}
+                titleColor={"rgb(12, 54, 11)"}
+                labelColor={'#1690ff'}
                 lineType={"vertical"}
+                title={title}
+                label={body}
             />
         </EditableAnnotation>
     );

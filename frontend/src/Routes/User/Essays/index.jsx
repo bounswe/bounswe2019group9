@@ -65,8 +65,9 @@ const Essays = ({ store: { userId } }) => {
 const styles = {
   content: {
     display: "flex",
-    alignItems: "stretch",
-    flexDirection: "column"
+    alignItems: "center",
+    flexDirection: "column",
+    overflow: 'auto'
   },
   footer: {
     width: "100%",
