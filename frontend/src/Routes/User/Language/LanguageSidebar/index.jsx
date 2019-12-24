@@ -74,9 +74,15 @@ const LanguageSidebar = ({ store }) => {
             </Menu.Item>
           ))}
         </Menu.SubMenu>
-        <Menu.Item key={'writing'} disabled={true}>
+        <Menu.Item key={'writing'}>
           <Icon type={'form'} />
           Writing
+	  <Link to={`/${languageName}/writing`} />
+        </Menu.Item>
+	<Menu.Item key={'suggest'}>
+          <Icon type={'question'} />
+          Suggest Exercise
+	  <Link to={`/${languageName}/suggest`} />
         </Menu.Item>
       </Menu>
     </div>
