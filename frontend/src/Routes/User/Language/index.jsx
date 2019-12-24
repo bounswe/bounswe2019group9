@@ -4,6 +4,8 @@ import {Switch, Route, Redirect, useParams, useLocation, NavLink} from 'react-ro
 
 import LanguageSidebar from './LanguageSidebar';
 import ProfExam from './ProfExam';
+import Suggest from "./Suggest";
+import Writing from "./Writing";
 import Main from './Main';
 import Exercises from './Exercises';
 import {ExercisesHelper} from '../../../Helpers';
@@ -39,6 +41,8 @@ const LanguageRoutes = () => {
             <Switch>
               <Route exact path='/:language' component={Main} />
               <Route exact path='/:language/exercises/search' component={ExerciseSearch} />
+	      <Route path='/:language/suggest' component={Suggest} />
+	      <Route path='/:language/writing' component={Writing} />
               <Route exact path='/:language/exercises/:exerciseType' component={Exercises} />
               <Route path='/:language/proficiency-exam' component={ProfExam} />
               <Redirect to={`/${language}`}/>
