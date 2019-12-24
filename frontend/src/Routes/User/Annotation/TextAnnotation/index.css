@@ -1,0 +1,8 @@
+.show-bg .annotation-note-bg {
+    fill: #ddddff;
+    fill-opacity: 0.9;
+}
+
+.no-select {
+    user-select: none;
+}
