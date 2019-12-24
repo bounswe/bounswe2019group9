@@ -11,12 +11,6 @@ class TextAnnotationData extends AnnotationData {
         const result = super.toDataModel();
 
         result.target.id = this.targetUrl;
-        /*if (this.targetUrl) {
-            result.target.id = this.targetUrl;
-        } else {
-            result.target.id = `https://api.bounswe2019group9.tk/essays?id=${this.essayId}`;
-            // temporary id until a full text endpoint is ready.
-        }*/
         result.target.type = "Text";
         result.target.format = "text/plain";
         result.target.selector = {
@@ -27,6 +21,7 @@ class TextAnnotationData extends AnnotationData {
                 this.finish
             }`
         };
+        return result;
     };
     clone() {
         const cloned = super.clone();

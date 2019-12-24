@@ -28,3 +28,24 @@ import {getRequest} from "../base";
 }
  */
 export const getEssaysByUserId = (data, extras) => getRequest('essays/user', data, extras);
+
+/**
+ * @function getEssayById
+ * @param essayId
+ * @param extras
+ * @returns {Promise<AxiosResponse<T>>}
+ *
+ * Success Response
+ * {
+ *   "status": 200,
+ *   "explanation": null,
+ *   "data": {
+ *     "id": 2,
+ *     "assignmentId": 1,
+ *     "authorId": 9,
+ *     "sourceType": 1,
+ *     "source": "kjdgkjnkjkgdkjangkjdrngkjdangkjadfn kjdfkjadgkjadhgkjdahfkjadhgkjadfh kjdfkjdhgkjdfhgkjfdhg"
+ *   }
+ * }
+ */
+export const getEssayById = (essayId, extras) => getRequest('essays', { id: essayId }, extras);

@@ -62,7 +62,7 @@ const RequestReviewModal = ({ store: { userId }, visible, onOk, languageId, onCa
       { recs ?
         <List>
           { recs.map(r => (
-            <ReccomItem {...r} essayId={essayId}/>
+            <ReccomItem {...r} key={r.userId} essayId={essayId}/>
           ))}
         </List>
         :

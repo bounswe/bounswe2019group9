@@ -11,6 +11,7 @@ import TextAnnotation from "./TextAnnotation/TextAnnotation";
 
 import './index.css';
 import {createAnnotation, deleteAnnotationById, searchAnnotations, updateAnnotation} from "../../../Api/Annotation";
+import {getEssayById} from "../../../Api/Essay";
 
 const AnnotationContainer = ({ essay, store: { userId } }) => {
     const [profile, setProfile] = useState();
@@ -25,6 +26,7 @@ const AnnotationContainer = ({ essay, store: { userId } }) => {
                 .catch(console.log);
         }
     }, [userId]);
+
 
     const { id: essayId, assignmentId, authorId, sourceType, source } =  essay;
 
@@ -46,7 +48,7 @@ const AnnotationContainer = ({ essay, store: { userId } }) => {
                 return prevState.filter((annotation) => annotation !== action.data);
             case 'updateAnnotation':
                 if (editingAnnotation === action.data.annotation) {
-                    setEditingAnnotation(action.data.nextAnnotation);
+                    setEditingAnnotation(null);
                 }
                 return prevState.map((annotation) =>
                     annotation === action.data.annotation ? action.data.nextAnnotation : annotation
@@ -87,13 +89,12 @@ const AnnotationContainer = ({ essay, store: { userId } }) => {
       delete dataModel.id;
       dataModel = JSON.stringify(dataModel);
       let request;
-
       if (isNew) {
           request = createAnnotation({annotation: dataModel});
       } else {
           request = updateAnnotation({ id: annotation.id, annotation: dataModel });
       }
-      request
+      return request
           .then((response) => {
               let { data } = response.data;
               data = JSON.parse(data);
@@ -108,7 +109,7 @@ const AnnotationContainer = ({ essay, store: { userId } }) => {
                   );
               }
               dispatch({ type: 'updateAnnotation', data: { annotation, nextAnnotation }});
-          }).catch(console.log);
+          });
     };
 
     const handleRemoveAnnotation = (annotation) => {

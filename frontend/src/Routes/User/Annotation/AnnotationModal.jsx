@@ -44,11 +44,11 @@ const AnnotationModal = ({ annotation, form, setEditingAnnotation, onSaveAnnotat
             nextAnnotation.setMotivation(motivation);
             dispatch({ type: 'loading' });
             onSaveAnnotation(annotation, nextAnnotation)
-            .then(() => {
+            /*.then(() => {
                 setEditingAnnotation(null);
             }).catch((err) => {
 
-            }).finally(() => {
+            })*/.finally(() => {
                 dispatch({ type: 'loaded' });
             })
         })
