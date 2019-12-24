@@ -5,6 +5,8 @@ import app.common.Response;
 import app.mahmuthoca.bean.CreateAnnotationRequest;
 import app.mahmuthoca.bean.UpdateAnnotationRequest;
 import app.mahmuthoca.service.AnnotationService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +34,13 @@ public class AnnotationController {
     }
 
     @GetMapping("/getById")
-    public String getById(@RequestParam("annotationId") Long annotationId) {
-        return annotationService.getById(annotationId);
+    public ResponseEntity<String> getById(@RequestParam("annotationId") Long annotationId) {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("content-type",
+                "application/ld+json;profile=\"http://www.w3.org/ns/anno.jsonld\"");
+        return ResponseEntity.ok()
+                .headers(responseHeaders)
+                .body(annotationService.getById(annotationId));
     }
 
     @GetMapping("/deleteById")
