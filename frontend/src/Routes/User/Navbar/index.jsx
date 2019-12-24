@@ -37,6 +37,10 @@ const routes = [
     name: 'Chat',
     route: '/chat',
   },
+  {
+    name: "My Essays",
+    route: "/essays",
+  },
 ];
 
 const UserNavbar = ({ store: { userId } }) => {
