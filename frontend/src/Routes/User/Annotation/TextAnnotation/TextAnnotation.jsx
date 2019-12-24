@@ -45,8 +45,6 @@ const TextAnnotation = ({ store: { userId }, annotation, setEditingAnnotation })
                     dx={40}
                     dy={20}
                     color={"#9610ff"}
-                    title={title}
-                    label={body}
                     className="show-bg no-select clickable"
                     events={{
                         onClick: handleToggle,
@@ -64,10 +62,17 @@ const TextAnnotation = ({ store: { userId }, annotation, setEditingAnnotation })
                       align={"middle"}
                       orientation={"topBottom"}
                       bgPadding={20}
+                      wrap={240}
                       padding={15}
                       titleColor={"#59039c"}
                       lineType={"vertical"}
-                    />
+                      title={title}
+                      label={body}
+                    >
+                        <text>
+                            hello
+                        </text>
+                    </Note>
                 </EditableAnnotation>
             </svg>
         </span>

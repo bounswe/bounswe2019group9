@@ -124,9 +124,9 @@ const AnnotationModal = ({ annotation, form, setEditingAnnotation, onSaveAnnotat
                         { required: true, message: 'Please enter a message' }
                     ]
                 })(
-                    <Input
+                    <Input.TextArea
                         placeholder="Enter your message"
-                        type="textarea"
+                        autoSize={{ minRows: 2, maxRows: 6 }}
                     />
                 )}
             </Form.Item>

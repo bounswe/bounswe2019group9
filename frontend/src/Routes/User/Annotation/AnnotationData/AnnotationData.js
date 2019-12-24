@@ -41,13 +41,15 @@ class AnnotationData {
         return AnnotationData.motivationTypeToMotivationObject(this.motivation);
     }
     get displayTitle() {
-        return `${this.motivationObject.label || 'New'} ~ ${
-            moment(this.createdAt).fromNow()}`;
+        return `${this.body}`;
+        /*return `${this.motivationObject.label || 'New'} ~ ${
+            moment(this.createdAt).fromNow()}`;*/
     }
     get displayBody() {
-        let body = `${this.body} \n by ${this.userName} (${this.userEmail})`;
+        let body = `"${this.motivationObject.label || 'New'}" ~ ${this.userName} ~ ${this.userEmail
+        } \n\n created ${moment(this.createdAt).fromNow()}`;
         if (this.modifiedAt != this.createdAt) {
-            body += `\n last edited on ${moment(this.modifiedAt).fromNow()}`;
+            body += `, edited on ${moment(this.modifiedAt).fromNow()}`;
         }
         return body;
     }

@@ -18,7 +18,7 @@ class TextAnnotationData extends AnnotationData {
             conformsTo: "http://tools.ietf.org/rfc/rfc5147",
             value: `char=${
                 this.start},${
-                this.finish
+                this.end
             }`
         };
         return result;
