@@ -22,7 +22,7 @@ const InvitationButton = ({sourceId, receiverId}) => {
     getInvitationState({userId1: sourceId, userId2: receiverId})
       .then(res => {
         const { data = {} } = res.data || {};
-        if (data.userId1 == sourceId && data.userId2 == receiverId) {
+        if (data.userId1 === sourceId && data.userId2 === receiverId) {
           if (data.pendingRequestFromTwoToOne && data.pendingRequestFromOneToTwo) {
             // illegal state
             console.error("Concurrent pendings.")
@@ -55,7 +55,7 @@ const InvitationButton = ({sourceId, receiverId}) => {
     if (!isDisabled && !isLoading) {
       setLoading(true);
       setMessage(msgs.loading);
-      if (message == msgs.ready) {
+      if (message === msgs.ready) {
         createInvitation({sourceId, receiverId})
           .then(res => {
             // pending state
@@ -65,7 +65,7 @@ const InvitationButton = ({sourceId, receiverId}) => {
             setMessage(msgs.pending);
           })
           .catch(console.log);
-      } else if (message == msgs.accept) {
+      } else if (message === msgs.accept) {
         // Will accept invitation
         answerToInvitation({sourceId, receiverId, approved: true})
           .then(res => {

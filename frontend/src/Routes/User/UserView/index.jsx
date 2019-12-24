@@ -20,10 +20,14 @@ const UserView = ({ store,
   return (
     <>
       <Descriptions title="User Info"  column={isButtonPresent ? 4 : undefined}>
+        <Descriptions.Item>
+          <img src={`https://api.adorable.io/avatars/60/${userId}`} alt="Avatar" />
+        </Descriptions.Item>
         <Descriptions.Item label="Full Name" className={"capitalize-text"}>
         {[firstName, lastName].join(' ')}
         </Descriptions.Item>
-        <Descriptions.Item label="Email">{email}</Descriptions.Item>
+        {//<Descriptions.Item label="Email">{email}</Descriptions.Item>
+        }
         { store.userId !== userId ?
           <Descriptions.Item>
             <Link to={`/users/${userId}`}>
@@ -56,7 +60,7 @@ UserView.propTypes = {
   userId: PropTypes.number.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
+  email: PropTypes.string,
   languages: PropTypes.arrayOf(PropTypes.string).isRequired,
   grades: PropTypes.arrayOf(PropTypes.number).isRequired,
   progressLevels: PropTypes.arrayOf(PropTypes.number).isRequired,
