@@ -7,14 +7,10 @@ import app.mahmuthoca.bean.CreateEssayRequest;
 import app.mahmuthoca.entity.Essay;
 import app.mahmuthoca.service.AssignmentService;
 import app.mahmuthoca.service.EssayService;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import static java.util.Objects.isNull;
 
@@ -58,5 +54,15 @@ public class EssayController {
       responseData.add(new AssignmentEssay(essay, assignmentService.getAssignmentById(essay.getAssignmentId())));
     }
     return HttpResponses.from(responseData);
+  }
+
+  @GetMapping("/getSourceByEssayId")
+  public String getSourceByEssayId(@RequestParam("id") Long id) {
+    Essay essay = essayService.getEssayById(id);
+    if (isNull(essay)) {
+      return "No essay with id: ".concat(id.toString());
+    }
+
+    return essay.getSource();
   }
 }
