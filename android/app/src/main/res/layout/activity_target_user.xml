@@ -90,6 +90,16 @@
             android:onClick="SendRequest"
             android:text="Send Message Request"
             />
+        <Button
+            android:id="@+id/commentRateTarget"
+            style="@style/WelcomePageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/send_request_button"
+            android:layout_marginTop="40dp"
+            android:onClick="GoComment"
+            android:text="Comment/Ratıng"
+            />
 
 
 

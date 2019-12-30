@@ -3,6 +3,8 @@
     package="com.example.learningplatform">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,14 +14,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StartExerciseActivity"></activity>
+
+        <activity android:name=".RecommendationPageDisplay" />
+
+        <activity android:name=".WritingExActivity"></activity>
+        <activity android:name=".AddExerciseActivity" />
+
+        <activity android:name=".StartExerciseActivity" />
+        <activity android:name=".SolvedEssayActivity" />
         <activity android:name=".ExerciseViewActivity" />
+        <activity android:name=".CommentRateActivity" />
+        <activity android:name=".SolvedEssayListPage" />
         <activity android:name=".TargetUserActivity" />
         <activity android:name=".ProfilePageActivity" />
         <activity android:name=".ExerciseListDisplay" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".GradeView" />
-        <activity android:name=".MessageListActivity"/>
+        <activity android:name=".MessageListActivity" />
         <activity android:name=".QuestionDisplay" />
         <activity android:name=".ChatsListDisplay" />
         <activity android:name=".RegisterActivity" />

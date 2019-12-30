@@ -30,6 +30,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.example.learningplatform.ProfilePageActivity;
 
+import java.util.Locale;
+
 public class TargetUserActivity extends AppCompatActivity {
 
 
@@ -41,6 +43,7 @@ public class TargetUserActivity extends AppCompatActivity {
     private static Button requestButton;
     private int TargetUserId;
     private int Userid;
+    String rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +85,7 @@ public class TargetUserActivity extends AppCompatActivity {
                                     JSONArray gradeOfUser = data.getJSONArray("grades");
                                     JSONArray languagesOfUser = data.getJSONArray("languages");
                                     JSONArray progressLevelsOfUser = data.getJSONArray("progressLevels");
+                                    double rating_double = data.getDouble("rating");
                                     if(gradeOfUser.length()!= languagesOfUser.length() || gradeOfUser.length()!= progressLevelsOfUser.length()){
                                         Log.e("Error", "The number of languages user has and the grades user has doesn't match");
                                     }
@@ -94,7 +98,8 @@ public class TargetUserActivity extends AppCompatActivity {
                                         rowLanguage.setText(languagesOfUser.getString(i));
                                         rowProgress.setText(Integer.toString(progressLevelsOfUser.getInt(i))+"%");
                                         rowGrade.setText(ProfilePageActivity.getGradeFromInt(gradeOfUser.getInt(i)));
-                                        rowRating.setText("3.5");
+                                        rating = String.format(Locale.getDefault(),"%.1f", rating_double);
+                                        rowRating.setText(rating);
                                         table.addView(row,i+1);
                                     }
                                 } catch (JSONException e) {
@@ -283,6 +288,14 @@ public class TargetUserActivity extends AppCompatActivity {
             v.getContext().startActivity(intent);
         }
 
+    }
+    public void GoComment(View v){
+        Intent intent = new Intent(v.getContext(), CommentRateActivity.class);
+        intent.putExtra("target", true);
+        intent.putExtra("targetUserId", TargetUserId);
+        intent.putExtra("sourceUserId", Userid);
+        intent.putExtra("rating", rating);
+        v.getContext().startActivity(intent);
     }
 }
 

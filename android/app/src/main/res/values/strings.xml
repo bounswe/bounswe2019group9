@@ -15,5 +15,7 @@
     <string name="writing">Writing</string>
     <string name="vocabulary">Vocabulary</string>
     <string name="grammar">Grammar</string>
+    <string name="add_exercise">Add Exercise</string>
     <string name="chats">Chats</string>
+    <string name="no_filters_selected">No filters selected, press the filter button above (<annotation src="@drawable/pie_chart">&#2228;</annotation>)\n<i><annotation foregroundColor="@color/app_color_light">or swipe from the&#160;right</annotation></i></string>
 </resources>

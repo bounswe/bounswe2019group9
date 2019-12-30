@@ -71,6 +71,9 @@ public class ExerciseListDisplay extends AppCompatActivity {
                     break;
                 case R.id.writing:
                     Log.i("clickedTo","writing");
+                    intent = new Intent(ExerciseListDisplay.this, SolvedEssayListPage.class);
+                    intent.putExtra("typeOfExercise",5);
+                    startActivity(intent);
                     break;
                 case R.id.grammar:
                     Log.i("clickedTo","grammar");
@@ -86,6 +89,43 @@ public class ExerciseListDisplay extends AppCompatActivity {
                     startActivity(intent);
                     break;
             }
+
+        }
+
+        public void AddExerciseType(View v){
+
+            Intent intent;
+            switch (v.getId()) {
+                case R.id.add_listening:
+                    Log.i("clickedTo","listening");
+                    intent = new Intent(ExerciseListDisplay.this, AddExerciseActivity.class);
+                    intent.putExtra("typeOfExercise",1);
+                    startActivity(intent);
+                    break;
+                case R.id.add_reading:
+                    Log.i("clickedTo","reading");
+                    intent = new Intent(ExerciseListDisplay.this, AddExerciseActivity.class);
+                    intent.putExtra("typeOfExercise",2);
+                    startActivity(intent);
+                    break;
+                case R.id.add_writing:
+                    Log.i("clickedTo","writing");
+                    break;
+                case R.id.add_grammar:
+                    Log.i("clickedTo","grammar");
+                    intent = new Intent(ExerciseListDisplay.this, AddExerciseActivity.class);
+                    intent.putExtra("typeOfExercise",4);
+                    startActivity(intent);
+                    break;
+                case R.id.add_vocabulary:
+                    Log.i("clickedTo","vocabulary");
+                    intent = new Intent(ExerciseListDisplay.this, AddExerciseActivity.class);
+                    intent.putExtra("typeOfExercise",3);
+
+                    startActivity(intent);
+                    break;
+            }
+
 
         }
 

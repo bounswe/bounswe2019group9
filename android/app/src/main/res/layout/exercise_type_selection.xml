@@ -19,8 +19,8 @@
         android:fontFamily="sans-serif"
         android:text="@string/select_exercise_type_text"
         android:textSize="22sp"
-        android:textColor="@color/app_color_dark"
-        android:background="@color/app_color_light"/>
+        android:textColor="@color/white"
+        android:background="@color/app_color_dark"/>
 
     <LinearLayout
         android:id="@+id/listening"
@@ -41,7 +41,7 @@
             android:src="@drawable/listening" />
 
         <TextView
-            android:layout_width="274dp"
+            android:layout_width="120dp"
             android:layout_height="52dp"
             android:layout_centerInParent="true"
             android:layout_margin="12dp"
@@ -50,6 +50,17 @@
             android:text="@string/listening"
             android:textColor="@color/app_color_dark"
             android:textSize="22sp" />
+        <ImageView
+            android:id="@+id/add_listening"
+            android:layout_width="69dp"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/add_icon"
+            android:onClick="AddExerciseType"
+            />
 
     </LinearLayout>
 
@@ -74,7 +85,7 @@
             android:src="@drawable/reading" />
 
         <TextView
-            android:layout_width="274dp"
+            android:layout_width="120dp"
             android:layout_height="52dp"
             android:layout_centerInParent="true"
             android:layout_margin="12dp"
@@ -83,6 +94,18 @@
             android:text="@string/reading"
             android:textColor="@color/app_color_dark"
             android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/add_reading"
+            android:layout_width="69dp"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/add_icon"
+            android:onClick="AddExerciseType"
+            />
 
     </LinearLayout>
     <LinearLayout
@@ -104,7 +127,7 @@
             android:src="@drawable/writing" />
 
         <TextView
-            android:layout_width="274dp"
+            android:layout_width="120dp"
             android:layout_height="52dp"
             android:layout_centerInParent="true"
             android:layout_margin="12dp"
@@ -113,6 +136,18 @@
             android:text="@string/writing"
             android:textColor="@color/app_color_dark"
             android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/add_writing"
+            android:layout_width="69dp"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/add_icon"
+            android:onClick="AddExerciseType"
+            />
 
     </LinearLayout>
     <LinearLayout
@@ -134,7 +169,7 @@
             android:src="@drawable/vocab" />
 
         <TextView
-            android:layout_width="274dp"
+            android:layout_width="120dp"
             android:layout_height="52dp"
             android:layout_centerInParent="true"
             android:layout_margin="12dp"
@@ -143,6 +178,18 @@
             android:text="@string/vocabulary"
             android:textColor="@color/app_color_dark"
             android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/add_vocabulary"
+            android:layout_width="69dp"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/add_icon"
+            android:onClick="AddExerciseType"
+            />
 
     </LinearLayout>
 
@@ -165,7 +212,7 @@
             android:src="@drawable/grammar" />
 
         <TextView
-            android:layout_width="274dp"
+            android:layout_width="120dp"
             android:layout_height="52dp"
             android:layout_centerInParent="true"
             android:layout_margin="12dp"
@@ -175,7 +222,20 @@
             android:textColor="@color/app_color_dark"
             android:textSize="22sp" />
 
+        <ImageView
+            android:id="@+id/add_grammar"
+            android:layout_width="69dp"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/add_icon"
+            android:onClick="AddExerciseType"
+            />
+
     </LinearLayout>
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

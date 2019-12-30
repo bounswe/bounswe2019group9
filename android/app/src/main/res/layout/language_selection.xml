@@ -4,8 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/app_color_light"
-    android:background="@color/app_color_light">
+    android:backgroundTint="@color/white"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,8 +21,8 @@
         android:fontFamily="sans-serif"
         android:text="@string/select_language_text"
         android:textSize="22sp"
-        android:textColor="@color/app_color_dark"
-        android:background="@color/app_color_light"/>
+        android:textColor="@color/white"
+        android:background="@color/app_color_dark"/>
 
 
 
@@ -34,7 +34,7 @@
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
-        android:background="@color/app_color_light">
+        android:background="@color/white">
     </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dp"
+    android:elevation="5dp"
+    android:outlineSpotShadowColor="@color/app_color_dark"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/senderName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/app_color_light"
+        android:textSize="12sp"
+        android:layout_gravity="left"
+        android:text="sender name"/>
+    <TextView
+        android:id="@+id/commentItemComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/app_color_dark"
+        android:textSize="16sp"
+        android:gravity="left"
+        android:text="I received a great lesson from this person"/>
+    <TextView
+        android:id="@+id/comment_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/app_color_light"
+        android:textSize="12sp"
+        android:layout_gravity="right"
+        android:text="2015-06-12"/>
+</LinearLayout>

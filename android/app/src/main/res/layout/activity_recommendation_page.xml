@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#f2f5df">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -27,7 +28,7 @@
                 android:src="@drawable/chats" />
 
             <TextView
-                android:id="@+id/chats"
+                android:id="@+id/recommended_users"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/app_color_dark"
@@ -37,13 +38,13 @@
                 android:layout_centerInParent="true"
                 android:fontFamily="sans-serif"
                 android:gravity="center_horizontal"
-                android:text="@string/chats"
-                android:textColor="@color/white"
+                android:text="Recommended Reviewers"
+                android:textColor="#f2f5df"
                 android:textSize="22sp" />
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recylerview2"
+            android:id="@+id/recylerview3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/app_color_light"
