@@ -24,3 +24,5 @@ Please, reopen that issue if you'd prefer another hierarchy or have questions ab
 Download [kereviz-android.apk](https://github.com/bounswe/bounswe2019group9/blob/master/kereviz-android.apk) file from the Github repository. Connect an Android device to the computer and send the kereviz-android.apk file to the Android device via the USB cable. On the Android device open the file. The installation of the app must start automatically. 
 
 Note: Android device must be in developer mode. To switch your device to Developer mode, click to the Android version in the Settings, seven times.
+
+Minimum SDK version supported for Android app is 15.
