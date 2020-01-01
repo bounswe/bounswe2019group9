@@ -1199,3 +1199,330 @@ POST /messages
   ]
 }
 ```
+
+# Annotation Endpoints
+## Create Annotation 
+
+**Request Content:**
+Annotation string
+
+**Response Content:**
+Ok
+
+##### Example Request
+```
+POST /annotations
+```
+```json
+{
+  "annotation": "This is an annotation message."
+}
+```
+##### Example Response
+```json
+{
+  "data": null,
+  "explanation": null,
+  "status": 200
+}
+```
+## Update Annotation 
+
+**Request Content:**
+Annotation string, annotation id
+
+**Response Content:**
+Ok
+
+##### Example Request
+```
+POST /annotations
+```
+```json
+{
+  "annotation": "This is an annotation message.",
+  "id": 3
+}
+```
+##### Example Response
+```json
+{
+  "data": null,
+  "explanation": null,
+  "status": 200
+}
+```
+## Get Annotation 
+
+**Request Content:**
+Annotation id
+
+**Response Content:**
+Annotation itself, by id
+
+##### Example Request
+```
+GET /annotations/getById?id=3
+```
+##### Example Response
+```json
+{
+  "id": "http://api.bounswe2019group9.tk/annotations?id=3",
+  "field": "hasan",
+  "field2": "mahmut"
+}
+```
+
+## Delete Annotation 
+
+**Request Content:**
+Annotation id
+
+**Response Content:**
+Ok
+
+##### Example Request
+```
+GET /annotations/deleteById?annotationId=3
+```
+##### Example Response
+```json
+{
+  "data": null,
+  "explanation": null,
+  "status": 200
+}
+```
+
+## Search Annotation 
+
+**Request Content:**
+Target id
+
+**Response Content:**
+Annotation string
+
+##### Example Request
+```
+GET /annotations/searchInAnnotations?targetId=3
+```
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": [
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=4\",\"field\":\"http://www.w3.org/TR/media-frags/\", \"field2\":\"mahmut\"}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=5\",\"field\":\"http://www.w3.org/TR/media-frags/\", \"field2\":\"mahmut\"}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=6\", \"url\": \"http://www.w3.org/TR/media-frags/\" }",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=7\", \"url\": \"http://www.w3.org/ns/anno.jsonld/\" }",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=8\", 'url': 'http://www.w3.org/ns/anno.jsonld/', 'neden': 'singlequote' }",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=19\", \"dasdsa\": \" 5635 \" }",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=20\", \"dasdsa\": \" 5635 \" }",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=37\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/22\",\"name\":\"Mahmut Kızıloğlu\",\"email\":\"mahmut.kiziloglu@hotmail.com\"},\"created\":\"2019-12-24T14:43:10.115Z\",\"modified\":\"2019-12-24T14:43:19.094Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"kjhkjhjkhlkjhliutuyftsrtyuiuytr\",\"format\":\"text/plain\"},\"motivation\":\"assessing\",\"target\":{\"id\":\"https://api.bounswe2019group9.tk/essays/getSourceByEssayId?id=24\",\"type\":\"Text\",\"format\":\"text/plain\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://tools.ietf.org/rfc/rfc5147\",\"value\":\"char=323,482\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=38\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/22\",\"name\":\"Mahmut Kızıloğlu\",\"email\":\"mahmut.kiziloglu@hotmail.com\"},\"created\":\"2019-12-24T14:43:29.904Z\",\"modified\":\"2019-12-24T14:43:33.008Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"jgt\",\"format\":\"text/plain\"},\"motivation\":\"commenting\",\"target\":{\"id\":\"https://api.bounswe2019group9.tk/essays/getSourceByEssayId?id=24\",\"type\":\"Text\",\"format\":\"text/plain\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://tools.ietf.org/rfc/rfc5147\",\"value\":\"char=180,192\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=25\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/30\",\"name\":\"John Johnwell\",\"email\":\"john@johnwell.com\"},\"created\":\"2019-12-24T10:55:49.132Z\",\"modified\":\"2019-12-24T11:18:45.251Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\",\"format\":\"text/plain\"},\"motivation\":\"describing\",\"target\":{\"id\":\"https://api.bounswe2019group9.tk/essays/getSourceByEssayId?id=17\",\"type\":\"Text\",\"format\":\"text/plain\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://tools.ietf.org/rfc/rfc5147\",\"value\":\"char=3,5\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=26\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/30\",\"name\":\"John Johnwell\",\"email\":\"john@johnwell.com\"},\"created\":\"2019-12-24T11:30:44.664Z\",\"modified\":\"2019-12-24T11:36:44.649Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"Well done here\",\"format\":\"text/plain\"},\"motivation\":\"assessing\",\"target\":{\"id\":\"https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/essay/6_30.jpeg\",\"type\":\"Image\",\"format\":\"image/jpeg\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://www.w3.org/TR/media-frags/\",\"value\":\"xywh=56,209,305,46\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=27\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/30\",\"name\":\"John Johnwell\",\"email\":\"john@johnwell.com\"},\"created\":\"2019-12-24T11:30:56.984Z\",\"modified\":\"2019-12-24T11:36:49.841Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"Oh my god, great!!\",\"format\":\"text/plain\"},\"motivation\":\"describing\",\"target\":{\"id\":\"https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/essay/6_30.jpeg\",\"type\":\"Image\",\"format\":\"image/jpeg\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://www.w3.org/TR/media-frags/\",\"value\":\"xywh=54,321,88,181\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=28\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/30\",\"name\":\"John Johnwell\",\"email\":\"john@johnwell.com\"},\"created\":\"2019-12-24T12:23:03.494Z\",\"modified\":\"2019-12-24T12:23:09.048Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"Wow dude\",\"format\":\"text/plain\"},\"motivation\":\"commenting\",\"target\":{\"id\":\"https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/essay/6_12.jpeg\",\"type\":\"Image\",\"format\":\"image/jpeg\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://www.w3.org/TR/media-frags/\",\"value\":\"xywh=138,193,60,30\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=29\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/30\",\"name\":\"John Johnwell\",\"email\":\"john@johnwell.com\"},\"created\":\"2019-12-24T12:23:10.269Z\",\"modified\":\"2019-12-24T12:23:22.445Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"This is the best thing I've ever seen\",\"format\":\"text/plain\"},\"motivation\":\"bookmarking\",\"target\":{\"id\":\"https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/essay/6_12.jpeg\",\"type\":\"Image\",\"format\":\"image/jpeg\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://www.w3.org/TR/media-frags/\",\"value\":\"xywh=360,516,171,30\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=33\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/9\",\"name\":\"irem Uguz\",\"email\":\"irem@test.com\"},\"created\":\"2019-12-24T13:30:48.093Z\",\"modified\":\"2019-12-24T13:31:04.987Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"burası net\",\"format\":\"text/plain\"},\"motivation\":\"classifying\",\"target\":{\"id\":\"https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/essay/3_9.jpeg\",\"type\":\"Image\",\"format\":\"image/jpeg\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://www.w3.org/TR/media-frags/\",\"value\":\"xywh=277,307,60,30\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=30\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/30\",\"name\":\"John Johnwell\",\"email\":\"john@johnwell.com\"},\"created\":\"2019-12-24T12:23:23.805Z\",\"modified\":\"2019-12-24T12:23:33.583Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"It even supports scroll, woah\",\"format\":\"text/plain\"},\"motivation\":\"highlighting\",\"target\":{\"id\":\"https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/essay/6_12.jpeg\",\"type\":\"Image\",\"format\":\"image/jpeg\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://www.w3.org/TR/media-frags/\",\"value\":\"xywh=138,642,60,30\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=32\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/9\",\"name\":\"irem Uguz\",\"email\":\"irem@test.com\"},\"created\":\"2019-12-24T13:30:17.798Z\",\"modified\":\"2019-12-24T13:30:44.551Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"Merhaba bunu ben yazdım\",\"format\":\"text/plain\"},\"motivation\":\"bookmarking\",\"target\":{\"id\":\"https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/essay/3_9.jpeg\",\"type\":\"Image\",\"format\":\"image/jpeg\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://www.w3.org/TR/media-frags/\",\"value\":\"xywh=301,45,201,215\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=31\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/12\",\"name\":\"Johnie Walker\",\"email\":\"j.walker@hotmail.com\"},\"created\":\"2019-12-24T12:24:11.645Z\",\"modified\":\"2019-12-24T12:24:49.757Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"I know right!!\",\"format\":\"text/plain\"},\"motivation\":\"moderating\",\"target\":{\"id\":\"https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/essay/6_12.jpeg\",\"type\":\"Image\",\"format\":\"image/jpeg\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://www.w3.org/TR/media-frags/\",\"value\":\"xywh=18,394,75,56\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=34\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/41\",\"name\":\"Doğan Çavdarcı\",\"email\":\"dogan.cavdarci@hotmail.com\"},\"created\":\"2019-12-24T13:32:15.392Z\",\"modified\":\"2019-12-24T13:32:26.445Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"burası olmamıs düzelecek\",\"format\":\"text/plain\"},\"motivation\":\"editing\",\"target\":{\"id\":\"https://kereviz-upload.s3.eu-central-1.amazonaws.com/image/essay/3_9.jpeg\",\"type\":\"Image\",\"format\":\"image/jpeg\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://www.w3.org/TR/media-frags/\",\"value\":\"xywh=397,290,60,30\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=35\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/30\",\"name\":\"John Johnwell\",\"email\":\"john@johnwell.com\"},\"created\":\"2019-12-24T13:37:19.537Z\",\"modified\":\"2019-12-24T13:37:23.015Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"asdasdas\",\"format\":\"text/plain\"},\"motivation\":\"describing\",\"target\":{\"id\":\"https://api.bounswe2019group9.tk/essays/getSourceByEssayId?id=17\",\"type\":\"Text\",\"format\":\"text/plain\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://tools.ietf.org/rfc/rfc5147\",\"value\":\"char=0,3\"}}}",
+    "{ \"id\": \"http://api.bounswe2019group9.tk/annotations?id=36\",\"@context\":\"http://www.w3.org/ns/anno.jsonld\",\"type\":\"Annotation\",\"creator\":{\"id\":\"https://bounswe2019group9.tk/users/22\",\"name\":\"Mahmut Kızıloğlu\",\"email\":\"mahmut.kiziloglu@hotmail.com\"},\"created\":\"2019-12-24T14:42:56.554Z\",\"modified\":\"2019-12-24T14:43:01.283Z\",\"body\":{\"type\":\"TextualBody\",\"value\":\"jhg\",\"format\":\"text/plain\"},\"motivation\":\"highlighting\",\"target\":{\"id\":\"https://api.bounswe2019group9.tk/essays/getSourceByEssayId?id=24\",\"type\":\"Text\",\"format\":\"text/plain\",\"selector\":{\"type\":\"FragmentSelector\",\"conformsTo\":\"http://tools.ietf.org/rfc/rfc5147\",\"value\":\"char=152,456\"}}}"
+  ]
+}
+```
+
+# Comment Endpoints
+## Create Comment 
+
+**Request Content:**
+Content text, source id, receiver id
+
+**Response Content:**
+Comment itself
+
+##### Example Request
+```
+POST /comments
+```
+```json
+{
+  "content": "Good one",
+  "receiverId": 2,
+  "sourceId": 3
+}
+```
+##### Example Response
+```json
+{
+  "data": {
+    "content": "Good one",
+    "receiverId": 2,
+    "sourceId": 3
+  },
+  "explanation": null,
+  "status": 200
+}
+```
+
+## Get Comments By Receiver Id 
+
+**Request Content:**
+Receiver user id
+
+**Response Content:**
+Comments of that user
+
+##### Example Request
+```
+GET /comments/getCommentsByReceiverId?userId=3
+```
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": [
+    {
+      "sourceFirstName": "ahmet",
+      "sourceLastName": "test",
+      "comment": {
+        "id": 1,
+        "sourceId": 1,
+        "receiverId": 3,
+        "content": "nice",
+        "createdAt": "2019-12-14T00:00:00.000+0000"
+      }
+    }
+  ]
+}
+```
+
+# Assignment Endpoints
+## Create Assignment 
+
+**Request Content:**
+Language id, question text
+
+**Response Content:**
+Assignment itself
+
+##### Example Request
+```
+POST /assignments
+```
+```json
+{
+  "languageId": 1,
+  "text": "What do you think about fortune telling?"
+}
+```
+##### Example Response
+```json
+{
+  "data": {
+    "languageId": 1,
+    "text": "What do you think about fortune telling?"
+  },
+  "explanation": null,
+  "status": 200
+}
+```
+
+## Get Assignment By Id 
+
+**Request Content:**
+Id
+
+**Response Content:**
+Assignment with that id
+
+##### Example Request
+```
+GET /assignments?id=3
+```
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": {
+    "id": 3,
+    "question": "Describe a place you will never forget.",
+    "languageId": 1
+  }
+}
+```
+
+## Get Assignment By Language Id 
+
+**Request Content:**
+Language Id
+
+**Response Content:**
+Assignments in that language
+
+##### Example Request
+```
+GET /assignments/language?id=1
+```
+##### Example Response
+```json
+{
+  "status": 200,
+  "explanation": null,
+  "data": [
+    {
+      "id": 3,
+      "question": "Describe a place you will never forget.",
+      "languageId": 1
+    },
+    {
+      "id": 4,
+      "question": "Describe a sporting event you attended recently.",
+      "languageId": 1
+    },
+    {
+      "id": 5,
+      "question": "Describe someone you respect deeply.",
+      "languageId": 1
+    },
+    {
+      "id": 6,
+      "question": "Describe your childhood home.",
+      "languageId": 1
+    },
+    {
+      "id": 7,
+      "question": "Describe the nightlife in a city you are familiar with.",
+      "languageId": 1
+    },
+    {
+      "id": 8,
+      "question": "What would you do if you got lost in an unfamiliar city?",
+      "languageId": 1
+    },
+    {
+      "id": 9,
+      "question": "What would you do if you left something in a locked building?",
+      "languageId": 1
+    },
+    {
+      "id": 1,
+      "question": "What is your opinion about fortune telling?",
+      "languageId": 1
+    },
+    {
+      "id": 2,
+      "question": "What is your opinion about cellular phones?",
+      "languageId": 1
+    }
+  ]
+}
+```
+
