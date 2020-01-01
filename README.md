@@ -18,3 +18,8 @@ We are Group #9 in [CMPE 352](https://www.cmpe.boun.edu.tr/courses/cmpe352) cour
 > assets folder should contain our assets (eg: images) for our wiki pages and such.
 > please, keep the assets folder clean as it is. [#49](https://github.com/bounswe/bounswe2019group9/issues/49#issuecomment-486808117)
 Please, reopen that issue if you'd prefer another hierarchy or have questions about it.
+
+## How To Run The Project
+### Android App
+Download [kereviz-android.apk](https://github.com/bounswe/bounswe2019group9/blob/master/kereviz-android.apk) file from the Github repository. Connect an Android device to the computer and send the kereviz-android.apk file to the Android device via the USB cable. On the Android device open the file. The installation of the app must start automatically. 
+Note: Android device must be in developer mode. To switch your device to Developer mode, click to the Android version in the Settings, seven times.
