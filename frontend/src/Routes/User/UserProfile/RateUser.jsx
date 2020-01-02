@@ -1,16 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Avatar, Card, Comment, List, Rate, Skeleton, Text, Title} from "antd";
+import { Rate } from "antd";
 
 import {connect} from '../../../Store';
-import avatarUrl from "../../../Helpers/avatar";
-import moment from "moment";
-import CommentInput from "./CommentInput";
-import {commentsGet} from "../../../Api/Comment";
-import delay from "../../../Helpers/delay";
 import {addRating, getRatingBetween, updateRating} from "../../../Api/Rate";
 
 
-const RateUser = ({ store: { userId }, otherUserId, onSubmit }) => {
+const RateUser = ({ store: { userId }, otherUserId }) => {
 
   const [value, setValue] = useState(0);
   const [disabled, setDisabled] = useState(true);

@@ -75,8 +75,8 @@ const ExerciseList = ({
         <div style={styles.tags}>
           <Icon type={'tags'} />
           { '  '}
-          {tags.map(({ tagText }) => (
-            <Tag>
+          {tags.map(({ id, tagText }) => (
+            <Tag key={id}>
               { tagText }
             </Tag>
           ))}
@@ -109,14 +109,14 @@ const ExerciseList = ({
       >
         {imageUrl && (
           <div>
-            <img src={imageUrl} alt={`${title} ${currentExerciseIndex + 1}`}/>
+            <img src={imageUrl} alt={`${title} ${currentExerciseIndex + 1}`} data-testid="image"/>
           </div>
         )}
         {
           soundUrl && (
             <div style={styles.sound}>
-              <audio controls ref={audioRef}>
-                <source src={soundUrl} />
+              <audio controls ref={audioRef} data-testid="audio">
+                <source src={soundUrl} data-testid="audio-source" />
               </audio>
             </div>
           )

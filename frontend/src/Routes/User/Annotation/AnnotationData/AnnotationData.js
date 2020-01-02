@@ -91,6 +91,7 @@ class AnnotationData {
         result.type = "Annotation";
         result.creator = {
             id: `https://bounswe2019group9.tk/users/${this.userId}`,
+            type: 'Person',
             name: this.userName,
             email: this.userEmail
         };
