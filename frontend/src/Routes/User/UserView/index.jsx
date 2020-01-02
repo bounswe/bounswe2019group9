@@ -11,7 +11,7 @@ import avatarUrl from "../../../Helpers/avatar";
 
 
 const UserView = ({ store,
-  email, firstName, grades, userId,
+  firstName, grades, userId,
   languages, lastName, progressLevels,
   isButtonPresent = false }) => {
 
